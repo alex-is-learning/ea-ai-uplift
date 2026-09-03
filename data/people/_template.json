@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "your-slug",
+  "name": "Your public name",
+  "headline": "A short, approved description of your work.",
+  "bio": "A factual public description that you have approved for this directory.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": ["adoption"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-01",
+  "site": null,
+  "contact": "https://example.org/contact",
+  "photo": null,
+  "listingConsent": {
+    "granted": false,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": false,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  }
+}

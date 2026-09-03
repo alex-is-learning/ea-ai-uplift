@@ -1,0 +1,4 @@
+{
+  "case": "html-injection",
+  "changes": { "headline": "<img src=x onerror=alert(1)>" }
+}

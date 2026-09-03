@@ -1,0 +1,4 @@
+{
+  "case": "private-network-url",
+  "changes": { "site": "https://127.0.0.1/private" }
+}

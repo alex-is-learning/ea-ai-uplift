@@ -1,0 +1,53 @@
+name: Correct a directory listing
+description: Request a public correction to a listing.
+title: "Correction: "
+labels: ["listing correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not put private contact information, private documents, or sensitive details in this public form. For sensitive concerns, use the private route in SECURITY.md.
+  - type: input
+    id: profile
+    attributes:
+      label: Profile URL or name
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Public correction requested
+      description: State the exact public text or field that needs correction and the replacement.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or source
+      description: Give a public source, or explain why the listed person approves this correction. Do not include private documents.
+    validations:
+      required: true
+  - type: dropdown
+    id: personal_data
+    attributes:
+      label: Does this concern personal data?
+      options:
+        - "No"
+        - "Yes — use the private route instead"
+        - Unsure — use the private route instead
+    validations:
+      required: true
+  - type: input
+    id: safe_follow_up
+    attributes:
+      label: Preferred safe follow-up
+      description: Optional public HTTPS contact page. Do not provide a private address here.
+  - type: checkboxes
+    id: authority
+    attributes:
+      label: Authority to request this correction
+      options:
+        - label: I am the listed person or I have their permission to request this correction.
+          required: true
+        - label: I have not included private or sensitive information in this issue.
+          required: true

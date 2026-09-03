@@ -1,0 +1,4 @@
+{
+  "case": "bidi-injection",
+  "changes": { "name": "A safe name\u202Ejson" }
+}
