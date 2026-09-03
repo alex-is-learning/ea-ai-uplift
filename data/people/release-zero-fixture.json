@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "release-zero-fixture",
+  "name": "Release Zero Fixture",
+  "headline": "A fictional profile for the private pull-request check.",
+  "bio": "This fictional public-safe profile proves that a contributor can add one person without editing another person's file.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": ["adoption"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-03",
+  "site": null,
+  "contact": "https://example.org/contact",
+  "photo": null,
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-03",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-03",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-03",
+    "policyVersion": "r0-v1"
+  }
+}
