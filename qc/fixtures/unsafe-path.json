@@ -1,0 +1,4 @@
+{
+  "case": "unsafe-path",
+  "changes": { "photo": "../outside.jpg" }
+}
