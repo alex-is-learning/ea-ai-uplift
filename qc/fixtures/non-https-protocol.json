@@ -1,0 +1,4 @@
+{
+  "case": "non-https-protocol",
+  "changes": { "contact": "http://example.org/contact" }
+}

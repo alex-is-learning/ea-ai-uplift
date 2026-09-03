@@ -1,0 +1,4 @@
+{
+  "case": "unsafe-url-characters",
+  "changes": { "contact": "https://example.org/\"quoted\"" }
+}

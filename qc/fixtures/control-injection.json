@@ -1,0 +1,4 @@
+{
+  "case": "control-injection",
+  "changes": { "bio": "A factual public description with a control \u0001 character in the text." }
+}

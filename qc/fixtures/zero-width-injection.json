@@ -1,0 +1,4 @@
+{
+  "case": "zero-width-injection",
+  "changes": { "headline": "A safe\u200B headline" }
+}
