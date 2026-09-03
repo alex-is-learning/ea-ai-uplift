@@ -1,0 +1,4 @@
+{
+  "case": "no-photo-consent",
+  "changes": { "photo": null, "photoApproved": { "granted": true, "date": "2026-09-01", "policyVersion": "r0-v1" } }
+}

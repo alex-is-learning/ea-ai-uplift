@@ -1,0 +1,4 @@
+{
+  "case": "invalid-availability",
+  "changes": { "availability": "maybe" }
+}

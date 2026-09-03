@@ -1,0 +1,103 @@
+name: Add yourself to the directory
+description: Ask for help creating your own approved public profile.
+title: "Add profile: "
+labels: ["profile submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form only for your own public profile. Do not include private contact details, unpublished information, or a photo unless it is already public and you have the right to share it. A maintainer will make a pull request; you must approve the final public text before it is published.
+  - type: input
+    id: slug
+    attributes:
+      label: slug
+      description: Lower-case letters, numbers, and hyphens only. This becomes data/people/<slug>.json.
+    validations:
+      required: true
+  - type: input
+    id: name
+    attributes:
+      label: name
+      description: Your approved public name for the directory.
+    validations:
+      required: true
+  - type: input
+    id: headline
+    attributes:
+      label: headline
+      description: A short, approved public description of your work.
+    validations:
+      required: true
+  - type: textarea
+    id: bio
+    attributes:
+      label: bio
+      description: Approved public profile text only. Do not include private information.
+    validations:
+      required: true
+  - type: dropdown
+    id: work_mode
+    attributes:
+      label: workMode
+      options:
+        - in-house
+        - independent
+        - both
+    validations:
+      required: true
+  - type: input
+    id: organisation
+    attributes:
+      label: organisation
+      description: Optional. Include only a current organisation reference that you approve.
+  - type: textarea
+    id: capabilities
+    attributes:
+      label: capabilities
+      description: List the controlled capability values you want reviewed.
+    validations:
+      required: true
+  - type: input
+    id: availability
+    attributes:
+      label: availability
+      description: Use a controlled availability value from the profile template.
+    validations:
+      required: true
+  - type: input
+    id: availability_checked
+    attributes:
+      label: availabilityChecked
+      description: YYYY-MM-DD.
+    validations:
+      required: true
+  - type: input
+    id: site
+    attributes:
+      label: site
+      description: Optional public HTTPS URL. Leave blank when it should be omitted or null.
+  - type: input
+    id: contact
+    attributes:
+      label: contact
+      description: Required public HTTPS URL. Do not provide a private email address.
+    validations:
+      required: true
+  - type: textarea
+    id: photo
+    attributes:
+      label: photo
+      description: Optional. Leave blank when it should be omitted or null. If provided, link only to a publicly accessible image that you have the right to publish. Do not upload private images here.
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent
+      options:
+        - label: I am requesting a listing for myself and approve these facts for public review.
+          required: true
+        - label: I approve the final listing and copy only after I have reviewed the pull request.
+          required: true
+        - label: If I provide a photo, I have the right to publish it and approve its use in the directory.
+          required: true
+        - label: I have read the listing policy and understand that the issue is public.
+          required: true
