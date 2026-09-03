@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "release-zero-invalid-fixture",
+  "name": "Release Zero Invalid Fixture",
+  "headline": "Fictional profile for a protected-branch test.",
+  "bio": "This fictional profile deliberately contains an unsafe contact URL.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": ["adoption"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-01",
+  "site": null,
+  "contact": "http://127.0.0.1/private",
+  "photo": null,
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  }
+}
