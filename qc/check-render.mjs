@@ -58,7 +58,7 @@ function readJson(url, timeout = 4000) {
 }
 
 async function waitForPageTarget(port) {
-  const deadline = Date.now() + 15_000;
+  const deadline = Date.now() + 30_000;
   let lastError;
   while (Date.now() < deadline) {
     try {
@@ -71,12 +71,12 @@ async function waitForPageTarget(port) {
     }
     await wait(150);
   }
-  throw new Error(`Chromium DevTools target did not become ready within 15 seconds${lastError ? `: ${lastError.message}` : ''}`);
+  throw new Error(`Chromium DevTools target did not become ready within 30 seconds${lastError ? `: ${lastError.message}` : ''}`);
 }
 
 async function waitForDevTools(profile) {
   const activePort = path.join(profile, 'DevToolsActivePort');
-  for (let attempt = 0; attempt < 100; attempt += 1) {
+  for (let attempt = 0; attempt < 300; attempt += 1) {
     if (fs.existsSync(activePort)) {
       const [port] = fs.readFileSync(activePort, 'utf8').trim().split('\n');
       if (port) return port;
