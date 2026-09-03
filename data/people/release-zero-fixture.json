@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "release-zero-fixture",
+  "name": "Release Zero Fixture",
+  "headline": "Independent AI adoption support.",
+  "bio": "A fictional public profile used only to test the contribution checks.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": ["adoption", "training"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-01",
+  "site": null,
+  "contact": "https://example.org/contact",
+  "photo": null,
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  }
+}
