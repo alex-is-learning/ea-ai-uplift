@@ -1,0 +1,6 @@
+{
+  "case": "arabic-letter-mark-injection",
+  "changes": {
+    "name": "Fixture\u061c Name"
+  }
+}

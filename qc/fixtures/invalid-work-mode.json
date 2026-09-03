@@ -1,0 +1,4 @@
+{
+  "case": "invalid-work-mode",
+  "changes": { "workMode": "contract" }
+}

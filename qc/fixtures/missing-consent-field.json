@@ -1,0 +1,4 @@
+{
+  "case": "missing-consent-field",
+  "changes": { "copyApproved": { "granted": true, "date": "2026-09-01" } }
+}

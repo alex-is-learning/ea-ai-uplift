@@ -1,0 +1,41 @@
+name: Release 0 quality
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release0-quality-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  release0-quality:
+    name: Release 0 quality
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Set up Node 22
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          check-latest: false
+      - name: Confirm Linux Chromium
+        run: google-chrome --version
+      - name: Install strict JPEG decoder
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends libjpeg-turbo-progs
+      - name: Validate, build, and render
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+          DJPEG_BIN: /usr/bin/djpeg
+        run: node qc/verify-release0.mjs

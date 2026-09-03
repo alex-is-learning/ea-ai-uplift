@@ -1,0 +1,6 @@
+{
+  "case": "word-joiner-injection",
+  "changes": {
+    "name": "Fixture\u2060 Name"
+  }
+}

@@ -1,0 +1,32 @@
+# Contributing to EA AI Uplift
+
+Thank you for helping keep this directory and field guide useful and accurate. This repository is a public contribution space. Do not add private notes, interview records, account data, outreach drafts, private email addresses, or information that a named person has not approved for publication.
+
+## Add a profile
+
+The usual route is self-submission. Add only your own profile:
+
+1. Fork the repository and create a branch.
+2. Copy `data/people/_template.json` to `data/people/<slug>.json`. Use lower-case letters, numbers, and hyphens for `<slug>`.
+3. Complete the required fields with public, accurate facts that you approve. All submitted URLs must use HTTPS. Do not infer an employer, role, availability, contact route, or capability from a Slack membership, website, or conversation.
+4. If you include a photo, add both square derivatives: `img/<slug>.jpg` and `img/<slug>-960.jpg`. Remove metadata before submission. Confirm that you have the right to publish both files.
+5. Install the local check prerequisites from `README.md`. Run `node qc/verify-release0.mjs` from the repository root. It validates, builds into untracked `dist/`, and renders locally. It must not fetch contributor URLs.
+6. Open a pull request using the template and complete its checklist.
+
+If Git is not practical, submit the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml). A maintainer can prepare a pull request, but the named person must approve the final public profile before it is merged.
+
+## Corrections and removals
+
+Use the correction or removal issue form for public changes. Do not disclose private information there. A person can request correction or removal of their own listing at any time. If a request concerns sensitive information or an urgent safety risk, use the private route in [SECURITY.md](SECURITY.md).
+
+## Content contributions
+
+Propose original guides or case studies in a pull request. State the source of each claim and get publication approval from every named person before you add their identifiable information. Do not present a listing as endorsement, certification, membership, employment, or an official definition.
+
+Original guides and case studies that we accept are licensed under CC BY 4.0 as described in [LICENSE-CONTENT](LICENSE-CONTENT). Profiles and photos remain excluded unless their contributor separately grants a licence.
+
+## Review and merge
+
+A maintainer checks fit with the listing policy, public consent, accuracy, links, photo rights, and the quality check. A maintainer can reject unsupported claims, unsafe links, copied text, unapproved photos, irrelevant submissions, or promotional spam.
+
+Every change reaches `main` through a reviewed pull request. Do not commit `dist/`, deploy from a pull request, or add automation that fetches contributor URLs. Production publication is a separate manual action.

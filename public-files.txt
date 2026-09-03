@@ -1,0 +1,27 @@
+# Release 0 public allow-list
+#
+# A file may enter this repository only when it matches one of these entries.
+# Everything else is private by default and must be reviewed before inclusion.
+
+README.md
+CONTRIBUTING.md
+SECURITY.md
+LICENSE
+LICENSE-CONTENT
+NOTICE.md
+.gitignore
+.gitattributes
+public-files.txt
+build.mjs
+og.png
+.github/**
+docs/LISTING-POLICY.md
+data/people/_template.json
+data/people/*.json
+schema/**
+qc/**
+img/*.jpg
+
+# Never public through this allow-list: dist/, BAKE*.md, CLAUDE.md, operating
+# notes, outreach drafts, interview notes, account data, unapproved profiles,
+# spare images, person-specific tests, secrets, or generated previews.

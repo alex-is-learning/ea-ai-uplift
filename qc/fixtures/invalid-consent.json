@@ -1,0 +1,4 @@
+{
+  "case": "invalid-consent",
+  "changes": { "listingConsent": { "granted": false, "date": "2026-09-01", "policyVersion": "r0-v1" } }
+}
