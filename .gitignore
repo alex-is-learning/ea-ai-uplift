@@ -1,0 +1,22 @@
+# Reproducible build output and local dependencies
+dist/
+node_modules/
+coverage/
+qc-shots/
+
+# Local operating material must never enter the public history
+BAKE*.md
+CLAUDE.md
+docs/*DRAFT*
+.vercel/
+.env
+.env.*
+!.env.example
+
+# Legacy monolithic directory data is not part of Release 0
+data/people.json
+
+# Operating-system and editor files
+.DS_Store
+*.log
+*.tmp

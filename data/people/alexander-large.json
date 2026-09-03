@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "alexander-large",
+  "name": "Alexander Large",
+  "headline": "Organisation operations and AI adoption.",
+  "bio": "Discovery interviews, then tools, automations and systems. Also works with advanced users on multi-agent delegation, and with people who are stuck on a task.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": ["discovery", "automation", "operations", "workflow-design"],
+  "availability": "available",
+  "availabilityChecked": "2026-09-01",
+  "site": "https://alexanderlarge.com",
+  "contact": "https://calendar.app.google/r3ctgvteof8BA9hJ9",
+  "photo": "alexander-large.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-01",
+    "policyVersion": "r0-v1"
+  }
+}

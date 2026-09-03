@@ -1,0 +1,70 @@
+name: Remove a directory listing
+description: Request removal of a listing or portrait.
+title: "Removal: "
+labels: ["listing removal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is a public issue. Do not include private or sensitive information. Maintainers will remove disputed personal data from the live site while they check the request.
+  - type: input
+    id: profile
+    attributes:
+      label: Profile URL or name
+    validations:
+      required: true
+  - type: dropdown
+    id: relationship
+    attributes:
+      label: Requester relationship to the listing
+      options:
+        - I am the listed person
+        - I have the listed person's permission
+        - I represent the rights holder for the portrait or content
+        - Other authorised relationship
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Remove
+      options:
+        - label: Remove the whole profile.
+        - label: Remove the portrait only.
+        - label: Remove a specific public detail, described below.
+  - type: textarea
+    id: detail
+    attributes:
+      label: Optional public detail to remove
+      description: Leave blank for whole-profile removal. Do not add sensitive facts.
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason for removal
+      description: Give a public-safe reason. Do not include sensitive facts.
+    validations:
+      required: true
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      options:
+        - Standard
+        - Urgent — remove from the live site while checked
+        - Sensitive — use the private route instead
+    validations:
+      required: true
+  - type: input
+    id: safe_follow_up
+    attributes:
+      label: Preferred safe follow-up
+      description: Optional public HTTPS contact page. Do not provide a private address here.
+  - type: checkboxes
+    id: authority
+    attributes:
+      label: Authority to request removal
+      options:
+        - label: I am the listed person or I have their permission to request this removal.
+          required: true
+        - label: I have not included private or sensitive information in this issue.
+          required: true

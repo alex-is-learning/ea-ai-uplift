@@ -1,0 +1,4 @@
+{
+  "case": "future-date",
+  "changes": { "availabilityChecked": "2099-01-01" }
+}
