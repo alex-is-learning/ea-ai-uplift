@@ -86,6 +86,18 @@ async function waitForDevTools(profile) {
   throw new Error('Chromium did not open its DevTools endpoint');
 }
 
+async function removeProfile(profile) {
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    try {
+      fs.rmSync(profile, { recursive: true, force: true });
+      return;
+    } catch (error) {
+      if (!['EBUSY', 'ENOTEMPTY', 'EPERM'].includes(error.code)) throw error;
+      await wait(100);
+    }
+  }
+}
+
 async function openCdp(webSocketUrl) {
   const socket = new WebSocket(webSocketUrl);
   const pending = new Map();
@@ -186,8 +198,12 @@ async function renderFile(browser, pagePath, viewport) {
   } finally {
     if (cdp) await cdp.close();
     if (!child.killed) child.kill('SIGTERM');
-    await Promise.race([new Promise((resolve) => child.once('exit', resolve)), wait(1000)]);
-    fs.rmSync(profile, { recursive: true, force: true });
+    if (child.exitCode === null) await Promise.race([new Promise((resolve) => child.once('exit', resolve)), wait(5000)]);
+    if (child.exitCode === null) {
+      child.kill('SIGKILL');
+      await Promise.race([new Promise((resolve) => child.once('exit', resolve)), wait(1000)]);
+    }
+    await removeProfile(profile);
   }
 }
 
