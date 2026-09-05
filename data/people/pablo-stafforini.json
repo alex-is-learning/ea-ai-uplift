@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "pablo-stafforini",
+  "name": "Pablo Stafforini",
+  "headline": "AI Enablement Manager at Epoch AI",
+  "bio": "His public EA Forum profile states, in the first person, that he is AI Enablement Manager at Epoch AI, and that he recently moved back to his native Buenos Aires after living nomadically for many years. The profile lists his location as Buenos Aires, Argentina, and links to his personal site, whose page names him Pablo Stafforini.",
+  "workMode": "in-house",
+  "organisation": "Epoch AI",
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-05",
+  "site": "https://www.stafforini.com/",
+  "contact": "https://forum.effectivealtruism.org/users/pablo_stafforini",
+  "photo": null,
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-05",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-05",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-05",
+    "policyVersion": "r0-v1"
+  }
+}

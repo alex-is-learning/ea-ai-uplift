@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "pablo-rosado",
+  "name": "Pablo Rosado",
+  "headline": "Astrophysicist by training, data scientist by profession, and science communicator by passion",
+  "bio": "Pablo Rosado is Principal Data Scientist at Our World in Data, which he joined in 2022. He states that he builds and maintains much of the open-source data pipeline behind the publication, and authors and co-authors data work and articles on topics including energy, climate change, food and agriculture, natural disasters and animal welfare. He holds a PhD in astrophysics and data analysis from the Max Planck Society, completed at the Max Planck Institute for Gravitational Physics in Hannover, where his research covered gravitational-wave astronomy as a member of collaborations including LIGO and pulsar timing arrays. He studied physics at the University of Seville and did master's work at the University of Münster, and states he has over a decade of experience applying machine learning and data science across academia and industry, including finance, renewable energy and intellectual property.",
+  "workMode": "in-house",
+  "organisation": "Our World in Data",
+  "capabilities": [],
+  "availability": "limited",
+  "availabilityChecked": "2026-09-05",
+  "site": "https://pablorosado.com/",
+  "contact": "https://pablorosado.com/about-me/",
+  "photo": null,
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-05",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-05",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-05",
+    "policyVersion": "r0-v1"
+  }
+}

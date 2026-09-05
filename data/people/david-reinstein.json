@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "david-reinstein",
+  "name": "David Reinstein",
+  "headline": "Economist; founder and co-director of The Unjournal",
+  "bio": "David is an economist and the founder and co-director of The Unjournal, a grant-funded nonprofit that organises and funds public, journal-independent feedback, rating and evaluation of hosted papers and research projects relevant to global priorities. His site describes 25 years of experience at UC Berkeley, the University of Essex, the University of Exeter and Rethink Priorities, along with other consulting and teaching roles. His research covers determinants and motivators of charitable giving, drivers of and barriers to effective giving, and the impact of pro-social behaviour and social preferences in market contexts.",
+  "workMode": "in-house",
+  "organisation": "The Unjournal",
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-05",
+  "site": "https://www.davidreinstein.org/",
+  "contact": "https://forum.effectivealtruism.org/users/david_reinstein",
+  "photo": "david-reinstein.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  }
+}
