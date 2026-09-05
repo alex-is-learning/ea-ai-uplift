@@ -8,6 +8,7 @@ import { validateProject } from '../schema/validate.mjs';
 import { checkOutput } from './check-output.mjs';
 import { checkPublicFiles } from './check-public-files.mjs';
 import { checkRender } from './check-render.mjs';
+import { checkSections } from './check-sections.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const fixtureDir = path.join(root, 'qc', 'fixtures');
@@ -359,8 +360,9 @@ async function main() {
   await testBuildLifecycle();
   const sectionFixtures = testSectionFixtures();
   const output = await checkOutput(root);
+  const counts = checkSections(root);
   const render = await checkRender(root);
-  console.log(`verify-release0: ${fixtureNames.length} fixtures, ${sectionFixtures} section fixtures, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, and ${render.results.length} local Chromium renders pass`);
+  console.log(`verify-release0: ${fixtureNames.length} fixtures, ${sectionFixtures} section fixtures, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, sections (asks ${counts.asks}, offers ${counts.offers}, guides ${counts.guides}), and ${render.results.length} local Chromium renders pass`);
 }
 
 try {
