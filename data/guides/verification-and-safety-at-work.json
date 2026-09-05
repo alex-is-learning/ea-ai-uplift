@@ -4,7 +4,7 @@
   "what": "What not to paste into a tool, how to check what comes out, and which decisions stay with a person.",
   "why": "The tools are confident when wrong, and organisations hold personal data. Both need rules before habits form.",
   "stage": "start",
-  "status": "guide-planned",
+  "status": "local",
   "links": [
     {
       "label": "Guidance on AI and data protection, ICO",

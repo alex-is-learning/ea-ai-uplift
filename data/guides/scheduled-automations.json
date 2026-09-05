@@ -1,0 +1,23 @@
+{
+  "slug": "scheduled-automations",
+  "title": "Automations that run on their own",
+  "what": "A scheduled or triggered job that does a recurring task without a person starting it: a weekly report, a daily triage, a sync when a file changes.",
+  "why": "The gains from a session fade if a person still has to remember to run the thing. A job on a schedule keeps working after everyone has moved on.",
+  "stage": "next",
+  "status": "index-only",
+  "links": [
+    {
+      "label": "Run prompts on a schedule, Claude Code docs",
+      "url": "https://code.claude.com/docs/en/scheduled-tasks"
+    },
+    {
+      "label": "GitHub Actions documentation",
+      "url": "https://docs.github.com/en/actions"
+    },
+    {
+      "label": "Zapier help centre",
+      "url": "https://zapier.com/help"
+    }
+  ],
+  "checked": "2026-09-05"
+}

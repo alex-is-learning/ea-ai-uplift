@@ -4,7 +4,7 @@
   "what": "The adoption problem: one enthusiast in an organisation is not the organisation using AI.",
   "why": "Uplift that stays with one person leaves when they do. Shared context, agreed limits and written methods are what make it stick.",
   "stage": "advanced",
-  "status": "guide-planned",
+  "status": "local",
   "links": [
     {
       "label": "How Anthropic's own staff use Claude Code",

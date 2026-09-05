@@ -1,0 +1,43 @@
+{
+  "expect": "written must not be in the future",
+  "file": "mcp.json",
+  "data": {
+    "slug": "mcp",
+    "summary": "A factual guide page used only to exercise the build checks for guide pages.",
+    "version": "0.1",
+    "written": "2099-01-01",
+    "blocks": [
+      {
+        "type": "h2",
+        "text": "What it is"
+      },
+      {
+        "type": "p",
+        "text": "A paragraph of at least ten characters for the fixture."
+      },
+      {
+        "type": "ul",
+        "items": [
+          "One item",
+          "Two items"
+        ]
+      },
+      {
+        "type": "ol",
+        "items": [
+          "Step one",
+          "Step two"
+        ]
+      },
+      {
+        "type": "aside",
+        "title": "A note",
+        "text": "An aside used only for the fixture."
+      },
+      {
+        "type": "p",
+        "text": "A closing paragraph for the fixture."
+      }
+    ]
+  }
+}
