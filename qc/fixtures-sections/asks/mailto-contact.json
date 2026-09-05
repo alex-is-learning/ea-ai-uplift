@@ -1,0 +1,16 @@
+{
+  "expect": "contact must use a public HTTPS hostname",
+  "file": "mailto-contact.json",
+  "data": {
+    "slug": "mailto-contact",
+    "title": "A real one-sentence problem that is long enough.",
+    "context": "",
+    "postedBy": "An operations lead at a small organisation",
+    "posterKind": "organisation",
+    "budget": "unstated",
+    "contact": "mailto:someone@example.org",
+    "posted": "2026-09-01",
+    "expires": "2026-10-01",
+    "source": "self"
+  }
+}

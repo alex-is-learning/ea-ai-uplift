@@ -1,0 +1,16 @@
+{
+  "expect": "posted must not be in the future",
+  "file": "posted-in-future.json",
+  "data": {
+    "slug": "posted-in-future",
+    "title": "A real one-sentence problem that is long enough.",
+    "context": "",
+    "postedBy": "An operations lead at a small organisation",
+    "posterKind": "organisation",
+    "budget": "unstated",
+    "contact": "https://example.org/book",
+    "posted": "2099-01-01",
+    "expires": "2099-02-01",
+    "source": "self"
+  }
+}

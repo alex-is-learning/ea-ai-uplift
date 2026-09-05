@@ -1,0 +1,16 @@
+{
+  "expect": "budget must be one of unstated, paid, volunteer, either",
+  "file": "bad-budget.json",
+  "data": {
+    "slug": "bad-budget",
+    "title": "A real one-sentence problem that is long enough.",
+    "context": "",
+    "postedBy": "An operations lead at a small organisation",
+    "posterKind": "organisation",
+    "budget": "cheap",
+    "contact": "https://example.org/book",
+    "posted": "2026-09-01",
+    "expires": "2026-10-01",
+    "source": "self"
+  }
+}
