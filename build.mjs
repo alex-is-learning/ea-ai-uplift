@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertValidProject } from './schema/validate.mjs';
+import { esc, escAttr, countWord, NAME_RULE } from './lib/shared.mjs';
+import { loadSiteConfig } from './lib/data.mjs';
+import { sections, navOrder } from './lib/sections.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const outDir = path.join(scriptDir, 'dist');
@@ -12,9 +15,6 @@ function die(msg) {
   process.exit(1);
 }
 
-const esc = (s) =>
-  String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const escAttr = (s) => esc(s).replace(/"/g, '&quot;');
 
 // ---------------------------------------------------------------- load + validate
 let people = [];
@@ -34,16 +34,36 @@ const byFirstName = (a, b) => {
 };
 people = people.slice().sort(byFirstName);
 
-const NUM_WORDS = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty'];
-function countWord(n, capital = false) {
-  const TENS = { 30: 'thirty', 40: 'forty', 50: 'fifty', 60: 'sixty', 70: 'seventy', 80: 'eighty', 90: 'ninety', 100: 'a hundred' };
-  const w = n <= 20 ? NUM_WORDS[n] : TENS[n] || String(n);
-  return capital ? w.charAt(0).toUpperCase() + w.slice(1) : w;
+const siteLoad = loadSiteConfig(scriptDir);
+if (siteLoad.errors.length) die(siteLoad.errors.join('\n'));
+const site = siteLoad.config;
+const sectionItems = {};
+for (const [name, mod] of Object.entries(sections)) {
+  const loaded = mod.load(scriptDir);
+  if (loaded.errors.length) die(loaded.errors.join('\n'));
+  sectionItems[name] = loaded.items;
+}
+const sectionCss = Object.values(sections).map((mod) => mod.css).filter(Boolean).map((css) => `\n${css}`).join('');
+function ctx(name, prefix = '') {
+  return { root: scriptDir, items: sectionItems[name], people, site, esc, escAttr, prefix };
+}
+function slot(name) {
+  const html = sections[name].section(ctx(name));
+  return html ? `${html}\n\n` : '';
+}
+const NAV_LABELS = { people: 'People', map: "Where you'd start", recipes: 'Recipes', listed: 'Get listed' };
+function navLinks(prefix) {
+  return navOrder
+    .map((name) => {
+      const label = NAV_LABELS[name] ?? sections[name]?.navLabel;
+      return label ? `      <a href="${escAttr(prefix)}#${name}">${esc(label)}</a>` : null;
+    })
+    .filter(Boolean)
+    .join('\n');
 }
 
-// ---------------------------------------------------------------- shared pieces
-const NAME_RULE = `<svg class="name-rule" viewBox="0 0 112 11" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d="M3 6.2C22 3.6 40 8.2 60 5.4 78 2.9 94 7.2 109 4.6"/></svg>`;
 
+// ---------------------------------------------------------------- shared pieces
 const REG_CROSS = `<svg class="reg-cross" viewBox="0 0 22 22" aria-hidden="true" focusable="false"><path vector-effect="non-scaling-stroke" d="M11 1.4V20.6M1.4 11H20.6"/><circle vector-effect="non-scaling-stroke" cx="11" cy="11" r="6"/></svg>`;
 
 const FOOTER_FINE =
@@ -513,7 +533,7 @@ function indexPage() {
 <html lang="en-GB">
 <head>
 ${head({ title: INDEX_TITLE, description: INDEX_DESC, canonical: 'https://eaaiuplift.com/' })}
-<style>${CSS}</style>
+<style>${CSS}${sectionCss}</style>
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -522,10 +542,7 @@ ${head({ title: INDEX_TITLE, description: INDEX_DESC, canonical: 'https://eaaiup
   <div class="wrap">
     <a class="mark" href="#top"><span class="pin" aria-hidden="true"></span>EA AI Uplift</a>
     <nav class="head-nav" aria-label="Page sections">
-      <a href="#people">People</a>
-      <a href="#map">Where you'd start</a>
-      <a href="#recipes">Recipes</a>
-      <a href="#listed">Get listed</a>
+${navLinks('')}
     </nav>
     <a class="head-cta" href="#people">Find a practitioner &rarr;</a>
   </div>
@@ -592,7 +609,7 @@ ${head({ title: INDEX_TITLE, description: INDEX_DESC, canonical: 'https://eaaiup
 
 ${peopleSection()}
 
-  <!-- 03 the route -->
+${slot('asks')}  <!-- 03 the route -->
   <section id="map" aria-labelledby="map-title">
     <div class="wrap">
       <div class="sec-head">
@@ -828,7 +845,7 @@ ${peopleSection()}
     </div>
   </section>
 
-  <!-- 07 get listed -->
+${slot('offers')}  <!-- 07 get listed -->
   <section class="listed" id="listed" aria-labelledby="listed-title">
     <div class="wrap">
       <div class="sec-head">
@@ -853,7 +870,7 @@ ${peopleSection()}
     </div>
   </section>
 
-  <!-- 08 further learning -->
+${slot('guides') || `  <!-- 08 further learning -->
   <section id="learning" aria-labelledby="learning-title">
     <div class="wrap">
       <div class="sec-head">
@@ -863,7 +880,7 @@ ${peopleSection()}
       <p class="intro">New public resources will appear here after review.</p>
     </div>
   </section>
-
+`}
 </main>
 
 ${footer()}
@@ -923,7 +940,7 @@ ${head({
   description: p.headline,
   canonical: `https://eaaiuplift.com/people/${p.slug}/`,
 })}
-<style>${CSS}</style>
+<style>${CSS}${sectionCss}</style>
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -932,10 +949,7 @@ ${head({
   <div class="wrap">
     <a class="mark" href="../../"><span class="pin" aria-hidden="true"></span>EA AI Uplift</a>
     <nav class="head-nav" aria-label="Page sections">
-      <a href="../../#people">People</a>
-      <a href="../../#map">Where you'd start</a>
-      <a href="../../#recipes">Recipes</a>
-      <a href="../../#listed">Get listed</a>
+${navLinks('../../')}
     </nav>
     <a class="head-cta" href="../../#people">Find a practitioner &rarr;</a>
   </div>
@@ -982,6 +996,14 @@ for (const p of people) {
   const dir = path.join(outDir, 'people', p.slug);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), personPage(p));
+}
+for (const [name, mod] of Object.entries(sections)) {
+  for (const page of mod.pages(ctx(name))) {
+    if (!/^[a-z0-9]+(?:[-/][a-z0-9]+)*\/index\.html$/u.test(page.path)) die(`${name} page path is unsafe: ${page.path}`);
+    const target = path.join(outDir, page.path);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, page.html);
+  }
 }
 fs.mkdirSync(path.join(outDir, 'img'));
 for (const p of people) {

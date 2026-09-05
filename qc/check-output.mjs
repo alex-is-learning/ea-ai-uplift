@@ -40,11 +40,29 @@ function assertLocalLinks(location, dist) {
   }
 }
 
-export function checkOutput(projectRoot = root) {
+async function expectedSectionPages(projectRoot, people) {
+  const registry = await import(pathToFileURL(path.join(projectRoot, 'lib', 'sections.mjs')).href);
+  const { loadSiteConfig } = await import(pathToFileURL(path.join(projectRoot, 'lib', 'data.mjs')).href);
+  const { esc, escAttr } = await import(pathToFileURL(path.join(projectRoot, 'lib', 'shared.mjs')).href);
+  const site = loadSiteConfig(projectRoot);
+  if (site.errors.length) throw new Error(site.errors.join('\n'));
+  const paths = [];
+  for (const [name, mod] of Object.entries(registry.sections)) {
+    const loaded = mod.load(projectRoot);
+    if (loaded.errors.length) throw new Error(loaded.errors.join('\n'));
+    for (const page of mod.pages({ root: projectRoot, items: loaded.items, people, site: site.config, esc, escAttr, prefix: '' })) {
+      if (!/^[a-z0-9]+(?:[-/][a-z0-9]+)*\/index\.html$/u.test(page.path)) throw new Error(`${name} page path is unsafe: ${page.path}`);
+      paths.push(page.path);
+    }
+  }
+  return paths;
+}
+
+export async function checkOutput(projectRoot = root) {
   const people = assertValidProject({ root: projectRoot });
   const dist = path.join(projectRoot, 'dist');
   if (!fs.existsSync(dist) || fs.lstatSync(dist).isSymbolicLink() || !fs.lstatSync(dist).isDirectory()) throw new Error('dist must be a real generated directory');
-  const expected = new Set(['index.html', 'og.png']);
+  const expected = new Set(['index.html', 'og.png', ...(await expectedSectionPages(projectRoot, people))]);
   for (const person of people) {
     expected.add(`people/${person.slug}/index.html`);
     if (person.photo) {
@@ -82,7 +100,7 @@ export function checkOutput(projectRoot = root) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   try {
-    const result = checkOutput();
+    const result = await checkOutput();
     console.log(`check-output: ${result.htmlFiles} generated HTML files pass local-only validation`);
   } catch (error) {
     console.error(`check-output: ${error.message}`);

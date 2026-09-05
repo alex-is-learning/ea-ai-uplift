@@ -210,10 +210,18 @@ async function renderFile(browser, pagePath, viewport) {
 }
 
 export async function checkRender(projectRoot = root) {
-  const output = checkOutput(projectRoot);
+  const output = await checkOutput(projectRoot);
   const browser = findChromium();
-  const pages = [path.join(output.dist, 'index.html')];
-  for (const name of fs.readdirSync(path.join(output.dist, 'people')).sort()) pages.push(path.join(output.dist, 'people', name, 'index.html'));
+  // every generated HTML page renders, including section sub-pages
+  const pages = [];
+  (function walk(location) {
+    for (const name of fs.readdirSync(location).sort()) {
+      const item = path.join(location, name);
+      if (fs.lstatSync(item).isDirectory()) walk(item);
+      else if (name.endsWith('.html')) pages.push(item);
+    }
+  })(output.dist);
+  pages.sort((a, b) => (a === path.join(output.dist, 'index.html') ? -1 : b === path.join(output.dist, 'index.html') ? 1 : a < b ? -1 : 1));
   const results = [];
   for (const page of pages) for (const viewport of viewports) results.push(await renderFile(browser, page, viewport));
   return { browser, results };

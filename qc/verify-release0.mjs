@@ -210,7 +210,7 @@ function expectedError(fixture) {
   }[fixture.case];
 }
 
-function testFixtures() {
+async function testFixtures() {
   const fixtures = fs.readdirSync(fixtureDir).filter((name) => name.endsWith('.json')).sort().map((name) => readJson(path.join(fixtureDir, name)));
   const names = [];
   for (const fixture of fixtures) {
@@ -222,7 +222,7 @@ function testFixtures() {
         const result = validateProject({ root: project });
         assert(result.errors.length === 0, `add-profile fixture should validate: ${result.errors.join('; ')}`);
         runBuild(project);
-        const output = checkOutput(project);
+        const output = await checkOutput(project);
         assert(fs.existsSync(path.join(output.dist, 'people', profile.slug, 'index.html')), 'add-profile fixture did not generate its own page');
       } else {
         modifyForFixture(project, fixture);
@@ -238,7 +238,7 @@ function testFixtures() {
   return names;
 }
 
-function testBuildLifecycle() {
+async function testBuildLifecycle() {
   const project = cloneProject();
   try {
     const profile = validAddedProfile(seed(project), fixtureSlug(project));
@@ -255,7 +255,7 @@ function testBuildLifecycle() {
     fs.rmSync(path.join(project, 'data', 'people', `${profile.slug}.json`));
     let staleFailure = '';
     try {
-      checkOutput(project);
+      await checkOutput(project);
     } catch (error) {
       staleFailure = error.message;
     }
@@ -263,7 +263,7 @@ function testBuildLifecycle() {
     runBuild(project);
     assert(!fs.existsSync(path.join(project, 'dist', 'stale.html')), 'stale output survived the clean build');
     assert(!fs.existsSync(path.join(project, 'dist', 'people', profile.slug)), 'removed profile page survived the clean build');
-    checkOutput(project);
+    await checkOutput(project);
   } finally {
     removeProject(project);
   }
@@ -319,20 +319,54 @@ function testTrackedOutputBoundary() {
   }
 }
 
+// Section data fixtures: qc/fixtures-sections/<type>/<name>.json holds
+// { "expect": "<substring of the build error>", "file": "<slug>.json", "data": {...} }.
+// Each one is copied into data/<type>/ of a clone and the build must fail with
+// a message containing `expect`. A section module adds fixtures without editing this file.
+function testSectionFixtures() {
+  const base = path.join(root, 'qc', 'fixtures-sections');
+  if (!fs.existsSync(base)) return 0;
+  let count = 0;
+  for (const type of fs.readdirSync(base).sort()) {
+    const typeDir = path.join(base, type);
+    if (!fs.lstatSync(typeDir).isDirectory()) continue;
+    for (const name of fs.readdirSync(typeDir).sort().filter((item) => item.endsWith('.json'))) {
+      const fixture = readJson(path.join(typeDir, name));
+      assert(typeof fixture.expect === 'string' && fixture.expect && typeof fixture.file === 'string' && fixture.file, `${type}/${name}: fixture needs expect and file`);
+      const project = cloneProject();
+      try {
+        const dataDir = path.join(project, 'data', type);
+        fs.mkdirSync(dataDir, { recursive: true });
+        fs.writeFileSync(path.join(dataDir, fixture.file), typeof fixture.raw === 'string' ? fixture.raw : `${JSON.stringify(fixture.data, null, 2)}\n`);
+        const result = spawnSync(process.execPath, ['build.mjs'], { cwd: project, encoding: 'utf8' });
+        const message = `${result.stderr}${result.stdout}`;
+        assert(result.status !== 0, `${type}/${name}: invalid section data was accepted by the build`);
+        assert(message.includes(fixture.expect), `${type}/${name}: build failed for the wrong reason: ${message.trim()}`);
+      } finally {
+        removeProject(project);
+      }
+      count += 1;
+    }
+  }
+  return count;
+}
+
 async function main() {
   runBuild(root);
   testPublicFileBoundary();
   testTrackedOutputBoundary();
-  const fixtureNames = testFixtures();
-  testBuildLifecycle();
-  const output = checkOutput(root);
+  const fixtureNames = await testFixtures();
+  await testBuildLifecycle();
+  const sectionFixtures = testSectionFixtures();
+  const output = await checkOutput(root);
   const render = await checkRender(root);
-  console.log(`verify-release0: ${fixtureNames.length} fixtures, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, and ${render.results.length} local Chromium renders pass`);
+  console.log(`verify-release0: ${fixtureNames.length} fixtures, ${sectionFixtures} section fixtures, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, and ${render.results.length} local Chromium renders pass`);
 }
 
 try {
   await main();
 } catch (error) {
   console.error(`verify-release0: ${error.message}`);
+  if (process.env.VERIFY_DEBUG) console.error(error.stack);
   process.exitCode = 1;
 }
