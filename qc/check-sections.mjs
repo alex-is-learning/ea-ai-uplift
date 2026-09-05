@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const MINIMUMS = { asks: 3, offers: 3, guides: 5 };
 const FORM_KEYS = { asks: 'askFormUrl', offers: 'offerFormUrl' };
+// proper nouns that contain a banned word (an approved profile may name an employer)
+const PROPER_NOUNS = /Our World in Data/gu;
 const POSITIONING = [
   [/\b(?:we|our|us)\b/iu, 'first-person plural'],
   [/£|\$\s?\d|€\s?\d|\bper hour\b/iu, 'a price or currency'],
@@ -29,18 +31,36 @@ export function checkSections(projectRoot = root) {
     if (formKey && !html.includes(`href="${site[formKey]}"`)) throw new Error(`${name} section does not link to data/site.json ${formKey}`);
   }
   if (html.includes('id="learning"')) throw new Error('the old Further learning placeholder is still on the page');
-  const text = html.replace(/<style>[\s\S]*?<\/style>/u, '').replace(/<[^>]+>/gu, ' ');
-  for (const [expression, label] of POSITIONING) {
-    const match = text.match(expression);
-    if (match) throw new Error(`home page copy contains ${label}: "${match[0]}"`);
+  // positioning holds on every generated page, not only the home page
+  const dist = path.join(projectRoot, 'dist');
+  const pages = [];
+  (function walk(location) {
+    for (const name of fs.readdirSync(location).sort()) {
+      const item = path.join(location, name);
+      if (fs.lstatSync(item).isDirectory()) walk(item);
+      else if (name.endsWith('.html')) pages.push(item);
+    }
+  })(dist);
+  for (const page of pages) {
+    const source = fs.readFileSync(page, 'utf8');
+    const text = source
+      .replace(/<style>[\s\S]*?<\/style>/gu, '')
+      .replace(/<script>[\s\S]*?<\/script>/gu, '')
+      .replace(/<[^>]+>/gu, ' ')
+      .replace(PROPER_NOUNS, ' ');
+    for (const [expression, label] of POSITIONING) {
+      const match = text.match(expression);
+      if (match) throw new Error(`${path.relative(projectRoot, page)} copy contains ${label}: "${match[0]}"`);
+    }
   }
+  counts.pages = pages.length;
   return counts;
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   try {
     const counts = checkSections();
-    console.log(`check-sections: asks ${counts.asks}, offers ${counts.offers}, guides ${counts.guides}; nav, form links and positioning pass`);
+    console.log(`check-sections: asks ${counts.asks}, offers ${counts.offers}, guides ${counts.guides}; nav, form links and positioning pass on ${counts.pages} pages`);
   } catch (error) {
     console.error(`check-sections: ${error.message}`);
     process.exitCode = 1;

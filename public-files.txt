@@ -26,6 +26,9 @@ data/site.json
 data/asks/*.json
 data/offers/*.json
 data/guides/*.json
+data/guide-pages/*.json
+data/assess/*.json
+data/pathway/*.json
 
 # Never public through this allow-list: dist/, BAKE*.md, CLAUDE.md, operating
 # notes, outreach drafts, interview notes, account data, unapproved profiles,
