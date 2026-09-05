@@ -1,0 +1,12 @@
+{
+  "slug": "spoke-handover",
+  "kind": "spoke",
+  "order": 7,
+  "key": "handover",
+  "label": "Handover",
+  "short": "Instructions written down so someone else can reuse them.",
+  "strong": "Your prompts are files, not memories. Other people, and the model next week, can pick them up.",
+  "edge": "Write down the last instruction that worked, as a file, where someone else could find it.",
+  "unmet": "Handover means the instructions live in a file (a prompt, a CLAUDE.md, a checklist), not in one person's chat history.",
+  "guide": "one-user-to-shared-practice"
+}

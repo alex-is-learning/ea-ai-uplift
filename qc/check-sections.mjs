@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const MINIMUMS = { asks: 3, offers: 3, guides: 5, pathway: 2 };
+const MINIMUMS = { asks: 3, offers: 3, guides: 5, pathway: 2, assess: 17 };
 const FORM_KEYS = { asks: 'askFormUrl', offers: 'offerFormUrl' };
 // proper nouns that contain a banned word (an approved profile may name an employer)
 const PROPER_NOUNS = /Our World in Data/gu;

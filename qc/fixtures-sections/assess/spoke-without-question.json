@@ -1,0 +1,12 @@
+{
+  "expect": "already has a question",
+  "file": "question-02.json",
+  "data": {
+    "slug": "question-02",
+    "kind": "question",
+    "order": 2,
+    "spoke": "chat",
+    "tag": null,
+    "statement": "A second statement about the chat window, which makes the context spoke unmeasured."
+  }
+}

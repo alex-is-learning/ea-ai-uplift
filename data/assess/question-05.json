@@ -1,0 +1,8 @@
+{
+  "slug": "question-05",
+  "kind": "question",
+  "order": 5,
+  "spoke": "automation",
+  "tag": null,
+  "statement": "Something runs on its own every day or every week because I built it once: a report, a triage, a reminder, a sync."
+}

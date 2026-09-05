@@ -1,0 +1,12 @@
+{
+  "slug": "spoke-tools",
+  "kind": "spoke",
+  "order": 3,
+  "key": "tools",
+  "label": "Tools",
+  "short": "The model reaches your real systems.",
+  "strong": "The model reaches your files, calendar or email directly. You connect rather than copy.",
+  "edge": "Connect one system the model can read on its own: a folder, a calendar, a mailbox.",
+  "unmet": "Tools, connectors and MCP let a model read and act in your real systems, so the copying and pasting stops.",
+  "guide": "mcp"
+}

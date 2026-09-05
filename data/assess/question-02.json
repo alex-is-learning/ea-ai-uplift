@@ -1,0 +1,8 @@
+{
+  "slug": "question-02",
+  "kind": "question",
+  "order": 2,
+  "spoke": "context",
+  "tag": null,
+  "statement": "Before I ask, I give the model what it needs: the document, the thread, the brief, my own notes. It knows my situation, not only my question."
+}

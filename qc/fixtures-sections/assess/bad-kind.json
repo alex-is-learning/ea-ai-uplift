@@ -1,0 +1,8 @@
+{
+  "expect": "kind must be spoke or question",
+  "file": "spoke-zzz.json",
+  "data": {
+    "slug": "spoke-zzz",
+    "kind": "thing"
+  }
+}

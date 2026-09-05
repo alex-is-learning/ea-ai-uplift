@@ -1,0 +1,16 @@
+{
+  "expect": "exactly seven spoke files",
+  "file": "spoke-extra.json",
+  "data": {
+    "slug": "spoke-extra",
+    "kind": "spoke",
+    "order": 7,
+    "key": "extra",
+    "label": "Extra",
+    "short": "An eighth way that must not exist.",
+    "strong": "An eighth way that must not exist on the chart at all.",
+    "edge": "An eighth way that must not exist on the chart at all.",
+    "unmet": "An eighth way that must not exist on the chart at all.",
+    "guide": "prompting-basics"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "expect": "first-person plural",
+  "file": "question-01.json",
+  "data": {
+    "slug": "question-01",
+    "kind": "question",
+    "order": 1,
+    "spoke": "chat",
+    "tag": null,
+    "statement": "We open a chat window most days and get real work out of it, drafts and summaries."
+  }
+}
