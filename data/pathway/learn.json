@@ -1,0 +1,118 @@
+{
+  "slug": "learn",
+  "title": "The learning route",
+  "lede": "How a person becomes someone who can sit with a colleague, or an organisation, and get real work moving with AI tools. Three stages, one test of readiness, and a way to find first work.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "There is no licence for this work and no course that makes you ready. What makes you ready is evidence: real tasks finished for other people, instructions you wrote that somebody else reused, and a habit of testing before trusting. This route is ordered so that each stage produces that evidence."
+    },
+    {
+      "type": "aside",
+      "title": "Working name, working route",
+      "text": "This is one route drawn from the practice of a few people, not a standard. It will change as the discovery calls and case studies on this site settle. Version 0.1, September 2026."
+    },
+    {
+      "type": "h2",
+      "text": "Stage one: start here"
+    },
+    {
+      "type": "p",
+      "text": "The first stage is your own practice. Use the chat tools every day on work that matters to you, and notice where they help and where they lie. The Guides index on the home page lists the entries for this stage: prompting basics, a shared context layer in GitHub, verification and safety at work, and discovery interviews before tools."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Finish one real task a day with an AI tool. A draft, a summary, a spreadsheet formula, a first version of a document. Keep a short log of what worked.",
+        "Give the tool your context before you ask. The document, the thread, the brief. Learn what changes when it knows the situation and not only the question.",
+        "Check every output you rely on. Note each time the tool invented a fact, a citation or a function. This is the judgement you will later teach.",
+        "Write one instruction file for a task you repeat. Use it for a week. Fix it when it fails."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "You have finished stage one when a colleague asks how you did something, and you can hand them the file rather than explain it."
+    },
+    {
+      "type": "h2",
+      "text": "Stage two: next"
+    },
+    {
+      "type": "p",
+      "text": "The second stage is connection and delegation. The index entries for this stage are MCP (Model Context Protocol), skills and plugins, and agentic coding workspaces. The move is from a tool that answers to a tool that reaches your systems and works through a task with several steps."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Connect one tool to one real system: your calendar, your files, a shared drive, a database. Test what it can and cannot see before you rely on it.",
+        "Hand over one task with several steps and walk away. Check the result, not each step. Notice what state it lost.",
+        "Build one thing that runs on its own: a weekly report, an inbox triage, a reminder. Own it when it breaks.",
+        "Sit with one other person for an hour and get one of their real tasks moving. Not a demonstration. Their task, finished before you leave."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "That last step is the first uplift session you will ever run. Pick someone who trusts you. Start from what they are trying to do, not from the tool. Use the most accessible tool that meets the need. Leave a written instruction behind."
+    },
+    {
+      "type": "h2",
+      "text": "Stage three: advanced"
+    },
+    {
+      "type": "p",
+      "text": "The third stage is the move from one advanced user to shared practice, which is also the title of the index entry for it. The question changes from how do I do this to how does this organisation do this without me in the room."
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Run short discovery calls with a small group before you suggest any tool. Group the pain points. Choose the first intervention from the groups.",
+        "Write the guidance down where people will find it, and keep it current as the tools change.",
+        "Hand a workflow to someone else and watch them use it without you. Fix what confused them.",
+        "Keep a verification habit for the organisation, not only for yourself: which outputs get checked, by whom, before they are used."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How you know you are ready"
+    },
+    {
+      "type": "p",
+      "text": "Readiness is not a feeling and not a certificate. It is a short list of things that have already happened. If all four are true, you are ready to be listed. If two are true, you are close."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "You have finished real tasks with AI tools for at least three other people, and they would say so.",
+        "Somebody has used an instruction file, prompt or workflow you wrote, without you present.",
+        "You can name the last three times a tool misled you, and what you now do differently.",
+        "You have left at least one organisation with written guidance that outlived the session."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Getting listed"
+    },
+    {
+      "type": "p",
+      "text": "The directory on the home page lists people who do this work independently of each other. Listing is free and needs no approval from anyone but you. The only test is that you do this work with people or organisations in this community and are happy to be contacted. Use the Get listed form on the home page, or open a pull request on GitHub with one file for your own profile. You set your own terms, availability and contact route. Nobody is first on the list."
+    },
+    {
+      "type": "h2",
+      "text": "Finding first work"
+    },
+    {
+      "type": "p",
+      "text": "The Help wanted board on the home page is where an organisation or a person states a problem and a way to reach them. Each ask is a real pain in one sentence, not a request for a particular tool. Reply to the ones that match what you have already done, not the ones you would like to have done. A first piece of work is often one session: twenty minutes of questions, then one clear win built or configured live. Ask for a short written note afterwards. That note is your next piece of evidence."
+    },
+    {
+      "type": "p",
+      "text": "If you are an organisation reading this route to understand what you are looking for, the hiring pack covers the same ground from the other side."
+    },
+    {
+      "type": "related",
+      "items": [
+        { "label": "Hiring for it: the pack for an organisation", "path": "hire/" }
+      ]
+    }
+  ]
+}

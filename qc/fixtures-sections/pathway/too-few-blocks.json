@@ -1,0 +1,15 @@
+{
+  "expect": "blocks must be a list of 6 to 60 blocks",
+  "file": "learn.json",
+  "data": {
+    "slug": "learn",
+    "title": "The learning route",
+    "lede": "A short lede that is long enough to pass the twenty character minimum.",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "Too few blocks for a pathway page."
+      }
+    ]
+  }
+}

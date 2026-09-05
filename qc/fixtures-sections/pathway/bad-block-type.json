@@ -1,0 +1,35 @@
+{
+  "expect": "type must be one of h2, p, ul, ol, aside, quote, links, related",
+  "file": "learn.json",
+  "data": {
+    "slug": "learn",
+    "title": "The learning route",
+    "lede": "A short lede that is long enough to pass the twenty character minimum.",
+    "blocks": [
+      {
+        "type": "h3",
+        "text": "Bad block type"
+      },
+      {
+        "type": "h3",
+        "text": "Bad block type"
+      },
+      {
+        "type": "h3",
+        "text": "Bad block type"
+      },
+      {
+        "type": "h3",
+        "text": "Bad block type"
+      },
+      {
+        "type": "h3",
+        "text": "Bad block type"
+      },
+      {
+        "type": "h3",
+        "text": "Bad block type"
+      }
+    ]
+  }
+}

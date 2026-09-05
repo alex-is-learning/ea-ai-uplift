@@ -1,0 +1,107 @@
+{
+  "slug": "hire",
+  "title": "Hiring for it",
+  "lede": "What an organisation is buying when it brings in AI uplift, the three ways to get it, what to look for in a person, and a work-sample task that tells you more than an interview.",
+  "blocks": [
+    {
+      "type": "p",
+      "text": "An organisation that wants this capability has three routes: bring in an independent practitioner for a session or a few weeks, create an in-house role, or give an existing member of staff protected time. None of the three is right in general. The right one depends on how much of the work is one-off and how much is upkeep."
+    },
+    {
+      "type": "aside",
+      "title": "Discovery before the hire",
+      "text": "Before any of the three, run the discovery calls described in the Recipes section of the home page: fifteen-minute calls with team leads and staff about recent work, bottlenecks and what they dislike doing. No leading questions, no tool pitched. Group the pain points, then choose. The groups tell you which route you need."
+    },
+    {
+      "type": "h2",
+      "text": "Three routes"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "An independent practitioner. Best when the work is a burst: an assessment, a round of one-to-one sessions, one automation built and handed over. The people listed on the home page each set their own terms and availability. Contact whoever fits.",
+        "An in-house role. Best when the upkeep is the job: someone who tests the main tools, knows their real limits, answers capability questions, writes the guidance down where people can find it, and keeps it current as tools change. Think of an internal IT function for AI.",
+        "An existing person with protected time. Best when one member of staff already does this informally and the organisation is small. The risk is that the time is never protected. Write it into their role and review it."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Many organisations start with the first route and, if the discovery calls show enough repeated need, move to the second. An independent practitioner can also help write the in-house role and run the work-sample task below."
+    },
+    {
+      "type": "h2",
+      "text": "A role description skeleton"
+    },
+    {
+      "type": "p",
+      "text": "This is a skeleton, not a template to copy. Fill it from your own discovery calls. Leave out anything you cannot point to a real pain for."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Purpose. One sentence on what changes for staff when this role exists. Not what tools arrive.",
+        "The two tracks. Staff adoption: intake, open discovery, one-to-one sessions, practical wins, tool configuration, advanced-workflow coaching. Operations improvement: short discovery calls, a pain-point map, then tools, automations and system fixes.",
+        "First ninety days. Discovery calls with every team lead. A pain-point map shared with the whole organisation. Three practical wins finished, each with written guidance left behind.",
+        "Ongoing. Test new tools before staff meet them. Keep the guidance current. Own the automations that run on their own, and be the person who is called when one breaks.",
+        "Boundaries. What this role does not decide: data policy, security policy, budget. Name who does.",
+        "Reporting line and time. Who they report to, and how much of the week is protected for this work if the role is part-time."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What to look for"
+    },
+    {
+      "type": "p",
+      "text": "The strongest signal is evidence of finished real work for other people. Not talks, not links, not a portfolio of demonstrations. Ask for it directly."
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Finished tasks. Ask for three real tasks they finished with AI tools for someone other than themselves, and what the other person said afterwards.",
+        "Written instructions left behind. Ask to see one instruction file, prompt or workflow they wrote that somebody else used without them present.",
+        "A verification habit. Ask for the last three times a tool misled them, and what they changed. A candidate who cannot name one has not used the tools on work that mattered.",
+        "Accessible tools first. Ask which tool they would reach for first with a colleague who only uses the chat box. The right answer starts from the colleague, not from the most capable tool.",
+        "Demand before infrastructure. Ask how they would spend their first month. A candidate who starts with discovery calls understands the work. A candidate who starts with a platform does not yet."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "A work-sample task"
+    },
+    {
+      "type": "p",
+      "text": "One afternoon tells you more than an hour of questions. Give each shortlisted candidate a real task from your organisation, one that a real member of staff finds slow or painful. Sit that member of staff with the candidate for two hours. Then look at three things."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Did the task move? Not a plan for moving it. A working change, a finished draft, a configured tool, before the afternoon ended.",
+        "What was left behind? A written instruction the member of staff can reuse next week without the candidate.",
+        "What did the member of staff say? Ask them alone, afterwards, whether they would want that person back."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Pay candidates for the afternoon on the same terms as any other work. Choose a task where a real result is possible in two hours, and tell the candidate the three things you will look at. A work sample that hides its own marking scheme tests luck."
+    },
+    {
+      "type": "h2",
+      "text": "Posting an ask"
+    },
+    {
+      "type": "p",
+      "text": "If you are not sure which route you need, or you want to hear from people who do this work before you write a role, post an ask on the Help wanted board on the home page. Three fields: your organisation, the pain in one sentence, and a way to reach you. State the problem, never the solution. The prompt is what is slow or painful right now, not what you want built. Every person listed on the page can see it and reply. Each ask carries an expiry date, so the board never fills with dead posts."
+    },
+    {
+      "type": "p",
+      "text": "If you are a person reading this pack to understand what an organisation is looking for, the learning route covers the same ground from your side."
+    },
+    {
+      "type": "related",
+      "items": [
+        { "label": "The learning route: how a person gets ready for this work", "path": "learn/" }
+      ]
+    }
+  ]
+}

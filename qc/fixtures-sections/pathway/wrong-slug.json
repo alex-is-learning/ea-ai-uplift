@@ -1,0 +1,35 @@
+{
+  "expect": "slug must be one of learn, hire",
+  "file": "route.json",
+  "data": {
+    "slug": "route",
+    "title": "The learning route",
+    "lede": "A short lede that is long enough to pass the twenty character minimum.",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      }
+    ]
+  }
+}
