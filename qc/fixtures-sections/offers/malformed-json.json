@@ -1,0 +1,5 @@
+{
+  "expect": "is not valid JSON",
+  "file": "fixture-offer.json",
+  "raw": "{ \"slug\": \"fixture-offer\", "
+}

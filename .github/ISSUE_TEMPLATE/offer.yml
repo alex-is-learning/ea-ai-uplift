@@ -1,0 +1,87 @@
+name: List an offer
+description: Propose a course, tool, cohort, product, programme or community for the Offers board.
+title: "Offer: "
+labels: ["offer submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to propose something that helps people or organisations in this community use AI well. It can be free or paid, but do not include prices. A listing is not an endorsement, and the maintainer decides what is listed. This issue is public: do not include private contact details. See docs/OFFERS.md for the field reference.
+  - type: input
+    id: name
+    attributes:
+      label: name
+      description: The public name of the offer (2 to 80 characters).
+    validations:
+      required: true
+  - type: input
+    id: by
+    attributes:
+      label: by
+      description: Who offers it — the public name of a person or organisation (2 to 100 characters).
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: kind
+      options:
+        - course
+        - tool
+        - cohort
+        - product
+        - programme
+        - community
+    validations:
+      required: true
+  - type: input
+    id: summary
+    attributes:
+      label: summary
+      description: One plain sentence on what it is (20 to 200 characters). No prices, no currency signs.
+    validations:
+      required: true
+  - type: textarea
+    id: detail
+    attributes:
+      label: detail
+      description: Optional. Up to 500 characters on who it is for and how access works. No prices, no currency signs.
+  - type: input
+    id: url
+    attributes:
+      label: url
+      description: A public HTTPS link to the offer. Not a mailto link.
+    validations:
+      required: true
+  - type: dropdown
+    id: access
+    attributes:
+      label: access
+      description: How people get in.
+      options:
+        - open
+        - invite-only
+        - application
+        - discount
+        - free
+    validations:
+      required: true
+  - type: dropdown
+    id: audience
+    attributes:
+      label: audience
+      options:
+        - organisations
+        - individuals
+        - both
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Permission
+      options:
+        - label: I offer this myself, or I have the offerer's permission to propose it for listing.
+          required: true
+        - label: I understand that a listing is not an endorsement, that the maintainer decides what is listed, and that this issue is public.
+          required: true

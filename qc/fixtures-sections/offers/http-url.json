@@ -1,0 +1,5 @@
+{
+  "expect": "must use a public HTTPS hostname",
+  "file": "fixture-offer.json",
+  "data": { "slug": "fixture-offer", "name": "Fixture Offer", "by": "Fixture Org", "kind": "tool", "summary": "A factual test entry used only to exercise the build checks.", "detail": "", "url": "http://example.org/offer", "access": "open", "audience": "both", "listed": "2026-09-01", "checked": "2026-09-02" }
+}
