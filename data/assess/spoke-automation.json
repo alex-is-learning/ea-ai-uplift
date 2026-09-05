@@ -1,0 +1,12 @@
+{
+  "slug": "spoke-automation",
+  "kind": "spoke",
+  "order": 5,
+  "key": "automation",
+  "label": "Automation",
+  "short": "Something runs on its own because you built it once.",
+  "strong": "Things run without you: a report, a triage, a sync. You built them once and they keep going.",
+  "edge": "Find one thing you do every week by hand. Make it run on its own, then watch it for a month.",
+  "unmet": "An automation is a job that runs on a schedule or a trigger with nobody starting it: a weekly digest, an inbox triage, a data sync.",
+  "guide": "skills-and-plugins"
+}

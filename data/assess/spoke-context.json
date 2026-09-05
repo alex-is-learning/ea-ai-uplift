@@ -1,0 +1,12 @@
+{
+  "slug": "spoke-context",
+  "kind": "spoke",
+  "order": 2,
+  "key": "context",
+  "label": "Context",
+  "short": "Giving the model what it needs before you ask.",
+  "strong": "You brief the model like a colleague: the document, the thread, your notes. That is why its answers fit.",
+  "edge": "Before the next question, paste in the brief, the thread and what good looks like. Then ask.",
+  "unmet": "Context is everything the model can see when it answers: your files, your notes, the history. Without it, it guesses.",
+  "guide": "context-layer-in-github"
+}

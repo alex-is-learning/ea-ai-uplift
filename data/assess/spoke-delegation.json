@@ -1,0 +1,12 @@
+{
+  "slug": "spoke-delegation",
+  "kind": "spoke",
+  "order": 4,
+  "key": "delegation",
+  "label": "Delegation",
+  "short": "Handing over a multi-step task and checking the result.",
+  "strong": "You hand over whole tasks and check the result, not each step. That is the largest time saving there is.",
+  "edge": "Pick one task with three or more steps. Hand the whole thing over, walk away, then check the result.",
+  "unmet": "Delegation means an agent works through several steps on its own: it reads, decides, writes, checks and reports back.",
+  "guide": "agentic-coding-workspaces"
+}

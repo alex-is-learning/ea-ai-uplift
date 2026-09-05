@@ -1,0 +1,12 @@
+{
+  "slug": "spoke-judgement",
+  "kind": "spoke",
+  "order": 6,
+  "key": "judgement",
+  "label": "Judgement",
+  "short": "Knowing where it lies, and testing before trusting.",
+  "strong": "You know where the model lies and you test before you trust. Everyone around you benefits from that habit.",
+  "edge": "Before you rely on any output or integration, test it on a case where you already know the answer.",
+  "unmet": "Judgement is the habit of checking. Models state false things fluently, and integrations fail quietly.",
+  "guide": "verification-and-safety-at-work"
+}

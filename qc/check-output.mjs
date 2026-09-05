@@ -27,7 +27,8 @@ function localReferences(html) {
 }
 
 function assertLocalLinks(location, dist) {
-  const html = fs.readFileSync(location, 'utf8');
+  // inline scripts build their own links at run time from validated data
+  const html = fs.readFileSync(location, 'utf8').replace(/<script[\s\S]*?<\/script>/gu, '');
   for (const ref of localReferences(html)) {
     if (!ref || ref.startsWith('#') || ref.startsWith('data:') || /^[a-z][a-z0-9+.-]*:/iu.test(ref)) continue;
     const clean = ref.split('#', 1)[0].split('?', 1)[0];

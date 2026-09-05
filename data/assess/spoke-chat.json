@@ -1,0 +1,12 @@
+{
+  "slug": "spoke-chat",
+  "kind": "spoke",
+  "order": 1,
+  "key": "chat",
+  "label": "Chat",
+  "short": "Getting real work out of a chat window.",
+  "strong": "The chat window is where you already get value: drafts, summaries and answers you trust enough to use.",
+  "edge": "Start here: one real task a day in a chat window, with the whole brief pasted in.",
+  "unmet": "A chat window with a model in it: Claude, ChatGPT or another. Paste a task in, read what comes back, use what is good.",
+  "guide": "prompting-basics"
+}

@@ -1,0 +1,8 @@
+{
+  "slug": "question-07",
+  "kind": "question",
+  "order": 7,
+  "spoke": "handover",
+  "tag": null,
+  "statement": "I write my instructions down in a form someone else, or the model next week, can reuse. My prompts are files, not memories."
+}
