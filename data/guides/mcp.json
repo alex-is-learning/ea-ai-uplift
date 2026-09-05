@@ -1,0 +1,19 @@
+{
+  "slug": "mcp",
+  "title": "MCP (Model Context Protocol)",
+  "what": "An open standard that lets an AI tool connect to your calendar, files, Slack, database or other systems through one kind of plug.",
+  "why": "Most useful work needs the tool to see real data. MCP is how that connection is made without a custom integration each time.",
+  "stage": "next",
+  "status": "index-only",
+  "links": [
+    {
+      "label": "What MCP is, modelcontextprotocol.io",
+      "url": "https://modelcontextprotocol.io/"
+    },
+    {
+      "label": "Connect Claude Code to tools via MCP",
+      "url": "https://code.claude.com/docs/en/mcp"
+    }
+  ],
+  "checked": "2026-09-05"
+}

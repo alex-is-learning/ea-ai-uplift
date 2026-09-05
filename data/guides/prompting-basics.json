@@ -1,0 +1,19 @@
+{
+  "slug": "prompting-basics",
+  "title": "Prompting basics",
+  "what": "The smallest useful skill: give context, give an example, and ask for a format.",
+  "why": "Most poor results come from a thin request, not from the model. Ten minutes on this changes what every later tool returns.",
+  "stage": "start",
+  "status": "external",
+  "links": [
+    {
+      "label": "Prompt engineering overview, Claude docs",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+    },
+    {
+      "label": "Prompting best practices",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+    }
+  ],
+  "checked": "2026-09-05"
+}

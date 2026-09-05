@@ -1,0 +1,19 @@
+{
+  "slug": "context-layer-in-github",
+  "title": "A shared context layer in GitHub",
+  "what": "One or more plain-text files, in the CLAUDE.md or AGENTS.md style, that hold what an organisation would otherwise re-explain to every AI tool.",
+  "why": "Every session starts informed, and the context is versioned, reviewable and owned by the organisation rather than by one person's chat history.",
+  "stage": "start",
+  "status": "guide-planned",
+  "links": [
+    {
+      "label": "CLAUDE.md files, Claude Code docs",
+      "url": "https://code.claude.com/docs/en/memory"
+    },
+    {
+      "label": "AGENTS.md, the open format",
+      "url": "https://agents.md/"
+    }
+  ],
+  "checked": "2026-09-05"
+}
