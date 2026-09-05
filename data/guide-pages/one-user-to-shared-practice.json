@@ -107,6 +107,10 @@
         {
           "label": "Agentic coding workspaces",
           "path": "guides/agentic-coding-workspaces/"
+        },
+        {
+          "label": "Where is your practice? The ten-question assessment",
+          "path": "assess/"
         }
       ]
     }

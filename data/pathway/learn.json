@@ -111,7 +111,26 @@
     {
       "type": "related",
       "items": [
-        { "label": "Hiring for it: the pack for an organisation", "path": "hire/" }
+        {
+          "label": "Hiring for it: the pack for an organisation",
+          "path": "hire/"
+        },
+        {
+          "label": "Map your practice first: the ten-question assessment",
+          "path": "assess/"
+        },
+        {
+          "label": "Guide: a shared context layer in GitHub",
+          "path": "guides/context-layer-in-github/"
+        },
+        {
+          "label": "Guide: agentic coding workspaces",
+          "path": "guides/agentic-coding-workspaces/"
+        },
+        {
+          "label": "Guide: from one advanced user to shared practice",
+          "path": "guides/one-user-to-shared-practice/"
+        }
       ]
     }
   ]

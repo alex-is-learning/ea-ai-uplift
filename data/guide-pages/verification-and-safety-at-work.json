@@ -103,6 +103,10 @@
         {
           "label": "MCP (Model Context Protocol)",
           "path": "guides/mcp/"
+        },
+        {
+          "label": "Where is your practice? The ten-question assessment",
+          "path": "assess/"
         }
       ]
     }

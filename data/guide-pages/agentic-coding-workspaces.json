@@ -112,6 +112,10 @@
         {
           "label": "Verification and safety at work",
           "path": "guides/verification-and-safety-at-work/"
+        },
+        {
+          "label": "Where is your practice? The ten-question assessment",
+          "path": "assess/"
         }
       ]
     }

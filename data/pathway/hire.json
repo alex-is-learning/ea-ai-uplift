@@ -100,7 +100,18 @@
     {
       "type": "related",
       "items": [
-        { "label": "The learning route: how a person gets ready for this work", "path": "learn/" }
+        {
+          "label": "The learning route: how a person gets ready for this work",
+          "path": "learn/"
+        },
+        {
+          "label": "Team mode: the organisation's chart from the assessment",
+          "path": "assess/"
+        },
+        {
+          "label": "Guide: verification and safety at work",
+          "path": "guides/verification-and-safety-at-work/"
+        }
       ]
     }
   ]
