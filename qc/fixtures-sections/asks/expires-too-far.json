@@ -1,0 +1,16 @@
+{
+  "expect": "expires must be at most 120 days after posted",
+  "file": "expires-too-far.json",
+  "data": {
+    "slug": "expires-too-far",
+    "title": "A real one-sentence problem that is long enough.",
+    "context": "",
+    "postedBy": "An operations lead at a small organisation",
+    "posterKind": "organisation",
+    "budget": "unstated",
+    "contact": "https://example.org/book",
+    "posted": "2026-05-01",
+    "expires": "2026-09-30",
+    "source": "self"
+  }
+}

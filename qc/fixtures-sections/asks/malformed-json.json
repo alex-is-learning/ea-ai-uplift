@@ -1,0 +1,5 @@
+{
+  "expect": "is not valid JSON",
+  "file": "malformed-json.json",
+  "raw": "{ \"slug\": \"malformed-json\", "
+}

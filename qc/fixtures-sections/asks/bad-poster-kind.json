@@ -1,0 +1,16 @@
+{
+  "expect": "posterKind must be one of organisation, individual",
+  "file": "bad-poster-kind.json",
+  "data": {
+    "slug": "bad-poster-kind",
+    "title": "A real one-sentence problem that is long enough.",
+    "context": "",
+    "postedBy": "An operations lead at a small organisation",
+    "posterKind": "company",
+    "budget": "unstated",
+    "contact": "https://example.org/book",
+    "posted": "2026-09-01",
+    "expires": "2026-10-01",
+    "source": "self"
+  }
+}

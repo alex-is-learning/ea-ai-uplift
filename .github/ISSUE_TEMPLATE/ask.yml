@@ -1,0 +1,65 @@
+name: Post an ask (Help wanted)
+description: Tell the people listed on eaaiuplift.com what is slow or painful right now.
+title: "Ask: "
+labels: ["ask"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        An ask is a problem, not a brief. Say what is slow, repeated or dropped; do not say what should be built. This issue is public. Do not include private contact details, names of colleagues, or anything you would not put on a public page. A maintainer turns the issue into data/asks/<slug>.json and asks you to approve the final text before it is published. An ask stays on the page for up to 120 days.
+  - type: input
+    id: title
+    attributes:
+      label: What is slow or painful right now?
+      description: One sentence, 10 to 140 characters. This is the heading of the card.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: context
+      description: Optional. Up to 400 characters of detail. Where the work lives, who does it, how often it repeats.
+  - type: input
+    id: posted_by
+    attributes:
+      label: postedBy
+      description: How the card describes you, 2 to 120 characters. A role and an organisation type is enough, for example "An operations lead at a small research organisation". A name is optional.
+    validations:
+      required: true
+  - type: dropdown
+    id: poster_kind
+    attributes:
+      label: posterKind
+      options:
+        - organisation
+        - individual
+    validations:
+      required: true
+  - type: dropdown
+    id: budget
+    attributes:
+      label: budget
+      description: Optional. Only ever a word, never a number.
+      options:
+        - unstated
+        - paid
+        - volunteer
+        - either
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: contact
+      description: A public HTTPS link where a practitioner can reach you, for example a booking page, a form, or a public profile. No email addresses.
+    validations:
+      required: true
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Consent
+      options:
+        - label: I am happy for this ask, the description of me and the contact link to be public on eaaiuplift.com and in this repository.
+          required: true
+        - label: The ask contains no private information about any other person.
+          required: true

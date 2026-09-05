@@ -1,0 +1,16 @@
+{
+  "expect": "must not contain a currency amount",
+  "file": "currency-in-title.json",
+  "data": {
+    "slug": "currency-in-title",
+    "title": "Bookkeeping backlog, budget around £500 for someone to clear it.",
+    "context": "",
+    "postedBy": "An operations lead at a small organisation",
+    "posterKind": "organisation",
+    "budget": "unstated",
+    "contact": "https://example.org/book",
+    "posted": "2026-09-01",
+    "expires": "2026-10-01",
+    "source": "self"
+  }
+}
