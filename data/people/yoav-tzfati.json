@@ -11,7 +11,7 @@
   "availabilityChecked": "2026-09-05",
   "site": "https://www.alignment-hive.com/",
   "contact": "https://www.alignment-hive.com/",
-  "photo": null,
+  "photo": "yoav-tzfati.jpg",
   "listingConsent": {
     "granted": true,
     "date": "2026-09-04",
@@ -23,7 +23,7 @@
     "policyVersion": "r0-v1"
   },
   "photoApproved": {
-    "granted": false,
+    "granted": true,
     "date": "2026-09-04",
     "policyVersion": "r0-v1"
   }
