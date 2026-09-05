@@ -1,0 +1,13 @@
+{
+  "slug": "openai-for-nonprofits",
+  "name": "OpenAI for Nonprofits",
+  "by": "OpenAI",
+  "kind": "programme",
+  "summary": "Discounted ChatGPT Business seats, and a larger discount on ChatGPT Enterprise, for verified nonprofits.",
+  "detail": "Apply with a short form; nonprofit status is checked by Goodstack. The discount covers Business Standard seats only, and Enterprise discounts go through the sales route. There is no nonprofit discount on the API.",
+  "url": "https://help.openai.com/en/articles/9359041-openai-for-nonprofits",
+  "access": "discount",
+  "audience": "organisations",
+  "listed": "2026-09-05",
+  "checked": "2026-09-05"
+}

@@ -1,0 +1,13 @@
+{
+  "slug": "microsoft-for-nonprofits",
+  "name": "Microsoft for Nonprofits",
+  "by": "Microsoft",
+  "kind": "programme",
+  "summary": "Grants and discounts on Microsoft cloud products for eligible nonprofits, including a discount on Microsoft 365 Copilot.",
+  "detail": "Register and confirm eligibility on the Microsoft nonprofits site to see the offers, which cover Microsoft 365, Azure credits and Dynamics 365.",
+  "url": "https://www.microsoft.com/en-gb/nonprofits",
+  "access": "discount",
+  "audience": "organisations",
+  "listed": "2026-09-05",
+  "checked": "2026-09-05"
+}

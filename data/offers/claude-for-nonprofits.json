@@ -1,0 +1,13 @@
+{
+  "slug": "claude-for-nonprofits",
+  "name": "Claude for Nonprofits",
+  "by": "Anthropic",
+  "kind": "programme",
+  "summary": "Reduced-cost Claude plans for registered nonprofits, with connectors to common nonprofit tools such as donor databases.",
+  "detail": "Open to 501(c)(3) organisations and international equivalents. Smaller organisations verify their nonprofit status through Goodstack in a few minutes; larger ones go through the nonprofit sales route.",
+  "url": "https://claude.com/solutions/nonprofits",
+  "access": "discount",
+  "audience": "organisations",
+  "listed": "2026-09-05",
+  "checked": "2026-09-05"
+}
