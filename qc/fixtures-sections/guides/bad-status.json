@@ -1,0 +1,19 @@
+{
+  "expect": "status must be one of index-only, guide-planned, external",
+  "file": "fixture-guide.json",
+  "data": {
+    "slug": "fixture-guide",
+    "title": "Fixture guide entry",
+    "what": "A factual index entry used only to exercise the build checks.",
+    "why": "It confirms that invalid guide data is rejected before publication.",
+    "stage": "start",
+    "status": "draft",
+    "links": [
+      {
+        "label": "Example reference",
+        "url": "https://example.org/reference"
+      }
+    ],
+    "checked": "2026-09-01"
+  }
+}

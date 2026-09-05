@@ -1,0 +1,19 @@
+{
+  "slug": "one-user-to-shared-practice",
+  "title": "From one advanced user to shared practice",
+  "what": "The adoption problem: one enthusiast in an organisation is not the organisation using AI.",
+  "why": "Uplift that stays with one person leaves when they do. Shared context, agreed limits and written methods are what make it stick.",
+  "stage": "advanced",
+  "status": "guide-planned",
+  "links": [
+    {
+      "label": "How Anthropic's own staff use Claude Code",
+      "url": "https://claude.com/blog/how-anthropic-teams-use-claude-code"
+    },
+    {
+      "label": "Skills for enterprise, governance at scale",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise"
+    }
+  ],
+  "checked": "2026-09-05"
+}

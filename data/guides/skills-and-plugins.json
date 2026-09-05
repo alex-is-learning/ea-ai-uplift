@@ -1,0 +1,19 @@
+{
+  "slug": "skills-and-plugins",
+  "title": "Skills and plugins",
+  "what": "Reusable instruction packages an agent loads when a task matches, with optional scripts and reference files bundled in.",
+  "why": "A method written once as a skill is used the same way by everyone. It is how a practitioner leaves something behind after a session.",
+  "stage": "next",
+  "status": "index-only",
+  "links": [
+    {
+      "label": "Agent Skills overview, Claude docs",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+    },
+    {
+      "label": "Skills in Claude Code",
+      "url": "https://code.claude.com/docs/en/skills"
+    }
+  ],
+  "checked": "2026-09-05"
+}

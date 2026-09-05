@@ -1,0 +1,19 @@
+{
+  "expect": "what contains unsafe or invalid text",
+  "file": "fixture-guide.json",
+  "data": {
+    "slug": "fixture-guide",
+    "title": "Fixture guide entry",
+    "what": "[PLACEHOLDER \u2014 describe what this is later]",
+    "why": "It confirms that invalid guide data is rejected before publication.",
+    "stage": "start",
+    "status": "index-only",
+    "links": [
+      {
+        "label": "Example reference",
+        "url": "https://example.org/reference"
+      }
+    ],
+    "checked": "2026-09-01"
+  }
+}

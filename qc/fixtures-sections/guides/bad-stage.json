@@ -1,0 +1,19 @@
+{
+  "expect": "stage must be one of start, next, advanced",
+  "file": "fixture-guide.json",
+  "data": {
+    "slug": "fixture-guide",
+    "title": "Fixture guide entry",
+    "what": "A factual index entry used only to exercise the build checks.",
+    "why": "It confirms that invalid guide data is rejected before publication.",
+    "stage": "beginner",
+    "status": "index-only",
+    "links": [
+      {
+        "label": "Example reference",
+        "url": "https://example.org/reference"
+      }
+    ],
+    "checked": "2026-09-01"
+  }
+}
