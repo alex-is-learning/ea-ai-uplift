@@ -33,7 +33,7 @@ An ask whose `expires` date is before the build date is not rendered. The build 
 
 Two routes:
 
-1. **The issue form.** `data/site.json` holds `askFormUrl`, which points at the "Post an ask (Help wanted)" form in this repository. Fill it in; a maintainer writes the JSON file and asks you to approve the final text before it goes live.
+1. **The issue form.** `data/site.json` holds `askFormUrl`, which points at the "Post an ask (Help wanted)" form. Fill it in; a maintainer writes the JSON file and asks you to approve the final text before it goes live.
 2. **A pull request** that adds `data/asks/<slug>.json` with the fields above. Run `node build.mjs` before opening it.
 
 Both routes are public. Do not include private contact details, colleagues' names, or anything you would not put on a public page.

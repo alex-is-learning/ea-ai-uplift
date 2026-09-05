@@ -87,7 +87,7 @@ export async function checkOutput(projectRoot = root) {
     const requiredCopy = [
       'lists one person who does it independently.',
       'One person who does this work independently.',
-      'If you help people or organisations in this community use AI well, submit your own approved public profile through GitHub.',
+      'If you help people or organisations in this community use AI well, submit your own approved public profile through the form below, or through GitHub.',
     ];
     for (const copy of requiredCopy) if (!home.includes(copy)) throw new Error(`one-profile home copy is missing: ${copy}`);
     for (const faulty of ['lists one people', 'More people should be doing this than one']) {
