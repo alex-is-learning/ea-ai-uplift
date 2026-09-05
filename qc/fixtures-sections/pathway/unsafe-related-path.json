@@ -1,0 +1,65 @@
+{
+  "expect": "path must be a local site path",
+  "file": "learn.json",
+  "data": {
+    "slug": "learn",
+    "title": "The learning route",
+    "lede": "A short lede that is long enough to pass the twenty character minimum.",
+    "blocks": [
+      {
+        "type": "related",
+        "items": [
+          {
+            "label": "Escape the site",
+            "path": "../../etc/passwd"
+          }
+        ]
+      },
+      {
+        "type": "related",
+        "items": [
+          {
+            "label": "Escape the site",
+            "path": "../../etc/passwd"
+          }
+        ]
+      },
+      {
+        "type": "related",
+        "items": [
+          {
+            "label": "Escape the site",
+            "path": "../../etc/passwd"
+          }
+        ]
+      },
+      {
+        "type": "related",
+        "items": [
+          {
+            "label": "Escape the site",
+            "path": "../../etc/passwd"
+          }
+        ]
+      },
+      {
+        "type": "related",
+        "items": [
+          {
+            "label": "Escape the site",
+            "path": "../../etc/passwd"
+          }
+        ]
+      },
+      {
+        "type": "related",
+        "items": [
+          {
+            "label": "Escape the site",
+            "path": "../../etc/passwd"
+          }
+        ]
+      }
+    ]
+  }
+}

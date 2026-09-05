@@ -1,0 +1,35 @@
+{
+  "expect": "lede contains unsafe or invalid text",
+  "file": "learn.json",
+  "data": {
+    "slug": "learn",
+    "title": "The learning route",
+    "lede": "A [PLACEHOLDER \u2014 lede] that is long enough to reach the minimum.",
+    "blocks": [
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      },
+      {
+        "type": "p",
+        "text": "Paragraph one of the fixture body, long enough."
+      }
+    ]
+  }
+}
