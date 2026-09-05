@@ -51,7 +51,7 @@ All text fields must be plain text: no markup, no hidden characters, and no `[PL
 
 Either route works.
 
-1. **Issue form.** Open the "List an offer" form. Its link is `offerFormUrl` in `data/site.json`, and the site's "List an offer" button points to it. A maintainer turns an accepted proposal into a file and a pull request.
+1. **The form.** Open the "List an offer" form. Its link is `offerFormUrl` in `data/site.json`, and the site's "List an offer" button points to it. A maintainer turns an accepted proposal into a file and a pull request.
 2. **Pull request.** Add `data/offers/<slug>.json` with the fields above, run `node build.mjs` and `node qc/verify-release0.mjs`, and open a pull request.
 
 ## Keeping entries current

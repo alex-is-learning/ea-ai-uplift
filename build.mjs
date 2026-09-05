@@ -860,9 +860,9 @@ ${slot('offers')}  <!-- 07 get listed -->
           <p class="pin-cap">A place on the map</p>
         </div>
         <div>
-          <p>If you help people or organisations in this community use AI well, submit your own approved public profile through GitHub.</p>
-          <p><a class="cta" href="https://github.com/alex-is-learning/ea-ai-uplift/blob/main/CONTRIBUTING.md#add-a-profile">Get listed &rarr; add yourself to the directory</a></p>
-          <p class="cta-host">github.com</p>
+          <p>If you help people or organisations in this community use AI well, submit your own approved public profile through the form below, or through GitHub.</p>
+          <p><a class="cta" href="${escAttr(site.addYourselfFormUrl)}">Get listed &rarr; add yourself to the directory</a></p>
+          <p class="cta-host">${esc(new URL(site.addYourselfFormUrl).host)}</p>
           <p>Listing is free. The only test is that you do this work with people or organisations in this community and are happy to be contacted.</p>
           <p>Shared recipes &mdash; the starting-point map and discovery interviews &mdash; are published as contributors approve them.</p>
         </div>
