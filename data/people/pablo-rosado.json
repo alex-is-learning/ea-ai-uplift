@@ -11,7 +11,7 @@
   "availabilityChecked": "2026-09-05",
   "site": "https://pablorosado.com/",
   "contact": "https://pablorosado.com/about-me/",
-  "photo": null,
+  "photo": "pablo-rosado.jpg",
   "listingConsent": {
     "granted": true,
     "date": "2026-09-05",
@@ -23,7 +23,7 @@
     "policyVersion": "r0-v1"
   },
   "photoApproved": {
-    "granted": false,
+    "granted": true,
     "date": "2026-09-05",
     "policyVersion": "r0-v1"
   }
