@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { assertValidProject } from './schema/validate.mjs';
 import { esc, escAttr, countWord, NAME_RULE } from './lib/shared.mjs';
 import { REG_CROSS, renderPage } from './lib/page.mjs';
+import { blocksCss } from './lib/blocks.mjs';
 import { loadSiteConfig } from './lib/data.mjs';
 import { sections, navOrder } from './lib/sections.mjs';
 
@@ -44,7 +45,7 @@ for (const [name, mod] of Object.entries(sections)) {
   if (loaded.errors.length) die(loaded.errors.join('\n'));
   sectionItems[name] = loaded.items;
 }
-const sectionCss = Object.values(sections).map((mod) => mod.css).filter(Boolean).map((css) => `\n${css}`).join('');
+const sectionCss = `\n${blocksCss}${Object.values(sections).map((mod) => mod.css).filter(Boolean).map((css) => `\n${css}`).join('')}`;
 function ctx(name, prefix = '') {
   return { root: scriptDir, items: sectionItems[name], people, site, esc, escAttr, prefix, nav: navLinks(prefix), sectionCss, renderPage };
 }
