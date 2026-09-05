@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "matt-brooks",
+  "name": "Matt Brooks",
+  "headline": "A rationalist, post-rationalist, EA-adjacent builder trying to make AI go well",
+  "bio": "On his personal site Matt Brooks describes himself as a rationalist, post-rationalist, EA-adjacent builder trying to make AI go well, and as a two-thirds utilitarian interested in AI and in steering towards beneficial outcomes for humanity and AIs. He states he is currently building grantmaking.ai, a coordination platform for AI safety projects and organisations to announce their funding asks that helps reviewers, regranters and AI safety funders find, evaluate and fund those projects. He writes that he likes finding high-leverage bottlenecks, and is drawn to coordination, truth-seeking, aggregation and epistemics. The site also states he participated in the FLF fellowship on AI for human reasoning, and lists earlier projects including a curated AI safety research feed, a free open-source event aggregator for Asheville, and co-founding a TinySeed-funded AI-powered employee feedback and engagement platform.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": [],
+  "availability": "limited",
+  "availabilityChecked": "2026-09-05",
+  "site": "https://mattbrooks.xyz/",
+  "contact": "https://www.sealednote.com/f/mattbrooks",
+  "photo": null,
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  }
+}

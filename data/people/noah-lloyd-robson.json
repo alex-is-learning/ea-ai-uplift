@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "noah-lloyd-robson",
+  "name": "Noah Lloyd Robson",
+  "headline": "Currently building Alma, working with various AI safety funders",
+  "bio": "Noah Lloyd Robson is building Alma and works with various AI safety funders.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-05",
+  "site": "https://noahlr.com",
+  "contact": "https://almagrants.com",
+  "photo": null,
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-04",
+    "policyVersion": "r0-v1"
+  }
+}
