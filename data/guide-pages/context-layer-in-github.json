@@ -1,0 +1,114 @@
+{
+  "slug": "context-layer-in-github",
+  "summary": "A plain-text file that holds what an organisation would otherwise re-explain to every AI tool, kept in GitHub so it is versioned and shared.",
+  "version": "0.1",
+  "written": "2026-09-05",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "What it is"
+    },
+    {
+      "type": "p",
+      "text": "A context layer is one or more plain-text files that tell an AI tool what it needs to know before it starts: who the organisation is, what the work is for, where things live, which words mean what, and which rules never bend. The best-known forms are the CLAUDE.md file that Claude Code reads on start, and the AGENTS.md format that several coding agents share. The idea is older than either: write the briefing once, keep it where the tool can read it, and stop re-typing it into a chat box."
+    },
+    {
+      "type": "p",
+      "text": "Putting the files in GitHub adds three things a shared drive does not. Every change has an author and a date. Anyone with access can propose a correction. And the files sit next to the code, data or documents they describe, so the tool finds them without being told."
+    },
+    {
+      "type": "h2",
+      "text": "Why it matters for an EA organisation"
+    },
+    {
+      "type": "p",
+      "text": "Most small organisations in this community have a lot of context and very little of it written down. It lives in one operations person, a few Slack threads and a Google Drive nobody can search. Every AI session then starts cold, and the first ten minutes go on explaining the same things again. A context layer moves that explanation from a person’s head into a file, so the tenth session starts as informed as the first. It also outlives the person: when someone leaves, the briefing stays."
+    },
+    {
+      "type": "aside",
+      "title": "The principle behind it",
+      "text": "Leave reusable instructions or Markdown behind. A session that produces a working answer and no written trace has to be repeated. A session that leaves a paragraph in the context file never has to be."
+    },
+    {
+      "type": "h2",
+      "text": "The moves that give most of the value"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Write one root file, not a wiki. A single file of two to four screens, named CLAUDE.md or AGENTS.md, that a new colleague could read in five minutes. Depth comes later, in linked files.",
+        "Put the unbending rules at the top. Data that must never be pasted into a tool. Decisions that stay with a person. The spelling, register and house terms. These are read first and most often.",
+        "Describe where things live, not what they contain. Paths, folder names, which spreadsheet is canonical, which is a copy. The tool can open a file; it cannot guess which one.",
+        "Record decisions with their date and reason. A one-line decision log stops the tool, and the next person, from re-litigating what was settled in March.",
+        "Treat corrections as content. When the tool gets something wrong twice, the fix is a sentence in the file, not a better prompt next time."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How to do it this afternoon"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Create a private repository in GitHub for the organisation, or use the one that already holds code or documents.",
+        "Add a file named CLAUDE.md at the root. If the organisation uses several coding agents, name it AGENTS.md and add a one-line CLAUDE.md that points to it.",
+        "Write five headings: Who this organisation is. What the work is for. Where things live. Rules that never bend. Decisions, with dates.",
+        "Fill each heading with three to eight plain sentences. Write for a competent new hire, not for a machine.",
+        "Open the repository in an agentic coding tool and ask it to do one small real task. Watch which questions it still has to ask. Each question is a missing sentence; add it.",
+        "Commit with a message that says what changed and why. Ask one colleague to read the file and correct one thing."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What good looks like"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "A new session does useful work in the first two minutes without a briefing from a person.",
+        "Two people using the tool get the same house style and the same limits, because both read the same file.",
+        "The file changes a little every week, and the change history reads like a record of what the organisation learned.",
+        "Someone who was away for a month can read the decisions section and catch up."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Common mistakes"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "A file that describes the tool instead of the organisation. The tool already knows what it is. It does not know who you are.",
+        "Pasting in whole policy documents. The file is a briefing. Link to the long version and quote the one rule that matters.",
+        "Secrets in the file. Keys, passwords and personal data never belong in a context layer, however private the repository.",
+        "One person owns it and nobody else may edit. The value comes from many small corrections, so the file needs a review route, not a gatekeeper.",
+        "Writing it once and never opening it again. A stale briefing is worse than none, because the tool believes it."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "When not to bother"
+    },
+    {
+      "type": "p",
+      "text": "If one person uses one chat tool for personal drafting and nothing is shared, a note in that tool’s own project or memory feature is enough. The GitHub version earns its keep when two or more people, or one person and an agent that edits files, need the same briefing."
+    },
+    {
+      "type": "related",
+      "items": [
+        {
+          "label": "Agentic coding workspaces",
+          "path": "guides/agentic-coding-workspaces/"
+        },
+        {
+          "label": "From one advanced user to shared practice",
+          "path": "guides/one-user-to-shared-practice/"
+        },
+        {
+          "label": "Verification and safety at work",
+          "path": "guides/verification-and-safety-at-work/"
+        }
+      ]
+    }
+  ]
+}

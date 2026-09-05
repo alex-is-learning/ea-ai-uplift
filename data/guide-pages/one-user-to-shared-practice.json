@@ -1,0 +1,114 @@
+{
+  "slug": "one-user-to-shared-practice",
+  "summary": "How an organisation gets from one enthusiast who uses AI well to a shared way of working that survives that person leaving.",
+  "version": "0.1",
+  "written": "2026-09-05",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "What it is"
+    },
+    {
+      "type": "p",
+      "text": "In almost every organisation the same pattern appears: one person has gone deep on the tools, runs half their job through them, and everyone else still pastes into a chat box or does not use them at all. That person is a genuine asset and a genuine risk. The asset is obvious. The risk is that the knowledge lives in their head, their prompts and their personal accounts, and leaves with them. Shared practice is the work of turning one person’s habits into the organisation’s habits."
+    },
+    {
+      "type": "h2",
+      "text": "Why it matters for an EA organisation"
+    },
+    {
+      "type": "p",
+      "text": "Small organisations with high turnover and a lot of contractors cannot afford to rebuild their AI practice each time someone moves on. And a single advanced user creates a quiet divide: their work gets faster, other people’s does not, and the difference gets read as talent rather than tooling. Shared practice closes that gap and makes the gains durable."
+    },
+    {
+      "type": "p",
+      "text": "It is also the honest measure of adoption. One person using AI heavily is not an organisation using AI. An organisation uses AI when the second and third person can do what the first does, from written instructions, without a private lesson."
+    },
+    {
+      "type": "aside",
+      "title": "The principle behind it",
+      "text": "Start from demand and adoption, not infrastructure. The move from one user to many is not a platform decision. It is a set of written methods, a shared context file and a habit of showing work."
+    },
+    {
+      "type": "h2",
+      "text": "The moves that give most of the value"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Move the enthusiast’s prompts and instructions out of their head and into files the organisation owns. A context file in a shared repository, and one file per repeatable method.",
+        "Name the three tasks that would help most people most, and write each one up as a recipe: the task, the inputs, the instruction, how to check the result. Not thirty tasks. Three.",
+        "Run one-to-one sessions on real work, not a group demo. Twenty minutes with one person on the task they did yesterday beats an hour of slides for twelve.",
+        "Give the enthusiast a defined role for a fixed time: the person who tests the tools, answers capability questions and keeps the written guidance current. Write it into their job description, and set an end date to review it.",
+        "Make the limits explicit and written. What must never go into a tool, which decisions stay with a person, how work is checked. Shared practice without shared limits is how one mistake becomes a policy of not using AI at all."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How to do it this afternoon"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Ask the advanced user to list the five things they do with AI every week. Pick the three most likely to help other people.",
+        "For each, write a one-page recipe together: purpose, inputs, the instruction in full, what a good result looks like, what to check. Save it in the shared repository.",
+        "Ask one colleague who does not use the tools to follow one recipe on their own real task, with the enthusiast in the room but not touching the keyboard.",
+        "Note every point where the colleague got stuck. Each one is a missing sentence in the recipe or the context file. Fix them the same day.",
+        "Repeat with a second colleague on a second recipe next week. Keep going until a recipe works without the author present.",
+        "Agree the limits in writing, one page, and link it from the context file."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What good looks like"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "A new starter is using the three recipes in their first week, from the written versions, without a session.",
+        "Someone other than the original enthusiast has edited the context file and improved a recipe.",
+        "The limits document exists, is short, and people can say what is in it.",
+        "The enthusiast is bored of the basics, because other people now handle them, and has moved on to the next thing."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Common mistakes"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Buying licences for everyone and calling that adoption. Access without methods produces a few more chat-box users and no change in how work is done.",
+        "A lunch-and-learn instead of one-to-one sessions on real tasks. People nod, go back to their desk and do nothing different.",
+        "Leaving the enthusiast as an unofficial help desk with no time allocated. They burn out or leave, and the practice goes with them.",
+        "Writing recipes as prompts only. The instruction is a third of the recipe; the inputs and the check are the rest.",
+        "Skipping the limits because nobody wants to write policy. One incident with personal data ends the whole effort."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "When not to bother"
+    },
+    {
+      "type": "p",
+      "text": "An organisation of two people who sit next to each other does not need recipes; it needs a shared context file and a conversation. This guide is for the point where the third person joins, or the first enthusiast starts talking about leaving."
+    },
+    {
+      "type": "related",
+      "items": [
+        {
+          "label": "A shared context layer in GitHub",
+          "path": "guides/context-layer-in-github/"
+        },
+        {
+          "label": "Verification and safety at work",
+          "path": "guides/verification-and-safety-at-work/"
+        },
+        {
+          "label": "Agentic coding workspaces",
+          "path": "guides/agentic-coding-workspaces/"
+        }
+      ]
+    }
+  ]
+}

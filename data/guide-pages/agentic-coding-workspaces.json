@@ -1,0 +1,119 @@
+{
+  "slug": "agentic-coding-workspaces",
+  "summary": "What changes when the tool can read your files, edit them and run commands, and how to start without breaking anything.",
+  "version": "0.1",
+  "written": "2026-09-05",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "What it is"
+    },
+    {
+      "type": "p",
+      "text": "An agentic coding workspace is a tool that works inside a folder rather than inside a chat window. Claude Code, Codex and Cursor are the common examples. You give it a task in plain language; it reads the files it needs, proposes edits, runs commands, checks the result and reports back. Despite the name, the folder does not have to contain code. A folder of Markdown notes, a spreadsheet export, a set of email drafts or a grant application all work."
+    },
+    {
+      "type": "p",
+      "text": "The difference from a chat box is not intelligence. It is that nothing needs pasting in or out. The tool sees the real files, and its output lands in the real files."
+    },
+    {
+      "type": "h2",
+      "text": "Why it matters for an EA organisation"
+    },
+    {
+      "type": "p",
+      "text": "Most of the operational work in a small organisation is not writing; it is moving information between places. Reformatting a report, reconciling two lists, turning meeting notes into actions, renaming forty files, updating twelve pages when a policy changes. A chat box helps with each of those one at a time and leaves the moving to you. An agent does the moving. That is where a session stops saving ten minutes and starts saving an afternoon."
+    },
+    {
+      "type": "p",
+      "text": "It is also the tool class that most needs two things this guide series keeps returning to: a context layer, so the agent knows the organisation, and clear permissions, so it cannot do harm quickly."
+    },
+    {
+      "type": "aside",
+      "title": "The principle behind it",
+      "text": "Work on a real task, not links or theory. The first session with an agent should end with a real change to a real file that someone needed. If it ends with a demonstration, it did not happen."
+    },
+    {
+      "type": "h2",
+      "text": "The moves that give most of the value"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Start in a folder that is safe to change and easy to restore. A copy, or a Git repository where every edit can be undone.",
+        "Read the context file first. If there is no CLAUDE.md or AGENTS.md, write four sentences before the first task: what this folder is, what to never touch, how to check a change worked, and the house style.",
+        "Give tasks with a checkable end. Not “tidy the notes” but “every note gets a date line at the top in this format; show me the list of files changed”.",
+        "Ask for a plan before a large change, and read it. Thirty seconds of reading saves an hour of undoing.",
+        "Let it run the check itself. If there is a test, a build, a word count or a link checker, tell the agent to run it and report the output. Do not take “done” on trust."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How to do it this afternoon"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Pick one small, real, annoying task. Renaming files to a convention, adding front matter to notes, turning a long email thread into a decision list.",
+        "Copy the folder, or confirm it is in Git and the working tree is clean.",
+        "Install one tool. Claude Code runs in a terminal; Cursor is an editor; Codex runs in a terminal or the ChatGPT app. Any one is fine. Choose the one someone nearby already uses.",
+        "Open the folder, write the four-sentence context file, and give the task with its checkable end.",
+        "Read the plan. Approve it. Watch what it does the first time; after that, you will know what to trust.",
+        "Check the result yourself against the checkable end, then look at the diff or the changed files once more.",
+        "Add one sentence to the context file about anything it got wrong."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What good looks like"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "A task that was three hours of clicking is done in fifteen minutes, and the person who owned it checked the result and agrees.",
+        "The agent asks fewer questions each week because the context file answers them.",
+        "Nobody is afraid of it, because everything it did is visible in a diff and can be undone.",
+        "People give it tasks in the morning and read the results after lunch, instead of watching it work."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Common mistakes"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Running it in the live folder with no backup and no version control. The first time it deletes the wrong thing, adoption ends.",
+        "Turning off the permission prompts on day one because they are annoying. They are annoying for a reason. Loosen them for one folder at a time once trust exists.",
+        "Vague tasks. An agent given “make this better” makes it different, not better.",
+        "Treating it as a coding tool only. The finance lead reconciling two exports gets more from it than most developers do.",
+        "Never reading the plan. The plan is where you catch the wrong assumption before it becomes forty wrong edits."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "When not to bother"
+    },
+    {
+      "type": "p",
+      "text": "A single document that needs a better paragraph does not need an agent; the chat box is faster. An agent earns its place when the task touches many files, needs a command run, or has to be repeated. If the organisation has no shared folder, no Git and no one who has used a terminal, start with a context file in a chat tool’s project feature and come back to this in a month."
+    },
+    {
+      "type": "related",
+      "items": [
+        {
+          "label": "A shared context layer in GitHub",
+          "path": "guides/context-layer-in-github/"
+        },
+        {
+          "label": "MCP (Model Context Protocol)",
+          "path": "guides/mcp/"
+        },
+        {
+          "label": "Verification and safety at work",
+          "path": "guides/verification-and-safety-at-work/"
+        }
+      ]
+    }
+  ]
+}

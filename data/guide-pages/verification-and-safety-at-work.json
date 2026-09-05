@@ -1,0 +1,110 @@
+{
+  "slug": "verification-and-safety-at-work",
+  "summary": "What not to paste into a tool, how to check what comes out, and which decisions stay with a person: the rules to write before habits form.",
+  "version": "0.1",
+  "written": "2026-09-05",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "What it is"
+    },
+    {
+      "type": "p",
+      "text": "Every organisation that uses AI tools ends up with three sets of rules, whether or not it writes them down. What goes in: which data may be pasted into which tool. What comes out: how results are checked before they are relied on. What stays with people: the decisions no tool gets to make. Writing the three down early, on one page, is the whole of this guide. The rest is how."
+    },
+    {
+      "type": "h2",
+      "text": "Why it matters for an EA organisation"
+    },
+    {
+      "type": "p",
+      "text": "Organisations in this community hold personal data on donors, grantees, applicants and staff, often in small teams without a data-protection specialist. The tools are confident when wrong, and a confident wrong number in a grant report is worse than no number. And because the community is small, one visible mistake travels fast and sets the tone for everyone else’s adoption. The cost of a one-page rule set is an hour. The cost of not having one is paid once, publicly."
+    },
+    {
+      "type": "aside",
+      "title": "The principle behind it",
+      "text": "Test integrations; do not trust the model’s claims. A tool that says it has checked something has not necessarily checked it. The check is something a person can see: a test run, a diff, a source opened."
+    },
+    {
+      "type": "h2",
+      "text": "The moves that give most of the value"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Sort data into three piles and write them down. Public: anything on the website. Internal: fine in an organisation account on a tool that does not train on your data. Restricted: personal data, health data, confidential material, credentials. Restricted never goes in without a named, approved tool.",
+        "Check outputs by kind, not by feel. A number is checked against its source. A quotation is checked by opening the source. A summary is checked by reading the original’s conclusion. Code is checked by running it. A claim about what the tool did is checked by looking at what changed.",
+        "Name the decisions that stay with a person. Hiring, funding, anything sent to a donor or a regulator, anything that deletes data, anything that spends money. The tool may draft; a named person decides and sends.",
+        "Use organisation accounts with the training setting off. Personal accounts on free tiers usually train on what is typed in. Read the tool’s own privacy terms once; the ICO guidance linked below explains what to look for.",
+        "Keep the rules to one page and link it from the context file, so the tool reads the same rules the people do."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How to do it this afternoon"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Open a blank document titled AI rules. Write the three headings: What goes in. How outputs are checked. What stays with a person.",
+        "Under the first, list the three data piles with two real examples each from this organisation.",
+        "Under the second, list the five output kinds above with the one-line check for each.",
+        "Under the third, list the decisions by name. Add who decides.",
+        "Read the privacy terms of the one tool most people use. Note whether the organisation plan turns training off. If it does not, write that down as the first thing to fix.",
+        "Ask two colleagues to read the page and tell you what is missing. Publish it internally and link it from the context file."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What good looks like"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Anyone can say, without looking, which pile a donor spreadsheet is in.",
+        "A number in a report can be traced to its source in one click, because the person who used the tool checked it and left the link.",
+        "Nobody has pasted a grant application into a personal free-tier account, because everyone has an organisation account and knows why.",
+        "The page has been edited since it was written, because a real case came up and the rule got sharper."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Common mistakes"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "A twelve-page policy nobody reads. One page that everyone reads beats it every time.",
+        "Banning the tools instead of sorting the data. People use them anyway, on personal accounts, with no rules at all.",
+        "Trusting a tool’s own report of its work. “I have verified this” from a model is a sentence, not a verification.",
+        "Checking everything the same way. Reading a summary carefully does not check a number; opening the source does.",
+        "Writing the rules and not linking them from the context file, so the tool never sees them."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "When not to bother"
+    },
+    {
+      "type": "p",
+      "text": "There is no organisation size below which this is unnecessary. A one-person organisation still holds other people’s data. The version for one person is shorter, three lines under each heading, but it exists."
+    },
+    {
+      "type": "related",
+      "items": [
+        {
+          "label": "A shared context layer in GitHub",
+          "path": "guides/context-layer-in-github/"
+        },
+        {
+          "label": "From one advanced user to shared practice",
+          "path": "guides/one-user-to-shared-practice/"
+        },
+        {
+          "label": "MCP (Model Context Protocol)",
+          "path": "guides/mcp/"
+        }
+      ]
+    }
+  ]
+}

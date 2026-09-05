@@ -1,0 +1,114 @@
+{
+  "slug": "mcp",
+  "summary": "How an AI tool connects to real systems through one open standard, when that is worth doing, and how to test a connection before trusting it.",
+  "version": "0.1",
+  "written": "2026-09-05",
+  "blocks": [
+    {
+      "type": "h2",
+      "text": "What it is"
+    },
+    {
+      "type": "p",
+      "text": "MCP, the Model Context Protocol, is an open standard for connecting an AI tool to other software. A small program called an MCP server sits in front of a system such as a calendar, a mailbox, a database, Slack or a folder of files, and describes what it can do in a form the AI tool understands. The tool can then read from and act on that system directly, instead of a person copying text between windows. Most current tools, including Claude, Claude Code, ChatGPT and Cursor, can use MCP servers, and hundreds exist for common services."
+    },
+    {
+      "type": "p",
+      "text": "The everyday effect is that a request like “find the last three emails from this grantee and add the deadlines to the calendar” becomes possible in one step, because the tool can actually open the mailbox and write to the calendar."
+    },
+    {
+      "type": "h2",
+      "text": "Why it matters for an EA organisation"
+    },
+    {
+      "type": "p",
+      "text": "Most useful operational work needs the tool to see real data: the actual applicant list, the actual accounts export, the actual inbox. Without a connection, every task starts with a person exporting, pasting and cleaning, and ends with a person copying the result back. MCP removes both ends. It is also how one connection, set up once, serves everyone in the organisation and every tool they use, instead of a custom integration for each."
+    },
+    {
+      "type": "aside",
+      "title": "The principle behind it",
+      "text": "Use the most accessible tool that meets the need. A connection is worth setting up when a task is repeated and the copy-paste is the slow part. It is not worth setting up to prove it can be done."
+    },
+    {
+      "type": "h2",
+      "text": "The moves that give most of the value"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Connect the one system people copy from most. Usually it is the calendar, the mailbox or the shared drive. One connection that gets used daily beats six that were set up in an afternoon and forgotten.",
+        "Prefer the official server from the service itself, or a well-maintained open-source one, over a stranger’s. An MCP server can read everything the account can read, so it is a trust decision, not a convenience decision.",
+        "Start read-only. Let the tool look before it can write. Add write access to one system at a time once the reading has been reliable for a week.",
+        "Test each connection with a task whose right answer is already known. Ask for the three most recent events and check them against the calendar by eye. A connection that returns plausible wrong data is worse than one that fails.",
+        "Write the connection into the context file: what is connected, what it may do, who set it up, and the one known limit."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "How to do it this afternoon"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Pick one system and one repeated task that involves copying from it. Write the task down with its known right answer.",
+        "In the tool’s own documentation, find the page on connecting MCP servers and the list of servers it supports. Choose the official server for the system if one exists.",
+        "Connect it with the narrowest permissions offered, read-only if the choice exists, using an organisation account.",
+        "Run the test task. Compare the answer to the known answer, line by line.",
+        "If it matches, run the real task once with a person watching. If it does not, disconnect and note why in the context file before trying another server.",
+        "Add three lines to the context file: the system, what the tool may do with it, and the limit you found."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What good looks like"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "A weekly task that took twenty minutes of exporting and pasting now takes one sentence, and the person who owns it checked the first three runs.",
+        "Everyone in the organisation gets the same connection from the same configuration, not a personal set-up each.",
+        "The context file says what is connected and what it may do, so a new colleague is not surprised.",
+        "Write access exists only where reading has been reliable and someone has decided it is worth it."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Common mistakes"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Connecting everything on day one. Each connection is a new way for the tool to be confidently wrong about real data, and a new thing to secure.",
+        "Installing a server from an unknown author into an account that can read donor records. Treat a server like a new staff member with the same access.",
+        "Skipping the known-answer test. The connection that seems to work and returns last month’s data is the expensive one.",
+        "Giving write access before read access has been trusted. An agent that can delete calendar events will, eventually, delete the wrong one.",
+        "Not writing it down. Six months later nobody knows what is connected, or why the tool can see the finance folder."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "When not to bother"
+    },
+    {
+      "type": "p",
+      "text": "If the task happens once, paste the data in. If the data is restricted under the organisation’s own rules, do not connect it until a specific tool and server have been approved for that data by name. And if nobody in the organisation is comfortable installing software, ask a listed practitioner to do the first connection with you rather than following a tutorial alone."
+    },
+    {
+      "type": "related",
+      "items": [
+        {
+          "label": "Agentic coding workspaces",
+          "path": "guides/agentic-coding-workspaces/"
+        },
+        {
+          "label": "Verification and safety at work",
+          "path": "guides/verification-and-safety-at-work/"
+        },
+        {
+          "label": "A shared context layer in GitHub",
+          "path": "guides/context-layer-in-github/"
+        }
+      ]
+    }
+  ]
+}

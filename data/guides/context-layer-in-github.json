@@ -4,7 +4,7 @@
   "what": "One or more plain-text files, in the CLAUDE.md or AGENTS.md style, that hold what an organisation would otherwise re-explain to every AI tool.",
   "why": "Every session starts informed, and the context is versioned, reviewable and owned by the organisation rather than by one person's chat history.",
   "stage": "start",
-  "status": "guide-planned",
+  "status": "local",
   "links": [
     {
       "label": "CLAUDE.md files, Claude Code docs",
