@@ -1,5 +1,5 @@
 name: List an offer
-description: Propose a course, tool, cohort, product, programme or community for the Offers board.
+description: Propose a call, course, tool, cohort, product, programme or community for the Offers board.
 title: "Offer: "
 labels: ["offer submission"]
 body:
@@ -32,6 +32,17 @@ body:
         - product
         - programme
         - community
+        - call
+    validations:
+      required: true
+  - type: dropdown
+    id: providerType
+    attributes:
+      label: provider type
+      description: Whether the provider is a person or organisation.
+      options:
+        - person
+        - organisation
     validations:
       required: true
   - type: input
@@ -74,6 +85,17 @@ body:
         - organisations
         - individuals
         - both
+    validations:
+      required: true
+  - type: dropdown
+    id: displayGroup
+    attributes:
+      label: display group
+      description: Which presentation group should contain this offer.
+      options:
+        - personal
+        - nonprofit-discount
+        - course
     validations:
       required: true
   - type: checkboxes

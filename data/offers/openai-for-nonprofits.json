@@ -9,6 +9,7 @@
   "url": "https://help.openai.com/en/articles/9359041-openai-for-nonprofits",
   "access": "discount",
   "audience": "organisations",
+  "displayGroup": "nonprofit-discount",
   "listed": "2026-09-05",
   "checked": "2026-09-05"
 }

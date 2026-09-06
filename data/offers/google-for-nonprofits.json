@@ -9,6 +9,7 @@
   "url": "https://www.google.com/nonprofits/",
   "access": "application",
   "audience": "organisations",
+  "displayGroup": "nonprofit-discount",
   "listed": "2026-09-05",
   "checked": "2026-09-05"
 }
