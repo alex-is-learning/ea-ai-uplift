@@ -11,6 +11,20 @@
   "availabilityChecked": "2026-09-01",
   "site": "https://alexanderlarge.com",
   "contact": "https://calendar.app.google/r3ctgvteof8BA9hJ9",
+  "links": [
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/alexanderklarge"
+    },
+    {
+      "label": "X",
+      "url": "https://x.com/alexanderlarge_"
+    },
+    {
+      "label": "Vibes",
+      "url": "https://www.alexanderlarge.com/vibes"
+    }
+  ],
   "photo": "alexander-large.jpg",
   "listingConsent": {
     "granted": true,
@@ -24,7 +38,7 @@
   },
   "photoApproved": {
     "granted": true,
-    "date": "2026-09-01",
+    "date": "2026-09-06",
     "policyVersion": "r0-v1"
   }
 }

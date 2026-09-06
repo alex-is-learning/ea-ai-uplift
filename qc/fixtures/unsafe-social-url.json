@@ -1,0 +1,11 @@
+{
+  "case": "unsafe-url-characters",
+  "changes": {
+    "links": [
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/\"quoted\""
+      }
+    ]
+  }
+}
