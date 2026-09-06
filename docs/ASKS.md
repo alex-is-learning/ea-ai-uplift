@@ -1,6 +1,6 @@
 # Asks (Help wanted)
 
-The Help wanted section is a board. An organisation or an individual in the effective altruism community posts a problem, and anyone listed on the page can reply. It is the demand half of the page; the People grid is the supply half.
+The Help wanted section is a board. An organisation or an individual in the effective altruism community posts a problem, and anyone listed on the page can reply. It is the demand half of the page; the People grid is the supply half. The home page carries one line per ask, with a link to the full board at `asks/`, where each ask shows its context, dates and the posting notes.
 
 An ask is a problem, not a brief. The question it answers is "what is slow or painful right now?", never "what should be built?".
 

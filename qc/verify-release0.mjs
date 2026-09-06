@@ -246,8 +246,8 @@ async function testBuildLifecycle() {
     writeJson(path.join(project, 'data', 'people', `${profile.slug}.json`), profile);
     runBuild(project);
     const pluralHome = fs.readFileSync(path.join(project, 'dist', 'index.html'), 'utf8');
-    assert(pluralHome.includes('people do this work independently of each other.'), 'plural home copy is missing the grammatical plural sentence');
-    assert(!pluralHome.includes('people who do this work, independently of each other.'), 'plural home copy contains the fragmentary plural sentence');
+    assert(pluralHome.includes('people, each working independently on their own terms.'), 'plural home copy is missing the grammatical plural sentence');
+    assert(!pluralHome.includes('One person, working independently.'), 'plural home copy still carries the singular sentence');
     const first = outputDigest(project);
     runBuild(project);
     assert(outputDigest(project) === first, 'build output is not deterministic');

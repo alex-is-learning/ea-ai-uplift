@@ -53,7 +53,7 @@ function slot(name) {
   const html = sections[name].section(ctx(name));
   return html ? `${html}\n\n` : '';
 }
-const NAV_LABELS = { people: 'People', map: "Where you'd start", recipes: 'Recipes', listed: 'Get listed' };
+const NAV_LABELS = { people: 'People', map: 'Where to start', listed: 'Get listed' };
 function navLinks(prefix) {
   return navOrder
     .map((name) => {
@@ -98,17 +98,10 @@ function card(p) {
         </li>`;
 }
 
-const PIN_TILE = `        <li class="p-card">
-          <a class="pin-tile" href="#listed">
-            <span class="pin-square"><span class="pin-circle"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M50 16 V84"/><path d="M16 50 H84"/></svg></span></span>
-            <span class="pin-label">Do this work? Get listed &rarr;</span>
-          </a>
-        </li>`;
-
 function peopleSection() {
   const peopleIntro = people.length === 1
-    ? 'One person who does this work independently. This person sets their own terms and availability. Contact them if they fit.'
-    : `${countWord(people.length, true)} people do this work independently of each other. Each sets their own terms and availability. Contact whoever fits.`;
+    ? 'One person, working independently. Open the profile for availability and contact.'
+    : `${countWord(people.length, true)} people, each working independently on their own terms. Open a profile for availability and contact.`;
   return `  <!-- 02 people -->
   <section class="band" id="people" aria-labelledby="people-title">
     <div class="wrap">
@@ -116,13 +109,11 @@ function peopleSection() {
         <p class="legend">The people</p>
         <h2 id="people-title">People doing this work</h2>
         <p class="intro">${peopleIntro}</p>
-        <p class="intro-2">Open a profile for availability, links and how to get in touch.</p>
       </div>
       <ul class="people-grid">
 ${people.map(card).join('\n')}
-${PIN_TILE}
       </ul>
-      <p class="grid-cap">Listed alphabetically. Nobody is first.</p>
+      <p class="grid-cap"><span>Listed alphabetically. Nobody is first.</span><a href="#listed">Do this work? Get listed &rarr;</a></p>
     </div>
   </section>`;
 }
@@ -137,57 +128,14 @@ function indexPage() {
   <!-- 01 opening -->
   <section class="hero" aria-labelledby="page-title">
     <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <p class="legend">A field guide</p>
-          <h1 id="page-title">AI uplift, for people and organisations in effective altruism</h1>
-          <p class="lede">&ldquo;AI uplift&rdquo; is a working name for one kind of help: <b>someone who has tested the tools sits with you, or your organisation, and gets real work moving with them.</b> Not a course. Not a licence. Usually one session, sometimes a few weeks.</p>
-          <p class="soft-links">
-            <a class="hot" href="#people">Find someone to talk to &darr;</a>
-            <a href="#map">See where you'd start &darr;</a>
-            <a href="#listed">Do this work? Get listed &darr;</a>
-          </p>
-        </div>
-        <div>
-          <svg class="glimpse route-svg" viewBox="0 0 420 320" aria-hidden="true" focusable="false">
-            <g class="plate-t" transform="translate(5,-4) rotate(0.35 210 160)">
-              <g fill="none" stroke="#E8541F" stroke-width="1.6">
-                <path d="M6 240 C 78 228 132 250 202 240 C 272 230 320 248 380 239 C 396 236 404 238 410 237"/>
-                <path d="M6 272 C 82 262 138 282 208 272 C 280 262 326 280 384 271 C 398 269 404 272 410 271"/>
-                <path d="M6 300 C 86 292 142 310 214 300"/>
-              </g>
-              <g stroke="#E8541F" stroke-width="1.8" stroke-linecap="round">
-                <path d="M262 296 l 14 -22 M288 302 l 14 -22 M314 296 l 14 -22 M340 302 l 14 -22"/>
-              </g>
-              <path d="M14 286 C 74 268 108 250 158 226 C 216 198 246 190 288 176 C 322 164 350 152 380 140"
-                fill="none" stroke="#E8541F" stroke-width="4" stroke-linecap="round"/>
-              <path d="M92 40 L 103 81 L 144 92 L 103 103 L 92 144 L 81 103 L 40 92 L 81 81 Z" fill="#E8541F" opacity=".55"/>
-              <g fill="#E8541F">
-                <circle cx="14" cy="286" r="9"/><circle cx="158" cy="226" r="9"/><circle cx="288" cy="176" r="9"/>
-              </g>
-            </g>
-            <g class="plate-c">
-              <path d="M14 286 C 74 268 108 250 158 226 C 216 198 246 190 288 176 C 322 164 350 152 380 140"
-                fill="none" stroke="#1233CC" stroke-width="4" stroke-linecap="round"/>
-              <path d="M158 226 C 178 196 196 182 220 168" fill="none" stroke="#1233CC" stroke-width="2"
-                stroke-dasharray="2 9" stroke-linecap="round"/>
-              <circle cx="224" cy="165" r="6.5" fill="none" stroke="#1233CC" stroke-width="2"/>
-              <g fill="#1233CC">
-                <circle cx="14" cy="286" r="9"/><circle cx="158" cy="226" r="9"/><circle cx="288" cy="176" r="9"/>
-              </g>
-              <g transform="translate(92 92)">
-                <path d="M0 -52 L 11 -11 L 52 0 L 11 11 L 0 52 L -11 11 L -52 0 L -11 -11 Z"
-                  fill="none" stroke="#1233CC" stroke-width="2.2"/>
-                <circle cx="0" cy="0" r="63" fill="none" stroke="#1233CC" stroke-width="1.5" stroke-dasharray="5 8"/>
-                <circle cx="0" cy="0" r="4.4" fill="#1233CC"/>
-              </g>
-            </g>
-            <text x="92" y="17" text-anchor="middle" font-size="12.5" letter-spacing="2" fill="#1233CC">N</text>
-          </svg>
-          <p class="glimpse-cap">Fig. 1 &mdash; the route, detail</p>
-          <p class="sub-lede">This page explains what that help can look like, and lists ${countWord(people.length)} ${people.length === 1 ? 'person who does' : 'people who do'} it independently.</p>
-        </div>
-      </div>
+      <p class="legend">A field guide</p>
+      <h1 id="page-title">AI uplift, for people and organisations in effective altruism</h1>
+      <p class="lede">&ldquo;AI uplift&rdquo; is a working name for one kind of help: <b>someone who has tested the tools sits with you, or your organisation, and gets real work moving with them.</b> Not a course. Not a licence. Usually one session, sometimes a few weeks.</p>
+      <p class="soft-links">
+        <a class="hot" href="#people">Find someone to talk to &darr;</a>
+        <a href="#map">See where you'd start &darr;</a>
+        <a href="assess/">Map your practice &rarr;</a>
+      </p>
     </div>
   </section>
 
@@ -199,7 +147,7 @@ ${slot('asks')}${slot('assess')}  <!-- 03 the route -->
       <div class="sec-head">
         <p class="legend">The route</p>
         <h2 id="map-title">Where you'd start</h2>
-        <p class="intro">The useful intervention depends on where you are now. Five common starting points:</p>
+        <p class="intro">Five starting points. What a session does at each, and how you know it worked.</p>
       </div>
 
       <figure class="map-figure">
@@ -304,35 +252,35 @@ ${slot('asks')}${slot('assess')}  <!-- 03 the route -->
           <li class="station">
             <p class="pin"><span class="disc-sm" aria-hidden="true">1</span></p>
             <h3>You only use the chat box</h3>
-            <div class="bit"><span class="label">What a session does</span><p>Pick one accessible tool and finish one real task together</p></div>
-            <div class="bit worked"><span class="label">You know it worked when</span><p>Useful work is done before the session ends</p></div>
+            <div class="bit"><span class="label">A session</span><p>Pick one accessible tool and finish one real task together</p></div>
+            <div class="bit worked"><span class="label">Worked when</span><p>Useful work is done before the session ends</p></div>
           </li>
           <li class="station">
             <p class="pin"><span class="disc-sm" aria-hidden="true">2</span></p>
             <h3>You have one clear problem</h3>
-            <div class="bit"><span class="label">What a session does</span><p>Twenty minutes of questions, then one clear win, built or configured live</p></div>
-            <div class="bit worked"><span class="label">You know it worked when</span><p>A working change exists before the session ends</p></div>
+            <div class="bit"><span class="label">A session</span><p>Twenty minutes of questions, then one clear win, built or configured live</p></div>
+            <div class="bit worked"><span class="label">Worked when</span><p>A working change exists before the session ends</p></div>
           </li>
           <li class="station">
             <p class="pin"><span class="disc-sm" aria-hidden="true">3</span></p>
             <h3>You have many pain points</h3>
-            <div class="bit"><span class="label">What a session does</span><p>Triage the list and name an intervention for each priority</p></div>
-            <div class="bit worked"><span class="label">You know it worked when</span><p>You leave with a ranked route</p></div>
+            <div class="bit"><span class="label">A session</span><p>Triage the list and name an intervention for each priority</p></div>
+            <div class="bit worked"><span class="label">Worked when</span><p>You leave with a ranked route</p></div>
           </li>
           <li class="station">
             <p class="pin"><span class="disc-sm" aria-hidden="true">4</span></p>
             <h3>You know the task but can't start</h3>
-            <div class="bit"><span class="label">What a session does</span><p>Someone works beside you while you do it</p></div>
-            <div class="bit worked"><span class="label">You know it worked when</span><p>The blocked task moves or finishes</p></div>
+            <div class="bit"><span class="label">A session</span><p>Someone works beside you while you do it</p></div>
+            <div class="bit worked"><span class="label">Worked when</span><p>The blocked task moves or finishes</p></div>
           </li>
           <li class="station">
             <p class="pin"><span class="disc-sm" aria-hidden="true">5</span></p>
             <h3>You already use AI heavily</h3>
-            <div class="bit"><span class="label">What a session does</span><p>Longer delegation, parallel agents, task tracking, reusable documentation</p></div>
-            <div class="bit worked"><span class="label">You know it worked when</span><p>You delegate more without losing state</p></div>
+            <div class="bit"><span class="label">A session</span><p>Longer delegation, parallel agents, task tracking, reusable documentation</p></div>
+            <div class="bit worked"><span class="label">Worked when</span><p>You delegate more without losing state</p></div>
           </li>
         </ol>
-        <figcaption class="footnote">These are possible interventions, not packages. Any practitioner will shape a session to the person in front of them.</figcaption>
+        <figcaption class="footnote">Possible interventions, not packages.</figcaption>
       </figure>
     </div>
   </section>
@@ -343,37 +291,34 @@ ${slot('asks')}${slot('assess')}  <!-- 03 the route -->
       <div class="sec-head">
         <p class="legend">Two tracks</p>
         <h2 id="tracks-title">Inside an organisation</h2>
-        <p class="intro">For a whole organisation, two things run together.</p>
+        <p class="intro">Think of an internal IT function for AI: someone who tests the tools, knows their limits, writes the guidance down and keeps it current. Two tracks run together.</p>
       </div>
 
-      <div class="discovery">
-        <p class="d-title">Discovery before the build list</p>
-        <p>Fifteen-minute calls with team leads and staff about recent work, bottlenecks and what they dislike &mdash; no leading questions, no tool pitched. Group the pain points, then choose.</p>
-      </div>
-
-      <div class="lanes">
-        <div class="lane">
-          <span class="lane-key">Track A</span>
-          <h3>Staff adoption</h3>
-          <ol class="steps">
-            <li>Intake</li><li>Open discovery</li><li>One-to-one sessions</li>
-            <li>Practical wins</li><li>Tool configuration</li><li>Advanced-workflow coaching</li>
+      <div class="org-grid">
+        <div class="discovery">
+          <p class="d-title">Discovery before the build list</p>
+          <ol class="d-steps">
+            <li>Fifteen-minute calls with team leads and staff.</li>
+            <li>Ask about recent work, bottlenecks and what they dislike doing. No leading questions, no tool pitched.</li>
+            <li>Group the pain points. Choose the first intervention from the groups, not from the tools.</li>
           </ol>
         </div>
-        <div class="lane">
-          <span class="lane-key">Track B</span>
-          <h3>Operations improvement</h3>
-          <ol class="steps">
-            <li>Short interviews</li><li>Pain-point map</li><li>Then tools, automations and system fixes</li>
-          </ol>
-        </div>
-      </div>
-
-      <div class="analogy">
-        <p class="quotemark" aria-hidden="true">&ldquo;</p>
-        <div>
-          <p>Think of an internal IT function for AI &mdash; someone who tests the main tools, knows their real limits, answers capability questions, writes the guidance down where people can find it, and keeps it current as tools change.</p>
-          <p class="attrib">A working model from one practitioner, not an official definition.</p>
+        <div class="lanes">
+          <div class="lane">
+            <span class="lane-key">Track A</span>
+            <h3>Staff adoption</h3>
+            <ol class="steps">
+              <li>Intake</li><li>Open discovery</li><li>One-to-one sessions</li>
+              <li>Practical wins</li><li>Tool configuration</li><li>Advanced-workflow coaching</li>
+            </ol>
+          </div>
+          <div class="lane">
+            <span class="lane-key">Track B</span>
+            <h3>Operations improvement</h3>
+            <ol class="steps">
+              <li>Short interviews</li><li>Pain-point map</li><li>Then tools, automations and system fixes</li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
@@ -385,7 +330,6 @@ ${slot('asks')}${slot('assess')}  <!-- 03 the route -->
       <div class="sec-head">
         <p class="legend">Field notes</p>
         <h2 id="principles-title">What good uplift looks like</h2>
-        <p class="intro">Six principles.</p>
       </div>
       <ol class="principles">
         <li><span class="n" aria-hidden="true">1</span><p>Work on a real task, not links or theory.</p></li>
@@ -398,57 +342,18 @@ ${slot('asks')}${slot('assess')}  <!-- 03 the route -->
     </div>
   </section>
 
-  <!-- 06 recipes -->
-  <section class="band" id="recipes" aria-labelledby="recipes-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="legend">How this work is done</p>
-        <h2 id="recipes-title">Recipes</h2>
-        <p class="intro">The methods behind the sessions, written down so anyone can use them. Published here as they settle, each attributed to whoever wrote it.</p>
-      </div>
-      <ul class="cards">
-        <li class="card">
-          <span class="cno">Recipe card 1</span>
-          <h3>The starting-point map</h3>
-          <p>Five starting points and what a session does at each. <a href="#map">See above &uarr;</a></p>
-        </li>
-        <li class="card">
-          <span class="cno">Recipe card 2</span>
-          <h3>Discovery interviews</h3>
-          <ol>
-            <li>Fifteen-minute calls with team leads and staff.</li>
-            <li>Ask about recent work, bottlenecks and what they dislike doing.</li>
-            <li>No leading questions. No tool pitched.</li>
-            <li>Group the pain points.</li>
-            <li>Choose the first intervention from the groups, not from the tools.</li>
-          </ol>
-          <p class="attrib">A working method from one practitioner, not a standard.</p>
-        </li>
-      </ul>
-      <p class="cards-note">More methods will be published after contributor review.</p>
-    </div>
-  </section>
-
 ${slot('offers')}  <!-- 07 get listed -->
   <section class="listed" id="listed" aria-labelledby="listed-title">
     <div class="wrap">
-      <div class="sec-head">
-        <p class="legend">An empty pin on the map</p>
-        <h2 id="listed-title">Doing this work yourself?</h2>
-      </div>
-      <div class="listed-grid">
-        <div>
-          <div class="empty-pin" aria-hidden="true">
-            <svg viewBox="0 0 100 100" focusable="false"><g stroke="#E8541F" stroke-width="11" stroke-linecap="round"><path d="M50 16 V84"/><path d="M16 50 H84"/></g></svg>
-          </div>
-          <p class="pin-cap">A place on the map</p>
+      <div class="listed-row">
+        <div class="sec-head">
+          <p class="legend">An empty pin on the map</p>
+          <h2 id="listed-title">Doing this work yourself?</h2>
+          <p class="intro">If you help people or organisations in this community use AI well, add your own public profile. Listing is free. The only test is that you do the work and are happy to be contacted.</p>
         </div>
-        <div>
-          <p>If you help people or organisations in this community use AI well, submit your own approved public profile through the form below, or through GitHub.</p>
-          <p><a class="cta" href="${escAttr(site.addYourselfFormUrl)}">Get listed &rarr; add yourself to the directory</a></p>
-          <p class="cta-host">${esc(new URL(site.addYourselfFormUrl).host)}</p>
-          <p>Listing is free. The only test is that you do this work with people or organisations in this community and are happy to be contacted.</p>
-          <p>Shared recipes &mdash; the starting-point map and discovery interviews &mdash; are published as contributors approve them.</p>
+        <div class="listed-cta">
+          <p><a class="cta" href="${escAttr(site.addYourselfFormUrl)}">Get listed &rarr;</a></p>
+          <p class="cta-host">${esc(new URL(site.addYourselfFormUrl).host)} &middot; or <a href="https://github.com/alex-is-learning/ea-ai-uplift/blob/main/CONTRIBUTING.md#add-a-profile">through GitHub</a></p>
         </div>
       </div>
     </div>

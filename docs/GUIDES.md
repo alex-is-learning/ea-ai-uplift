@@ -45,7 +45,7 @@ Example:
 
 ## How the section renders
 
-Entries are grouped by `stage` in the order start, next, advanced, and sorted by `slug` inside each group. Dates are not shown per entry; one "Links checked" line at the end of the section uses the most recent `checked` value. The section stays hidden while the folder is empty.
+Entries are grouped by `stage` in the order start, next, advanced, and sorted by `slug` inside each group. The home page shows only the titles by stage, linked to the guide page or the first source, with a link to the full index at `guides/`. The index page carries what, why and sources for each entry. Dates are not shown per entry; one "Links checked" line at the end of the index uses the most recent `checked` value. The section stays hidden while the folder is empty.
 
 ## Propose an entry
 
