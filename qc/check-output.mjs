@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { assertValidProject } from '../schema/validate.mjs';
-import { affiliationTags } from '../lib/shared.mjs';
+import { affiliationTags, escAttr } from '../lib/shared.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sourceLink = 'https://github.com/alex-is-learning/ea-ai-uplift';
@@ -106,6 +106,9 @@ export async function checkOutput(projectRoot = root) {
   if (!individualAssessment.includes('href="org/"') || !individualAssessment.includes('Do you run an organisation?')) throw new Error('individual result is missing the organisation assessment entry link');
   for (const person of people) {
     const page = fs.readFileSync(path.join(dist, 'people', person.slug, 'index.html'), 'utf8');
+    for (const url of [person.site, person.contact, ...(person.links || []).map((link) => link.url)].filter(Boolean)) {
+      if (!page.includes(`href="${escAttr(url)}"`)) throw new Error(`${person.slug}: profile is missing its approved link ${url}`);
+    }
     const cards = [cardFor(directory, person.slug), cardFor(individualAssessment, person.slug)];
     for (const expected of affiliationTags(person)) {
       if (cards.some((card) => !card.includes(`>${expected}<`)) || !page.includes(`>${expected}<`)) {
