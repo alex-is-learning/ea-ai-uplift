@@ -2,6 +2,7 @@
   "slug": "google-for-nonprofits",
   "name": "Google for Nonprofits",
   "by": "Google",
+  "providerType": "organisation",
   "kind": "programme",
   "summary": "No-cost and discounted Google tools for verified charities, including Google Workspace with its Gemini AI features.",
   "detail": "Register on the programme site and wait for verification by Goodstack, then switch on the products you want. Schools, hospitals and government bodies are not eligible.",

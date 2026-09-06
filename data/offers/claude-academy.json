@@ -2,6 +2,7 @@
   "slug": "claude-academy",
   "name": "Claude Academy",
   "by": "Anthropic",
+  "providerType": "organisation",
   "kind": "course",
   "summary": "Free short courses on working with Claude and with AI in general, from basic AI fluency to what the models can and cannot do.",
   "detail": "Includes AI Fluency: Framework and Foundations, AI Capabilities and Limitations, and a short course on working alongside AI agents. Each runs from under an hour to about four hours.",
