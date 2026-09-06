@@ -103,7 +103,11 @@ async function openCdp(webSocketUrl) {
   const pending = new Map();
   const events = new Map();
   let nextId = 1;
-  const closed = new Promise((resolve) => socket.addEventListener('close', resolve));
+  const closed = new Promise((resolve) => socket.addEventListener('close', () => {
+    for (const entry of pending.values()) entry.reject(new Error('Chromium DevTools connection closed'));
+    pending.clear();
+    resolve();
+  }));
   await new Promise((resolve, reject) => {
     socket.addEventListener('open', resolve, { once: true });
     socket.addEventListener('error', () => reject(new Error('Cannot connect to Chromium DevTools')), { once: true });

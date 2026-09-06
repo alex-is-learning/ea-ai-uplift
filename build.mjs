@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertValidProject } from './schema/validate.mjs';
-import { esc, escAttr, countWord, NAME_RULE } from './lib/shared.mjs';
+import { affiliationTags, esc, escAttr, countWord, NAME_RULE } from './lib/shared.mjs';
 import { REG_CROSS, renderPage } from './lib/page.mjs';
 import { blocksCss } from './lib/blocks.mjs';
 import { loadSiteConfig } from './lib/data.mjs';
@@ -85,23 +85,43 @@ function frameInner(p, prefix) {
 function card(p) {
   const href = `people/${p.slug}/`;
   const tab =
-    p.availability === 'taking work now'
+    p.availability === 'available'
       ? `\n          <span class="avail-tab">Taking work now</span>`
       : '';
   return `        <li class="p-card">
           <span class="p-slot">
             <a class="portrait-frame" href="${escAttr(href)}" aria-label="${escAttr(p.name)} — profile">${frameInner(p, '')}</a>${tab}
           </span>
-          <h3 class="p-name"><a href="${escAttr(href)}">${esc(p.name)}</a></h3>
+          <h4 class="p-name"><a href="${escAttr(href)}">${esc(p.name)}</a></h4>
           ${NAME_RULE}
+          ${affiliationBadges(p)}
           <p class="p-head">${esc(p.headline)}</p>
         </li>`;
 }
 
+function affiliationBadges(p) {
+  return `<p class="p-tags" aria-label="Work affiliation">${affiliationTags(p).map((tag) => `<span>${esc(tag)}</span>`).join('')}</p>`;
+}
+
 function peopleSection() {
   const peopleIntro = people.length === 1
-    ? 'One person, working independently. Open the profile for availability and contact.'
-    : `${countWord(people.length, true)} people, each working independently on their own terms. Open a profile for availability and contact.`;
+    ? 'One person doing this work. Open the profile for their work context, availability and contact.'
+    : `${countWord(people.length, true)} people doing this work in-house, independently, or both. Open a profile for their work context, availability and contact.`;
+  const labels = {
+    'in-house': 'In-house at organisations',
+    both: 'In-house + independent',
+    independent: 'Independent practitioners',
+  };
+  const grouped = ['in-house', 'both', 'independent']
+    .map((workMode) => ({
+      workMode,
+      label: labels[workMode],
+      entries: people.filter((person) => person.workMode === workMode).sort((a, b) => {
+        const organisation = (a.organisation || '') === (b.organisation || '') ? 0 : (a.organisation || '') < (b.organisation || '') ? -1 : 1;
+        return organisation || byFirstName(a, b);
+      }),
+    }))
+    .filter((group) => group.entries.length);
   return `  <!-- 02 people -->
   <section class="band" id="people" aria-labelledby="people-title">
     <div class="wrap">
@@ -110,10 +130,15 @@ function peopleSection() {
         <h2 id="people-title">People doing this work</h2>
         <p class="intro">${peopleIntro}</p>
       </div>
-      <ul class="people-grid">
-${people.map(card).join('\n')}
-      </ul>
-      <p class="grid-cap"><span>Listed alphabetically. Nobody is first.</span><a href="#listed">Do this work? Get listed &rarr;</a></p>
+      <div class="people-groups">
+${grouped.map((group) => `        <div class="people-group" aria-labelledby="people-${group.workMode}">
+          <h3 class="people-group-title" id="people-${group.workMode}">${esc(group.label)} <span>${group.entries.length}</span></h3>
+          <ul class="people-grid">
+${group.entries.map(card).join('\n')}
+          </ul>
+        </div>`).join('\n')}
+      </div>
+      <p class="grid-cap"><span>Grouped by work mode. In-house entries are ordered by organisation.</span><a href="#listed">Do this work? Get listed &rarr;</a></p>
     </div>
   </section>`;
 }
@@ -121,7 +146,7 @@ ${people.map(card).join('\n')}
 // ---------------------------------------------------------------- index page
 const INDEX_TITLE = 'AI uplift — a field guide for people and organisations in effective altruism';
 const INDEX_DESC =
-  'A guide to AI support for people and organisations in effective altruism: independent practitioners, requests for help, and practical starting points.';
+  'A guide to AI support for people and organisations in effective altruism: in-house and independent practitioners, requests for help, and practical starting points.';
 
 function indexPage() {
   const body = `
@@ -426,6 +451,7 @@ function personPage(p) {
           <p class="legend">Listed on the map</p>
           <h1>${esc(p.name)}</h1>
           ${NAME_RULE}
+          ${affiliationBadges(p)}
           <p class="person-head">${headline}</p>
           <p class="pmeta"><span class="label">Availability</span>${availabilityLine(p)}</p>${
             p.bio === p.headline ? '' : `

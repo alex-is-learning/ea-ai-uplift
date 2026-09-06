@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { assertValidProject } from '../schema/validate.mjs';
+import { affiliationTags } from '../lib/shared.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sourceLink = 'https://github.com/alex-is-learning/ea-ai-uplift';
@@ -39,6 +40,15 @@ function assertLocalLinks(location, dist) {
     const resolved = fs.existsSync(target) && fs.statSync(target).isDirectory() ? path.join(target, 'index.html') : target;
     if (!fs.existsSync(resolved)) throw new Error(`${location}: missing local link target: ${ref}`);
   }
+}
+
+function cardFor(html, slug) {
+  const marker = `people/${slug}/`;
+  const link = html.indexOf(marker);
+  const start = html.lastIndexOf('<li class="p-card">', link);
+  const end = html.indexOf('</li>', link);
+  if (link < 0 || start < 0 || end < 0) throw new Error(`${slug}: generated page is missing its person card`);
+  return html.slice(start, end + 5);
 }
 
 async function expectedSectionPages(projectRoot, people) {
@@ -89,10 +99,22 @@ export async function checkOutput(projectRoot = root) {
   if (!home.includes('href="assess/org/"') || !home.includes('For your organisation')) throw new Error('home page is missing the organisation assessment entry link');
   if (!hire.includes('href="../assess/org/"') || !hire.includes('Assess your organisation')) throw new Error('hire page is missing the organisation assessment entry link');
   if (!individualAssessment.includes('href="org/"') || !individualAssessment.includes('Do you run an organisation?')) throw new Error('individual result is missing the organisation assessment entry link');
+  for (const person of people) {
+    const page = fs.readFileSync(path.join(dist, 'people', person.slug, 'index.html'), 'utf8');
+    const cards = [cardFor(home, person.slug), cardFor(individualAssessment, person.slug)];
+    for (const expected of affiliationTags(person)) {
+      if (cards.some((card) => !card.includes(`>${expected}<`)) || !page.includes(`>${expected}<`)) {
+        throw new Error(`${person.slug}: affiliation label is missing from its generated card or profile page`);
+      }
+    }
+  }
+  const groupLabels = { 'in-house': 'In-house at organisations', both: 'In-house + independent', independent: 'Independent practitioners' };
+  for (const mode of new Set(people.map((person) => person.workMode))) {
+    if (!home.includes(groupLabels[mode])) throw new Error(`home page does not show the ${mode} work-mode group`);
+  }
   if (people.length === 1) {
     const requiredCopy = [
-      'lists one person who does it independently.',
-      'One person who does this work independently.',
+      'One person doing this work.',
       'If you help people or organisations in this community use AI well, submit your own approved public profile through the form below, or through GitHub.',
     ];
     for (const copy of requiredCopy) if (!home.includes(copy)) throw new Error(`one-profile home copy is missing: ${copy}`);

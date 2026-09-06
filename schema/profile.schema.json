@@ -45,6 +45,29 @@
     {
       "if": {
         "properties": {
+          "workMode": {
+            "enum": [
+              "in-house",
+              "both"
+            ]
+          }
+        },
+        "required": [
+          "workMode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "organisation": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
           "photo": {
             "type": "string"
           }
