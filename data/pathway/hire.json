@@ -101,6 +101,10 @@
       "type": "related",
       "items": [
         {
+          "label": "Assess your organisation",
+          "path": "assess/org/"
+        },
+        {
           "label": "The learning route: how a person gets ready for this work",
           "path": "learn/"
         },

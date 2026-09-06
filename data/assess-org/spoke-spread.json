@@ -1,0 +1,17 @@
+{
+  "slug": "spoke-spread",
+  "kind": "spoke",
+  "order": 4,
+  "key": "spread",
+  "label": "Spread",
+  "short": "The estimated mix of regular or power users, occasional users, and non-users in a typical week.",
+  "strong": "AI use reaches at least half of staff in a typical week. Team mode shows how deep.",
+  "middle": "AI use sits with fewer than half of staff. Team mode shows where it spreads and where it stops.",
+  "edge": "There are no regular or power users yet. Start with one person and one task: talk to a listed person.",
+  "unmet": "Run team mode. It is the only honest way to know.",
+  "guide": null,
+  "route": {
+    "title": "Run team mode",
+    "href": "../"
+  }
+}

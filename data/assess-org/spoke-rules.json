@@ -1,0 +1,18 @@
+{
+  "slug": "spoke-rules",
+  "kind": "spoke",
+  "order": 6,
+  "key": "rules",
+  "label": "Rules",
+  "short": "A written rule that names AI tools and says what must not go in, on a document ladder.",
+  "strong": "The rule exists, names the tools, and staff start from it. Check it names the tools staff use this year.",
+  "middle": {
+    "2": "Rung 2, a policy that names no AI tool or says nothing on what must not go in: a one-paragraph addendum closes it, and this is the population's most common case.",
+    "3": "Rung 3, out of date: refresh it.",
+    "4": "Rung 4, not linked: link it from the handbook."
+  },
+  "edge": "No rule at all. A one-page rule that names the tools and lists what must not go in is a two-hour task, with the guide to verification and safety at work as the template.",
+  "unmet": "If nobody can find a rule, there is no rule.",
+  "guide": "verification-and-safety-at-work",
+  "route": null
+}

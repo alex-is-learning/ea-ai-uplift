@@ -1,0 +1,15 @@
+{
+  "slug": "question-02",
+  "kind": "question",
+  "order": 2,
+  "spoke": "reach",
+  "tag": null,
+  "statement": "Is any organisation system (email, shared drive, calendar, a database) connected to an AI tool, so the tool reads from it directly instead of someone pasting into it? Do not count the AI features built into Google Workspace or Microsoft 365.",
+  "answers": [
+    [1, "No"],
+    [3, "Yes, one person's own inbox or drive"],
+    [5, "Yes, a shared system (a shared drive, a shared inbox, a database)"],
+    [0, "Not sure"]
+  ],
+  "notSureFirst": false
+}

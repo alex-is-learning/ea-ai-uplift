@@ -1,0 +1,10 @@
+{
+  "slug": "question-04",
+  "kind": "question",
+  "order": 4,
+  "spoke": "spread",
+  "tag": null,
+  "statement": "Which is your best estimate of the staff mix for AI use in a typical week? Count real work done with any AI tool, including features in Google Workspace or Microsoft 365.",
+  "answers": "usageMix",
+  "notSureFirst": true
+}

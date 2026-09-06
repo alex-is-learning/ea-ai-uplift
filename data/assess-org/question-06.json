@@ -1,0 +1,17 @@
+{
+  "slug": "question-06",
+  "kind": "question",
+  "order": 6,
+  "spoke": "rules",
+  "tag": null,
+  "statement": "Is there a written rule that names AI tools and says what staff must not put into them: donor details, grantee names, unpublished research and similar?",
+  "answers": [
+    [1, "No written policy of any kind covers this"],
+    [2, "A policy exists, but it names no AI tool, or says nothing about what must not go into one"],
+    [3, "Exists, but out of date"],
+    [4, "Exists and current, but not in or linked from where staff start work"],
+    [5, "Exists, current, and in or linked from where staff start work"],
+    [0, "Not sure"]
+  ],
+  "notSureFirst": false
+}

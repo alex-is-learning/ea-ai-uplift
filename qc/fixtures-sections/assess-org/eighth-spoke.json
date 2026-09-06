@@ -1,0 +1,18 @@
+{
+  "expect": "exactly seven spoke files",
+  "file": "spoke-extra.json",
+  "data": {
+    "slug": "spoke-extra",
+    "kind": "spoke",
+    "order": 7,
+    "key": "extra",
+    "label": "Extra",
+    "short": "An eighth condition that must not appear in the chart.",
+    "strong": "An eighth condition must not appear in an organisation result.",
+    "middle": "An eighth condition must not appear in an organisation result.",
+    "edge": "An eighth condition must not appear in an organisation result.",
+    "unmet": "An eighth condition must not appear in an organisation result.",
+    "guide": "mcp",
+    "route": null
+  }
+}

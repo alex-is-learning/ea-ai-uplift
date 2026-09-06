@@ -1,0 +1,10 @@
+{
+  "slug": "question-01",
+  "kind": "question",
+  "order": 1,
+  "spoke": "access",
+  "tag": null,
+  "statement": "Roughly what percentage of staff have a paid plan for an AI tool (ChatGPT, Claude or similar) bought by the organisation? Do not count AI features bundled into Google Workspace or Microsoft 365.",
+  "answers": "percentage",
+  "notSureFirst": false
+}

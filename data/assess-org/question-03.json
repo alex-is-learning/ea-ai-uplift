@@ -1,0 +1,10 @@
+{
+  "slug": "question-03",
+  "kind": "question",
+  "order": 3,
+  "spoke": "context",
+  "tag": null,
+  "statement": "Is there a short written description of the organisation (what it does, who it serves, how it writes) that staff can hand to an AI tool before asking it anything?",
+  "answers": "document",
+  "notSureFirst": false
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "question-05",
+  "kind": "question",
+  "order": 5,
+  "spoke": "production",
+  "tag": null,
+  "statement": "Does any process run on an AI tool on a regular schedule: a weekly digest, an inbox triage, a monthly report?",
+  "answers": [
+    [1, "No"],
+    [3, "Yes, but a person runs it each time"],
+    [5, "Yes, it runs on its own"],
+    [0, "Not sure"]
+  ],
+  "notSureFirst": false
+}

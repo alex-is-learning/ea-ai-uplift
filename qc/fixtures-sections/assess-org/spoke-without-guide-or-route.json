@@ -1,0 +1,18 @@
+{
+  "expect": "spoke needs either a guide or a route",
+  "file": "spoke-production.json",
+  "data": {
+    "slug": "spoke-production",
+    "kind": "spoke",
+    "order": 5,
+    "key": "production",
+    "label": "Production",
+    "short": "A process that runs on an AI tool on a regular schedule.",
+    "strong": "A process runs on its own and has a clear next task.",
+    "middle": "A process exists and a person starts it each time.",
+    "edge": "Nothing runs on a schedule yet, so start with one process.",
+    "unmet": "Ask whether any report or digest arrives with nobody sending it.",
+    "guide": null,
+    "route": null
+  }
+}
