@@ -206,6 +206,7 @@ export async function renderFile(browser, pagePath, viewport, options = {}) {
     if (inspected?.exceptionDetails) throw new Error(inspected.exceptionDetails.exception?.description || inspected.exceptionDetails.text || 'browser inspection failed');
     const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
     const image = Buffer.from(screenshot.data, 'base64');
+    if (options.screenshotPath) fs.writeFileSync(options.screenshotPath, image);
     const width = image.readUInt32BE(16);
     const height = image.readUInt32BE(20);
     if (remoteResponses.length) throw new Error(`HTTP(S) response reached the renderer: ${remoteResponses.join(', ')}`);
@@ -244,7 +245,20 @@ export async function checkRender(projectRoot = root) {
   })(output.dist);
   pages.sort((a, b) => (a === path.join(output.dist, 'index.html') ? -1 : b === path.join(output.dist, 'index.html') ? 1 : a < b ? -1 : 1));
   const results = [];
-  for (const page of pages) for (const viewport of viewports) results.push(await renderFile(browser, page, viewport));
+  for (const page of pages) for (const viewport of viewports) {
+    const isHome = page === path.join(output.dist, 'index.html');
+    const result = await renderFile(browser, page, viewport, isHome ? {
+      expression: `(() => {
+        const links = [...document.querySelectorAll('main nav a')];
+        return { height: document.documentElement.scrollHeight, destinations: links.length,
+          clipped: links.some(link => { const r = link.getBoundingClientRect(); return r.left < 0 || r.right > innerWidth || r.height < 44; }) };
+      })()`,
+    } : {});
+    if (isHome && (result.value.height > 1280 || result.value.destinations !== 5 || result.value.clipped)) {
+      throw new Error(`home navigation is too long, clipped, or missing a destination at ${viewport.width}px: ${JSON.stringify(result.value)}`);
+    }
+    results.push(result);
+  }
   return { browser, results };
 }
 

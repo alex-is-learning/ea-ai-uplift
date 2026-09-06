@@ -4,6 +4,22 @@ EA AI Uplift is an independent field guide and directory for people doing AI upl
 
 The public repository is deliberately separate from the private working repository. It contains only public-safe source, approved directory material, and the checks needed to review contributions.
 
+## Site pages
+
+The home page is a short navigation menu. Keep full content on its destination page.
+
+| Page | Route |
+|---|---|
+| People | `/people/` |
+| Request help | `/asks/` |
+| Assess your skills | `/assess/`, with organisation mode at `/assess/org/` |
+| Guides | `/guides/` |
+| Case studies | `/case-studies/` |
+
+The starting-point map and detailed guidance live at `/start/`. The footer links to this page, offers, and the learn and hire pathways. Old home bookmarks redirect to the relevant destination. Case studies remain an empty state until approved material exists.
+
+`build.mjs` generates all pages. `lib/page.mjs` owns the shared navigation, page shell and styles. The output checks cover destination pages, same-site link fragments, profile affiliations and the compact home layout.
+
 ## Add a profile
 
 Use one file for one person. Fork this repository, copy `data/people/_template.json` to `data/people/<your-slug>.json`, complete only your own approved public information, and open a pull request.
