@@ -7,7 +7,7 @@ import { REG_CROSS, renderPage } from './lib/page.mjs';
 import { blocksCss } from './lib/blocks.mjs';
 import { renderProfileLinks } from './lib/profile-links.mjs';
 import { loadSiteConfig } from './lib/data.mjs';
-import { sections, navOrder } from './lib/sections.mjs';
+import { sections } from './lib/sections.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const outDir = path.join(scriptDir, 'dist');
@@ -48,21 +48,7 @@ for (const [name, mod] of Object.entries(sections)) {
 }
 const sectionCss = `\n${blocksCss}${Object.values(sections).map((mod) => mod.css).filter(Boolean).map((css) => `\n${css}`).join('')}`;
 function ctx(name, prefix = '') {
-  return { root: scriptDir, items: sectionItems[name], people, site, esc, escAttr, prefix, nav: navLinks(prefix), sectionCss, renderPage };
-}
-function slot(name) {
-  const html = sections[name].section(ctx(name));
-  return html ? `${html}\n\n` : '';
-}
-const NAV_LABELS = { people: 'People', map: 'Where to start', listed: 'Get listed' };
-function navLinks(prefix) {
-  return navOrder
-    .map((name) => {
-      const label = NAV_LABELS[name] ?? sections[name]?.navLabel;
-      return label ? `      <a href="${escAttr(prefix)}#${name}">${esc(label)}</a>` : null;
-    })
-    .filter(Boolean)
-    .join('\n');
+  return { root: scriptDir, items: sectionItems[name], people, site, esc, escAttr, prefix, sectionCss, renderPage };
 }
 
 
@@ -83,15 +69,15 @@ function frameInner(p, prefix) {
   );
 }
 
-function card(p) {
-  const href = `people/${p.slug}/`;
+function card(p, prefix = '') {
+  const href = `${prefix}people/${p.slug}/`;
   const tab =
     p.availability === 'available'
       ? `\n          <span class="avail-tab">Taking work now</span>`
       : '';
   return `        <li class="p-card">
           <span class="p-slot">
-            <a class="portrait-frame" href="${escAttr(href)}" aria-label="${escAttr(p.name)} — profile">${frameInner(p, '')}</a>${tab}
+            <a class="portrait-frame" href="${escAttr(href)}" aria-label="${escAttr(p.name)} — profile">${frameInner(p, prefix)}</a>${tab}
           </span>
           <h4 class="p-name"><a href="${escAttr(href)}">${esc(p.name)}</a></h4>
           ${NAME_RULE}
@@ -104,7 +90,7 @@ function affiliationBadges(p) {
   return `<p class="p-tags" aria-label="Work affiliation">${affiliationTags(p).map((tag) => `<span>${esc(tag)}</span>`).join('')}</p>`;
 }
 
-function peopleSection() {
+function peopleSection(prefix = '') {
   const peopleIntro = people.length === 1
     ? 'One person doing this work. Open the profile for their work context, availability and contact.'
     : `${countWord(people.length, true)} people doing this work in-house, independently, or both. Open a profile for their work context, availability and contact.`;
@@ -128,18 +114,18 @@ function peopleSection() {
     <div class="wrap">
       <div class="sec-head">
         <p class="legend">The people</p>
-        <h2 id="people-title">People doing this work</h2>
+        <h1 id="people-title">People doing this work</h1>
         <p class="intro">${peopleIntro}</p>
       </div>
       <div class="people-groups">
 ${grouped.map((group) => `        <div class="people-group" aria-labelledby="people-${group.workMode}">
           <h3 class="people-group-title" id="people-${group.workMode}">${esc(group.label)} <span>${group.entries.length}</span></h3>
           <ul class="people-grid">
-${group.entries.map(card).join('\n')}
+${group.entries.map((person) => card(person, prefix)).join('\n')}
           </ul>
         </div>`).join('\n')}
       </div>
-      <p class="grid-cap"><span>Grouped by work mode. In-house entries are ordered by organisation.</span><a href="#listed">Do this work? Get listed &rarr;</a></p>
+      <p class="grid-cap"><span>Grouped by work mode. In-house entries are ordered by organisation.</span><a href="${escAttr(prefix)}start/#listed">Do this work? Get listed &rarr;</a></p>
     </div>
   </section>`;
 }
@@ -149,25 +135,18 @@ const INDEX_TITLE = 'AI uplift — a field guide for people and organisations in
 const INDEX_DESC =
   'A guide to AI support for people and organisations in effective altruism: in-house and independent practitioners, requests for help, and practical starting points.';
 
-function indexPage() {
+function startPage() {
   const body = `
   <!-- 01 opening -->
   <section class="hero" aria-labelledby="page-title">
     <div class="wrap">
-      <p class="legend">A field guide</p>
-      <h1 id="page-title">AI uplift, for people and organisations in effective altruism</h1>
-      <p class="lede">AI tools can help with research, writing and routine tasks. An in-house specialist or contractor can help an organisation test where these tools improve results and support staff over time. This guide lists people who offer that support, requests for help, and practical starting points.</p>
-      <p class="soft-links">
-        <a class="hot" href="#people">Find someone to talk to &darr;</a>
-        <a href="#map">See where you'd start &darr;</a>
-        <a href="assess/">Map your practice &rarr;</a>
-      </p>
+      <p class="legend">Start here</p>
+      <h1 id="page-title">How AI uplift work starts</h1>
+      <p class="lede">Use this field guide to identify a useful starting point, understand the work inside an organisation, and check the principles behind it.</p>
     </div>
   </section>
 
-${peopleSection()}
-
-${slot('asks')}${slot('assess')}  <!-- 03 the route -->
+  <!-- 02 the route -->
   <section id="map" aria-labelledby="map-title">
     <div class="wrap">
       <div class="sec-head">
@@ -368,7 +347,7 @@ ${slot('asks')}${slot('assess')}  <!-- 03 the route -->
     </div>
   </section>
 
-${slot('offers')}  <!-- 07 get listed -->
+  <!-- 05 get listed -->
   <section class="listed" id="listed" aria-labelledby="listed-title">
     <div class="wrap">
       <div class="listed-row">
@@ -385,18 +364,100 @@ ${slot('offers')}  <!-- 07 get listed -->
     </div>
   </section>
 
-${slot('guides')}${slot('pathway')}${slot('guides') ? '' : `  <!-- 08 further learning -->
-  <section id="learning" aria-labelledby="learning-title">
+  <!-- 06 continue -->
+  <section id="pathway" aria-labelledby="pathway-title">
     <div class="wrap">
       <div class="sec-head">
-        <p class="legend">Further reading</p>
-        <h2 id="learning-title">Further learning</h2>
+        <p class="legend">Continue</p>
+        <h2 id="pathway-title">Learn more or find support</h2>
+        <p class="intro">Use the detailed guides, learn how to do this work, or see what support is available.</p>
       </div>
-      <p class="intro">New public resources will appear here after review.</p>
+      <p class="soft-links">
+        <a href="../guides/">Read the guides</a>
+        <a href="../learn/">Learn to do this work</a>
+        <a href="../hire/">Hire for this work</a>
+        <a href="../offers/">See offers</a>
+      </p>
     </div>
+  </section>`;
+  return renderPage({
+    title: 'Start here — EA AI Uplift',
+    description: 'A practical starting guide to AI uplift work for people and organisations in effective altruism.',
+    canonical: 'https://eaaiuplift.com/start/',
+    prefix: '../',
+    body,
+    css: sectionCss,
+  });
+}
+
+function indexPage() {
+  const routes = [
+    ['people', 'people/', 'People working on AI uplift', 'Find people who help others or organisations use AI.'],
+    ['asks', 'asks/', 'Request help', 'Post a problem or reply to an open request.'],
+    ['assess', 'assess/', 'Assess your skills', 'Answer ten questions about your practice. A separate organisation assessment is included.'],
+    ['guides', 'guides/', 'Guides', 'Read practical guides and checked source links.'],
+    ['case-studies', 'case-studies/', 'Case studies', 'See documented work and evidence when it is published.'],
+  ];
+  const items = routes.map(([id, href, title, description]) => `        <li id="${id}">
+          <a class="route-link" href="${href}">
+            <span><span class="route-title">${title}</span><span class="route-desc">${description}</span></span>
+            <span class="route-open" aria-hidden="true">Open</span>
+          </a>
+        </li>`).join('\n');
+  const legacy = ['map', 'tracks', 'principles', 'listed', 'pathway', 'offers', 'recipes', 'learning']
+    .map((id) => `    <span class="legacy-anchor" id="${id}" aria-hidden="true"></span>`)
+    .join('\n');
+  const redirects = {
+    people: 'people/',
+    asks: 'asks/',
+    assess: 'assess/',
+    guides: 'guides/',
+    map: 'start/#map',
+    tracks: 'start/#tracks',
+    principles: 'start/#principles',
+    listed: 'start/#listed',
+    pathway: 'start/#pathway',
+    offers: 'offers/',
+    recipes: 'guides/',
+    learning: 'guides/',
+  };
+  const body = `  <section class="home-hub" aria-labelledby="page-title">
+    <div class="wrap home-grid">
+      <div class="home-copy">
+        <p class="legend">A field guide</p>
+        <h1 id="page-title">AI uplift in effective altruism</h1>
+        <p class="lede">Find people, ask for help, assess current practice, or use the published guidance.</p>
+      </div>
+      <nav class="route-board" aria-label="Choose where to go">
+        <ul class="route-list">
+${items}
+        </ul>
+      </nav>
+    </div>
+${legacy}
   </section>
-`}`;
-  return renderPage({ title: INDEX_TITLE, description: INDEX_DESC, canonical: 'https://eaaiuplift.com/', prefix: '', nav: navLinks(''), body, css: sectionCss, home: true });
+  <script>
+    const legacyRoutes=${JSON.stringify(redirects)};
+    function followLegacyHash(){
+      const key=location.hash.slice(1);
+      const target=Object.hasOwn(legacyRoutes,key) ? legacyRoutes[key] : '';
+      if(target) location.replace(new URL(target,location.href));
+    }
+    addEventListener('hashchange',followLegacyHash);
+    followLegacyHash();
+  </script>`;
+  return renderPage({ title: INDEX_TITLE, description: INDEX_DESC, canonical: 'https://eaaiuplift.com/', prefix: '', body, css: sectionCss, home: true });
+}
+
+function peoplePage() {
+  return renderPage({
+    title: 'People working on AI uplift — EA AI Uplift',
+    description: 'A directory of in-house and independent people who help others and organisations use AI in effective altruism.',
+    canonical: 'https://eaaiuplift.com/people/',
+    prefix: '../',
+    body: peopleSection('../'),
+    css: sectionCss,
+  });
 }
 
 // ---------------------------------------------------------------- person page
@@ -434,7 +495,7 @@ function personPage(p) {
   const bio = esc(p.bio);
   const body = `  <section class="person">
     <div class="wrap">
-      <a class="back-link" href="../../#people">&larr; All people</a>
+      <a class="back-link" href="../../people/">&larr; All people</a>
       <div class="person-grid">
         <div>
           ${personFrame(p)}
@@ -455,7 +516,7 @@ ${contactBlock(p)}
       </div>
     </div>
   </section>`;
-  return renderPage({ title: `${p.name} — EA AI Uplift`, description: p.headline, canonical: `https://eaaiuplift.com/people/${p.slug}/`, prefix: '../../', nav: navLinks('../../'), body, css: sectionCss });
+  return renderPage({ title: `${p.name} — EA AI Uplift`, description: p.headline, canonical: `https://eaaiuplift.com/people/${p.slug}/`, prefix: '../../', body, css: sectionCss });
 }
 
 // ---------------------------------------------------------------- write
@@ -463,6 +524,10 @@ if (fs.existsSync(outDir) && fs.lstatSync(outDir).isSymbolicLink()) die('dist mu
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, 'index.html'), indexPage());
+fs.mkdirSync(path.join(outDir, 'start'), { recursive: true });
+fs.writeFileSync(path.join(outDir, 'start', 'index.html'), startPage());
+fs.mkdirSync(path.join(outDir, 'people'), { recursive: true });
+fs.writeFileSync(path.join(outDir, 'people', 'index.html'), peoplePage());
 for (const p of people) {
   const dir = path.join(outDir, 'people', p.slug);
   fs.mkdirSync(dir, { recursive: true });
