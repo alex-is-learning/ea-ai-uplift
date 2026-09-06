@@ -1,6 +1,6 @@
 # Organisation assessment
 
-The organisation assessment lives at `/assess/org/`. One operations lead, COO, chief of staff or executive director answers ten questions for the organisation. Seven answers draw the conditions chart. Three connective answers shape the result. Scores stay in the URL. The page stores nothing.
+The organisation assessment lives at `/assess/org/`. One operations lead, COO, chief of staff or executive director answers ten questions for the organisation. Seven answers draw the conditions chart. Three connective answers shape the result. Scores stay in the URL. Optional context stays in browser memory and appears only on the local result.
 
 ## Files
 
@@ -90,4 +90,4 @@ Q4 must be above None. A sight gap exists when Q10 confidence is more than one r
 - `p` contains seven digits from an earlier result.
 - `t` contains a team code with letters, digits and hyphens, up to 24 characters.
 
-Q9's optional process text is not encoded, stored or sent.
+Every question accepts optional context. This text is not encoded, stored or sent. It disappears after a reload.

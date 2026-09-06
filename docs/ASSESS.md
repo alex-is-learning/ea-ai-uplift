@@ -2,7 +2,7 @@
 
 `/assess/` is a ten-question self-assessment. A visitor rates seven first-person statements from 1 ("Not me") to 5 ("Very much me"), or answers "I do not know what this means". Each of those seven measures one **way of working** (a spoke on the chart). Three more are **connective** questions, answered "Yes", "Not sure" or "No" (encoded 5, 3 and 1), that shape the result without moving the chart. The result names the strongest way and the growth edge, lists the ways not yet met, places the visitor on the home page's five-point route, picks three entries from the Guides index, and shows the People grid.
 
-Everything runs in the browser. No account, no storage, no analytics. The result is encoded in the page URL (`?s=` seven digits for the spokes, `?c=` three digits for the connective questions, digit `0` meaning "not met"), so the link is the record. The optional "Email me this result" button opens the form in `data/site.json` `assessFormUrl` with the scores prefilled; see [TEAM-MODE.md](TEAM-MODE.md).
+Everything runs in the browser. No account, no persistent storage, no analytics. Each question has an optional context field. Its text stays in the current browser tab, appears on the local result, and never enters the share URL or email form. The result scores are encoded in the page URL (`?s=` seven digits for the spokes, `?c=` three digits for the connective questions, digit `0` meaning "not met"), so the link is the score record. The optional "Email me this result" button opens the form in `data/site.json` `assessFormUrl` with the scores prefilled; see [TEAM-MODE.md](TEAM-MODE.md).
 
 ## Data
 
