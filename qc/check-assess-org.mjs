@@ -6,7 +6,7 @@ import { findChromium, renderFile } from './check-render.mjs';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const viewport = { width: 390, height: 1280 };
 const placements = [
-  { query: '?s=0000000&c=000', place: 3, title: 'Find out first', gap: false },
+  { query: '?s=0000000&c=000', place: 3, title: 'Find out first', gap: false, absent: 'The guide from one advanced user to shared practice' },
   { query: '?s=5111111&c=111', place: 2, title: 'One clear gap', gap: false, focus: 'rules' },
   { query: '?s=5111141&c=111', place: 1, title: 'Accounts, no practice', gap: false },
   { query: '?s=3334333&c=113', place: 2, title: 'One clear gap', gap: false },
@@ -15,7 +15,7 @@ const placements = [
   { query: '?s=3333525&c=113', place: 2, title: 'One clear gap', gap: false, focus: 'rules' },
   { query: '?s=1530553&c=052', place: 4, title: 'One process everyone names', gap: false },
   { query: '?s=5314343&c=354', place: 4, title: 'One process everyone names', gap: false },
-  { query: '?s=3333555&c=113', place: 5, title: 'Running it, keep it running', gap: false },
+  { query: '?s=3333555&c=113', place: 5, title: 'Running it, keep it running', gap: false, contains: 'Production 5, Ownership 5, Rules 3 or more.' },
   { query: '?s=5011131&c=115', place: 2, title: 'One clear gap', gap: false },
   { query: '?s=5111031&c=115', place: 2, title: 'One clear gap', gap: false },
   { query: '?s=5555035&c=115', place: 2, title: 'One clear gap', gap: false, focus: 'rules' },
@@ -68,6 +68,7 @@ async function checkPlacements(browser, page) {
     assert((value.text || '').includes(test.title), `${test.query}: result does not contain placement title "${test.title}"`);
     if (test.focus) assert(value.focus === test.focus, `${test.query}: expected focus ${test.focus}, got ${value.focus || 'missing'}`);
     if (test.contains) assert(`${value.text || ''} ${value.chartText || ''}`.includes(test.contains), `${test.query}: result is missing "${test.contains}"`);
+    if (test.absent) assert(!`${value.text || ''} ${value.chartText || ''}`.includes(test.absent), `${test.query}: result must omit "${test.absent}"`);
     if (test.link) assert((value.links || []).some((link) => link.includes(test.link)), `${test.query}: result is missing route "${test.link}"`);
     if (test.query.includes('s=0000000')) {
       assert(value.hollowDots === 7 && value.hollowAxes === 7, `${test.query}: expected seven hollow dots and axes, got ${value.hollowDots} and ${value.hollowAxes}`);
@@ -112,7 +113,9 @@ async function checkInteraction(browser, page) {
         if(data.questions[index].answerKind==='document'&&!help.toLowerCase().includes('lowest rung'))throw new Error('document tie rule is missing on question '+(index+1));
         if(data.questions[index].answerKind==='staged'&&!help.toLowerCase().includes('highest rung'))throw new Error('staged tie rule is missing on question '+(index+1));
         if(index===6&&(document.getElementById('question-note')||{}).textContent!=='If there are two such people, answer for the one whose role is closer to it.')throw new Error('Q7 two-person instruction is missing');
-        seen.push({statement:document.getElementById('qstatement').textContent,labels});
+        const renderedStatement=document.getElementById('qstatement').textContent;
+        if(renderedStatement!==data.questions[index].statement)throw new Error('question '+(index+1)+' adds punctuation around its statement');
+        seen.push({statement:renderedStatement,labels});
         if(index===8){
           await clickAnswer(answerValues[index]);
           const process=await waitFor(()=>{const input=document.getElementById('process');return input&&!input.closest('.hidden')&&input;});
@@ -162,8 +165,12 @@ async function checkInteraction(browser, page) {
     'paid staff and long-term contractors',
     'not volunteers or trustees',
     'not touched in the last twelve months',
-    'bands are in tenths of staff',
+    'regular or power users',
+    'occasional users use it less often',
   ]) assert((value.intro || '').toLowerCase().includes(phrase), `intro definition is missing: ${phrase}`);
+  assert(JSON.stringify(value.seen?.[0]?.labels)===JSON.stringify(['0%','1–33%','34–66%','67–99%','100%','Not sure']), 'Q1 percentage labels are wrong');
+  assert(value.seen?.[3]?.labels?.[1]?.startsWith('None:'), 'Q4 staff-mix ladder is wrong');
+  assert(value.seen?.[9]?.labels?.[0]==='Mostly a guess based on the most visible users', 'Q10 confidence ladder is wrong');
   assert(value.seen?.length === 10, `interaction exercised ${value.seen?.length || 0} questions, not 10`);
   assert((value.href || '').includes('?s=5354323&c=352&t=orchard-2026'), `result URL has the wrong scores: ${value.href || 'missing'}`);
   assert(value.share === value.href, 'share field does not match the result URL');
@@ -203,6 +210,29 @@ async function checkIndividualRegression(browser, projectRoot) {
   assert((rendered.value?.text || '').includes('That is a clear starting point, not a bad result.'), 'individual all-zero reassurance copy changed');
 }
 
+async function checkCancelledProcess(browser, page) {
+  const rendered = await renderFile(browser, page, viewport, {
+    expression: `(async()=>{
+      const waitFor=async predicate=>{const deadline=Date.now()+6000;while(Date.now()<deadline){const value=predicate();if(value)return value;await new Promise(resolve=>setTimeout(resolve,40));}throw new Error('timed out waiting for process-change case');};
+      const answer=async value=>{const before=document.getElementById('qcount').textContent;const button=[...document.querySelectorAll('#answers button.ans')].find(item=>item.dataset.value===String(value));button.click();await waitFor(()=>document.getElementById('qcount').textContent!==before||!document.getElementById('process-wrap').classList.contains('hidden')||!document.getElementById('result').classList.contains('hidden'));};
+      for(const value of [5,3,5,4,3,2,3,3])await answer(value);
+      await answer(5);
+      const process=await waitFor(()=>document.getElementById('process'));
+      process.value='Cancelled process';
+      document.getElementById('free-next').click();
+      await waitFor(()=>document.getElementById('qcount').textContent.includes('10 of 10'));
+      document.getElementById('qback').click();
+      await waitFor(()=>document.getElementById('qcount').textContent.includes('9 of 10'));
+      await answer(1);
+      await answer(4);
+      await waitFor(()=>!document.getElementById('result').classList.contains('hidden'));
+      return {text:document.getElementById('result').innerText,href:location.href};
+    })()`,
+  });
+  assert(!(rendered.value?.text || '').includes('Cancelled process'), 'Q9 process text remained after the answer changed to No');
+  assert((rendered.value?.href || '').includes('&c=314'), 'process-change case has the wrong connective scores');
+}
+
 export async function checkAssessOrg(projectRoot = root) {
   const page = path.join(projectRoot, 'dist', 'assess', 'org', 'index.html');
   if (!fs.existsSync(page)) throw new Error('dist/assess/org/index.html is missing; run node build.mjs first');
@@ -211,7 +241,8 @@ export async function checkAssessOrg(projectRoot = root) {
   await checkInteraction(browser, page);
   await checkRoundTrip(browser, page);
   await checkIndividualRegression(browser, projectRoot);
-  return { browser, placementCases: placementCases.length, interactionCases: 3 };
+  await checkCancelledProcess(browser, page);
+  return { browser, placementCases: placementCases.length, interactionCases: 4 };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

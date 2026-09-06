@@ -4,7 +4,7 @@
   "order": 4,
   "spoke": "spread",
   "tag": null,
-  "statement": "Last week, how many staff used an AI tool (any tool, including the features built into Google Workspace or Microsoft 365) for a piece of real work: a draft, an analysis or a summary they then used?",
-  "answers": "count",
+  "statement": "Which is your best estimate of the staff mix for AI use in a typical week? Count real work done with any AI tool, including features in Google Workspace or Microsoft 365.",
+  "answers": "usageMix",
   "notSureFirst": true
 }

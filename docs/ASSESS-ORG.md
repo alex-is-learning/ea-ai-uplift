@@ -40,11 +40,15 @@ Each JSON file in `data/assess-org/` holds one spoke or one question. There must
 
 **Out of date** means not touched in the last twelve months.
 
-Count bands are in tenths of staff, so no count sits on a boundary.
+Access uses percentage bands: 0%, 1–33%, 34–66%, 67–99%, and 100%.
+
+Spread asks for a rough mix of regular or power users, occasional users, and non-users. Regular or power users use AI for real work each week. Occasional users use it less often.
 
 ## Answer kinds
 
-Count uses: Nobody (1), Fewer than four in ten (2), Four to six in ten (3), More than six in ten (4), Everyone (5), Not sure (0). Q4 shows Not sure first. Q10 treats Not sure as Nobody in every placement rule.
+Spread uses four staff-mix profiles: Concentrated (2), Emerging (3), Broad (4), and Routine (5). None scores 1. Q4 shows Not sure first.
+
+Q10 records confidence in the Spread estimate. The ladder runs from Mostly a guess (1) to Recent organisation-wide data (5). Not sure scores 0.
 
 Document uses: Does not exist (1), Exists but out of date (3), Exists and current but not linked from where staff start work (4), Exists and current and linked from where staff start work (5), Not sure (0). Rules adds a score-2 rung for a policy that does not name an AI tool or does not say what must not go into one. Pick the lowest rung that is true.
 
@@ -76,7 +80,7 @@ Only the seven conditions count towards the Not sure total. Q8 and Q9 do not cou
 
 ## Sight gap
 
-Q4 must be above Nobody. A sight gap exists when Q10 is more than one count band below Q4, or when Q10 is Nobody or Not sure. If Q4 is Nobody or Not sure, there is no sight gap.
+Q4 must be above None. A sight gap exists when Q10 confidence is more than one rung below Q4, or when Q10 is Mostly a guess or Not sure. If Q4 is None or Not sure, there is no sight gap.
 
 ## URL fields
 

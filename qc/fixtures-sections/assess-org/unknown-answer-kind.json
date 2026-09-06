@@ -1,5 +1,5 @@
 {
-  "expect": "answers must name one of count, document, yesno or be an inline ladder",
+  "expect": "answers must name one of percentage, usageMix, confidence, document, yesno or be an inline ladder",
   "file": "question-01.json",
   "data": {
     "slug": "question-01",
