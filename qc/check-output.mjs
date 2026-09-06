@@ -95,7 +95,12 @@ export async function checkOutput(projectRoot = root) {
     if (/\[\s*placeholder\b/iu.test(html)) throw new Error(`${file}: generated output contains an unfinished token`);
     const footer = html.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/u)?.[1] || '';
     const footerText = footer.replace(/<[^>]+>/gu, ' ').replace(/\s+/gu, ' ').trim();
-    if (footerText !== 'Maintained by Alexander Large' || /<(?:a|nav)\b/u.test(footer)) throw new Error(`${file}: footer must contain only the maintainer credit`);
+    if (footerText !== 'Maintained by Alexander Large · GitHub' || /<nav\b/u.test(footer)) throw new Error(`${file}: footer must contain the maintainer credit and GitHub link`);
+    const footerLinks = [...footer.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/gu)].map((match) => [match[1], match[2]]);
+    if (JSON.stringify(footerLinks) !== JSON.stringify([
+      ['https://alexanderlarge.com', 'Alexander Large'],
+      ['https://github.com/alex-is-learning/ea-ai-uplift', 'GitHub'],
+    ])) throw new Error(`${file}: footer links do not match the maintainer website and site repository`);
     if (file !== path.join(dist, 'index.html')) {
       const header = html.match(/<header\b[^>]*>([\s\S]*?)<\/header>/u)?.[1] || '';
       const menu = header.match(/<nav\b[^>]*class="head-nav"[^>]*>([\s\S]*?)<\/nav>/u)?.[1] || '';

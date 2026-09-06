@@ -16,7 +16,7 @@ The home page is a short navigation menu. Keep full content on its destination p
 | Guides | `/guides/` |
 | Case studies | `/case-studies/` |
 
-The starting-point map and detailed guidance live at `/start/`. Guides links to this page and the learn pathway. People links to hiring guidance and offers. The footer contains only the maintainer credit. The home has one main menu; section pages also have header navigation. Old home bookmarks redirect to the relevant destination. Case studies remain an empty state until approved material exists.
+The starting-point map and detailed guidance live at `/start/`. Guides links to this page and the learn pathway. People links to hiring guidance and offers. The footer links the maintainer credit to Alexander’s website and links to this GitHub repository. The home has one main menu; section pages also have header navigation. Old home bookmarks redirect to the relevant destination. Case studies remain an empty state until approved material exists.
 
 `build.mjs` generates all pages. `lib/page.mjs` owns the shared navigation, page shell and styles. The output checks cover destination pages, same-site link fragments, profile affiliations and the compact home layout.
 
