@@ -121,7 +121,7 @@ ${people.map(card).join('\n')}
 // ---------------------------------------------------------------- index page
 const INDEX_TITLE = 'AI uplift — a field guide for people and organisations in effective altruism';
 const INDEX_DESC =
-  'AI can now do much of the admin that fills an EA organisation\u2019s week, but use of it is unevenly spread. A field guide to closing that gap: who helps, what organisations need, where to start.';
+  'A guide to AI support for people and organisations in effective altruism: independent practitioners, requests for help, and practical starting points.';
 
 function indexPage() {
   const body = `
@@ -130,7 +130,7 @@ function indexPage() {
     <div class="wrap">
       <p class="legend">A field guide</p>
       <h1 id="page-title">AI uplift, for people and organisations in effective altruism</h1>
-      <p class="lede">AI tools can now take on a lot of what fills an EA organisation&rsquo;s week: drafting documents and decks, tidying a shared drive, chasing a process through email, red-teaming a plan, keeping notes as you go, running jobs on a schedule, and increasingly working a computer directly. Use of them is very unevenly spread. One person runs half their day through these tools while the person at the next desk has only tried the chat box. <b>Closing that gap is a role, not a workshop: an organisation gets there by having someone in-house, or on contract, whose job is making AI use stick,</b> so everyone else can spend their time on the work that matters. This page is for that. It lists the people who do this work, the problems organisations have posted, and where to start.</p>
+      <p class="lede">AI tools can help with research, writing and routine tasks. An in-house specialist or contractor can help an organisation test where these tools improve results and support staff over time. This guide lists people who offer that support, requests for help, and practical starting points.</p>
       <p class="soft-links">
         <a class="hot" href="#people">Find someone to talk to &darr;</a>
         <a href="#map">See where you'd start &darr;</a>
