@@ -5,6 +5,7 @@ import { assertValidProject } from './schema/validate.mjs';
 import { affiliationTags, esc, escAttr, countWord, NAME_RULE } from './lib/shared.mjs';
 import { REG_CROSS, renderPage } from './lib/page.mjs';
 import { blocksCss } from './lib/blocks.mjs';
+import { renderProfileLinks } from './lib/profile-links.mjs';
 import { loadSiteConfig } from './lib/data.mjs';
 import { sections, navOrder } from './lib/sections.mjs';
 
@@ -419,15 +420,6 @@ function availabilityLine(p) {
   return p.availability === 'available' ? `<span class="avail-yes">${text}</span>` : text;
 }
 
-function linksBlock(p) {
-  const bits = [];
-  if (typeof p.site === 'string' && p.site) bits.push(`<a href="${escAttr(p.site)}" rel="noopener">${esc(p.site)}</a>`);
-  if (!bits.length) return '';
-  return `        <div class="p-block">
-          <span class="label">Links</span>
-          <p class="plinks">${bits.join('\n            ')}</p>
-        </div>`;
-}
 
 function contactBlock(p) {
   const host = new URL(p.contact).host;
@@ -457,7 +449,7 @@ function personPage(p) {
             p.bio === p.headline ? '' : `
           <p class="person-bio">${bio}</p>`
           }
-${linksBlock(p)}
+${renderProfileLinks(p, { esc, escAttr })}
 ${contactBlock(p)}
         </div>
       </div>
