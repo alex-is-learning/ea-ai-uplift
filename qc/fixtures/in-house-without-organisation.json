@@ -1,0 +1,4 @@
+{
+  "case": "in-house-without-organisation",
+  "changes": { "workMode": "in-house", "organisation": null }
+}

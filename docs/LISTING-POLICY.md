@@ -16,6 +16,8 @@ Each profile must use one file: `data/people/<slug>.json`. This makes it possibl
 
 Publish only facts that the named person has approved as public. Keep claims specific and supportable. Use the controlled work-mode, capability, and availability values defined by the schema.
 
+The directory displays `Independent` for independent people. It displays the approved organisation name for `in-house` and `both` profiles.
+
 Public links must use HTTPS. Never store private email addresses, phone numbers, home addresses, private or unapproved calendar links, interview notes, or private account data.
 
 For a portrait, the contributor must confirm that they own the rights or have explicit permission to publish it. The submitted files must be square derivatives at `img/<slug>.jpg` and `img/<slug>-960.jpg`, with metadata removed. Profile consent, copy approval, and photo approval are separate records; all applicable records need a consent date and current policy version.

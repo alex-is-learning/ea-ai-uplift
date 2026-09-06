@@ -9,6 +9,7 @@ The usual route is self-submission. Add only your own profile:
 1. Fork the repository and create a branch.
 2. Copy `data/people/_template.json` to `data/people/<slug>.json`. Use lower-case letters, numbers, and hyphens for `<slug>`.
 3. Complete the required fields with public, accurate facts that you approve. All submitted URLs must use HTTPS. Do not infer an employer, role, availability, contact route, or capability from a Slack membership, website, or conversation.
+   Use `independent` with a null `organisation`, or use `in-house` or `both` with the approved organisation name.
 4. If you include a photo, add both square derivatives: `img/<slug>.jpg` and `img/<slug>-960.jpg`. Remove metadata before submission. Confirm that you have the right to publish both files.
 5. Install the local check prerequisites from `README.md`. Run `node qc/verify-release0.mjs` from the repository root. It validates, builds into untracked `dist/`, and renders locally. It must not fetch contributor URLs.
 6. Open a pull request using the template and complete its checklist.

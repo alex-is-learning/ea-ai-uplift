@@ -205,6 +205,8 @@ function expectedError(fixture) {
     'source-symlink': 'must not be a symlink',
     'non-https-protocol': 'public HTTPS hostname',
     'invalid-work-mode': 'workMode is invalid',
+    'in-house-without-organisation': 'organisation is required for in-house work',
+    'independent-with-organisation': 'organisation must be null for independent work',
     'invalid-capability': 'capabilities must use the controlled list',
     'invalid-availability': 'availability is invalid',
     'missing-consent-field': 'copyApproved is missing: policyVersion',
@@ -247,8 +249,8 @@ async function testBuildLifecycle() {
     writeJson(path.join(project, 'data', 'people', `${profile.slug}.json`), profile);
     runBuild(project);
     const pluralHome = fs.readFileSync(path.join(project, 'dist', 'index.html'), 'utf8');
-    assert(pluralHome.includes('people, each working independently on their own terms.'), 'plural home copy is missing the grammatical plural sentence');
-    assert(!pluralHome.includes('One person, working independently.'), 'plural home copy still carries the singular sentence');
+    assert(pluralHome.includes('people doing this work in-house, independently, or both.'), 'plural home copy does not describe both work modes');
+    assert(!pluralHome.includes('One person doing this work.'), 'plural home copy still carries the singular sentence');
     const first = outputDigest(project);
     runBuild(project);
     assert(outputDigest(project) === first, 'build output is not deterministic');

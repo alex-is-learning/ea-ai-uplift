@@ -1,0 +1,4 @@
+{
+  "case": "independent-with-organisation",
+  "changes": { "workMode": "independent", "organisation": "Example Org" }
+}
