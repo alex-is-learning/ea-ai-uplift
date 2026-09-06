@@ -1,8 +1,8 @@
-# The pathway: learn and hire
+# The hidden pathway: learn and hire
 
-The Pathway section of eaaiuplift.com holds two prose pages. `learn/` is the learning route for a person who wants to do AI uplift work. `hire/` is the hiring pack for an organisation that wants the capability. The home page carries a short band with one link for each.
+The repository stores two unpublished prose pages. `learn/` is the learning route for a person who wants to do AI uplift work. `hire/` is the hiring pack for an organisation that wants the capability. The build validates their source data but excludes both pages from generated output.
 
-Each page is one file: `data/pathway/learn.json` and `data/pathway/hire.json`. Both must exist. The build reads them, validates them, renders the band and the two pages, and stops on any error.
+Each page is one file: `data/pathway/learn.json` and `data/pathway/hire.json`. Both must exist. The build reads and validates them, then skips their output while `published` is `false` in `lib/pathway.mjs`.
 
 ## Fields
 
@@ -30,7 +30,7 @@ The body is a list of blocks. Each block has a `type` and the fields for that ty
 | `links` | `items`: 1 to 6 of `{ label, url }` | External links. `url` must be public HTTPS |
 | `related` | `items`: 1 to 6 of `{ label, path }` | Local links. `path` is a site path such as `hire/` or `guides/mcp/` |
 
-Every `related` path must resolve to a page the build generates. The output check fails on a missing target.
+Every `related` path must resolve before these pages return to generated output.
 
 ## Copy rules
 

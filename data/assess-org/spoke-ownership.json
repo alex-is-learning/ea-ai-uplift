@@ -6,12 +6,12 @@
   "label": "Ownership",
   "short": "A named person who fields questions about whether an AI tool may be used for a task.",
   "strong": "Someone's role includes being asked. Check it has time attached.",
-  "middle": "One enthusiast everyone asks is a single point of failure. If that person is you, the role has no cover. The hiring pack sets out the three ways to fix it.",
-  "edge": "Nobody is asked, so nobody answers, so staff decide alone. The hiring pack sets out the three ways to fix it.",
+  "middle": "One enthusiast everyone asks is a single point of failure. If that person is you, the role has no cover. The people directory lists practitioners who can help.",
+  "edge": "Nobody is asked, so nobody answers, so staff decide alone. The people directory lists practitioners who can help.",
   "unmet": "If nobody can say who this is, it is nobody.",
   "guide": null,
   "route": {
-    "title": "The hiring pack",
-    "href": "../../hire/"
+    "title": "People doing this work",
+    "href": "../../people/"
   }
 }

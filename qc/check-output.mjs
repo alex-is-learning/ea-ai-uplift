@@ -65,6 +65,7 @@ async function expectedSectionPages(projectRoot, people) {
   for (const [name, mod] of Object.entries(registry.sections)) {
     const loaded = mod.load(projectRoot);
     if (loaded.errors.length) throw new Error(loaded.errors.join('\n'));
+    if (mod.published === false) continue;
     for (const page of mod.pages({ root: projectRoot, items: loaded.items, people, site: site.config, esc, escAttr, prefix: '' })) {
       if (!/^[a-z0-9]+(?:[-/][a-z0-9]+)*\/index\.html$/u.test(page.path)) throw new Error(`${name} page path is unsafe: ${page.path}`);
       paths.push(page.path);
@@ -77,7 +78,7 @@ export async function checkOutput(projectRoot = root) {
   const people = assertValidProject({ root: projectRoot });
   const dist = path.join(projectRoot, 'dist');
   if (!fs.existsSync(dist) || fs.lstatSync(dist).isSymbolicLink() || !fs.lstatSync(dist).isDirectory()) throw new Error('dist must be a real generated directory');
-  const expected = new Set(['index.html', 'people/index.html', 'start/index.html', 'case-studies/index.html', 'og.png', ...(await expectedSectionPages(projectRoot, people))]);
+  const expected = new Set(['index.html', 'people/index.html', 'case-studies/index.html', 'og.png', ...(await expectedSectionPages(projectRoot, people))]);
   for (const person of people) {
     expected.add(`people/${person.slug}/index.html`);
     if (person.photo) {
@@ -104,7 +105,8 @@ export async function checkOutput(projectRoot = root) {
     if (file !== path.join(dist, 'index.html')) {
       const header = html.match(/<header\b[^>]*>([\s\S]*?)<\/header>/u)?.[1] || '';
       const menu = header.match(/<nav\b[^>]*class="head-nav"[^>]*>([\s\S]*?)<\/nav>/u)?.[1] || '';
-      if ([...menu.matchAll(/<a\b/gu)].length !== 5) throw new Error(`${file}: subpage needs five header destinations`);
+      if ([...menu.matchAll(/<a\b/gu)].length !== 6) throw new Error(`${file}: subpage needs six header destinations`);
+      if (!/href="[^"]*offers\/"(?: aria-current="page")?>Offers<\/a>/u.test(menu)) throw new Error(`${file}: subpage navigation is missing Offers`);
     }
     assertLocalLinks(file, dist);
   }
@@ -114,16 +116,15 @@ export async function checkOutput(projectRoot = root) {
   if (/field guide/iu.test(home)) throw new Error('home still claims to be a field guide');
   if (!home.includes('<h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>')) throw new Error('home heading does not match the ecosystem wording');
   const guides = fs.readFileSync(path.join(dist, 'guides', 'index.html'), 'utf8');
-  for (const route of ['../start/', '../learn/']) {
-    if (!guides.includes(`href="${route}"`) || guides.indexOf(`href="${route}"`) > guides.indexOf('<div class="guide-groups">')) throw new Error(`guides no longer exposes ${route}`);
-  }
   const directory = fs.readFileSync(path.join(dist, 'people', 'index.html'), 'utf8');
-  for (const route of ['../hire/', '../offers/']) {
-    if (!directory.includes(`href="${route}"`) || directory.indexOf(`href="${route}"`) > directory.indexOf('<div class="people-groups">')) throw new Error(`people no longer exposes ${route}`);
+  if (!directory.includes('href="../offers/"') || directory.indexOf('href="../offers/"') > directory.indexOf('<div class="people-groups">')) throw new Error('people no longer exposes Offers');
+  for (const route of ['start', 'learn', 'hire']) {
+    if (fs.existsSync(path.join(dist, route))) throw new Error(`${route} must stay outside generated output`);
   }
-  const hire = fs.readFileSync(path.join(dist, 'hire', 'index.html'), 'utf8');
+  for (const [page, source] of [['guides', guides], ['people', directory]]) {
+    for (const route of ['start/', 'learn/', 'hire/']) if (source.includes(`href="../${route}"`)) throw new Error(`${page} still links to hidden route ${route}`);
+  }
   const individualAssessment = fs.readFileSync(path.join(dist, 'assess', 'index.html'), 'utf8');
-  if (!hire.includes('href="../assess/org/"') || !hire.includes('Assess your organisation')) throw new Error('hire page is missing the organisation assessment entry link');
   if (!individualAssessment.includes('href="org/"') || !individualAssessment.includes('Do you run an organisation?')) throw new Error('individual result is missing the organisation assessment entry link');
   for (const person of people) {
     const page = fs.readFileSync(path.join(dist, 'people', person.slug, 'index.html'), 'utf8');
