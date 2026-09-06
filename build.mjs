@@ -121,7 +121,7 @@ ${people.map(card).join('\n')}
 // ---------------------------------------------------------------- index page
 const INDEX_TITLE = 'AI uplift — a field guide for people and organisations in effective altruism';
 const INDEX_DESC =
-  'A field guide to AI uplift for people and organisations in effective altruism: where to start, what a session looks like, and who does the work.';
+  'AI can now do much of the admin that fills an EA organisation\u2019s week, but use of it is unevenly spread. A field guide to closing that gap: who helps, what organisations need, where to start.';
 
 function indexPage() {
   const body = `
@@ -130,7 +130,7 @@ function indexPage() {
     <div class="wrap">
       <p class="legend">A field guide</p>
       <h1 id="page-title">AI uplift, for people and organisations in effective altruism</h1>
-      <p class="lede">&ldquo;AI uplift&rdquo; is a working name for one kind of help: <b>someone who has tested the tools sits with you, or your organisation, and gets real work moving with them.</b> Not a course. Not a licence. Usually one session, sometimes a few weeks.</p>
+      <p class="lede">AI tools can now take on a lot of what fills an EA organisation&rsquo;s week: drafting documents and decks, tidying a shared drive, chasing a process through email, red-teaming a plan, keeping notes as you go, running jobs on a schedule, and increasingly working a computer directly. Use of them is very unevenly spread. One person runs half their day through these tools while the person at the next desk has only tried the chat box. <b>Helping people and organisations in this community close that gap looks like a high-impact use of a few hours:</b> it frees time for the work that matters. This page is for that. It lists the people who do the helping, the problems organisations have posted, and where to start.</p>
       <p class="soft-links">
         <a class="hot" href="#people">Find someone to talk to &darr;</a>
         <a href="#map">See where you'd start &darr;</a>
