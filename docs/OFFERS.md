@@ -1,6 +1,6 @@
 # Offers
 
-The Offers section is a curated board of courses, tools, cohorts, products, programmes and communities that help people and organisations in this community use AI well. Each entry is one file: `data/offers/<slug>.json`. The build reads every file in that folder, checks it, and renders the cards in alphabetical order by name on `offers/`. The home page carries one line per offer, with a link to the full board. Nobody is first.
+The Offers section is a curated board of courses, tools, cohorts, products, programmes and communities that help people and organisations in this community use AI well. Each entry is one file: `data/offers/<slug>.json`. The build reads every file in that folder, checks it, and groups entries on `offers/`: personal offers first, organisation offers next, and compact course rows last. Entries remain alphabetical within each group. Nobody is first.
 
 ## Rules
 
@@ -18,6 +18,7 @@ The Offers section is a curated board of courses, tools, cohorts, products, prog
 | `slug` | File name without `.json`. | Lower-case letters, digits and hyphens. Must match the file name. |
 | `name` | The public name of the offer. | 2 to 80 characters. |
 | `by` | Who offers it: the public name of a person or organisation. | 2 to 100 characters. |
+| `providerType` | Whether the provider is a person or organisation. | `person`, `organisation` |
 | `kind` | What sort of thing it is. | `course`, `tool`, `cohort`, `product`, `programme`, `community` |
 | `summary` | One plain sentence on what it is. | 20 to 200 characters. |
 | `detail` | Optional. Who it is for and how access works. | Up to 500 characters, or `""` for none. |
@@ -36,6 +37,7 @@ All text fields must be plain text: no markup, no hidden characters, and no `[PL
   "slug": "example-course",
   "name": "Example Course",
   "by": "Example Organisation",
+  "providerType": "organisation",
   "kind": "course",
   "summary": "A short self-paced course on using AI assistants for everyday operations work.",
   "detail": "Six lessons. Aimed at operations staff with no technical background.",

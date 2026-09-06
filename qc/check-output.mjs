@@ -124,6 +124,27 @@ export async function checkOutput(projectRoot = root) {
   for (const [page, source] of [['guides', guides], ['people', directory]]) {
     for (const route of ['start/', 'learn/', 'hire/']) if (source.includes(`href="../${route}"`)) throw new Error(`${page} still links to hidden route ${route}`);
   }
+  const offers = fs.readFileSync(path.join(dist, 'offers', 'index.html'), 'utf8');
+  const offerEntries = fs.readdirSync(path.join(projectRoot, 'data', 'offers')).sort().map((name) => JSON.parse(fs.readFileSync(path.join(projectRoot, 'data', 'offers', name), 'utf8')));
+  const expectedGroups = [
+    ['personal', offerEntries.filter((offer) => offer.kind !== 'course' && offer.providerType === 'person')],
+    ['organisations', offerEntries.filter((offer) => offer.kind !== 'course' && offer.providerType === 'organisation')],
+    ['courses', offerEntries.filter((offer) => offer.kind === 'course')],
+  ].filter(([, entries]) => entries.length);
+  const renderedGroups = [...offers.matchAll(/<section class="offer-group offer-group-(personal|organisations|courses)"/gu)].map((match) => match[1]);
+  if (JSON.stringify(renderedGroups) !== JSON.stringify(expectedGroups.map(([group]) => group))) throw new Error('offer groups are missing or out of order');
+  for (const offer of offerEntries) {
+    const group = offer.kind === 'course' ? 'courses' : offer.providerType === 'person' ? 'personal' : 'organisations';
+    const position = offers.indexOf(`data-offer="${escAttr(offer.slug)}"`);
+    const groupStart = offers.lastIndexOf('<section class="offer-group ', position);
+    const groupTag = offers.slice(groupStart, offers.indexOf('>', groupStart) + 1);
+    if (position < 0 || !groupTag.includes(`offer-group-${group}`)) throw new Error(`${offer.slug} is missing from its ${group} offer group`);
+  }
+  if (expectedGroups.some(([group]) => group === 'courses')) {
+    const coursesStart = offers.indexOf('<section class="offer-group offer-group-courses"');
+    const coursesRegion = offers.slice(coursesStart, offers.indexOf('</section>', coursesStart));
+    if (!coursesRegion.includes('class="offer-course"') || coursesRegion.includes('class="card offer-card"')) throw new Error('courses must use the compact course layout');
+  }
   const individualAssessment = fs.readFileSync(path.join(dist, 'assess', 'index.html'), 'utf8');
   if (!individualAssessment.includes('href="org/"') || !individualAssessment.includes('Do you run an organisation?')) throw new Error('individual result is missing the organisation assessment entry link');
   for (const person of people) {
