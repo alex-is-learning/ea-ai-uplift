@@ -76,6 +76,7 @@ async function expectedSectionPages(projectRoot, people) {
 
 export async function checkOutput(projectRoot = root) {
   const people = assertValidProject({ root: projectRoot });
+  const site = JSON.parse(fs.readFileSync(path.join(projectRoot, 'data', 'site.json'), 'utf8'));
   const dist = path.join(projectRoot, 'dist');
   if (!fs.existsSync(dist) || fs.lstatSync(dist).isSymbolicLink() || !fs.lstatSync(dist).isDirectory()) throw new Error('dist must be a real generated directory');
   const expected = new Set(['index.html', 'people/index.html', 'case-studies/index.html', 'og.png', ...(await expectedSectionPages(projectRoot, people))]);
@@ -116,6 +117,9 @@ export async function checkOutput(projectRoot = root) {
   if (/field guide/iu.test(home)) throw new Error('home still claims to be a field guide');
   if (!home.includes('<h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>')) throw new Error('home heading does not match the ecosystem wording');
   const guides = fs.readFileSync(path.join(dist, 'guides', 'index.html'), 'utf8');
+  const skills = fs.readFileSync(path.join(dist, 'guides', 'skills-and-plugins', 'index.html'), 'utf8');
+  const asks = fs.readFileSync(path.join(dist, 'asks', 'index.html'), 'utf8');
+  const caseStudies = fs.readFileSync(path.join(dist, 'case-studies', 'index.html'), 'utf8');
   const directory = fs.readFileSync(path.join(dist, 'people', 'index.html'), 'utf8');
   if (!directory.includes('href="../offers/"') || directory.indexOf('href="../offers/"') > directory.indexOf('<div class="people-groups">')) throw new Error('people no longer exposes Offers');
   for (const route of ['start', 'learn', 'hire']) {
@@ -124,23 +128,35 @@ export async function checkOutput(projectRoot = root) {
   for (const [page, source] of [['guides', guides], ['people', directory]]) {
     for (const route of ['start/', 'learn/', 'hire/']) if (source.includes(`href="../${route}"`)) throw new Error(`${page} still links to hidden route ${route}`);
   }
+  if (!guides.includes('href="../guides/skills-and-plugins/"')) throw new Error('guides index does not link to the skills and plugins catalogue');
+  const skillRepositories = fs.readdirSync(path.join(projectRoot, 'data', 'skill-repositories')).filter((name) => name.endsWith('.json'));
+  if (skillRepositories.length !== 1 || !skills.includes('data-skill-repository="mattpocock-skills"') || !skills.includes('href="https://github.com/mattpocock/skills"')) throw new Error('skills catalogue must contain the one JSON-backed Matt Pocock repository');
+  for (const heading of ['Repository', 'Maintainer', 'Focus', 'Works with', 'Checked']) if (!skills.includes(`scope="col">${heading}</th>`)) throw new Error(`skills catalogue is missing the ${heading} column`);
+  if (!skills.includes('href="https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=skill-repository.yml"')) throw new Error('skills catalogue does not link to its configured proposal form');
+  const askRecords = fs.existsSync(path.join(projectRoot, 'data', 'asks')) ? fs.readdirSync(path.join(projectRoot, 'data', 'asks')).filter((name) => name.endsWith('.json')) : [];
+  if (askRecords.length || asks.includes('class="card ask-card"')) throw new Error('empty Help wanted board contains an ask record or card');
+  if (!asks.includes('No requests are live yet.') || !asks.includes(`href="${escAttr(site.askFormUrl)}"`)) throw new Error('empty Help wanted board lacks its empty state or configured Post an ask link');
+  for (const url of [site.caseStudyProposalUrl, site.interviewUrl]) if (!caseStudies.includes(`href="${escAttr(url)}"`)) throw new Error(`case-studies page does not link to ${url}`);
+  for (const label of ['Propose a case study', 'Talk to Alexander about an interview']) if (!caseStudies.includes(label)) throw new Error(`case-studies page is missing the ${label} action`);
   const offers = fs.readFileSync(path.join(dist, 'offers', 'index.html'), 'utf8');
   const offerEntries = fs.readdirSync(path.join(projectRoot, 'data', 'offers')).sort().map((name) => JSON.parse(fs.readFileSync(path.join(projectRoot, 'data', 'offers', name), 'utf8')));
-  const expectedGroups = [
-    ['personal', offerEntries.filter((offer) => offer.kind !== 'course' && offer.providerType === 'person')],
-    ['organisations', offerEntries.filter((offer) => offer.kind !== 'course' && offer.providerType === 'organisation')],
-    ['courses', offerEntries.filter((offer) => offer.kind === 'course')],
-  ].filter(([, entries]) => entries.length);
-  const renderedGroups = [...offers.matchAll(/<section class="offer-group offer-group-(personal|organisations|courses)"/gu)].map((match) => match[1]);
+  const groupOrder = ['personal', 'nonprofit-discount', 'course'];
+  const expectedGroups = groupOrder.map((group) => [group, offerEntries.filter((offer) => offer.displayGroup === group)]).filter(([, entries]) => entries.length);
+  const renderedGroups = [...offers.matchAll(/<section class="offer-group offer-group-(personal|nonprofit-discount|courses)"/gu)].map((match) => match[1] === 'courses' ? 'course' : match[1]);
   if (JSON.stringify(renderedGroups) !== JSON.stringify(expectedGroups.map(([group]) => group))) throw new Error('offer groups are missing or out of order');
   for (const offer of offerEntries) {
-    const group = offer.kind === 'course' ? 'courses' : offer.providerType === 'person' ? 'personal' : 'organisations';
+    const group = offer.displayGroup === 'course' ? 'courses' : offer.displayGroup;
     const position = offers.indexOf(`data-offer="${escAttr(offer.slug)}"`);
     const groupStart = offers.lastIndexOf('<section class="offer-group ', position);
     const groupTag = offers.slice(groupStart, offers.indexOf('>', groupStart) + 1);
     if (position < 0 || !groupTag.includes(`offer-group-${group}`)) throw new Error(`${offer.slug} is missing from its ${group} offer group`);
   }
-  if (expectedGroups.some(([group]) => group === 'courses')) {
+  const discounts = offerEntries.filter((offer) => offer.displayGroup === 'nonprofit-discount');
+  const discountStart = offers.indexOf('<section class="offer-group offer-group-nonprofit-discount"');
+  const discountRegion = offers.slice(discountStart, offers.indexOf('</section>', discountStart));
+  if (discounts.length !== 4 || !discountRegion.includes('<table class="offer-discount-table">') || [...discountRegion.matchAll(/data-offer=/gu)].length !== 4 || discountRegion.includes('offer-detail')) throw new Error('nonprofit discounts must use one compact four-row table without long detail text');
+  if (!offers.includes('data-offer="have-a-call-with-alexander"') || offers.includes('ughbusting')) throw new Error('Offers must show Alexander\'s call and omit Ughbusting');
+  if (expectedGroups.some(([group]) => group === 'course')) {
     const coursesStart = offers.indexOf('<section class="offer-group offer-group-courses"');
     const coursesRegion = offers.slice(coursesStart, offers.indexOf('</section>', coursesStart));
     if (!coursesRegion.includes('class="offer-course"') || coursesRegion.includes('class="card offer-card"')) throw new Error('courses must use the compact course layout');

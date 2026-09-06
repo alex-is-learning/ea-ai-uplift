@@ -26,6 +26,7 @@ data/site.json
 data/asks/*.json
 data/offers/*.json
 data/guides/*.json
+data/skill-repositories/*.json
 data/guide-pages/*.json
 data/assess/*.json
 data/assess-org/*.json

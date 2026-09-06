@@ -13,7 +13,7 @@ One entry is one file: `data/guides/<slug>.json`. The build reads every file in 
 | `what` | What it is, in one sentence. | 20 to 200 characters. |
 | `why` | Why an EA organisation or practitioner cares, in one sentence. | 20 to 240 characters. |
 | `stage` | Where it sits on the route. | One of `start`, `next`, `advanced`. |
-| `status` | What kind of entry this is. | One of `index-only`, `guide-planned`, `external`, `local`. See below. |
+| `status` | What kind of entry this is. | One of `index-only`, `guide-planned`, `external`, `local`, `catalogue`. See below. |
 | `links` | Where to read. | A list of 1 to 3 objects with exactly `label` (3 to 80 characters) and `url` (a public HTTPS address). No two links in one entry may share a URL. |
 | `checked` | The date the links were last opened and read. | An ISO date (`YYYY-MM-DD`), not in the future. |
 
@@ -25,6 +25,7 @@ No other fields are allowed. Text fields must not contain markup, hidden charact
 - `guide-planned`: a local sub-guide is on the roadmap. The page shows a small "Guide planned" mark.
 - `external`: the linked resource is the guide. Nothing local is needed.
 - `local`: a guide page exists on this site at `guides/<slug>/`, written from `data/guide-pages/<slug>.json`. The index row links to it. Every `local` entry must have a page file, and every page file must have a `local` entry.
+- `catalogue`: a data-backed catalogue page exists at `guides/<slug>/`. The page reads one JSON file per item from its collection and does not need a `data/guide-pages/<slug>.json` file.
 
 Example:
 
@@ -46,6 +47,26 @@ Example:
 ## How the section renders
 
 Entries are grouped by `stage` in the order start, next, advanced, and sorted by `slug` inside each group. The home page shows only the titles by stage, linked to the guide page or the first source, with a link to the full index at `guides/`. The index page carries what, why and sources for each entry. Dates are not shown per entry; one "Links checked" line at the end of the index uses the most recent `checked` value. The section stays hidden while the folder is empty.
+
+## Skills and plugins catalogue
+
+The `skills-and-plugins` entry has status `catalogue`. Its page reads one repository per file from `data/skill-repositories/<slug>.json` and renders the checked fields as a table. A repository listing is a factual pointer, not an endorsement or compatibility guarantee.
+
+Each repository record must contain exactly these fields:
+
+| Field | Meaning | Rules |
+|---|---|---|
+| `slug` | The file name without `.json`. | Lower-case letters, digits and single hyphens. Must equal the file name. |
+| `name` | The public repository name. | 3 to 100 characters. Plain text. |
+| `maintainer` | The public person or organisation name. | 2 to 100 characters. Plain text. |
+| `repositoryUrl` | The repository's public GitHub URL. | HTTPS, on `github.com`, with an owner and repository path. |
+| `summary` | One factual sentence on the repository's focus. | 20 to 240 characters. Do not infer claims from popularity or marketing copy. |
+| `worksWith` | Agent compatibility stated by the repository. | One or more of `Claude Code`, `Codex`, `other agents`, with no duplicates. |
+| `topics` | The catalogue's controlled focus labels. | One or more of `engineering`, `productivity`, with no duplicates. |
+| `licence` | The public licence name. | Use `not stated` when the repository does not state one. |
+| `checked` | The date the repository and claims were checked. | An ISO date (`YYYY-MM-DD`), not in the future. |
+
+Open every repository URL before submitting. State only claims that the repository itself supports, and set `checked` to that date. Do not add stars, forks, activity counts or other changing popularity numbers. Use the [Propose a repository issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=skill-repository.yml) when Git is not practical; the issue is public and does not approve publication.
 
 ## Propose an entry
 

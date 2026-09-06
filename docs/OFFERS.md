@@ -1,6 +1,6 @@
 # Offers
 
-The Offers section is a curated board of courses, tools, cohorts, products, programmes and communities that help people and organisations in this community use AI well. Each entry is one file: `data/offers/<slug>.json`. The build reads every file in that folder, checks it, and groups entries on `offers/`: personal offers first, organisation offers next, and compact course rows last. Entries remain alphabetical within each group. Nobody is first.
+The Offers section is a curated board of calls, courses, tools, cohorts, products, programmes and communities that help people and organisations in this community use AI well. Each entry is one file: `data/offers/<slug>.json`. The build reads every file in that folder, checks it, and groups entries on `offers/` by the explicit `displayGroup` field: personal offers first, nonprofit discounts next, and compact courses last. Entries remain alphabetical within each group. Nobody is first.
 
 ## Rules
 
@@ -19,12 +19,13 @@ The Offers section is a curated board of courses, tools, cohorts, products, prog
 | `name` | The public name of the offer. | 2 to 80 characters. |
 | `by` | Who offers it: the public name of a person or organisation. | 2 to 100 characters. |
 | `providerType` | Whether the provider is a person or organisation. | `person`, `organisation` |
-| `kind` | What sort of thing it is. | `course`, `tool`, `cohort`, `product`, `programme`, `community` |
+| `kind` | What sort of thing it is. | `call`, `course`, `tool`, `cohort`, `product`, `programme`, `community` |
 | `summary` | One plain sentence on what it is. | 20 to 200 characters. |
 | `detail` | Optional. Who it is for and how access works. | Up to 500 characters, or `""` for none. |
 | `url` | Public link to the offer. | A public HTTPS URL. |
 | `access` | How people get in. | `open`, `invite-only`, `application`, `discount`, `free` |
 | `audience` | Who it is for. | `organisations`, `individuals`, `both` |
+| `displayGroup` | Which presentation group contains the entry. | `personal`, `nonprofit-discount`, `course` |
 | `listed` | The date the entry was added. | ISO date `YYYY-MM-DD`, not in the future. |
 | `checked` | The date the link and the facts were last checked. | ISO date, not in the future, not before `listed`. |
 
@@ -44,6 +45,7 @@ All text fields must be plain text: no markup, no hidden characters, and no `[PL
   "url": "https://example.org/course",
   "access": "open",
   "audience": "both",
+  "displayGroup": "course",
   "listed": "2026-09-05",
   "checked": "2026-09-05"
 }

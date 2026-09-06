@@ -1,0 +1,15 @@
+{
+  "expect": "repositoryUrl must use a public HTTPS hostname",
+  "file": "fixture-repository.json",
+  "data": {
+    "slug": "fixture-repository",
+    "name": "Fixture skills repository",
+    "maintainer": "Fixture maintainer",
+    "repositoryUrl": "http://github.com/example/skills",
+    "summary": "A factual repository used only to exercise catalogue validation.",
+    "worksWith": ["Codex"],
+    "topics": ["engineering"],
+    "licence": "MIT",
+    "checked": "2026-09-01"
+  }
+}

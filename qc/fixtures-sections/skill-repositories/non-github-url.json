@@ -1,0 +1,15 @@
+{
+  "expect": "repositoryUrl must be a GitHub repository URL",
+  "file": "fixture-repository.json",
+  "data": {
+    "slug": "fixture-repository",
+    "name": "Fixture skills repository",
+    "maintainer": "Fixture maintainer",
+    "repositoryUrl": "https://example.org/skills",
+    "summary": "A factual repository used only to exercise catalogue validation.",
+    "worksWith": ["Codex"],
+    "topics": ["engineering"],
+    "licence": "MIT",
+    "checked": "2026-09-01"
+  }
+}

@@ -1,0 +1,49 @@
+name: Propose a case study
+description: Suggest a public, low-risk account of completed AI uplift work.
+title: "Case study: "
+labels: ["case study"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        GitHub issues are public. Do not include private or unapproved facts here. If the material is private, talk to Alexander instead: https://calendar.app.google/r3ctgvteof8BA9hJ9. A proposal is not publication approval.
+  - type: dropdown
+    id: submission_type
+    attributes:
+      label: What do you want to propose?
+      options:
+        - I have a written case
+        - I want an interview
+    validations:
+      required: true
+  - type: input
+    id: public_name
+    attributes:
+      label: Public name
+      description: Optional. Add a name only when it is safe and approved for this public issue.
+  - type: input
+    id: organisation
+    attributes:
+      label: Public organisation
+      description: Optional. Add an organisation only when it is safe and approved for this public issue.
+  - type: input
+    id: contact_url
+    attributes:
+      label: Public contact URL
+      description: Add a public HTTPS page where the maintainer can contact you. Do not add an email address.
+    validations:
+      required: true
+  - type: textarea
+    id: work_summary
+    attributes:
+      label: The work in one sentence
+      description: State what happened without private names, internal details, or unsupported results.
+    validations:
+      required: true
+  - type: checkboxes
+    id: public_safety
+    attributes:
+      label: Public information check
+      options:
+        - label: I confirm that this issue contains no private or unapproved facts.
+          required: true

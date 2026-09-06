@@ -9,6 +9,7 @@
   "url": "https://academy.claude.com/",
   "access": "free",
   "audience": "both",
+  "displayGroup": "course",
   "listed": "2026-09-05",
   "checked": "2026-09-05"
 }
