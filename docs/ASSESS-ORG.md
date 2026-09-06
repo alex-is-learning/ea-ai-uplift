@@ -60,7 +60,8 @@ Yes/no uses Yes (5), No (1), Not sure (0).
 
 | Kind | Strong | Middle | Edge | Not known |
 |---|---|---|---|---|
-| Count | 4 or 5 | 2 or 3 | 1 | 0 |
+| Percentage | 4 or 5 | 2 or 3 | 1 | 0 |
+| Staff mix | 4 or 5 | 2 or 3 | 1 | 0 |
 | Staged | 5 | 3 | 1 | 0 |
 | Document | 5 | 2, 3 or 4, with copy for each rung | 1 | 0 |
 

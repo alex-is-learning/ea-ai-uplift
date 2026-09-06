@@ -7,7 +7,7 @@
     "order": 1,
     "spoke": "access",
     "tag": null,
-    "statement": "How many staff have a paid plan for an AI tool bought by the organisation?",
+    "statement": "Roughly what percentage of staff have a paid plan for an AI tool bought by the organisation?",
     "answers": "unknown",
     "notSureFirst": false
   }
