@@ -1,6 +1,6 @@
 # Offers
 
-The Offers section of the home page is a curated board of courses, tools, cohorts, products, programmes and communities that help people and organisations in this community use AI well. Each entry is one file: `data/offers/<slug>.json`. The build reads every file in that folder, checks it, and renders the cards in alphabetical order by name. Nobody is first.
+The Offers section is a curated board of courses, tools, cohorts, products, programmes and communities that help people and organisations in this community use AI well. Each entry is one file: `data/offers/<slug>.json`. The build reads every file in that folder, checks it, and renders the cards in alphabetical order by name on `offers/`. The home page carries one line per offer, with a link to the full board. Nobody is first.
 
 ## Rules
 

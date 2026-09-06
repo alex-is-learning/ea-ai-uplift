@@ -1,6 +1,6 @@
 # The pathway: learn and hire
 
-The Pathway section of eaaiuplift.com holds two prose pages. `learn/` is the learning route for a person who wants to do AI uplift work. `hire/` is the hiring pack for an organisation that wants the capability. The home page carries a band with one card for each.
+The Pathway section of eaaiuplift.com holds two prose pages. `learn/` is the learning route for a person who wants to do AI uplift work. `hire/` is the hiring pack for an organisation that wants the capability. The home page carries a short band with one link for each.
 
 Each page is one file: `data/pathway/learn.json` and `data/pathway/hire.json`. Both must exist. The build reads them, validates them, renders the band and the two pages, and stops on any error.
 
