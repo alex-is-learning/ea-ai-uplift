@@ -1,0 +1,18 @@
+{
+  "slug": "mattpocock-skills",
+  "name": "Skills for Real Engineers",
+  "maintainer": "Matt Pocock",
+  "repositoryUrl": "https://github.com/mattpocock/skills",
+  "summary": "Small composable skills for engineering and productivity work.",
+  "worksWith": [
+    "Claude Code",
+    "Codex",
+    "other agents"
+  ],
+  "topics": [
+    "engineering",
+    "productivity"
+  ],
+  "licence": "MIT",
+  "checked": "2026-09-06"
+}

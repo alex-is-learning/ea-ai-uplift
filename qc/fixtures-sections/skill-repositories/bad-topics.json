@@ -1,0 +1,15 @@
+{
+  "expect": "topics must be a list of 1 to 4 controlled values",
+  "file": "fixture-repository.json",
+  "data": {
+    "slug": "fixture-repository",
+    "name": "Fixture skills repository",
+    "maintainer": "Fixture maintainer",
+    "repositoryUrl": "https://github.com/example/skills",
+    "summary": "A factual repository used only to exercise catalogue validation.",
+    "worksWith": ["Codex"],
+    "topics": ["unknown"],
+    "licence": "MIT",
+    "checked": "2026-09-01"
+  }
+}

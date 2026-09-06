@@ -1,0 +1,47 @@
+name: Propose a skill repository
+description: Suggest a public skill repository for the skills and plugins catalogue.
+title: "Skill repository: "
+labels: ["skill repository"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue is public. Do not include private details, credentials, unpublished work, or claims that the repository does not support. A listing is a factual pointer, not an endorsement or a compatibility guarantee. Publication requires maintainer review.
+  - type: input
+    id: repository_url
+    attributes:
+      label: Repository URL
+      description: The public HTTPS GitHub repository URL.
+      placeholder: https://github.com/owner/repository
+    validations:
+      required: true
+  - type: input
+    id: maintainer
+    attributes:
+      label: Maintainer
+      description: The public person or organisation named by the repository.
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Factual summary
+      description: One plain sentence on the repository's focus. State only what its own documentation supports.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility evidence
+      description: Link to the repository documentation that states which agents it works with, and name the relevant agent(s).
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have checked the public repository and included no private or unapproved information.
+          required: true
+        - label: I understand that a maintainer will verify the claims before publication.
+          required: true
