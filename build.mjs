@@ -118,7 +118,6 @@ function peopleSection(prefix = '') {
         <p class="intro">${peopleIntro}</p>
       </div>
       <p class="soft-links">
-        <a href="${escAttr(prefix)}hire/">Hire for this work</a>
         <a href="${escAttr(prefix)}offers/">Offers</a>
       </p>
       <div class="people-groups">
@@ -129,7 +128,7 @@ ${group.entries.map((person) => card(person, prefix)).join('\n')}
           </ul>
         </div>`).join('\n')}
       </div>
-      <p class="grid-cap"><span>Grouped by work mode. In-house entries are ordered by organisation.</span><a href="${escAttr(prefix)}start/#listed">Do this work? Get listed &rarr;</a></p>
+      <p class="grid-cap"><span>Grouped by work mode. In-house entries are ordered by organisation.</span><a href="${escAttr(site.addYourselfFormUrl)}">Do this work? Get listed &rarr;</a></p>
     </div>
   </section>`;
 }
@@ -396,7 +395,7 @@ function startPage() {
 
 function indexPage() {
   const routes = [
-    ['people', 'people/', 'People working on AI uplift', 'Find practitioners, hiring guidance and offers of support.'],
+    ['people', 'people/', 'People working on AI uplift', 'Find practitioners and offers of support.'],
     ['asks', 'asks/', 'Request help', 'Post a problem or reply to an open request.'],
     ['assess', 'assess/', 'Assess your skills', 'Answer ten questions about your practice. A separate organisation assessment is included.'],
     ['guides', 'guides/', 'Guides', 'Find a starting point, learn to do this work, or read practical guides.'],
@@ -408,7 +407,7 @@ function indexPage() {
             <span class="route-open" aria-hidden="true">Open</span>
           </a>
         </li>`).join('\n');
-  const legacy = ['map', 'tracks', 'principles', 'listed', 'pathway', 'offers', 'recipes', 'learning']
+  const legacy = ['offers']
     .map((id) => `    <span class="legacy-anchor" id="${id}" aria-hidden="true"></span>`)
     .join('\n');
   const redirects = {
@@ -416,14 +415,7 @@ function indexPage() {
     asks: 'asks/',
     assess: 'assess/',
     guides: 'guides/',
-    map: 'start/#map',
-    tracks: 'start/#tracks',
-    principles: 'start/#principles',
-    listed: 'start/#listed',
-    pathway: 'start/#pathway',
     offers: 'offers/',
-    recipes: 'guides/',
-    learning: 'guides/',
   };
   const body = `  <section class="home-hub" aria-labelledby="page-title">
     <div class="wrap home-grid">
@@ -527,8 +519,6 @@ if (fs.existsSync(outDir) && fs.lstatSync(outDir).isSymbolicLink()) die('dist mu
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, 'index.html'), indexPage());
-fs.mkdirSync(path.join(outDir, 'start'), { recursive: true });
-fs.writeFileSync(path.join(outDir, 'start', 'index.html'), startPage());
 fs.mkdirSync(path.join(outDir, 'people'), { recursive: true });
 fs.writeFileSync(path.join(outDir, 'people', 'index.html'), peoplePage());
 for (const p of people) {
@@ -537,6 +527,7 @@ for (const p of people) {
   fs.writeFileSync(path.join(dir, 'index.html'), personPage(p));
 }
 for (const [name, mod] of Object.entries(sections)) {
+  if (mod.published === false) continue;
   for (const page of mod.pages(ctx(name))) {
     if (!/^[a-z0-9]+(?:[-/][a-z0-9]+)*\/index\.html$/u.test(page.path)) die(`${name} page path is unsafe: ${page.path}`);
     const target = path.join(outDir, page.path);

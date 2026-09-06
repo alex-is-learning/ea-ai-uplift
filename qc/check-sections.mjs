@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const MINIMUMS = { asks: 3, offers: 3, guides: 5, pathway: 2, assess: 17 };
-const SECTION_PAGES = { asks: 'asks/', offers: 'offers/', guides: 'guides/', pathway: 'start/', assess: 'assess/' };
+const SECTION_PAGES = { asks: 'asks/', offers: 'offers/', guides: 'guides/', assess: 'assess/' };
 const FORM_KEYS = { asks: 'askFormUrl', offers: 'offerFormUrl' };
 // proper nouns that contain a banned word (an approved profile may name an employer)
 const PROPER_NOUNS = /Our World in Data/gu;
@@ -26,6 +26,7 @@ export function checkSections(projectRoot = root) {
     const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((item) => item.endsWith('.json')) : [];
     counts[name] = files.length;
     if (files.length < minimum) throw new Error(`data/${name} has ${files.length} entries, fewer than ${minimum}`);
+    if (!SECTION_PAGES[name]) continue;
     const destination = path.join(projectRoot, 'dist', SECTION_PAGES[name], 'index.html');
     if (!fs.existsSync(destination)) throw new Error(`${name} destination page is missing`);
     const page = fs.readFileSync(destination, 'utf8');
