@@ -245,19 +245,34 @@ export async function checkRender(projectRoot = root) {
   })(output.dist);
   pages.sort((a, b) => (a === path.join(output.dist, 'index.html') ? -1 : b === path.join(output.dist, 'index.html') ? 1 : a < b ? -1 : 1));
   const results = [];
-  for (const page of pages) for (const viewport of viewports) {
+  for (const page of pages) {
     const isHome = page === path.join(output.dist, 'index.html');
-    const result = await renderFile(browser, page, viewport, isHome ? {
-      expression: `(() => {
-        const links = [...document.querySelectorAll('main nav a')];
-        return { height: document.documentElement.scrollHeight, destinations: links.length,
-          clipped: links.some(link => { const r = link.getBoundingClientRect(); return r.left < 0 || r.right > innerWidth || r.height < 44; }) };
-      })()`,
-    } : {});
-    if (isHome && (result.value.height > 1280 || result.value.destinations !== 5 || result.value.clipped)) {
-      throw new Error(`home navigation is too long, clipped, or missing a destination at ${viewport.width}px: ${JSON.stringify(result.value)}`);
+    const sizes = isHome ? [
+      { width: 390, height: 844 },
+      { width: 1024, height: 600 },
+      { width: 1280, height: 650 },
+      { width: 1440, height: 750 },
+    ] : viewports;
+    for (const viewport of sizes) {
+      const result = await renderFile(browser, page, viewport, isHome ? {
+        expression: `(() => {
+          const links = [...document.querySelectorAll('main nav a')];
+          const rects = links.map(link => link.getBoundingClientRect());
+          return { height: document.documentElement.scrollHeight, viewport: innerHeight, destinations: links.length,
+            footerBottom: document.querySelector('footer').getBoundingClientRect().bottom,
+            lastLinkBottom: Math.max(...rects.map(r => r.bottom)),
+            clipped: rects.some(r => r.left < 0 || r.right > innerWidth || r.height < 44) };
+        })()`,
+      } : {});
+      if (isHome) {
+        const value = result.value;
+        if (value.destinations !== 5 || value.clipped) throw new Error(`home navigation is clipped or missing a destination at ${viewport.width}px`);
+        if (viewport.width >= 1024 && (value.height > viewport.height + 1 || value.footerBottom > viewport.height + 1 || value.lastLinkBottom > viewport.height)) {
+          throw new Error(`home needs scrolling or clips content at ${viewport.width}x${viewport.height}: ${JSON.stringify(value)}`);
+        }
+      }
+      results.push(result);
     }
-    results.push(result);
   }
   return { browser, results };
 }

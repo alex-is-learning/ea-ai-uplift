@@ -1,6 +1,6 @@
 # EA AI Uplift
 
-EA AI Uplift is an independent field guide and directory for people doing AI uplift work in the effective altruism community. A listing reports work that a person has approved. It is not an endorsement, certification, employer, team, or official definition of the work.
+EA AI Uplift lists people, requests for help, assessments and practical resources for the effective altruist ecosystem. A listing reports work that a person has approved. It is not an endorsement, certification, employer, team, or official definition of the work.
 
 The public repository is deliberately separate from the private working repository. It contains only public-safe source, approved directory material, and the checks needed to review contributions.
 
@@ -16,7 +16,7 @@ The home page is a short navigation menu. Keep full content on its destination p
 | Guides | `/guides/` |
 | Case studies | `/case-studies/` |
 
-The starting-point map and detailed guidance live at `/start/`. The footer links to this page, offers, and the learn and hire pathways. Old home bookmarks redirect to the relevant destination. Case studies remain an empty state until approved material exists.
+The starting-point map and detailed guidance live at `/start/`. Guides links to this page and the learn pathway. People links to hiring guidance and offers. The footer contains only the maintainer credit. The home has one main menu; section pages also have header navigation. Old home bookmarks redirect to the relevant destination. Case studies remain an empty state until approved material exists.
 
 `build.mjs` generates all pages. `lib/page.mjs` owns the shared navigation, page shell and styles. The output checks cover destination pages, same-site link fragments, profile affiliations and the compact home layout.
 
