@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const MINIMUMS = { asks: 3, offers: 3, guides: 5, pathway: 2, assess: 17 };
+const SECTION_PAGES = { asks: 'asks/', offers: 'offers/', guides: 'guides/', pathway: 'start/', assess: 'assess/' };
 const FORM_KEYS = { asks: 'askFormUrl', offers: 'offerFormUrl' };
 // proper nouns that contain a banned word (an approved profile may name an employer)
 const PROPER_NOUNS = /Our World in Data/gu;
@@ -25,12 +26,19 @@ export function checkSections(projectRoot = root) {
     const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((item) => item.endsWith('.json')) : [];
     counts[name] = files.length;
     if (files.length < minimum) throw new Error(`data/${name} has ${files.length} entries, fewer than ${minimum}`);
-    if (!html.includes(`id="${name}"`)) throw new Error(`home page has no section with id="${name}"`);
-    if (!html.includes(`href="#${name}"`)) throw new Error(`home page nav does not link to #${name}`);
+    const destination = path.join(projectRoot, 'dist', SECTION_PAGES[name], 'index.html');
+    if (!fs.existsSync(destination)) throw new Error(`${name} destination page is missing`);
+    const page = fs.readFileSync(destination, 'utf8');
     const formKey = FORM_KEYS[name];
-    if (formKey && !html.includes(`href="${site[formKey]}"`)) throw new Error(`${name} section does not link to data/site.json ${formKey}`);
+    if (formKey && !page.includes(`href="${site[formKey]}"`)) throw new Error(`${name} section does not link to data/site.json ${formKey}`);
   }
-  if (html.includes('id="learning"')) throw new Error('the old Further learning placeholder is still on the page');
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/u)?.[1] || '';
+  for (const destination of ['people/', 'asks/', 'assess/', 'guides/', 'case-studies/']) {
+    if (!main.includes(`href="${destination}"`)) throw new Error(`home has no main destination link to ${destination}`);
+  }
+  if (/class="(?:p-card|ask-card|offer-card|guide-row|station)"/u.test(main)) throw new Error('home still contains long section content');
+  if (main.replace(/<[^>]+>/gu, ' ').trim().split(/\s+/u).length > 220) throw new Error('home content exceeds 220 words');
+  if (/<section\b[^>]*id="learning"/u.test(html)) throw new Error('the old Further learning placeholder is still on the page');
   // positioning holds on every generated page, not only the home page
   const dist = path.join(projectRoot, 'dist');
   const pages = [];

@@ -7,6 +7,7 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const profileSchema = JSON.parse(fs.readFileSync(path.join(scriptDir, 'profile.schema.json'), 'utf8'));
 export const projectRoot = path.dirname(scriptDir);
 export const PROFILE_FIELDS = profileSchema.required;
+export const PROFILE_ALLOWED_FIELDS = Object.keys(profileSchema.properties);
 export const capabilityValues = new Set(profileSchema.properties.capabilities.items.enum);
 const textFields = new Set(['name', 'headline', 'bio', 'organisation']);
 const hiddenOrControl = /[\p{Cc}\p{Cf}]/u;
@@ -22,14 +23,14 @@ function ownKeys(value) {
   return value && typeof value === 'object' && !Array.isArray(value) ? Object.keys(value) : [];
 }
 
-function exactKeys(value, fields, label, errors) {
+function exactKeys(value, fields, label, errors, requiredFields = fields) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
     fail(errors, `${label} must be an object`);
     return;
   }
   const allowed = new Set(fields);
   for (const key of ownKeys(value)) if (!allowed.has(key)) fail(errors, `${label} has an extra field: ${key}`);
-  for (const key of fields) if (!(key in value)) fail(errors, `${label} is missing: ${key}`);
+  for (const key of requiredFields) if (!(key in value)) fail(errors, `${label} is missing: ${key}`);
 }
 
 export function isDate(value) {
@@ -74,6 +75,27 @@ export function validateHttpsUrl(value, label, errors) {
   }
 }
 
+function validateProfileLinks(value, label, errors) {
+  if (!Array.isArray(value) || value.length > 6) {
+    fail(errors, `${label} must be a list of 0 to 6 links`);
+    return;
+  }
+  const urls = new Set();
+  value.forEach((link, index) => {
+    const at = `${label}[${index}]`;
+    exactKeys(link, ['label', 'url'], at, errors);
+    if (!link || typeof link !== 'object' || Array.isArray(link)) return;
+    if (unsafeText(link.label) || !link.label.trim() || link.label.length < 1 || link.label.length > 40) {
+      fail(errors, `${at}.label contains unsafe or invalid text`);
+    }
+    validateHttpsUrl(link.url, `${at}.url`, errors);
+    if (typeof link.url === 'string') {
+      if (urls.has(link.url)) fail(errors, `${label} must not contain duplicate URLs`);
+      urls.add(link.url);
+    }
+  });
+}
+
 function validateConsent(value, field, errors, required) {
   exactKeys(value, ['granted', 'date', 'policyVersion'], field, errors);
   if (!value || typeof value !== 'object' || Array.isArray(value)) return;
@@ -85,7 +107,7 @@ function validateConsent(value, field, errors, required) {
 
 export function validateProfile(profile, fileName = 'profile.json') {
   const errors = [];
-  exactKeys(profile, PROFILE_FIELDS, fileName, errors);
+  exactKeys(profile, PROFILE_ALLOWED_FIELDS, fileName, errors, PROFILE_FIELDS);
   if (!profile || typeof profile !== 'object' || Array.isArray(profile)) return errors;
 
   if (profile.schemaVersion !== 'r0-v1') fail(errors, `${fileName}: schemaVersion must be r0-v1`);
@@ -109,6 +131,7 @@ export function validateProfile(profile, fileName = 'profile.json') {
   if (isDate(profile.availabilityChecked) && isFutureDate(profile.availabilityChecked)) fail(errors, `${fileName}: availabilityChecked must not be in the future`);
   if (profile.site !== null) validateHttpsUrl(profile.site, 'site', errors);
   validateHttpsUrl(profile.contact, 'contact', errors);
+  if ('links' in profile) validateProfileLinks(profile.links, `${fileName}: links`, errors);
   if (profile.photo !== null && (typeof profile.photo !== 'string' || !new RegExp(`^${profile.slug}\\.jpg$`, 'u').test(profile.photo))) fail(errors, `${fileName}: photo must be null or exactly <slug>.jpg`);
   validateConsent(profile.listingConsent, 'listingConsent', errors, true);
   validateConsent(profile.copyApproved, 'copyApproved', errors, true);
@@ -280,7 +303,7 @@ function validateTemplate(templatePath, errors) {
     fail(errors, '_template.json is not valid JSON');
     return;
   }
-  exactKeys(template, PROFILE_FIELDS, '_template.json', errors);
+  exactKeys(template, PROFILE_ALLOWED_FIELDS, '_template.json', errors);
 }
 
 export function validateProject({ root = projectRoot, dataDir = path.join(root, 'data', 'people'), imgDir = path.join(root, 'img') } = {}) {

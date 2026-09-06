@@ -248,9 +248,9 @@ async function testBuildLifecycle() {
     const profile = validAddedProfile(seed(project), fixtureSlug(project));
     writeJson(path.join(project, 'data', 'people', `${profile.slug}.json`), profile);
     runBuild(project);
-    const pluralHome = fs.readFileSync(path.join(project, 'dist', 'index.html'), 'utf8');
-    assert(pluralHome.includes('people doing this work in-house, independently, or both.'), 'plural home copy does not describe both work modes');
-    assert(!pluralHome.includes('One person doing this work.'), 'plural home copy still carries the singular sentence');
+    const pluralHome = fs.readFileSync(path.join(project, 'dist', 'people', 'index.html'), 'utf8');
+    assert(pluralHome.includes('people doing this work in-house, independently, or both.'), 'plural directory copy does not describe both work modes');
+    assert(!pluralHome.includes('One person doing this work.'), 'plural directory copy still carries the singular sentence');
     const first = outputDigest(project);
     runBuild(project);
     assert(outputDigest(project) === first, 'build output is not deterministic');

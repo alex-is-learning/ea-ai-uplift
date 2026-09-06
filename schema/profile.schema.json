@@ -171,6 +171,31 @@
       "minLength": 12,
       "maxLength": 2048
     },
+    "links": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label",
+          "url"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "url": {
+            "type": "string",
+            "minLength": 12,
+            "maxLength": 2048
+          }
+        }
+      }
+    },
     "photo": {
       "type": [
         "string",
