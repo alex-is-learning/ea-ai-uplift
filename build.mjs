@@ -117,6 +117,10 @@ function peopleSection(prefix = '') {
         <h1 id="people-title">People doing this work</h1>
         <p class="intro">${peopleIntro}</p>
       </div>
+      <p class="soft-links">
+        <a href="${escAttr(prefix)}hire/">Hire for this work</a>
+        <a href="${escAttr(prefix)}offers/">Offers</a>
+      </p>
       <div class="people-groups">
 ${grouped.map((group) => `        <div class="people-group" aria-labelledby="people-${group.workMode}">
           <h3 class="people-group-title" id="people-${group.workMode}">${esc(group.label)} <span>${group.entries.length}</span></h3>
@@ -131,7 +135,7 @@ ${group.entries.map((person) => card(person, prefix)).join('\n')}
 }
 
 // ---------------------------------------------------------------- index page
-const INDEX_TITLE = 'AI uplift — a field guide for people and organisations in effective altruism';
+const INDEX_TITLE = 'AI uplift in the effective altruist ecosystem';
 const INDEX_DESC =
   'A guide to AI support for people and organisations in effective altruism: in-house and independent practitioners, requests for help, and practical starting points.';
 
@@ -392,10 +396,10 @@ function startPage() {
 
 function indexPage() {
   const routes = [
-    ['people', 'people/', 'People working on AI uplift', 'Find people who help others or organisations use AI.'],
+    ['people', 'people/', 'People working on AI uplift', 'Find practitioners, hiring guidance and offers of support.'],
     ['asks', 'asks/', 'Request help', 'Post a problem or reply to an open request.'],
     ['assess', 'assess/', 'Assess your skills', 'Answer ten questions about your practice. A separate organisation assessment is included.'],
-    ['guides', 'guides/', 'Guides', 'Read practical guides and checked source links.'],
+    ['guides', 'guides/', 'Guides', 'Find a starting point, learn to do this work, or read practical guides.'],
     ['case-studies', 'case-studies/', 'Case studies', 'See documented work and evidence when it is published.'],
   ];
   const items = routes.map(([id, href, title, description]) => `        <li id="${id}">
@@ -424,8 +428,7 @@ function indexPage() {
   const body = `  <section class="home-hub" aria-labelledby="page-title">
     <div class="wrap home-grid">
       <div class="home-copy">
-        <p class="legend">A field guide</p>
-        <h1 id="page-title">AI uplift in effective altruism</h1>
+        <h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>
         <p class="lede">Find people, ask for help, assess current practice, or use the published guidance.</p>
       </div>
       <nav class="route-board" aria-label="Choose where to go">
