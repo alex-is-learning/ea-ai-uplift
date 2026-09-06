@@ -109,8 +109,15 @@ async function openCdp(webSocketUrl) {
     resolve();
   }));
   await new Promise((resolve, reject) => {
-    socket.addEventListener('open', resolve, { once: true });
-    socket.addEventListener('error', () => reject(new Error('Cannot connect to Chromium DevTools')), { once: true });
+    let settled = false;
+    const finish = (callback, value) => {
+      if (settled) return;
+      settled = true;
+      callback(value);
+    };
+    socket.addEventListener('open', () => finish(resolve), { once: true });
+    socket.addEventListener('error', () => finish(reject, new Error('Cannot connect to Chromium DevTools')), { once: true });
+    socket.addEventListener('close', () => finish(reject, new Error('Chromium DevTools closed before the connection opened')), { once: true });
   });
   socket.addEventListener('message', (event) => {
     const message = JSON.parse(String(event.data));
