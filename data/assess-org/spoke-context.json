@@ -1,0 +1,17 @@
+{
+  "slug": "spoke-context",
+  "kind": "spoke",
+  "order": 3,
+  "key": "context",
+  "label": "Context",
+  "short": "A written organisation brief a model can read, on a document ladder.",
+  "strong": "The brief exists, is current, and staff start from it. Tell new staff where it is.",
+  "middle": {
+    "3": "Rung 3, out of date: one afternoon to refresh it.",
+    "4": "Rung 4, not linked from where staff start: one link, in the handbook or the drive root."
+  },
+  "edge": "The About page is a start. The brief adds tone, audiences and the things a tool must never claim. One afternoon.",
+  "unmet": "Ask whether any file is handed to a tool before questions. If nobody knows, it does not exist.",
+  "guide": "context-layer-in-github",
+  "route": null
+}

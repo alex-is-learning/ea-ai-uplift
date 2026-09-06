@@ -5,6 +5,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { validateProject } from '../schema/validate.mjs';
+import { checkAssessOrg } from './check-assess-org.mjs';
 import { checkOutput } from './check-output.mjs';
 import { checkPublicFiles } from './check-public-files.mjs';
 import { checkRender } from './check-render.mjs';
@@ -361,8 +362,9 @@ async function main() {
   const sectionFixtures = testSectionFixtures();
   const output = await checkOutput(root);
   const counts = checkSections(root);
+  const assessOrg = await checkAssessOrg(root);
   const render = await checkRender(root);
-  console.log(`verify-release0: ${fixtureNames.length} fixtures, ${sectionFixtures} section fixtures, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, sections (asks ${counts.asks}, offers ${counts.offers}, guides ${counts.guides}), and ${render.results.length} local Chromium renders pass`);
+  console.log(`verify-release0: ${fixtureNames.length} fixtures, ${sectionFixtures} section fixtures, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, sections (asks ${counts.asks}, offers ${counts.offers}, guides ${counts.guides}), organisation assessment (${assessOrg.placementCases} placement cases, ${assessOrg.interactionCases} interaction cases), and ${render.results.length} local Chromium renders pass`);
 }
 
 try {

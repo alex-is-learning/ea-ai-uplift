@@ -1,0 +1,15 @@
+{
+  "slug": "question-07",
+  "kind": "question",
+  "order": 7,
+  "spoke": "ownership",
+  "tag": null,
+  "statement": "Is there someone staff go to with questions about whether an AI tool may be used for a task?",
+  "answers": [
+    [1, "No"],
+    [3, "Yes, informally"],
+    [5, "Yes, and it is in their role description"],
+    [0, "Not sure"]
+  ],
+  "notSureFirst": false
+}

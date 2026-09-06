@@ -1,0 +1,10 @@
+{
+  "slug": "question-10",
+  "kind": "question",
+  "order": 10,
+  "spoke": null,
+  "tag": "sight",
+  "statement": "For how many staff could you name one thing they used an AI tool for last week?",
+  "answers": "count",
+  "notSureFirst": false
+}

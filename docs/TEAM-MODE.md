@@ -7,19 +7,12 @@ An organisation's AI practice is the practice of its people, so the organisation
 1. Choose a short team code: letters, digits and hyphens, up to 24 characters. Example: `orchard-2026`.
 2. Send this link to everyone: `https://eaaiuplift.com/assess/?t=orchard-2026`. Say that results are counted, not attributed, and that each person decides whether to send theirs.
 3. Each person answers ten questions and presses "Email me this result". The form receives `scores` (ten digits: seven spokes then three connective answers), `team` (the code) and `share` (their result link). The person also gets their own email.
-4. Answer the four organisation-only questions yourself, below.
+4. Take the organisation assessment at `https://eaaiuplift.com/assess/org/`.
 5. Build the organisation's chart from the sheet, below.
 
-## The four organisation-only questions
+## The lead's questions
 
-Rate each 1 to 5 as the organisation is today.
-
-| Spoke | Statement |
-|---|---|
-| Access | Everyone who wants a paid AI seat has one, and a written policy says what they can put into it. |
-| Shared context | The organisation's knowledge exists in a form a model can read: written, current, in one place. |
-| Ownership | One named person tests the tools, answers capability questions and keeps the guidance current. It is in their job description. |
-| Production | At least one process runs on AI every week without a person triggering it, and someone owns it when it breaks. |
+The lead's organisation-only questions now live at `/assess/org/`.
 
 ## The sheet
 

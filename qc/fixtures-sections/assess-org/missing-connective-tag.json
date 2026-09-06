@@ -1,0 +1,18 @@
+{
+  "expect": "is missing: tag",
+  "file": "question-08.json",
+  "data": {
+    "slug": "question-08",
+    "kind": "question",
+    "order": 8,
+    "spoke": null,
+    "statement": "Has a written instruction for an AI tool been used by another member of staff?",
+    "answers": [
+      [1, "No"],
+      [3, "Yes, once or twice"],
+      [5, "Yes, three or more times"],
+      [0, "Not sure"]
+    ],
+    "notSureFirst": false
+  }
+}

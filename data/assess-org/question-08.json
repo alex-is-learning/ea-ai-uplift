@@ -1,0 +1,15 @@
+{
+  "slug": "question-08",
+  "kind": "question",
+  "order": 8,
+  "spoke": null,
+  "tag": "reuse",
+  "statement": "In the last month, has a set of written instructions for an AI tool (a prompt) written by one member of staff been used by another?",
+  "answers": [
+    [1, "No"],
+    [3, "Yes, once or twice"],
+    [5, "Yes, three or more times"],
+    [0, "Not sure"]
+  ],
+  "notSureFirst": false
+}

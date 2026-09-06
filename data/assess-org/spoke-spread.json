@@ -1,0 +1,17 @@
+{
+  "slug": "spoke-spread",
+  "kind": "spoke",
+  "order": 4,
+  "key": "spread",
+  "label": "Spread",
+  "short": "Staff who did real work with AI last week, counted.",
+  "strong": "Most staff did real work with a tool last week. Team mode shows how deep.",
+  "middle": "About half, or fewer. Team mode shows who, and that is the next step.",
+  "edge": "Nobody did real work with a tool last week. Start with one person and one task: talk to a listed person.",
+  "unmet": "Run team mode. It is the only honest way to know.",
+  "guide": null,
+  "route": {
+    "title": "Run team mode",
+    "href": "../"
+  }
+}

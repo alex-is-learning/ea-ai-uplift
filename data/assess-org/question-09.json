@@ -1,0 +1,11 @@
+{
+  "slug": "question-09",
+  "kind": "question",
+  "order": 9,
+  "spoke": null,
+  "tag": "blocked",
+  "statement": "Is there a process here that staff have asked to hand to an AI tool, and that is still done by hand?",
+  "answers": "yesno",
+  "notSureFirst": false,
+  "freeText": "Which process?"
+}

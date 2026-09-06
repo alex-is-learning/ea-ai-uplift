@@ -1,0 +1,14 @@
+{
+  "expect": "answers must name one of count, document, yesno or be an inline ladder",
+  "file": "question-01.json",
+  "data": {
+    "slug": "question-01",
+    "kind": "question",
+    "order": 1,
+    "spoke": "access",
+    "tag": null,
+    "statement": "How many staff have a paid plan for an AI tool bought by the organisation?",
+    "answers": "unknown",
+    "notSureFirst": false
+  }
+}

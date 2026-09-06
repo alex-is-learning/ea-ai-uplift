@@ -28,6 +28,7 @@ data/offers/*.json
 data/guides/*.json
 data/guide-pages/*.json
 data/assess/*.json
+data/assess-org/*.json
 data/pathway/*.json
 
 # Never public through this allow-list: dist/, BAKE*.md, CLAUDE.md, operating

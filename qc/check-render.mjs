@@ -140,7 +140,7 @@ async function openCdp(webSocketUrl) {
   };
 }
 
-async function renderFile(browser, pagePath, viewport) {
+export async function renderFile(browser, pagePath, viewport, options = {}) {
   const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'ea-ai-uplift-chrome-'));
   const child = spawn(browser, [
     '--headless=new',
@@ -179,13 +179,20 @@ async function renderFile(browser, pagePath, viewport) {
       screenWidth: viewport.width,
       screenHeight: viewport.height,
     });
-    await cdp.send('Page.navigate', { url: pathToFileURL(pagePath).href });
+    if (options.beforeLoad) await cdp.send('Page.addScriptToEvaluateOnNewDocument', { source: options.beforeLoad });
+    await cdp.send('Page.navigate', { url: `${pathToFileURL(pagePath).href}${options.query || ''}` });
     await wait(500);
     const state = await cdp.send('Runtime.evaluate', {
       expression: '(async()=>{const invalidImages=[];for(const image of document.images){try{await image.decode();const bitmap=await createImageBitmap(image);if(bitmap.width===0||bitmap.height===0)invalidImages.push(image.src);bitmap.close()}catch{invalidImages.push(image.src)}}return {width:document.documentElement.scrollWidth,viewport:window.innerWidth,ready:document.readyState,text:document.body.innerText.length,invalidImages}})()',
       awaitPromise: true,
       returnByValue: true,
     });
+    const inspected = options.expression ? await cdp.send('Runtime.evaluate', {
+      expression: options.expression,
+      awaitPromise: true,
+      returnByValue: true,
+    }) : null;
+    if (inspected?.exceptionDetails) throw new Error(inspected.exceptionDetails.exception?.description || inspected.exceptionDetails.text || 'browser inspection failed');
     const screenshot = await cdp.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
     const image = Buffer.from(screenshot.data, 'base64');
     const width = image.readUInt32BE(16);
@@ -194,11 +201,14 @@ async function renderFile(browser, pagePath, viewport) {
     if (state.result.value.viewport !== viewport.width || state.result.value.width > viewport.width || state.result.value.ready !== 'complete' || state.result.value.text < 20) throw new Error(`invalid ${viewport.width}x${viewport.height} render state`);
     if (state.result.value.invalidImages.length) throw new Error(`images failed to decode: ${state.result.value.invalidImages.join(', ')}`);
     if (width !== viewport.width || height !== viewport.height) throw new Error(`screenshot is ${width}x${height}, not ${viewport.width}x${viewport.height}`);
-    return { pagePath, width, height };
+    return { pagePath, width, height, value: inspected?.result?.value };
   } catch (error) {
     throw new Error(`${error.message}${stderr ? ` (${stderr.trim()})` : ''}`);
   } finally {
-    if (cdp) await cdp.close();
+    if (cdp) {
+      await cdp.send('Browser.close').catch(() => {});
+      await cdp.close();
+    }
     if (!child.killed) child.kill('SIGTERM');
     if (child.exitCode === null) await Promise.race([new Promise((resolve) => child.once('exit', resolve)), wait(5000)]);
     if (child.exitCode === null) {

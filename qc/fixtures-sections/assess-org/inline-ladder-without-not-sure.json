@@ -1,0 +1,18 @@
+{
+  "expect": "answers must include Not sure with score 0",
+  "file": "question-02.json",
+  "data": {
+    "slug": "question-02",
+    "kind": "question",
+    "order": 2,
+    "spoke": "reach",
+    "tag": null,
+    "statement": "Is any organisation system connected to an AI tool so that the tool reads it directly?",
+    "answers": [
+      [1, "No"],
+      [3, "Yes, one person's own system"],
+      [5, "Yes, a shared system"]
+    ],
+    "notSureFirst": false
+  }
+}

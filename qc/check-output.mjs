@@ -83,8 +83,13 @@ export async function checkOutput(projectRoot = root) {
     if (!html.includes(`href="${addProfileLink}"`) || !html.includes('>Add yourself to the directory<')) throw new Error(`${file}: missing profile footer link`);
     assertLocalLinks(file, dist);
   }
+  const home = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+  const hire = fs.readFileSync(path.join(dist, 'hire', 'index.html'), 'utf8');
+  const individualAssessment = fs.readFileSync(path.join(dist, 'assess', 'index.html'), 'utf8');
+  if (!home.includes('href="assess/org/"') || !home.includes('For your organisation')) throw new Error('home page is missing the organisation assessment entry link');
+  if (!hire.includes('href="../assess/org/"') || !hire.includes('Assess your organisation')) throw new Error('hire page is missing the organisation assessment entry link');
+  if (!individualAssessment.includes('href="org/"') || !individualAssessment.includes('Do you run an organisation?')) throw new Error('individual result is missing the organisation assessment entry link');
   if (people.length === 1) {
-    const home = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
     const requiredCopy = [
       'lists one person who does it independently.',
       'One person who does this work independently.',

@@ -1,0 +1,10 @@
+{
+  "slug": "question-01",
+  "kind": "question",
+  "order": 1,
+  "spoke": "access",
+  "tag": null,
+  "statement": "How many staff have a paid plan for an AI tool (ChatGPT, Claude or similar) bought by the organisation, not counting the AI features bundled into Google Workspace or Microsoft 365?",
+  "answers": "count",
+  "notSureFirst": false
+}

@@ -1,0 +1,14 @@
+{
+  "slug": "spoke-reach",
+  "kind": "spoke",
+  "order": 2,
+  "key": "reach",
+  "label": "Reach",
+  "short": "One organisation system connected to an AI tool beyond the built-in Workspace or 365 features, staged.",
+  "strong": "A tool reads a real system here, set up for the organisation. The next step is a second system, and a rule for which ones.",
+  "middle": "One person's own setup. The organisation has a demonstration, not a capability. The guide to connecting a model to your systems shows how to make it the organisation's.",
+  "edge": "Everything is copy and paste. The first connection, with the organisation's knowledge, is the step from chat to work.",
+  "unmet": "Ask the most technical person here whether any tool, beyond the built-in features, can open the shared drive or an inbox itself.",
+  "guide": "mcp",
+  "route": null
+}

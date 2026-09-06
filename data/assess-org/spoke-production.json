@@ -1,0 +1,17 @@
+{
+  "slug": "spoke-production",
+  "kind": "spoke",
+  "order": 5,
+  "key": "production",
+  "label": "Production",
+  "short": "A process that runs on an AI tool on a regular schedule, staged by who starts it.",
+  "strong": "A process runs on its own. Does someone own it when it breaks? If not, that is the next task.",
+  "middle": "A process exists and a person starts it each time. One afternoon makes it run alone, and a listed person can do that afternoon.",
+  "edge": "Nothing runs on a schedule yet. The first one is a digest or a triage, built once and handed over. Talk to someone who has built one.",
+  "unmet": "Ask whether any report, digest or triage arrives with nobody sending it.",
+  "guide": null,
+  "route": {
+    "title": "Talk to someone who has built one",
+    "href": "../../#people"
+  }
+}
