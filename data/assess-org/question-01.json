@@ -4,7 +4,7 @@
   "order": 1,
   "spoke": "access",
   "tag": null,
-  "statement": "Roughly what percentage of staff have a paid plan for an AI tool (ChatGPT, Claude or similar) bought by the organisation?",
+  "statement": "Roughly what percentage of staff have a separate paid AI plan (ChatGPT, Claude or similar) bought by the organisation?",
   "answers": "percentage",
   "notSureFirst": false
 }

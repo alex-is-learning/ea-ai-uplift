@@ -4,7 +4,7 @@
   "order": 2,
   "spoke": "reach",
   "tag": null,
-  "statement": "Is any organisation system (email, shared drive, calendar or database) connected to a separate AI tool, so the tool reads from it directly instead of someone pasting into it?",
+  "statement": "Is any organisation system (email, shared drive, calendar or database) connected to an AI tool outside Google Workspace or Microsoft 365, so the tool reads from it directly instead of someone pasting into it?",
   "answers": [
     [1, "No"],
     [3, "Yes, one person's own inbox or drive"],

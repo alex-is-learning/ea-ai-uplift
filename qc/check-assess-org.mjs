@@ -162,6 +162,8 @@ async function checkInteraction(browser, page) {
     'regular or power users',
     'occasional users use it less often',
   ]) assert((value.intro || '').toLowerCase().includes(phrase), `intro definition is missing: ${phrase}`);
+  assert(value.seen?.[0]?.statement?.includes('separate paid AI plan'), 'Q1 no longer excludes bundled office-suite AI');
+  assert(value.seen?.[1]?.statement?.includes('outside Google Workspace or Microsoft 365'), 'Q2 no longer excludes built-in office-suite AI');
   assert(JSON.stringify(value.seen?.[0]?.labels)===JSON.stringify(['0%','1–33%','34–66%','67–99%','100%','Not sure']), 'Q1 percentage labels are wrong');
   assert(value.seen?.[3]?.labels?.[1]?.startsWith('None:'), 'Q4 staff-mix ladder is wrong');
   assert(value.seen?.[9]?.labels?.[0]==='Mostly a guess based on the most visible users', 'Q10 confidence ladder is wrong');
