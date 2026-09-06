@@ -26,7 +26,7 @@ Write it as one page, in this order.
 
 1. **Who answered.** "N of M people answered." Never attribute a result to a person.
 2. **The team chart.** Seven spokes, the means, drawn the same way as the individual chart. The spread on each spoke as a thin bar.
-3. **The four organisation spokes**, with the lead's ratings.
+3. **The seven organisation conditions**, with the lead's ratings from `/assess/org/`.
 4. **The three most common "not met" ways**, with the plain definition from the spoke's `unmet` text.
 5. **Where the organisation would start on the route**, using the same rule as the individual result on the team means, and stated as a guess.
 6. **One next action**: post an ask on the Help wanted board with the top pain point, or talk to one of the people listed.

@@ -32,6 +32,7 @@ Each JSON file in `data/assess-org/` holds one spoke or one question. There must
 | `answers` | A named answer kind or an inline score-and-label ladder |
 | `notSureFirst` | `true` on Q4 only |
 | `freeText` | `Which process?` on Q9 only |
+| `note` | The two-person instruction on Q7 only |
 
 ## Definitions on the page
 

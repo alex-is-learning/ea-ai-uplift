@@ -11,5 +11,6 @@
     [5, "Yes, and it is in their role description"],
     [0, "Not sure"]
   ],
-  "notSureFirst": false
+  "notSureFirst": false,
+  "note": "If there are two such people, answer for the one whose role is closer to it."
 }

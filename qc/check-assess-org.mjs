@@ -16,6 +16,14 @@ const placements = [
   { query: '?s=1530553&c=052', place: 4, title: 'One process everyone names', gap: false },
   { query: '?s=5314343&c=354', place: 4, title: 'One process everyone names', gap: false },
   { query: '?s=3333555&c=113', place: 5, title: 'Running it, keep it running', gap: false },
+  { query: '?s=5011131&c=115', place: 2, title: 'One clear gap', gap: false },
+  { query: '?s=5111031&c=115', place: 2, title: 'One clear gap', gap: false },
+  { query: '?s=5555035&c=115', place: 2, title: 'One clear gap', gap: false, focus: 'rules' },
+  { query: '?s=5334353&c=112', place: 3, title: 'Find out first', gap: true, contains: 'your estimate' },
+  { query: '?s=3333333&c=115', place: 2, title: 'One clear gap', gap: false, contains: 'Nothing written by one person is used by another.', link: 'The guide from one advanced user to shared practice' },
+  { query: '?s=3333333&c=315', place: 2, title: 'One clear gap', gap: false, contains: 'Once or twice. The guide from one advanced user to shared practice turns that into a habit.' },
+  { query: '?s=3333333&c=515', place: 2, title: 'One clear gap', gap: false, contains: 'Prompts moved between people three or more times last month.' },
+  { query: '?s=3333333&c=155', place: 4, title: 'One process everyone names', gap: false, link: 'Post an ask on Help wanted' },
 ];
 
 function assert(condition, message) {
@@ -48,7 +56,9 @@ async function checkPlacements(browser, page) {
           text:result&&result.innerText,
           hollowDots:document.querySelectorAll('#chart .hollow-dot').length,
           hollowAxes:document.querySelectorAll('#chart .axis.hollow').length,
-          chartKey:(document.getElementById('chart-key')||{}).textContent||''
+          chartKey:(document.getElementById('chart-key')||{}).textContent||'',
+          chartText:(document.getElementById('chart')||{}).textContent||'',
+          links:[...document.querySelectorAll('#result a')].map(item=>item.textContent.trim())
         };
       `),
     });
@@ -57,6 +67,8 @@ async function checkPlacements(browser, page) {
     assert(value.gap === String(test.gap), `${test.query}: expected data-gap=${test.gap}, got ${value.gap || 'missing'}`);
     assert((value.text || '').includes(test.title), `${test.query}: result does not contain placement title "${test.title}"`);
     if (test.focus) assert(value.focus === test.focus, `${test.query}: expected focus ${test.focus}, got ${value.focus || 'missing'}`);
+    if (test.contains) assert(`${value.text || ''} ${value.chartText || ''}`.includes(test.contains), `${test.query}: result is missing "${test.contains}"`);
+    if (test.link) assert((value.links || []).some((link) => link.includes(test.link)), `${test.query}: result is missing route "${test.link}"`);
     if (test.query.includes('s=0000000')) {
       assert(value.hollowDots === 7 && value.hollowAxes === 7, `${test.query}: expected seven hollow dots and axes, got ${value.hollowDots} and ${value.hollowAxes}`);
       assert(value.chartKey.includes('Not known'), `${test.query}: chart key does not say Not known`);
@@ -99,6 +111,7 @@ async function checkInteraction(browser, page) {
         const help=(document.getElementById('tie-rule')||{}).textContent||'';
         if(data.questions[index].answerKind==='document'&&!help.toLowerCase().includes('lowest rung'))throw new Error('document tie rule is missing on question '+(index+1));
         if(data.questions[index].answerKind==='staged'&&!help.toLowerCase().includes('highest rung'))throw new Error('staged tie rule is missing on question '+(index+1));
+        if(index===6&&(document.getElementById('question-note')||{}).textContent!=='If there are two such people, answer for the one whose role is closer to it.')throw new Error('Q7 two-person instruction is missing');
         seen.push({statement:document.getElementById('qstatement').textContent,labels});
         if(index===8){
           await clickAnswer(answerValues[index]);
@@ -181,6 +194,15 @@ async function checkRoundTrip(browser, page) {
   assert(!value.processText.includes('grant reporting') && !value.resultText.includes('grant reporting'), 'Q9 free text was persisted in the URL result');
 }
 
+async function checkIndividualRegression(browser, projectRoot) {
+  const page = path.join(projectRoot, 'dist', 'assess', 'index.html');
+  const rendered = await renderFile(browser, page, viewport, {
+    query: '?s=0000000&c=000',
+    expression: inspection(`return {text:(document.getElementById('result')||{}).innerText||''};`),
+  });
+  assert((rendered.value?.text || '').includes('That is a clear starting point, not a bad result.'), 'individual all-zero reassurance copy changed');
+}
+
 export async function checkAssessOrg(projectRoot = root) {
   const page = path.join(projectRoot, 'dist', 'assess', 'org', 'index.html');
   if (!fs.existsSync(page)) throw new Error('dist/assess/org/index.html is missing; run node build.mjs first');
@@ -188,7 +210,8 @@ export async function checkAssessOrg(projectRoot = root) {
   const placementCases = await checkPlacements(browser, page);
   await checkInteraction(browser, page);
   await checkRoundTrip(browser, page);
-  return { browser, placementCases: placementCases.length, interactionCases: 2 };
+  await checkIndividualRegression(browser, projectRoot);
+  return { browser, placementCases: placementCases.length, interactionCases: 3 };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
