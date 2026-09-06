@@ -6,70 +6,44 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this form to suggest a case study based on completed work. This issue is public. Do not include private information, interview notes, internal document names, personal performance details, or anything that is not safe to share publicly. For private or sensitive details, use SECURITY.md instead. A maintainer will decide later whether a case study can be published; this form is only a public suggestion.
-  - type: input
-    id: title
-    attributes:
-      label: Case study title
-      description: A short public description of the work.
-    validations:
-      required: true
-  - type: textarea
-    id: situation
-    attributes:
-      label: Situation
-      description: Who was involved and what was slow, repeated or stuck? Use only public-safe details.
-    validations:
-      required: true
+        GitHub issues are public. Do not include private or unapproved facts here. If the material is private, talk to Alexander instead: https://calendar.app.google/r3ctgvteof8BA9hJ9. A proposal is not publication approval.
   - type: dropdown
-    id: starting_point
+    id: submission_type
     attributes:
-      label: Starting point on the map
+      label: What do you want to propose?
       options:
-        - only the chat box
-        - one clear problem
-        - many pain points
-        - knows the task but cannot start
-        - already uses AI heavily
+        - I have a written case
+        - I want an interview
     validations:
       required: true
-  - type: textarea
-    id: work
-    attributes:
-      label: What was done
-      description: Describe the public-safe intervention, track and duration. Do not include private tool or document details.
-    validations:
-      required: true
-  - type: textarea
-    id: change
-    attributes:
-      label: What changed
-      description: State the public-safe result and mark each claim as measured, reported or inferred.
-    validations:
-      required: true
-  - type: textarea
-    id: evidence
-    attributes:
-      label: Evidence
-      description: Give public-safe evidence by count, not by naming private records or people.
-    validations:
-      required: true
-  - type: textarea
-    id: did_not_work
-    attributes:
-      label: What did not work
-      description: Describe at least one limit or failed approach without private details.
-    validations:
-      required: true
-  - type: textarea
-    id: differently
-    attributes:
-      label: What they would do differently
-      description: Optional public-safe reflection in the organisation's or person's own words.
   - type: input
-    id: written_by
+    id: public_name
     attributes:
-      label: Written by
-      description: The public name of the practitioner who is suggesting this account.
+      label: Public name
+      description: Optional. Add a name only when it is safe and approved for this public issue.
+  - type: input
+    id: organisation
+    attributes:
+      label: Public organisation
+      description: Optional. Add an organisation only when it is safe and approved for this public issue.
+  - type: input
+    id: contact_url
+    attributes:
+      label: Public contact URL
+      description: Add a public HTTPS page where the maintainer can contact you. Do not add an email address.
     validations:
       required: true
+  - type: textarea
+    id: work_summary
+    attributes:
+      label: The work in one sentence
+      description: State what happened without private names, internal details, or unsupported results.
+    validations:
+      required: true
+  - type: checkboxes
+    id: public_safety
+    attributes:
+      label: Public information check
+      options:
+        - label: I confirm that this issue contains no private or unapproved facts.
+          required: true

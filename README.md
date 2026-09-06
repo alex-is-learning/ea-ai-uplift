@@ -35,7 +35,7 @@ Before opening the pull request:
 
 You can also use the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml) if Git is not practical. Do not put private contact details, documents, or unpublished facts in an issue. A maintainer will prepare a pull request, and your approval is still required before publication.
 
-To suggest a public, low-risk case study, use the [case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml). Do not put private information, interview notes or internal document names in the public issue. You can instead [talk to Alexander about an interview](https://alexanderlarge.com). The form is an intake route, not publication approval.
+To suggest a public, low-risk case study, use the [case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml). Do not put private information, interview notes or internal document names in the public issue. You can instead [talk to Alexander about an interview](https://calendar.app.google/r3ctgvteof8BA9hJ9). The form is an intake route, not publication approval.
 
 For a correction or removal, use the [correction form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=correction.yml) or [removal form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=removal.yml). For a security concern, follow [SECURITY.md](SECURITY.md).
 

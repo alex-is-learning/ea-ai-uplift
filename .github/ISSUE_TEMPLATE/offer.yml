@@ -36,7 +36,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: providerType
+    id: provider_type
     attributes:
       label: provider type
       description: Whether the provider is a person or organisation.
@@ -88,7 +88,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: displayGroup
+    id: display_group
     attributes:
       label: display group
       description: Which presentation group should contain this offer.
