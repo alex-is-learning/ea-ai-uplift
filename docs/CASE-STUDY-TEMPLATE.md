@@ -2,7 +2,9 @@
 
 A case study on this site is a short, evidence-marked account of one piece of AI uplift work: where an organisation or a person started, what was done, what changed, and what did not work. It is written from discovery-call rows whose outcome is known, and it is published only with the named people's approval of the exact text.
 
-Three approved case studies are the Release 2 gate on the roadmap. This template is how they are written.
+Three approved case studies are the Release 2 gate on the roadmap. This template is how they are written. The empty Case studies page has two intake routes: **Propose a case study** for a public, low-risk suggestion, or **Talk to Alexander about an interview** when the useful material is not ready for a public issue.
+
+The [case study issue form](../.github/ISSUE_TEMPLATE/case-study.yml) is an intake form, not publication approval. Its fields cover only the public, low-risk parts of the roadmap. Do not put private information, interview notes, internal document names or personal performance details in the issue. Use [SECURITY.md](../SECURITY.md) for private or sensitive concerns.
 
 ## Structure
 

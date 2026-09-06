@@ -1,6 +1,6 @@
 # Asks (Help wanted)
 
-The Help wanted section is a board. An organisation or an individual in the effective altruism community posts a problem, and anyone listed on the page can reply. It is the demand half of the page; the People grid is the supply half. The home page carries one line per ask, with a link to the full board at `asks/`, where each ask shows its context, dates and the posting notes.
+The Help wanted section is a board. An organisation or an individual in the effective altruism community posts a problem, and anyone listed on the page can reply. It is the demand half of the page; the People grid is the supply half. When there are no live entries, `/asks/` says exactly `No requests are live yet.` and still points people to the posting form.
 
 An ask is a problem, not a brief. The question it answers is "what is slow or painful right now?", never "what should be built?".
 
@@ -37,6 +37,8 @@ Two routes:
 2. **A pull request** that adds `data/asks/<slug>.json` with the fields above. Run `node build.mjs` before opening it.
 
 Both routes are public. Do not include private contact details, colleagues' names, or anything you would not put on a public page.
+
+The page also asks for one real problem that is slow, repeated or stuck. Write the pain, not a tool or a proposed solution. The useful-ask explanation on the page gives the short format: one sentence on the pain, a little context, and a public link where someone can reach you.
 
 ## Example
 

@@ -1,0 +1,75 @@
+name: Propose a case study
+description: Suggest a public, low-risk account of completed AI uplift work.
+title: "Case study: "
+labels: ["case study"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to suggest a case study based on completed work. This issue is public. Do not include private information, interview notes, internal document names, personal performance details, or anything that is not safe to share publicly. For private or sensitive details, use SECURITY.md instead. A maintainer will decide later whether a case study can be published; this form is only a public suggestion.
+  - type: input
+    id: title
+    attributes:
+      label: Case study title
+      description: A short public description of the work.
+    validations:
+      required: true
+  - type: textarea
+    id: situation
+    attributes:
+      label: Situation
+      description: Who was involved and what was slow, repeated or stuck? Use only public-safe details.
+    validations:
+      required: true
+  - type: dropdown
+    id: starting_point
+    attributes:
+      label: Starting point on the map
+      options:
+        - only the chat box
+        - one clear problem
+        - many pain points
+        - knows the task but cannot start
+        - already uses AI heavily
+    validations:
+      required: true
+  - type: textarea
+    id: work
+    attributes:
+      label: What was done
+      description: Describe the public-safe intervention, track and duration. Do not include private tool or document details.
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What changed
+      description: State the public-safe result and mark each claim as measured, reported or inferred.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Give public-safe evidence by count, not by naming private records or people.
+    validations:
+      required: true
+  - type: textarea
+    id: did_not_work
+    attributes:
+      label: What did not work
+      description: Describe at least one limit or failed approach without private details.
+    validations:
+      required: true
+  - type: textarea
+    id: differently
+    attributes:
+      label: What they would do differently
+      description: Optional public-safe reflection in the organisation's or person's own words.
+  - type: input
+    id: written_by
+    attributes:
+      label: Written by
+      description: The public name of the practitioner who is suggesting this account.
+    validations:
+      required: true

@@ -6,7 +6,7 @@ The public repository is deliberately separate from the private working reposito
 
 ## Site pages
 
-The home page is a short navigation menu. Keep full content on its destination page.
+The home page is a short navigation menu. Keep full content on its destination page. The Help wanted board currently says “No requests are live yet.” until a public problem is added.
 
 | Page | Route |
 |---|---|
@@ -17,7 +17,7 @@ The home page is a short navigation menu. Keep full content on its destination p
 | Guides | `/guides/` |
 | Case studies | `/case-studies/` |
 
-Offers appears in the section-page header navigation and on the people directory. The stored Start, Learn and Hire material is excluded from generated output. The footer links the maintainer credit to Alexander’s website and links to this GitHub repository. The home has one main menu; section pages also have header navigation. Case studies remain an empty state until approved material exists.
+Offers appears in the section-page header navigation and on the people directory. The stored Start, Learn and Hire material is excluded from generated output. The footer links the maintainer credit to Alexander’s website and links to this GitHub repository. The home has one main menu; section pages also have header navigation. Case studies remain an honest empty state until public material exists; the page links to a low-risk proposal form and to Alexander for an interview.
 
 `build.mjs` generates all pages. `lib/page.mjs` owns the shared navigation, page shell and styles. The output checks cover destination pages, same-site link fragments, profile affiliations and the compact home layout.
 
@@ -34,6 +34,8 @@ Before opening the pull request:
 5. Complete every consent item in the pull-request checklist.
 
 You can also use the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml) if Git is not practical. Do not put private contact details, documents, or unpublished facts in an issue. A maintainer will prepare a pull request, and your approval is still required before publication.
+
+To suggest a public, low-risk case study, use the [case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml). Do not put private information, interview notes or internal document names in the public issue. You can instead [talk to Alexander about an interview](https://alexanderlarge.com). The form is an intake route, not publication approval.
 
 For a correction or removal, use the [correction form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=correction.yml) or [removal form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=removal.yml). For a security concern, follow [SECURITY.md](SECURITY.md).
 

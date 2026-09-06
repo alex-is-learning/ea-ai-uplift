@@ -22,7 +22,7 @@ Use the correction or removal issue form for public changes. Do not disclose pri
 
 ## Content contributions
 
-Propose original guides or case studies in a pull request. State the source of each claim and get publication approval from every named person before you add their identifiable information. Do not present a listing as endorsement, certification, membership, employment, or an official definition.
+Propose original guides in a pull request. For a case study, use the [public case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml) or start with an [interview with Alexander](https://alexanderlarge.com). Keep the issue to the public, low-risk fields listed in [the case study template](docs/CASE-STUDY-TEMPLATE.md). Do not include private notes, internal document names, personal performance details or private contact details. The issue form is not publication approval; a maintainer handles the later review and approval process before publication. Do not present a listing as endorsement, certification, membership, employment, or an official definition.
 
 Original guides and case studies that we accept are licensed under CC BY 4.0 as described in [LICENSE-CONTENT](LICENSE-CONTENT). Profiles and photos remain excluded unless their contributor separately grants a licence.
 
