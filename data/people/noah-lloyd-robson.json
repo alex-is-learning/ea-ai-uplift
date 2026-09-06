@@ -11,7 +11,7 @@
   "availabilityChecked": "2026-09-05",
   "site": "https://noahlr.com",
   "contact": "https://almagrants.com",
-  "photo": null,
+  "photo": "noah-lloyd-robson.jpg",
   "listingConsent": {
     "granted": true,
     "date": "2026-09-04",
@@ -23,8 +23,8 @@
     "policyVersion": "r0-v1"
   },
   "photoApproved": {
-    "granted": false,
-    "date": "2026-09-04",
+    "granted": true,
+    "date": "2026-09-06",
     "policyVersion": "r0-v1"
   }
 }
