@@ -34,7 +34,7 @@ function exactKeys(value, allowed, label) {
 }
 
 function parseYaml(location, projectRoot) {
-  const script = 'require "yaml"; require "json"; puts JSON.generate(YAML.safe_load(File.read(ARGV[0]), [], [], false))';
+  const script = 'require "yaml"; require "json"; puts JSON.generate(YAML.safe_load(File.read(ARGV[0]), permitted_classes: [], permitted_symbols: [], aliases: false))';
   const result = spawnSync('ruby', ['-e', script, location], { encoding: 'utf8' });
   const label = path.relative(projectRoot, location);
   if (result.error || result.status !== 0) fail(`${label} is not valid YAML: ${(result.stderr || result.error?.message || '').trim()}`);
