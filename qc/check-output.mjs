@@ -5,8 +5,6 @@ import { assertValidProject } from '../schema/validate.mjs';
 import { affiliationTags, escAttr } from '../lib/shared.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const sourceLink = 'https://github.com/alex-is-learning/ea-ai-uplift';
-const addProfileLink = 'https://github.com/alex-is-learning/ea-ai-uplift/blob/main/CONTRIBUTING.md#add-a-profile';
 
 function walk(location, results = []) {
   const stat = fs.lstatSync(location);
@@ -95,11 +93,29 @@ export async function checkOutput(projectRoot = root) {
   for (const file of files.filter((item) => item.endsWith('.html'))) {
     const html = fs.readFileSync(file, 'utf8');
     if (/\[\s*placeholder\b/iu.test(html)) throw new Error(`${file}: generated output contains an unfinished token`);
-    if (!html.includes(`href="${sourceLink}"`) || !html.includes('>Source and contributions on GitHub<')) throw new Error(`${file}: missing source footer link`);
-    if (!html.includes(`href="${addProfileLink}"`) || !html.includes('>Add yourself to the directory<')) throw new Error(`${file}: missing profile footer link`);
+    const footer = html.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/u)?.[1] || '';
+    const footerText = footer.replace(/<[^>]+>/gu, ' ').replace(/\s+/gu, ' ').trim();
+    if (footerText !== 'Maintained by Alexander Large' || /<(?:a|nav)\b/u.test(footer)) throw new Error(`${file}: footer must contain only the maintainer credit`);
+    if (file !== path.join(dist, 'index.html')) {
+      const header = html.match(/<header\b[^>]*>([\s\S]*?)<\/header>/u)?.[1] || '';
+      const menu = header.match(/<nav\b[^>]*class="head-nav"[^>]*>([\s\S]*?)<\/nav>/u)?.[1] || '';
+      if ([...menu.matchAll(/<a\b/gu)].length !== 5) throw new Error(`${file}: subpage needs five header destinations`);
+    }
     assertLocalLinks(file, dist);
   }
+  const home = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+  const header = home.match(/<header\b[^>]*>([\s\S]*?)<\/header>/u)?.[1] || '';
+  if (/<nav\b/u.test(header)) throw new Error('home repeats its main navigation in the header');
+  if (/field guide/iu.test(home)) throw new Error('home still claims to be a field guide');
+  if (!home.includes('<h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>')) throw new Error('home heading does not match the ecosystem wording');
+  const guides = fs.readFileSync(path.join(dist, 'guides', 'index.html'), 'utf8');
+  for (const route of ['../start/', '../learn/']) {
+    if (!guides.includes(`href="${route}"`) || guides.indexOf(`href="${route}"`) > guides.indexOf('<div class="guide-groups">')) throw new Error(`guides no longer exposes ${route}`);
+  }
   const directory = fs.readFileSync(path.join(dist, 'people', 'index.html'), 'utf8');
+  for (const route of ['../hire/', '../offers/']) {
+    if (!directory.includes(`href="${route}"`) || directory.indexOf(`href="${route}"`) > directory.indexOf('<div class="people-groups">')) throw new Error(`people no longer exposes ${route}`);
+  }
   const hire = fs.readFileSync(path.join(dist, 'hire', 'index.html'), 'utf8');
   const individualAssessment = fs.readFileSync(path.join(dist, 'assess', 'index.html'), 'utf8');
   if (!hire.includes('href="../assess/org/"') || !hire.includes('Assess your organisation')) throw new Error('hire page is missing the organisation assessment entry link');
