@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { validateProject } from '../schema/validate.mjs';
 import { checkAssessOrg } from './check-assess-org.mjs';
 import { checkContributionForms } from './check-contribution-forms.mjs';
+import { checkHelpContribution } from './check-help-contribution.mjs';
 import { checkOutput } from './check-output.mjs';
 import { checkPublicFiles } from './check-public-files.mjs';
 import { checkRender } from './check-render.mjs';
@@ -416,9 +417,10 @@ async function main() {
   const output = await checkOutput(root);
   const counts = checkSections(root);
   const contributionForms = checkContributionForms(root);
+  const helpContribution = checkHelpContribution(root);
   const assessOrg = await checkAssessOrg(root);
   const render = await checkRender(root);
-  console.log(`verify-release0: ${fixtureNames.length} profile fixtures, ${sectionFixtures} section fixtures, ${contributionForms.forms} contribution forms with ${contributionFormFailures} rejection cases, ${offerCases} offer rule cases, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, sections (asks ${counts.asks}, offers ${counts.offers}, guides ${counts.guides}), organisation assessment (${assessOrg.placementCases} placement cases, ${assessOrg.interactionCases} interaction cases), and ${render.results.length} local Chromium renders pass`);
+  console.log(`verify-release0: ${fixtureNames.length} profile fixtures, ${sectionFixtures} section fixtures, ${contributionForms.forms} contribution forms with ${contributionFormFailures} rejection cases, ${offerCases} offer rule cases, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, sections (asks ${counts.asks}, offers ${counts.offers}, guides ${counts.guides}), help and contribution (${helpContribution.pages} pages, ${helpContribution.contributionRoutes} routes), organisation assessment (${assessOrg.placementCases} placement cases, ${assessOrg.interactionCases} interaction cases), and ${render.results.length} local Chromium renders pass`);
 }
 
 try {
