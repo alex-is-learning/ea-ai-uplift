@@ -34,6 +34,14 @@ Example:
 
 For a person-approved profile, add only links that the person approved. For a public-source draft, use only direct links from the person's site or an organisation's staff page. Do not add a provisional profile or links for another person unless you maintain this directory.
 
+## Optional profile detail
+
+Use `workLocation` for a public description of where the person works. Use `availabilityDetail` for the work that they currently accept.
+
+Use `contactEmail` only when the person explicitly approved publication of that email address. The profile still needs a public HTTPS `contact` route.
+
+Use `bioSections` to divide a long biography into two to four approved sections. Each section has a `heading` and `text`. Keep the complete plain-text biography in `bio` for systems that do not use the sections.
+
 ## Publication basis
 
 `publicationBasis` is optional for existing approved records. Omission means `person-approved`.
