@@ -534,15 +534,27 @@ function availabilityLine(p) {
 
 function contactBlock(p) {
   const host = new URL(p.contact).host;
+  const email = p.contactEmail
+    ? `<a class="email-first" href="mailto:${escAttr(p.contactEmail)}">${esc(p.contactEmail)}</a>`
+    : '';
   return `        <div class="p-block">
           <span class="label">Get in touch</span>
-          <p class="getintouch"><a href="${escAttr(p.contact)}" rel="noopener">Get in touch &rarr;</a>${host ? `<span class="host">${esc(host)}</span>` : ''}</p>
+          <p class="getintouch">${email}<a href="${escAttr(p.contact)}" rel="noopener">${email ? 'Visit website' : 'Get in touch'} &rarr;</a>${host ? `<span class="host">${esc(host)}</span>` : ''}</p>
         </div>`;
+}
+
+function bioBlock(p) {
+  if (!p.bioSections) return `<p class="person-bio">${esc(p.bio)}</p>`;
+  return `<div class="person-bio-sections">
+${p.bioSections.map((section) => `            <section class="person-bio-section">
+              <h2>${esc(section.heading)}</h2>
+              <p>${esc(section.text)}</p>
+            </section>`).join('\n')}
+          </div>`;
 }
 
 function personPage(p) {
   const headline = esc(p.headline);
-  const bio = esc(p.bio);
   const body = `  <section class="person">
     <div class="wrap">
       <a class="back-link" href="../../people/">&larr; All people</a>
@@ -557,9 +569,12 @@ function personPage(p) {
           ${affiliationBadges(p)}
           ${p.publicationBasis === 'public-sources-pending-review' ? '<p class="draft-note">Public-source draft · not yet reviewed by this person</p>' : ''}
           <p class="person-head">${headline}</p>
-          <p class="pmeta"><span class="label">Availability</span>${availabilityLine(p)}</p>${
+          <div class="profile-facts">
+            ${p.workLocation ? `<p class="pmeta"><span class="label">Work mode</span>${esc(p.workLocation)}</p>` : ''}
+            <p class="pmeta"><span class="label">Availability</span>${availabilityLine(p)}${p.availabilityDetail ? `<span class="fact-detail">${esc(p.availabilityDetail)}</span>` : ''}</p>
+          </div>${
             p.bio === p.headline ? '' : `
-          <p class="person-bio">${bio}</p>`
+          ${bioBlock(p)}`
           }
 ${renderProfileLinks(p, { esc, escAttr })}
 ${contactBlock(p)}

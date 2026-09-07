@@ -153,6 +153,31 @@
       "minLength": 20,
       "maxLength": 1200
     },
+    "bioSections": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "heading",
+          "text"
+        ],
+        "properties": {
+          "heading": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 50
+          },
+          "text": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 700
+          }
+        }
+      }
+    },
     "workMode": {
       "enum": [
         "in-house",
@@ -203,6 +228,21 @@
     "availabilityChecked": {
       "type": "string",
       "format": "date"
+    },
+    "workLocation": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 180
+    },
+    "availabilityDetail": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 300
+    },
+    "contactEmail": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 254
     },
     "site": {
       "type": [

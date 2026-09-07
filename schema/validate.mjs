@@ -96,6 +96,24 @@ function validateProfileLinks(value, label, errors) {
   });
 }
 
+function validateBioSections(value, label, errors) {
+  if (!Array.isArray(value) || value.length < 2 || value.length > 4) {
+    fail(errors, `${label} must be a list of 2 to 4 sections`);
+    return;
+  }
+  value.forEach((section, index) => {
+    const at = `${label}[${index}]`;
+    exactKeys(section, ['heading', 'text'], at, errors);
+    if (!section || typeof section !== 'object' || Array.isArray(section)) return;
+    if (unsafeText(section.heading) || !section.heading.trim() || section.heading.length < 2 || section.heading.length > 50) {
+      fail(errors, `${at}.heading contains unsafe or invalid text`);
+    }
+    if (unsafeText(section.text) || !section.text.trim() || section.text.length < 20 || section.text.length > 700) {
+      fail(errors, `${at}.text contains unsafe or invalid text`);
+    }
+  });
+}
+
 function validateConsent(value, field, errors, required, policyVersion = 'r0-v1') {
   exactKeys(value, ['granted', 'date', 'policyVersion'], field, errors);
   if (!value || typeof value !== 'object' || Array.isArray(value)) return;
@@ -124,6 +142,7 @@ export function validateProfile(profile, fileName = 'profile.json') {
   if (typeof profile.name === 'string' && profile.name.length < 2) fail(errors, `${fileName}: name is too short`);
   if (typeof profile.headline === 'string' && profile.headline.length < 2) fail(errors, `${fileName}: headline is too short`);
   if (typeof profile.bio === 'string' && profile.bio.length < 20) fail(errors, `${fileName}: bio is too short`);
+  if ('bioSections' in profile) validateBioSections(profile.bioSections, `${fileName}: bioSections`, errors);
   if (!['in-house', 'independent', 'both'].includes(profile.workMode)) fail(errors, `${fileName}: workMode is invalid`);
   if (profile.workMode === 'independent' && profile.organisation !== null) fail(errors, `${fileName}: organisation must be null for independent work`);
   if (['in-house', 'both'].includes(profile.workMode) && (typeof profile.organisation !== 'string' || !profile.organisation.trim())) fail(errors, `${fileName}: organisation is required for in-house work`);
@@ -137,6 +156,14 @@ export function validateProfile(profile, fileName = 'profile.json') {
   }
   if (!isDate(profile.availabilityChecked)) fail(errors, `${fileName}: availabilityChecked must be an ISO date`);
   if (isDate(profile.availabilityChecked) && isFutureDate(profile.availabilityChecked)) fail(errors, `${fileName}: availabilityChecked must not be in the future`);
+  for (const field of ['workLocation', 'availabilityDetail']) {
+    if (field in profile && (unsafeText(profile[field]) || !profile[field].trim() || profile[field].length > profileSchema.properties[field].maxLength)) {
+      fail(errors, `${fileName}: ${field} contains unsafe or invalid text`);
+    }
+  }
+  if ('contactEmail' in profile && (typeof profile.contactEmail !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(profile.contactEmail) || profile.contactEmail.length > 254)) {
+    fail(errors, `${fileName}: contactEmail is invalid`);
+  }
   if (profile.site !== null) validateHttpsUrl(profile.site, 'site', errors);
   validateHttpsUrl(profile.contact, 'contact', errors);
   if ('links' in profile) validateProfileLinks(profile.links, `${fileName}: links`, errors);
@@ -313,7 +340,7 @@ function validateTemplate(templatePath, errors) {
     fail(errors, '_template.json is not valid JSON');
     return;
   }
-  exactKeys(template, PROFILE_ALLOWED_FIELDS, '_template.json', errors);
+  exactKeys(template, PROFILE_ALLOWED_FIELDS, '_template.json', errors, PROFILE_FIELDS);
 }
 
 export function validateProject({ root = projectRoot, dataDir = path.join(root, 'data', 'people'), imgDir = path.join(root, 'img') } = {}) {

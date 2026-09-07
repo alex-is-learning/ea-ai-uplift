@@ -4,13 +4,40 @@
   "name": "Yoav Tzfati",
   "headline": "Builds Alignment Hive: shared tooling, training, and knowledge for AI alignment researchers",
   "bio": "Yoav Tzfati runs Alignment Hive, a shared tooling and knowledge layer for the third-party alignment research community. As soft takeoff picks up, the aim is to give independent researchers and small orgs the benefits of scale that frontier AI labs have: curated tools, training, and aggregated knowledge and data. The uplift work is hands-on: talks and workshops on where reliable agent delegation stands today, and 1:1 sessions with researchers applied to their own projects. Dozens of researchers across MATS, Far Labs, and other AI safety organizations have used the tools or sessions. The tools are open source and shaped by concrete bottlenecks in real research work. Background: MATS alum (scalable oversight with NYU's Alignment Research Group, then the Security Level 5 task force). Previously taught Claude Code at Code Bloom and helped build and teach the Arbor trading bootcamp.",
+  "bioSections": [
+    {
+      "heading": "What he does",
+      "text": "Yoav Tzfati runs Alignment Hive, a shared tooling and knowledge layer for the third-party alignment research community. As soft takeoff picks up, the aim is to give independent researchers and small organisations the benefits of scale that frontier AI labs have: curated tools, training, and aggregated knowledge and data."
+    },
+    {
+      "heading": "How he helps",
+      "text": "The uplift work is hands-on: talks and workshops on where reliable agent delegation stands today, and one-to-one sessions with researchers applied to their own projects. Dozens of researchers across MATS, Far Labs, and other AI safety organisations have used the tools or sessions. The tools are open source and shaped by concrete bottlenecks in real research work."
+    },
+    {
+      "heading": "Background",
+      "text": "Yoav is a MATS alum. He worked on scalable oversight with NYU's Alignment Research Group, then joined the Security Level 5 task force. He previously taught Claude Code at Code Bloom and helped build and teach the Arbor trading bootcamp."
+    }
+  ],
   "workMode": "independent",
   "organisation": null,
   "capabilities": [],
   "availability": "available",
-  "availabilityChecked": "2026-09-05",
+  "availabilityChecked": "2026-09-07",
+  "workLocation": "In person in Berkeley (MATS office and Far Labs) and remote",
+  "availabilityDetail": "Open to talks, workshops, and consulting for AI safety fellowships and research organisations. Email first.",
+  "contactEmail": "yoav.tzfati@gmail.com",
   "site": "https://www.alignment-hive.com/",
   "contact": "https://www.alignment-hive.com/",
+  "links": [
+    {
+      "label": "Alignment Hive on GitHub",
+      "url": "https://github.com/Crazytieguy/alignment-hive"
+    },
+    {
+      "label": "Yoav on GitHub",
+      "url": "https://github.com/Crazytieguy"
+    }
+  ],
   "photo": "yoav-tzfati.jpg",
   "listingConsent": {
     "granted": true,

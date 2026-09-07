@@ -92,6 +92,18 @@ export async function checkOutput(projectRoot = root) {
   for (const entry of actual) if (!expected.has(entry)) throw new Error(`dist has stale or unexpected output: ${entry}`);
   for (const entry of expected) if (!actual.has(entry)) throw new Error(`dist is missing generated output: ${entry}`);
 
+  for (const person of people) {
+    const profile = fs.readFileSync(path.join(dist, 'people', person.slug, 'index.html'), 'utf8');
+    if (person.workLocation && !profile.includes(escAttr(person.workLocation))) throw new Error(`${person.slug}: profile is missing its work location`);
+    if (person.availabilityDetail && !profile.includes(escAttr(person.availabilityDetail))) throw new Error(`${person.slug}: profile is missing its availability detail`);
+    if (person.contactEmail && !profile.includes(`href="mailto:${escAttr(person.contactEmail)}"`)) throw new Error(`${person.slug}: profile is missing its contact email`);
+    for (const section of person.bioSections ?? []) {
+      if (!profile.includes(`<h2>${escAttr(section.heading)}</h2>`) || !profile.includes(`<p>${escAttr(section.text)}</p>`)) {
+        throw new Error(`${person.slug}: profile is missing its structured biography`);
+      }
+    }
+  }
+
   for (const file of files.filter((item) => item.endsWith('.html'))) {
     const html = fs.readFileSync(file, 'utf8');
     if (/\[\s*placeholder\b/iu.test(html)) throw new Error(`${file}: generated output contains an unfinished token`);
