@@ -1,5 +1,6 @@
 {
   "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
   "slug": "your-slug",
   "name": "Your public name",
   "headline": "A short, approved description of your work.",

@@ -1,8 +1,8 @@
 # EA AI Uplift
 
-EA AI Uplift lists people, requests for help, assessments and practical resources for the effective altruist ecosystem. A listing reports work that a person has approved. It is not an endorsement, certification, employer, team, or official definition of the work.
+EA AI Uplift lists people, requests for help, assessments and practical resources for the effective altruist ecosystem. A listing reports relevant public work. A public-source draft says when the person has not reviewed it. A listing is not an endorsement, certification, employer, team, or official definition of the work.
 
-The public repository is deliberately separate from the private working repository. It contains only public-safe source, approved directory material, and the checks needed to review contributions.
+The public repository is deliberately separate from the private working repository. It contains only public-safe material and the checks needed to review contributions.
 
 ## Site pages
 
@@ -33,7 +33,9 @@ Before opening the pull request:
 4. Run `node qc/verify-release0.mjs` from the repository root. This validates data, builds to the untracked `dist/` directory, and runs the local render checks. It does not fetch submitted URLs.
 5. Complete every consent item in the pull-request checklist.
 
-You can also use the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml) if Git is not practical. Do not put private contact details, documents, or unpublished facts in an issue. A maintainer will prepare a pull request, and your approval is still required before publication.
+You can also use the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml) if Git is not practical. Do not put private contact details, documents, or unpublished facts in an issue. A maintainer will prepare a pull request for your review.
+
+The maintainer can publish a clearly labelled provisional profile from direct public sources. The person can request correction or removal at any time. See the [listing policy](docs/LISTING-POLICY.md).
 
 To suggest a public, low-risk case study, use the [case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml). Do not put private information, interview notes or internal document names in the public issue. You can instead [talk to Alexander about an interview](https://calendar.app.google/r3ctgvteof8BA9hJ9). The form is an intake route, not publication approval.
 

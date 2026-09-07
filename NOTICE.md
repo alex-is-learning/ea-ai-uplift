@@ -10,6 +10,6 @@ Original guides and case studies that identify CC BY 4.0 as their licence are av
 
 ## Directory data and images
 
-Directory profiles, biographies, names, contact details, portraits, and photographs are explicitly excluded from both general reuse licences unless the relevant contributor has separately granted a licence in writing. A public listing is permission to display the approved material on EA AI Uplift; it is not a general permission to reuse that material elsewhere.
+Directory profiles, biographies, names, contact details, portraits, and photographs are explicitly excluded from both general reuse licences unless the relevant contributor has separately granted a licence in writing. Publication on EA AI Uplift is not a general permission to reuse that material elsewhere.
 
 Third-party names, logos, and trademarks belong to their respective owners. A reference to a person, organisation, or product does not imply endorsement, affiliation, certification, employment, or membership.

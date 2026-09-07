@@ -1,6 +1,6 @@
 # Contributing to EA AI Uplift
 
-Thank you for helping keep this directory and field guide useful and accurate. This repository is a public contribution space. Do not add private notes, interview records, account data, outreach drafts, private email addresses, or information that a named person has not approved for publication.
+Thank you for helping keep this directory and field guide useful and accurate. This repository is a public contribution space. Do not add private notes, interview records, account data, outreach drafts, private email addresses, or information without a direct public source.
 
 ## Add a profile
 
@@ -14,7 +14,9 @@ The usual route is self-submission. Add only your own profile:
 5. Install the local check prerequisites from `README.md`. Run `node qc/verify-release0.mjs` from the repository root. It validates, builds into untracked `dist/`, and renders locally. It must not fetch contributor URLs.
 6. Open a pull request using the template and complete its checklist.
 
-If Git is not practical, submit the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml). A maintainer can prepare a pull request, but the named person must approve the final public profile before it is merged.
+If Git is not practical, submit the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml). A maintainer can prepare a pull request for your review.
+
+A maintainer can publish a provisional profile from direct public sources. These profiles must use `public-sources-pending-review` and display their review status. Contributors must not add provisional profiles for other people.
 
 ## Corrections and removals
 
@@ -34,6 +36,6 @@ Skill repository listings must describe only facts supported by the repository i
 
 ## Review and merge
 
-A maintainer checks fit with the listing policy, public consent, accuracy, links, photo rights, and the quality check. A maintainer can reject unsupported claims, unsafe links, copied text, unapproved photos, irrelevant submissions, or promotional spam.
+A maintainer checks fit with the listing policy, publication basis, accuracy, links, photo status, and the quality check. A maintainer can reject unsupported claims, unsafe links, copied text, disputed photos, irrelevant submissions, or promotional spam.
 
 Every change reaches `main` through a reviewed pull request. Do not commit `dist/`, deploy from a pull request, or add automation that fetches contributor URLs. Production publication is a separate manual action.

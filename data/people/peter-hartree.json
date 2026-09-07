@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "public-sources-pending-review",
+  "slug": "peter-hartree",
+  "name": "Peter Hartree",
+  "headline": "Learning to work with AI to help make AGI go well",
+  "bio": "Peter's AI Wow site is a public study journal about learning to work with AI to help make AGI go well. His About page describes his work as AI uplift consulting. It also states that he worked mainly at 80,000 Hours from 2014 to 2021.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-07",
+  "site": "https://wow.pjh.is/",
+  "contact": "https://wow.pjh.is/about",
+  "photo": "peter-hartree.jpg",
+  "listingConsent": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  },
+  "copyApproved": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  }
+}

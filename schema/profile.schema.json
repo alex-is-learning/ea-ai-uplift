@@ -68,27 +68,64 @@
     {
       "if": {
         "properties": {
-          "photo": {
-            "type": "string"
+          "publicationBasis": {
+            "const": "public-sources-pending-review"
           }
         },
         "required": [
-          "photo"
+          "publicationBasis"
         ]
       },
       "then": {
         "properties": {
+          "listingConsent": {
+            "$ref": "#/$defs/notGrantedConsent"
+          },
+          "copyApproved": {
+            "$ref": "#/$defs/notGrantedConsent"
+          },
           "photoApproved": {
-            "$ref": "#/$defs/grantedConsent"
+            "$ref": "#/$defs/notGrantedConsent"
           }
         }
       },
       "else": {
         "properties": {
-          "photoApproved": {
-            "$ref": "#/$defs/notGrantedConsent"
+          "listingConsent": {
+            "$ref": "#/$defs/grantedConsent"
+          },
+          "copyApproved": {
+            "$ref": "#/$defs/grantedConsent"
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "photo": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "photo"
+              ]
+            },
+            "then": {
+              "properties": {
+                "photoApproved": {
+                  "$ref": "#/$defs/grantedConsent"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "photoApproved": {
+                  "$ref": "#/$defs/notGrantedConsent"
+                }
+              }
+            }
+          }
+        ]
       }
     }
   ],
@@ -206,13 +243,19 @@
       "maxLength": 80
     },
     "listingConsent": {
-      "$ref": "#/$defs/grantedConsent"
+      "$ref": "#/$defs/consent"
     },
     "copyApproved": {
-      "$ref": "#/$defs/grantedConsent"
+      "$ref": "#/$defs/consent"
     },
     "photoApproved": {
       "$ref": "#/$defs/consent"
+    },
+    "publicationBasis": {
+      "enum": [
+        "person-approved",
+        "public-sources-pending-review"
+      ]
     }
   },
   "$defs": {
@@ -233,7 +276,10 @@
           "format": "date"
         },
         "policyVersion": {
-          "const": "r0-v1"
+          "enum": [
+            "r0-v1",
+            "r0-v2"
+          ]
         }
       }
     },

@@ -194,6 +194,7 @@ function expectedError(fixture) {
     'arabic-letter-mark-injection': 'unsafe or invalid text',
     'overlong-url': 'must not exceed 2048 characters',
     'invalid-consent': 'listingConsent.granted must be true',
+    'public-source-false-consent': 'listingConsent.granted must be false',
     'future-date': 'must not be in the future',
     'no-photo-consent': 'photoApproved.granted must be false',
     'wrong-portrait': '480x480',

@@ -28,4 +28,12 @@ Example:
 ]
 ```
 
-Add a link only when the named person approves that exact public URL and label. Do not add links for another person.
+For a person-approved profile, add only links that the person approved. For a public-source draft, use only direct links from the person's site or an organisation's staff page. Do not add a provisional profile or links for another person unless you maintain this directory.
+
+## Publication basis
+
+`publicationBasis` is optional for existing approved records. Omission means `person-approved`.
+
+Use `person-approved` for a self-submitted or approved profile. Listing, copy, and applicable photo consent must be true under policy `r0-v1`.
+
+Only the maintainer can use `public-sources-pending-review`. Listing, copy, and photo consent must remain false under policy `r0-v2`. The generated card and profile page state that the record is a public-source draft.
