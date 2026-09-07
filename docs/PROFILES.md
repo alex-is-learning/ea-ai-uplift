@@ -10,6 +10,8 @@ Use `available` only when the person takes work. Use `peer-exchange` when the pe
 
 Use `limited` for limited capacity, `unavailable` when the person does not take work, and `unknown` when the person did not state availability.
 
+Use the optional `availabilityNote` for person-approved wording that adds useful detail. Use `null` when the standard availability label is sufficient.
+
 ## Optional links
 
 `links` is an array of up to six public links. Each item has exactly:

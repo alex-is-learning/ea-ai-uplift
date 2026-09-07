@@ -192,6 +192,14 @@
         "unknown"
       ]
     },
+    "availabilityNote": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 2,
+      "maxLength": 280
+    },
     "availabilityChecked": {
       "type": "string",
       "format": "date"

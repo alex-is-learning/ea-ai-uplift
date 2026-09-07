@@ -170,6 +170,7 @@ export async function checkOutput(projectRoot = root) {
   for (const person of people) {
     const page = fs.readFileSync(path.join(dist, 'people', person.slug, 'index.html'), 'utf8');
     if (person.availability === 'peer-exchange' && !page.includes('Available for peer exchange')) throw new Error(`${person.slug}: profile is missing its peer-exchange availability`);
+    if (person.availabilityNote && !page.includes(person.availabilityNote)) throw new Error(`${person.slug}: profile is missing its person-approved availability note`);
     for (const url of [person.site, person.contact, ...(person.links || []).map((link) => link.url)].filter(Boolean)) {
       if (!page.includes(`href="${escAttr(url)}"`)) throw new Error(`${person.slug}: profile is missing its approved link ${url}`);
     }
