@@ -1,0 +1,19 @@
+{
+  "slug": "first-useful-task",
+  "title": "Your first useful task in 15 minutes",
+  "what": "Use a chat tool that you already have to turn fictional meeting notes into a checked volunteer update.",
+  "why": "The exercise gives you a complete input, a clear output and a deliberate error to find before you trust the result.",
+  "stage": "start",
+  "status": "local",
+  "links": [
+    {
+      "label": "Prompt engineering overview, Claude docs",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview"
+    },
+    {
+      "label": "Prompting best practices, Claude docs",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+    }
+  ],
+  "checked": "2026-09-05"
+}

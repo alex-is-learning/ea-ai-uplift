@@ -1,6 +1,6 @@
 # EA AI Uplift
 
-EA AI Uplift lists people, requests for help, assessments and practical resources for the effective altruist ecosystem. A listing reports relevant public work. A public-source draft says when the person has not reviewed it. A listing is not an endorsement, certification, employer, team, or official definition of the work.
+EA AI Uplift lists people, requests for help, assessments, learning routes and practical resources for the effective altruist ecosystem. A listing reports relevant public work. A public-source draft says when the person has not reviewed it. A listing is not an endorsement, certification, employer, team, or official definition of the work.
 
 The public repository is deliberately separate from the private working repository. It contains only public-safe material and the checks needed to review contributions.
 
@@ -13,11 +13,14 @@ The home page is a short navigation menu. Keep full content on its destination p
 | People | `/people/` |
 | Request help | `/asks/` |
 | Offers | `/offers/` |
-| Assess your skills | `/assess/`, with organisation mode at `/assess/org/` |
-| Guides | `/guides/` |
+| Assess your practice | `/assess/`, with organisation mode at `/assess/org/` |
+| Guides | `/guides/`, with complete routes at `/guides/first-useful-task/` and `/guides/practitioner-pathway/` |
 | Case studies | `/case-studies/` |
+| Contribute | `/contribute/` |
 
-Offers appears in the section-page header navigation and on the people directory. The stored Start, Learn and Hire material is excluded from generated output. The footer links the maintainer credit to Alexander’s website and links to this GitHub repository. The home has one main menu; section pages also have header navigation. Case studies remain an honest empty state until public material exists; the page links to a low-risk proposal form and to Alexander for an interview.
+Offers appears in the section-page header navigation and on the people directory. Contribute is a separate header action. The stored Start, Learn and Hire material is excluded from generated output. The footer links the maintainer credit to Alexander’s website and links to this GitHub repository. The home has one main menu; section pages also have header navigation. Case studies remain an honest empty state until public material exists; the page links to a low-risk proposal form and to Alexander for an interview.
+
+Both assessments run in the browser. Their result links and downloaded JSON files preserve scores, answer labels, date, version and next action. Optional notes enter only a selected download. The site does not email, collect or combine assessment results.
 
 `build.mjs` generates all pages. `lib/page.mjs` owns the shared navigation, page shell and styles. The output checks cover destination pages, same-site link fragments, profile affiliations and the compact home layout.
 

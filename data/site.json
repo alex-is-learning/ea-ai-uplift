@@ -1,8 +1,7 @@
 {
-  "askFormUrl": "https://tally.so/r/68lLzY",
-  "offerFormUrl": "https://tally.so/r/obPEYO",
-  "addYourselfFormUrl": "https://tally.so/r/jaRZX4",
-  "assessFormUrl": "https://tally.so/r/7RAKV6",
+  "askFormUrl": "https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=ask.yml",
+  "offerFormUrl": "https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=offer.yml",
+  "addYourselfFormUrl": "https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml",
   "caseStudyProposalUrl": "https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml",
   "interviewUrl": "https://calendar.app.google/r3ctgvteof8BA9hJ9"
 }

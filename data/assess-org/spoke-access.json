@@ -7,7 +7,7 @@
   "short": "The percentage of staff with a paid AI plan bought by the organisation (bundled Workspace or 365 features excluded).",
   "strong": "Bought plans cover at least two-thirds of staff. The question is what they are used for: see Spread.",
   "middle": "Bought plans cover 1–66% of staff. Others use personal accounts, bundled features or no AI tool. The guide to verification and safety at work says what may go in; decide the rest from that.",
-  "edge": "No bought plan. Free tiers and bundled features are fine for public material. Where staff use personal accounts for work, that is where donor data leaks, and a bought plan is the fix. An organisation paying for API use with no seats is a different case, and the pilot watches for it. Start with the guide to verification and safety at work.",
+  "edge": "No bought plan. Free tiers and bundled features can handle public material. Personal accounts need clear data rules. An organisation that pays for API use but buys no staff plans is a separate case. Start with the guide to verification and safety at work.",
   "unmet": "Ask whoever pays the invoices. A plan is either bought or not.",
   "guide": "verification-and-safety-at-work",
   "route": null

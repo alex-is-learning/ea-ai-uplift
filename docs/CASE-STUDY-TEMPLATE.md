@@ -6,6 +6,10 @@ Three approved case studies are the Release 2 gate on the roadmap. This template
 
 The [case study issue form](../.github/ISSUE_TEMPLATE/case-study.yml) is an intake form, not publication approval. Its fields cover only the public, low-risk parts of the roadmap. Do not put private information, interview notes, internal document names or personal performance details in the issue. Use [SECURITY.md](../SECURITY.md) for private or sensitive concerns.
 
+The issue and its replies are public. A maintainer reviews the proposal and replies in the issue. No response time is promised.
+
+A worked example is not a case study. It shows a method with fictional input and a checked output. It does not establish a client outcome.
+
 ## Structure
 
 Use these headings in this order. Keep the whole piece under 900 words. A reader should be able to find their own situation in the first section.

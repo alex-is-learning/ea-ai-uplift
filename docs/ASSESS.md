@@ -1,8 +1,10 @@
 # Assess: your AI practice
 
-`/assess/` is a ten-question self-assessment. A visitor rates seven first-person statements from 1 ("Not me") to 5 ("Very much me"), or answers "I do not know what this means". Each of those seven measures one **way of working** (a spoke on the chart). Three more are **connective** questions, answered "Yes", "Not sure" or "No" (encoded 5, 3 and 1), that shape the result without moving the chart. The result names the strongest way and the growth edge, lists the ways not yet met, places the visitor on the home page's five-point route, picks three entries from the Guides index, and shows the People grid.
+`/assess/` is a ten-question self-assessment. A visitor rates seven first-person statements from 1 ("Not me") to 5 ("Very much me"), or answers "I do not know what this means". Each of those seven measures one **way of working** (a spoke on the chart). Three more are **connective** questions, answered "Yes", "Not sure" or "No" (encoded 5, 3 and 1), that shape the result without moving the chart. The result puts one next action first and keeps its chart, ties, unknowns, guide routes and detailed interpretation in a secondary section.
 
-Everything runs in the browser. No account, no persistent storage, no analytics. Each question has an optional context field. Its text stays in the current browser tab, appears on the local result, and never enters the share URL or email form. The result scores are encoded in the page URL (`?s=` seven digits for the spokes, `?c=` three digits for the connective questions, digit `0` meaning "not met"), so the link is the score record. The optional "Email me this result" button opens the form in `data/site.json` `assessFormUrl` with the scores prefilled; see [TEAM-MODE.md](TEAM-MODE.md).
+Everything runs in the browser. There is no account, server storage or analytics. Each question has an optional context field. Its text stays in the current browser tab. Notes enter the downloaded JSON file only when the visitor selects that option.
+
+The result URL keeps `?s=` with seven spoke digits and `?c=` with three connective digits. Digit `0` means unknown. A new `r` value also preserves the selected answer labels, result date, assessment version and next action. Old links without `r` remain valid. The visitor can copy the result link or download the JSON file. The site does not promise email delivery.
 
 ## Data
 
@@ -38,14 +40,15 @@ There must be exactly seven spokes and ten questions. All text passes the site's
 
 ## How the result is worked out
 
-- **Strongest way**: the highest score among the ways the visitor knows. Ties go to the earlier spoke.
-- **Growth edge**: the lowest score among the ways the visitor knows. Ties go to the earlier spoke.
-- **Not met yet**: every spoke answered "I do not know what this means". Drawn as a dashed spoke with a hollow dot.
+- **Strengths**: all tied highest scores that meet the absolute threshold of 4 or 5.
+- **Growth edges**: all tied lowest known scores below the strength threshold.
+- **Unknown**: every spoke answered "I do not know what this means". Unknown does not mean weak, blocked or painful.
 - **Starting point on the route**, applied in this order: 5 if the mean of context, tools, delegation and automation is 3.5 or more; 1 if chat is 3 or more and every other way is 2 or less; 4 if the `blocked` question is 4 or more; 3 if three or more ways are not met; otherwise 2. The page calls it "a guess from ten answers, not a diagnosis".
-- **Three things to read**: the growth edge's guide, the first unmet way's guide (or the second-thinnest way's), the strongest way's guide, in that order, without duplicates.
+- **Primary next action**: one route to the first useful task, practitioner pathway, People or Help wanted page.
+- **Three things to read**: up to three distinct routes from the lowest known, unknown and strongest areas.
 - **Two notes**: from the `support` and `shared` questions, only when the answer is clearly low (1–2) or clearly high (4–5).
 
-`?p=<seven digits>` on the assessment URL preloads an earlier result and draws it as a dotted outline behind the new one, so a retake shows movement. `?t=<code>` carries a team code through to the form.
+`?p=<seven digits>` preloads an earlier result and draws it as a dotted outline behind the new one. `?t=<code>` labels a result for local comparison. The site does not collect or combine team results. See [TEAM-MODE.md](TEAM-MODE.md).
 
 ## Changing the questions
 

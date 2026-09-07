@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        An ask is a problem, not a brief. Say what is slow, repeated or dropped; do not say what should be built. This issue is public. Do not include private contact details, names of colleagues, or anything you would not put on a public page. A maintainer turns the issue into data/asks/<slug>.json and asks you to approve the final text before it is published. An ask stays on the page for up to 120 days.
+        An ask is a problem, not a brief. Say what is slow, repeated or dropped. Do not say what should be built. This issue and its replies are public. Do not include private contact details, names of colleagues, or anything you would not put on a public page. A maintainer reviews the issue, replies here, and asks you to approve the final text before publication. Practitioners reply through the public contact URL that you provide. Publication does not guarantee a reply, and no response time is promised. An ask stays on the page for up to 120 days.
   - type: input
     id: title
     attributes:
@@ -39,7 +39,7 @@ body:
     id: budget
     attributes:
       label: budget
-      description: Optional. Only ever a word, never a number.
+      description: A selection is required. Choose unstated if you do not want to state a budget. Use a word, never a number.
       options:
         - unstated
         - paid

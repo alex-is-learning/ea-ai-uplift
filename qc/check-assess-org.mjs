@@ -4,30 +4,28 @@ import { fileURLToPath } from 'node:url';
 import { findChromium, renderFile } from './check-render.mjs';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const viewport = { width: 390, height: 1280 };
-const placements = [
-  { query: '?s=0000000&c=000', place: 3, title: 'Find out first', gap: false, absent: 'The guide from one advanced user to shared practice' },
-  { query: '?s=5111111&c=111', place: 2, title: 'One clear gap', gap: false, focus: 'rules' },
-  { query: '?s=5111141&c=111', place: 1, title: 'Accounts, no practice', gap: false },
-  { query: '?s=3334333&c=113', place: 2, title: 'One clear gap', gap: false },
-  { query: '?s=3334333&c=112', place: 3, title: 'Find out first', gap: true },
-  { query: '?s=1331313&c=151', place: 2, title: 'One clear gap', gap: false, focus: 'rules' },
-  { query: '?s=3333525&c=113', place: 2, title: 'One clear gap', gap: false, focus: 'rules' },
-  { query: '?s=1530553&c=052', place: 4, title: 'One process everyone names', gap: false },
-  { query: '?s=5314343&c=354', place: 4, title: 'One process everyone names', gap: false },
-  { query: '?s=3333555&c=113', place: 5, title: 'Running it, keep it running', gap: false, contains: 'Production 5, Ownership 5, Rules 3 or more.' },
-  { query: '?s=5011131&c=115', place: 2, title: 'One clear gap', gap: false },
-  { query: '?s=5111031&c=115', place: 2, title: 'One clear gap', gap: false },
-  { query: '?s=5555035&c=115', place: 2, title: 'One clear gap', gap: false, focus: 'rules' },
-  { query: '?s=5334353&c=112', place: 3, title: 'Find out first', gap: true, contains: 'your estimate' },
-  { query: '?s=3333333&c=115', place: 2, title: 'One clear gap', gap: false, contains: 'Nothing written by one person is used by another.', link: 'The guide from one advanced user to shared practice' },
-  { query: '?s=3333333&c=315', place: 2, title: 'One clear gap', gap: false, contains: 'Once or twice. The guide from one advanced user to shared practice turns that into a habit.' },
-  { query: '?s=3333333&c=515', place: 2, title: 'One clear gap', gap: false, contains: 'Prompts moved between people three or more times last month.' },
-  { query: '?s=3333333&c=155', place: 4, title: 'One process everyone names', gap: false, link: 'Post an ask on Help wanted' },
+const viewport = { width: 390, height: 844 };
+const resultCases = [
+  { mode: 'individual', query: '?s=1111111&c=111', strong: 'None yet', edge: '7 tied:', action: '../guides/first-useful-task/', contains: 'No score meets the strength threshold' },
+  { mode: 'individual', query: '?s=0000000&c=000', strong: 'None yet', edge: 'None identified', action: '../guides/first-useful-task/', contains: 'Unknown means unfamiliar', absent: 'many pain points' },
+  { mode: 'individual', query: '?s=1524353&c=515', strong: '2 tied: Context, Judgement', edge: 'Chat', action: '../guides/practitioner-pathway/' },
+  { mode: 'individual', query: '?s=5555555&c=515', strong: '7 tied:', edge: 'None identified', action: '../guides/practitioner-pathway/', contains: 'No single area ranks above the rest' },
+  { mode: 'org', query: '?s=1111111&c=111', strong: 'None yet', edge: '7 tied:', action: '../../people/' },
+  { mode: 'org', query: '?s=0000000&c=000', strong: 'None yet', edge: 'None identified', action: '../../people/', contains: 'Unknown means that the answer needs exploration', absent: 'weak condition' },
+  { mode: 'org', query: '?s=4532451&c=315', strong: '2 tied: Reach, Rules', edge: 'Ownership', action: '../../people/' },
+  { mode: 'org', query: '?s=5555555&c=515', strong: '7 tied:', edge: 'None identified', action: '../../guides/practitioner-pathway/' },
+  { mode: 'org', query: '?s=3334333&c=112', action: '../../people/', contains: 'Limited sight of staff practice' },
+  { mode: 'org', query: '?s=3333333&c=155', action: '../../asks/', contains: 'Ask for help with one process' },
 ];
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
+}
+
+function decodeSnapshotValue(url) {
+  const value = new URL(url).searchParams.get('r') || '';
+  const padded = value.replace(/-/gu, '+').replace(/_/gu, '/') + '='.repeat((4 - (value.length % 4)) % 4);
+  return JSON.parse(Buffer.from(padded, 'base64').toString('utf8'));
 }
 
 function inspection(expression) {
@@ -42,9 +40,10 @@ function inspection(expression) {
   })()`;
 }
 
-async function checkPlacements(browser, page) {
+async function checkResults(browser, projectRoot) {
   const results = [];
-  for (const test of placements) {
+  for (const test of resultCases) {
+    const page = path.join(projectRoot, 'dist', 'assess', ...(test.mode === 'org' ? ['org', 'index.html'] : ['index.html']));
     const rendered = await renderFile(browser, page, viewport, {
       query: test.query,
       expression: inspection(`
@@ -53,28 +52,37 @@ async function checkPlacements(browser, page) {
           place:result&&result.dataset.place,
           gap:result&&result.dataset.gap,
           focus:result&&result.dataset.focus,
-          text:result&&result.innerText,
+          text:result&&result.textContent,
+          visibleText:result&&result.innerText,
+          strong:(result&&result.querySelector('h2.strong')||{}).textContent||'',
+          edge:(result&&result.querySelector('h2.edge')||{}).textContent||'',
+          action:(result&&result.querySelector('#primary-action')||{}).getAttribute&&result.querySelector('#primary-action').getAttribute('href'),
+          primaryCount:result&&result.querySelectorAll('.result-primary').length,
+          analysisOpen:result&&result.querySelector('.result-analysis').open,
+          emailLinks:result&&result.querySelectorAll('a[href*="tally"],a[href^="mailto:"]').length,
           hollowDots:document.querySelectorAll('#chart .hollow-dot').length,
           hollowAxes:document.querySelectorAll('#chart .axis.hollow').length,
           chartKey:(document.getElementById('chart-key')||{}).textContent||'',
-          chartText:(document.getElementById('chart')||{}).textContent||'',
-          links:[...document.querySelectorAll('#result a')].map(item=>item.textContent.trim())
+          share:(document.getElementById('share')||{}).value||'',
+          version:(document.querySelector('.result-meta')||{}).textContent||''
         };
       `),
     });
     const value = rendered.value || {};
-    assert(value.place === String(test.place), `${test.query}: expected placement ${test.place}, got ${value.place || 'no data-place'}`);
-    assert(value.gap === String(test.gap), `${test.query}: expected data-gap=${test.gap}, got ${value.gap || 'missing'}`);
-    assert((value.text || '').includes(test.title), `${test.query}: result does not contain placement title "${test.title}"`);
-    if (test.focus) assert(value.focus === test.focus, `${test.query}: expected focus ${test.focus}, got ${value.focus || 'missing'}`);
-    if (test.contains) assert(`${value.text || ''} ${value.chartText || ''}`.includes(test.contains), `${test.query}: result is missing "${test.contains}"`);
-    if (test.absent) assert(!`${value.text || ''} ${value.chartText || ''}`.includes(test.absent), `${test.query}: result must omit "${test.absent}"`);
-    if (test.link) assert((value.links || []).some((link) => link.includes(test.link)), `${test.query}: result is missing route "${test.link}"`);
+    if (test.strong) assert((value.strong || '').includes(test.strong), `${test.mode} ${test.query}: expected strength "${test.strong}", got "${value.strong || 'missing'}"`);
+    if (test.edge) assert((value.edge || '').includes(test.edge), `${test.mode} ${test.query}: expected edge "${test.edge}", got "${value.edge || 'missing'}"`);
+    assert(value.action === test.action, `${test.mode} ${test.query}: expected primary route ${test.action}, got ${value.action || 'missing'}`);
+    assert(value.primaryCount === 1 && value.analysisOpen === false, `${test.mode} ${test.query}: primary action or secondary analysis hierarchy is wrong`);
+    assert(value.emailLinks === 0 && !/email me|results are counted/iu.test(value.text || ''), `${test.mode} ${test.query}: an email or automatic collection promise remains`);
+    assert((value.share || '').includes(`${test.query}&r=`), `${test.mode} ${test.query}: share URL did not preserve the old scores before the snapshot`);
+    assert((value.version || '').includes('assessment version 0.2'), `${test.mode} ${test.query}: result version is missing`);
+    if (test.contains) assert((value.text || '').includes(test.contains), `${test.mode} ${test.query}: result is missing "${test.contains}"`);
+    if (test.absent) assert(!(value.text || '').toLowerCase().includes(test.absent), `${test.mode} ${test.query}: result must omit "${test.absent}"`);
     if (test.query.includes('s=0000000')) {
       assert(value.hollowDots === 7 && value.hollowAxes === 7, `${test.query}: expected seven hollow dots and axes, got ${value.hollowDots} and ${value.hollowAxes}`);
-      assert(value.chartKey.includes('Not known'), `${test.query}: chart key does not say Not known`);
+      assert(test.mode === 'org' ? value.chartKey.includes('Not known') : value.chartKey.includes('have not met'), `${test.mode} ${test.query}: chart key does not explain unknown scores`);
     }
-    results.push(test.query);
+    results.push(`${test.mode}${test.query}`);
   }
   return results;
 }
@@ -87,6 +95,10 @@ async function checkInteraction(browser, page) {
       try {
         Object.defineProperty(navigator,'clipboard',{value:{writeText:function(value){window.__copied=value;return Promise.resolve();}},configurable:true});
       } catch (error) {}
+      window.__savedBlobs=[];
+      URL.createObjectURL=function(blob){window.__savedBlobs.push(blob);return 'blob:assessment-test';};
+      URL.revokeObjectURL=function(){};
+      HTMLAnchorElement.prototype.click=function(){window.__downloadName=this.download;};
     `,
     expression: `(async()=>{
       const answerValues=${JSON.stringify(answers)};
@@ -132,9 +144,15 @@ async function checkInteraction(browser, page) {
       const initialHref=location.href;
       const initialShare=share&&share.value;
       const initialCopied=window.__copied;
-      const initialEmail=document.getElementById('email-result')&&document.getElementById('email-result').href;
       const initialResultText=document.getElementById('result').innerText;
       const initialNotesText=(document.getElementById('local-notes')||{}).textContent||'';
+      document.getElementById('save-result').click();
+      await waitFor(()=>window.__savedBlobs.length===1);
+      const withoutNotes=await window.__savedBlobs[0].text();
+      document.getElementById('include-notes').click();
+      document.getElementById('save-result').click();
+      await waitFor(()=>window.__savedBlobs.length===2);
+      const withNotes=await window.__savedBlobs[1].text();
       const teamInput=document.getElementById('team-code');
       if(teamInput){
         teamInput.value='orchard_2026!!abcdefghijklmnopqrstuvwxyz';
@@ -148,7 +166,10 @@ async function checkInteraction(browser, page) {
         copied:initialCopied,
         resultText:initialResultText,
         notesText:initialNotesText,
-        email:initialEmail,
+        withoutNotes,
+        withNotes,
+        downloadName:window.__downloadName,
+        primary:(document.getElementById('primary-action')||{}).getAttribute&&document.getElementById('primary-action').getAttribute('href'),
         teamLink:(document.getElementById('team-link')||{}).value||(document.getElementById('team-link')||{}).textContent||'',
         teamCode:(document.getElementById('team-code')||{}).value||''
       };
@@ -173,16 +194,24 @@ async function checkInteraction(browser, page) {
   assert(value.copied === value.share, 'Copy link did not copy the share URL');
   assert((value.notesText || '').includes('Observed in staff survey'), 'Q4 context is missing from the local result');
   assert((value.notesText || '').includes('grant reporting'), 'Q9 context is missing from the local result');
-  for (const field of [value.href, value.share, value.email]) {
+  for (const field of [value.href, value.share]) {
     assert(!decodeURIComponent(field || '').includes('grant reporting'), 'optional context escaped into a URL or email link');
     assert(!decodeURIComponent(field || '').includes('Observed in staff survey'), 'optional context escaped into a URL or email link');
   }
-  assert((value.email || '').includes('scores=5354323352'), 'email link has the wrong scores');
-  assert((value.email || '').includes('team=orchard-2026'), 'email link is missing the team code');
-  assert((value.email || '').includes('kind=org'), 'email link is missing kind=org');
+  const withoutNotes = JSON.parse(value.withoutNotes || '{}');
+  const withNotes = JSON.parse(value.withNotes || '{}');
+  assert(withoutNotes.scores?.spokes === '5354323' && withoutNotes.scores?.connectives === '352', 'saved file has the wrong scores');
+  assert(withoutNotes.answers?.length === 10 && withoutNotes.answers.every((answer) => answer.label), 'saved file is missing answer labels');
+  assert(/^\d{4}-\d{2}-\d{2}$/u.test(withoutNotes.date || '') && withoutNotes.version === '0.2', 'saved file is missing the date or version');
+  assert(withoutNotes.nextAction?.label && withoutNotes.nextAction?.href === '../../people/', 'saved file has the wrong next action');
+  assert(!('notes' in withoutNotes), 'saved file included notes without explicit selection');
+  assert(withNotes.notes?.length === 2 && withNotes.notes.some((item) => item.note === 'grant reporting'), 'selected notes are missing from the saved file');
+  assert((value.downloadName || '').startsWith('ea-ai-uplift-organisation-assessment-'), 'saved file name is wrong');
+  assert(value.primary === '../../people/', `mixed organisation result has the wrong primary action: ${value.primary || 'missing'}`);
   assert(value.teamCode.length === 24 && /^[A-Za-z0-9-]+$/u.test(value.teamCode), `team code was not sanitised to 24 safe characters: ${value.teamCode || 'missing'}`);
   assert(value.teamLink === `https://eaaiuplift.com/assess/?t=${value.teamCode}`, `team link does not contain the sanitised code: ${value.teamLink || 'missing'}`);
-  assert((value.resultText || '').includes('Results are counted, not attributed, and each person decides whether to send theirs.'), 'team-code privacy line is missing');
+  assert((value.resultText || '').includes('does not collect or combine their results'), 'team-code local-only line is missing');
+  assert(!/email me|results are counted/iu.test(value.resultText || ''), 'team result contains an unverified fulfilment claim');
   return value;
 }
 
@@ -193,22 +222,41 @@ async function checkRoundTrip(browser, page) {
       return {
         share:(document.getElementById('share')||{}).value||'',
         notesText:(document.getElementById('local-notes')||{}).textContent||'',
-        resultText:(document.getElementById('result')||{}).innerText||''
+        resultText:(document.getElementById('result')||{}).textContent||'',
+        primary:(document.getElementById('primary-action')||{}).getAttribute&&document.getElementById('primary-action').getAttribute('href'),
+        meta:(document.querySelector('.result-meta')||{}).textContent||''
       };
     `),
   });
   const value = rendered.value || {};
   assert(value.share.includes('?s=5354323&c=352&t=orchard-2026'), 'round-trip share URL changed the scores or team code');
+  const snapshot = decodeSnapshotValue(value.share);
+  assert(snapshot.scores.spokes === '5354323' && snapshot.scores.connectives === '352', 'share snapshot changed the scores');
+  assert(snapshot.answers.length === 10 && snapshot.answers.every((answer) => answer.label), 'share snapshot is missing answer labels');
+  assert(snapshot.version === '0.2' && /^\d{4}-\d{2}-\d{2}$/u.test(snapshot.date), 'share snapshot is missing the date or version');
+  assert(snapshot.nextAction.href === '../../people/' && value.primary === '../../people/', 'share snapshot has the wrong next action');
   assert(!value.notesText.includes('grant reporting') && !value.resultText.includes('grant reporting'), 'optional context persisted after a URL reload');
+  const reopened = await renderFile(browser, page, viewport, {
+    query: new URL(value.share).search,
+    expression: inspection(`return {
+      share:(document.getElementById('share')||{}).value||'',
+      primary:(document.getElementById('primary-action')||{}).getAttribute&&document.getElementById('primary-action').getAttribute('href'),
+      meta:(document.querySelector('.result-meta')||{}).textContent||''
+    };`),
+  });
+  assert(reopened.value?.share === value.share, 'reopened share link changed its saved snapshot');
+  assert(reopened.value?.primary === snapshot.nextAction.href, 'reopened share link changed its next action');
+  assert((reopened.value?.meta || '').includes(snapshot.date) && (reopened.value?.meta || '').includes(snapshot.version), 'reopened share link changed its date or version');
 }
 
 async function checkIndividualRegression(browser, projectRoot) {
   const page = path.join(projectRoot, 'dist', 'assess', 'index.html');
   const rendered = await renderFile(browser, page, viewport, {
     query: '?s=0000000&c=000',
-    expression: inspection(`return {text:(document.getElementById('result')||{}).innerText||''};`),
+    expression: inspection(`return {text:(document.getElementById('result')||{}).textContent||'',strong:(document.querySelector('h2.strong')||{}).textContent||'',edge:(document.querySelector('h2.edge')||{}).textContent||''};`),
   });
-  assert((rendered.value?.text || '').includes('That is a clear starting point, not a bad result.'), 'individual all-zero reassurance copy changed');
+  assert(rendered.value?.strong === 'None yet' && rendered.value?.edge === 'None identified', 'individual all-unknown result invented a strength or edge');
+  assert((rendered.value?.text || '').includes('Unknown means unfamiliar'), 'individual all-unknown result does not explain the unknown state');
 }
 
 async function checkEditedNote(browser, page) {
@@ -230,7 +278,7 @@ async function checkEditedNote(browser, page) {
       await answer(1);
       await answer(4);
       await waitFor(()=>!document.getElementById('result').classList.contains('hidden'));
-      return {restored,text:document.getElementById('result').innerText,href:location.href};
+      return {restored,text:document.getElementById('result').textContent,href:location.href};
     })()`,
   });
   assert(rendered.value?.restored === 'First note', 'Back did not restore the optional context');
@@ -257,6 +305,7 @@ async function checkQuestionLayouts(browser, projectRoot) {
         const waitFor=async predicate=>{const deadline=Date.now()+3000;while(Date.now()<deadline){const value=predicate();if(value)return value;await new Promise(resolve=>setTimeout(resolve,20));}throw new Error('timed out waiting for question layout');};
         for(let index=0;index<10;index+=1){
           const card=document.getElementById('qcard').getBoundingClientRect();
+          const overview=document.querySelector('.assess-overview').getBoundingClientRect();
           const input=document.getElementById('context-input');
           const buttons=[...document.querySelectorAll('#answers button.ans')];
           input.focus();
@@ -267,6 +316,7 @@ async function checkQuestionLayouts(browser, projectRoot) {
             documentWidth:document.documentElement.scrollWidth,
             viewportWidth:document.documentElement.clientWidth,
             cardBottom:card.bottom,
+            questionBeforeOverview:card.top<overview.top,
             inputFont:parseFloat(getComputedStyle(input).fontSize),
             buttonFont:Math.min(...buttons.map(button=>parseFloat(getComputedStyle(button).fontSize))),
             inputFocused:document.activeElement===input,
@@ -289,6 +339,7 @@ async function checkQuestionLayouts(browser, projectRoot) {
         assert(result.cardBottom <= result.viewportHeight, `${label}: question card ends below the viewport`);
       } else {
         assert(result.inputFont >= 16 && result.buttonFont >= 16, `${label}: control text is smaller than 16px`);
+        assert(result.questionBeforeOverview, `${label}: the question does not appear before the visual overview`);
       }
     }
   }
@@ -298,19 +349,19 @@ export async function checkAssessOrg(projectRoot = root) {
   const page = path.join(projectRoot, 'dist', 'assess', 'org', 'index.html');
   if (!fs.existsSync(page)) throw new Error('dist/assess/org/index.html is missing; run node build.mjs first');
   const browser = findChromium();
-  const placementCases = await checkPlacements(browser, page);
+  const checkedResults = await checkResults(browser, projectRoot);
   await checkInteraction(browser, page);
   await checkRoundTrip(browser, page);
   await checkIndividualRegression(browser, projectRoot);
   await checkEditedNote(browser, page);
   await checkQuestionLayouts(browser, projectRoot);
-  return { browser, placementCases: placementCases.length, interactionCases: 8 };
+  return { browser, resultCases: checkedResults.length, interactionCases: 8 };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   try {
     const result = await checkAssessOrg();
-    console.log(`check-assess-org: ${result.placementCases} placement cases and ${result.interactionCases} interaction cases pass with ${result.browser}`);
+    console.log(`check-assess-org: ${result.resultCases} result cases and ${result.interactionCases} interaction cases pass with ${result.browser}`);
   } catch (error) {
     console.error(`check-assess-org: ${error.message}`);
     process.exitCode = 1;

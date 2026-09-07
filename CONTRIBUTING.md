@@ -2,9 +2,24 @@
 
 Thank you for helping keep this directory and field guide useful and accurate. This repository is a public contribution space. Do not add private notes, interview records, account data, outreach drafts, private email addresses, or information without a direct public source.
 
+## Choose a contribution route
+
+The [Contribute page](https://eaaiuplift.com/contribute/) groups the six public-content routes. No route promises a response time.
+
+| Contribution | Route | Visibility, review and reply |
+|---|---|---|
+| Your profile | [Public GitHub issue](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml) | The issue and replies are public. An accepted listing becomes public after maintainer review and your final-text approval. |
+| Your offer | [Public GitHub issue](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=offer.yml) | The issue and replies are public. An accepted listing becomes public after maintainer review. |
+| A guide | Public pull request | The proposal, review and replies are public in the pull-request thread. Publication follows maintainer review and merge. |
+| A case study | [Public GitHub issue](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml) | The proposal and replies are public. A maintainer reviews it. Named people approve the final case before publication. |
+| A profile correction | [Public GitHub issue](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=correction.yml) | The request and replies are public. Use the private security route for sensitive information. |
+| A profile or portrait removal | [Public GitHub issue](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=removal.yml) | The request and replies are public. Use the private security route for sensitive information. |
+
 ## Add a profile
 
-The usual route is self-submission. Add only your own profile:
+The usual route is self-submission. Add only your own profile. Use the [public Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml), or use this pull-request route:
+
+Both new-submission routes ask for a headline from 2 to 70 characters. The data schema keeps a 160-character limit so approved existing profiles and manual migrations do not lose text.
 
 1. Fork the repository and create a branch.
 2. Copy `data/people/_template.json` to `data/people/<slug>.json`. Use lower-case letters, numbers, and hyphens for `<slug>`.
@@ -14,23 +29,23 @@ The usual route is self-submission. Add only your own profile:
 5. Install the local check prerequisites from `README.md`. Run `node qc/verify-release0.mjs` from the repository root. It validates, builds into untracked `dist/`, and renders locally. It must not fetch contributor URLs.
 6. Open a pull request using the template and complete its checklist.
 
-If Git is not practical, submit the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml). A maintainer can prepare a pull request for your review.
+A maintainer can prepare a pull request from the public issue for your review.
 
 A maintainer can publish a provisional profile from direct public sources. These profiles must use `public-sources-pending-review` and display their review status. Contributors must not add provisional profiles for other people.
 
 ## Corrections and removals
 
-Use the correction or removal issue form for public changes. Do not disclose private information there. A person can request correction or removal of their own listing at any time. If a request concerns sensitive information or an urgent safety risk, use the private route in [SECURITY.md](SECURITY.md).
+Use the correction or removal issue form for public changes. A maintainer replies in the public issue. Do not disclose private information there. A person can request correction or removal of their own listing at any time. If a request concerns sensitive information or an urgent safety risk, use the private route in [SECURITY.md](SECURITY.md).
 
 ## Content contributions
 
-Propose original guides in a pull request. For a case study, use the [public case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml) or start with an [interview with Alexander](https://calendar.app.google/r3ctgvteof8BA9hJ9). Keep the issue to the public, low-risk fields listed in [the case study template](docs/CASE-STUDY-TEMPLATE.md). Do not include private notes, internal document names, personal performance details or private contact details. The issue form is not publication approval; a maintainer handles the later review and approval process before publication. Do not present a listing as endorsement, certification, membership, employment, or an official definition.
+Propose original guides in a public pull request. A maintainer reviews and replies in that thread. For a case study, use the [public case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml) or start with an [interview with Alexander](https://calendar.app.google/r3ctgvteof8BA9hJ9). Keep the issue to the public, low-risk fields listed in [the case study template](docs/CASE-STUDY-TEMPLATE.md). Do not include private notes, internal document names, personal performance details or private contact details. The issue form is not publication approval. A maintainer handles the later review and approval process before publication. Do not present a listing as endorsement, certification, membership, employment, or an official definition.
 
 Original guides and case studies that we accept are licensed under CC BY 4.0 as described in [LICENSE-CONTENT](LICENSE-CONTENT). Profiles and photos remain excluded unless their contributor separately grants a licence.
 
 ## Site sections
 
-The home page is generated by `build.mjs` from section modules in `lib/` (`asks.mjs`, `offers.mjs`, `guides.mjs`). Each module reads its own folder under `data/` (`data/asks/`, `data/offers/`, `data/guides/`), one JSON file per entry, named by its slug. The Guides module also reads one JSON file per repository under `data/skill-repositories/` for the skills and plugins catalogue. The module validates its entries at build time, and `qc/fixtures-sections/<type>/` holds the invalid examples that the build must reject. To add an entry, copy an existing file in the folder, keep the field set exactly, use only public HTTPS links, and open a pull request. Form links for people who do not use Git live in `data/site.json`.
+The home page is generated by `build.mjs` from section modules in `lib/` (`asks.mjs`, `offers.mjs`, `guides.mjs`). Each module reads its own folder under `data/` (`data/asks/`, `data/offers/`, `data/guides/`), one JSON file per entry, named by its slug. The Guides module also reads one JSON file per repository under `data/skill-repositories/` for the skills and plugins catalogue. The module validates its entries at build time, and `qc/fixtures-sections/<type>/` holds the invalid examples that the build must reject. To add an entry, copy an existing file in the folder, keep the field set exactly, use only public HTTPS links, and open a pull request. Public issue-form links live in `data/site.json`.
 
 Skill repository listings must describe only facts supported by the repository itself. Include the public GitHub URL, maintainer, one factual focus sentence, the stated agent compatibility, the controlled topics, the public licence (or `not stated`), and the date checked. Do not add popularity numbers, endorsements, inferred compatibility or private information. The [skills and plugins contribution guidance](docs/GUIDES.md#skills-and-plugins-catalogue) lists the complete field rules, and the [repository issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=skill-repository.yml) is available for public proposals.
 

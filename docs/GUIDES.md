@@ -1,6 +1,8 @@
-# Guides: the index
+# Guides and learning routes
 
-The Guides section of eaaiuplift.com is an index, not a curriculum. Each entry names one thing a person or organisation doing AI uplift needs to know about, says what it is and why it matters, places it on the route, and points to one to three public sources. Sub-guides written on this site come later, as evidence from real work settles.
+The Guides section of eaaiuplift.com starts with two complete learning routes. The first route is a checked 15-minute chat task. The practitioner pathway then moves from a task of your own through colleague help, reusable instructions, verification and a test handover.
+
+The remaining entries form an index, not a curriculum. Each entry names one thing a person or organisation doing AI uplift needs to know about. It says what the thing is, why it matters, where it sits on the route, and gives one to three public sources.
 
 One entry is one file: `data/guides/<slug>.json`. The build reads every file in that folder, validates it, and renders the section. An invalid file stops the build.
 
@@ -46,7 +48,19 @@ Example:
 
 ## How the section renders
 
-Entries are grouped by `stage` in the order start, next, advanced, and sorted by `slug` inside each group. The home page shows only the titles by stage, linked to the guide page or the first source, with a link to the full index at `guides/`. The index page carries what, why and sources for each entry. Dates are not shown per entry; one "Links checked" line at the end of the index uses the most recent `checked` value. The section stays hidden while the folder is empty.
+Entries are grouped by `stage` in the order start, next, advanced. `first-useful-task` and `practitioner-pathway` appear first, in that order. Other entries are sorted by `slug` inside each group.
+
+The home page shows only the titles by stage. Each title links to its guide page or first source. The full index is at `guides/`. The index page carries what, why and sources for each entry. Dates are not shown per entry. One "Links checked" line uses the most recent `checked` value. The section stays hidden while the folder is empty.
+
+## Learning route pages
+
+`data/guides/first-useful-task.json` and `data/guide-pages/first-useful-task.json` form one pair. The page must supply fictional input, a request for an existing chat tool, a worked output with one deliberate error, an error check, and exact success criteria.
+
+`data/guides/practitioner-pathway.json` and `data/guide-pages/practitioner-pathway.json` form the second pair. The page must show five stages: a task of your own, colleague help, reusable instructions, verification and a test handover. Every stage names its practice task, evidence and pass condition.
+
+These pages reuse selected practices from the unpublished `data/pathway/learn.json` source. They must not link to or publish `/start/`, `/learn/` or `/hire/`.
+
+Version `0.1` remains an evidence limit. Each page states that it comes from one practitioner's work and has not been tested with readers. A worked example demonstrates a method. It does not establish a client result, general competence, certification or organisational adoption.
 
 ## Skills and plugins catalogue
 
@@ -70,13 +84,13 @@ Open every repository URL before submitting. State only claims that the reposito
 
 ## Propose an entry
 
-Open a pull request that adds one file to `data/guides/`. Keep to the rules above and to the site's copy rules in [CONTRIBUTING.md](../CONTRIBUTING.md): plain UK English, no prices, no hype, no private facts about anyone.
+Open a public pull request that adds one file to `data/guides/`. Keep to the rules above and to the site's copy rules in [CONTRIBUTING.md](../CONTRIBUTING.md): plain UK English, no prices, no hype, no private facts about anyone.
 
 Links must be primary sources: the tool's own documentation, the standard's own site, a regulator, or a published report. Not a blog summary of one of those. Open every link before you submit and set `checked` to that date. The maintainer opens each link again before merging and may ask for a different source.
 
 Run `node build.mjs` and `node qc/verify-release0.mjs` before you push. Both must pass.
 
-There is no issue form for guide entries. A pull request is the route.
+There is no issue form for guide entries. A pull request is the route. A maintainer reviews and replies in the public pull-request thread. No response time is promised.
 
 ## Guide pages written on this site
 
@@ -107,7 +121,9 @@ No other fields are allowed.
 
 Text must not contain markup, hidden characters, or an unfinished `[PLACEHOLDER` token. The copy rules in [CONTRIBUTING.md](../CONTRIBUTING.md) apply to every block: plain UK English, no first-person plural, no prices, no hype, no private facts about anyone.
 
-A useful shape for a guide, and the one the first five follow: what it is, why it matters for an organisation in this community, the three to five moves that give most of the value, a numbered how-to for this afternoon, what good looks like, common mistakes, when not to bother, then a `related` block.
+A useful shape for a guide is: what it is, why it matters, a bounded task, exact checks, evidence limits, then a `related` block.
+
+Run `node qc/check-learning-guides.mjs` after changes to either learning route. The check builds the site, checks the required content and uses Chromium at 1280×800 and 390×844 for both pages.
 
 ### Propose a guide page
 

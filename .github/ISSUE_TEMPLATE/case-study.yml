@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        GitHub issues are public. Do not include private or unapproved facts here. If the material is private, talk to Alexander instead: https://calendar.app.google/r3ctgvteof8BA9hJ9. A proposal is not publication approval.
+        GitHub issues are public, and their replies are public. Do not include private or unapproved facts here. If the material is private, talk to Alexander instead: https://calendar.app.google/r3ctgvteof8BA9hJ9. A maintainer reviews the proposal and replies in this issue. A proposal is not publication approval, and no response time is promised.
   - type: dropdown
     id: submission_type
     attributes:

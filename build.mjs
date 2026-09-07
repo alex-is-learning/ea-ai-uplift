@@ -362,7 +362,7 @@ function startPage() {
         </div>
         <div class="listed-cta">
           <p><a class="cta" href="${escAttr(site.addYourselfFormUrl)}">Get listed &rarr;</a></p>
-          <p class="cta-host">${esc(new URL(site.addYourselfFormUrl).host)} &middot; or <a href="https://github.com/alex-is-learning/ea-ai-uplift/blob/main/CONTRIBUTING.md#add-a-profile">through GitHub</a></p>
+          <p class="cta-host">${esc(new URL(site.addYourselfFormUrl).host)} &middot; <a href="https://github.com/alex-is-learning/ea-ai-uplift/blob/main/CONTRIBUTING.md#add-a-profile">read the contribution rules</a></p>
         </div>
       </div>
     </div>
@@ -397,10 +397,10 @@ function startPage() {
 function indexPage() {
   const routes = [
     ['people', 'people/', 'People working on AI uplift', 'Find practitioners and offers of support.'],
-    ['asks', 'asks/', 'Request help', 'Post a problem or reply to an open request.'],
-    ['assess', 'assess/', 'Assess your skills', 'Answer ten questions about your practice. A separate organisation assessment is included.'],
-    ['guides', 'guides/', 'Guides', 'Find a starting point, learn to do this work, or read practical guides.'],
-    ['case-studies', 'case-studies/', 'Case studies', 'See documented work and evidence when it is published.'],
+    ['asks', 'asks/', 'Request help', 'Contact a practitioner, assess your organisation, or publish a request.'],
+    ['assess', 'assess/', 'Assess your practice', 'Choose a personal or organisation assessment.'],
+    ['guides', 'guides/', 'Guides', 'Complete a 15-minute first task or follow the practitioner pathway.'],
+    ['case-studies', 'case-studies/', 'Case studies', 'See the available evidence and propose a public case.'],
   ];
   const items = routes.map(([id, href, title, description]) => `        <li id="${id}">
           <a class="route-link" href="${href}">
@@ -422,7 +422,7 @@ function indexPage() {
     <div class="wrap home-grid">
       <div class="home-copy">
         <h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>
-        <p class="lede">Find people, ask for help, assess current practice, or use the published guidance.</p>
+        <p class="lede">AI uplift helps people and organisations use AI effectively in their existing work. This independent directory links to practitioners, help and practical guidance.</p>
         <svg class="home-robot" viewBox="-15 0 400 240" aria-hidden="true" focusable="false">
           <g fill="none" stroke="var(--tang)" stroke-width="2" stroke-linecap="round">
             <path d="M116 18v-9M71 31l-7-7M53 72H43M161 31l7-7"/>

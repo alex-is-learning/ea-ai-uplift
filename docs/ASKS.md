@@ -33,12 +33,14 @@ An ask whose `expires` date is before the build date is not rendered. The build 
 
 Two routes:
 
-1. **The issue form.** `data/site.json` holds `askFormUrl`, which points at the "Post an ask (Help wanted)" form. Fill it in; a maintainer writes the JSON file and asks you to approve the final text before it goes live.
+1. **The public issue form.** `data/site.json` holds `askFormUrl`, which identifies the "Post an ask (Help wanted)" issue form. The form requires a budget label. Choose `unstated` if you do not want to state one. The issue and replies are public. A maintainer writes the JSON file and asks you to approve the final text before publication.
 2. **A pull request** that adds `data/asks/<slug>.json` with the fields above. Run `node build.mjs` before opening it.
 
-Both routes are public. Do not include private contact details, colleagues' names, or anything you would not put on a public page.
+The pull request is public when it opens. A published ask is public on the site and in this repository. Do not include private contact details, colleagues' names, or anything you would not put on a public page.
 
 The page also asks for one real problem that is slow, repeated or stuck. Write the pain, not a tool or a proposed solution. The useful-ask explanation on the page gives the short format: one sentence on the pain, a little context, and a public link where someone can reach you.
+
+A maintainer reviews each request before publication. Practitioners reply through the public `contact` URL. Publication does not guarantee a reply, and no response time is promised.
 
 ## Example
 

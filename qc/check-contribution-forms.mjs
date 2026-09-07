@@ -6,6 +6,11 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const CASE_STUDY_URL = 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml';
 const SKILL_REPOSITORY_URL = 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=skill-repository.yml';
+const PUBLIC_FORM_URLS = {
+  askFormUrl: 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=ask.yml',
+  offerFormUrl: 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=offer.yml',
+  addYourselfFormUrl: 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml',
+};
 const FORM_TYPES = new Set(['markdown', 'input', 'textarea', 'dropdown', 'checkboxes']);
 const TOP_LEVEL_KEYS = new Set(['name', 'description', 'title', 'labels', 'assignees', 'body']);
 const BODY_KEYS = new Set(['type', 'id', 'attributes', 'validations']);
@@ -24,6 +29,7 @@ const CASE_STUDY_FIELDS = {
   work_summary: { type: 'textarea', required: true },
   public_safety: { type: 'checkboxes', required: false },
 };
+const PROCESS_FORMS = ['add-profile.yml', 'ask.yml', 'case-study.yml', 'correction.yml', 'offer.yml', 'removal.yml'];
 
 function fail(message) {
   throw new Error(message);
@@ -129,6 +135,32 @@ function checkCaseStudyForm(location, form, ids, projectRoot, site) {
   if (!markdown.includes(site.interviewUrl)) fail(`${label} must send private material to the configured interview route`);
 }
 
+function formMarkdown(form) {
+  return form.body.filter((item) => item.type === 'markdown').map((item) => item.attributes.value).join('\n').toLowerCase();
+}
+
+function checkProcessForm(name, form) {
+  const markdown = formMarkdown(form);
+  for (const phrase of ['public', 'maintainer', 'replies', 'no response time']) {
+    if (!markdown.includes(phrase)) fail(`${name} must state ${phrase}`);
+  }
+}
+
+function checkProfileForm(form, ids) {
+  const headline = ids.get('headline');
+  if (!headline?.attributes.description.includes('70')) fail('add-profile.yml headline must use the 70-character new-profile intake limit');
+  const availability = ids.get('availability');
+  const expected = ['available', 'peer-exchange', 'limited', 'unavailable', 'unknown'];
+  if (availability?.type !== 'dropdown' || JSON.stringify(availability.attributes.options) !== JSON.stringify(expected)) fail('add-profile.yml availability must list all accepted values');
+}
+
+function checkAskForm(ids) {
+  const budget = ids.get('budget');
+  const description = budget?.attributes.description.toLowerCase() || '';
+  if (budget?.type !== 'dropdown' || !requiredValue(budget) || budget.attributes.options[0] !== 'unstated') fail('ask.yml budget must require a selection and offer unstated first');
+  if (!description.includes('required') || !description.includes('choose unstated')) fail('ask.yml budget instructions must explain the required unstated choice');
+}
+
 function requireFields(name, ids, fields) {
   for (const field of fields) if (!ids.has(field)) fail(`${path.join('.github', 'ISSUE_TEMPLATE', name)} is missing field: ${field}`);
 }
@@ -136,8 +168,13 @@ function requireFields(name, ids, fields) {
 export function checkContributionForms(projectRoot = root) {
   const formsDir = path.join(projectRoot, '.github', 'ISSUE_TEMPLATE');
   const names = fs.readdirSync(formsDir).filter((name) => name.endsWith('.yml') && name !== 'config.yml').sort();
-  for (const required of ['case-study.yml', 'offer.yml', 'skill-repository.yml']) if (!names.includes(required)) fail(`${required} is missing`);
+  for (const required of [...PROCESS_FORMS, 'skill-repository.yml']) if (!names.includes(required)) fail(`${required} is missing`);
   const site = JSON.parse(fs.readFileSync(path.join(projectRoot, 'data', 'site.json'), 'utf8'));
+  const contributionGuide = fs.readFileSync(path.join(projectRoot, 'CONTRIBUTING.md'), 'utf8');
+  if (!contributionGuide.includes('2 to 70 characters') || !contributionGuide.includes('160-character limit')) fail('CONTRIBUTING.md must explain the new-profile intake limit and the stored-profile limit');
+  for (const [key, expected] of Object.entries(PUBLIC_FORM_URLS)) if (site[key] !== expected) fail(`data/site.json ${key} must use its checked public issue form`);
+  const publicContracts = ['CONTRIBUTING.md', 'docs/ASKS.md', 'docs/OFFERS.md', 'docs/PROFILES.md', 'lib/contribute.mjs'].map((file) => fs.readFileSync(path.join(projectRoot, file), 'utf8')).join('\n');
+  if (/tally\.so|Tally/u.test(publicContracts)) fail('public contribution contracts must not refer to unchecked Tally forms');
   if (site.caseStudyProposalUrl !== CASE_STUDY_URL) fail(`data/site.json caseStudyProposalUrl must be ${CASE_STUDY_URL}`);
   const forms = new Map();
   for (const name of names) {
@@ -146,7 +183,10 @@ export function checkContributionForms(projectRoot = root) {
     const ids = checkForm(location, form, projectRoot);
     forms.set(name, { form, ids, location });
   }
+  for (const name of PROCESS_FORMS) checkProcessForm(name, forms.get(name).form);
   checkCaseStudyForm(forms.get('case-study.yml').location, forms.get('case-study.yml').form, forms.get('case-study.yml').ids, projectRoot, site);
+  checkProfileForm(forms.get('add-profile.yml').form, forms.get('add-profile.yml').ids);
+  checkAskForm(forms.get('ask.yml').ids);
   requireFields('offer.yml', forms.get('offer.yml').ids, ['provider_type', 'display_group']);
   requireFields('skill-repository.yml', forms.get('skill-repository.yml').ids, ['repository_url', 'maintainer', 'summary', 'compatibility']);
   const pages = [
