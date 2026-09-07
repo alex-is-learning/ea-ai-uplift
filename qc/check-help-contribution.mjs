@@ -51,7 +51,8 @@ export function checkHelpContribution() {
   assert.equal(cases.path, 'case-studies/index.html');
   includesAll(cases.html, [
     'No client outcome evidence is published here yet',
-    'worked example shows a method with fictional input and a checked output',
+    'The first useful task</a> shows a method with fictional input and a checked output',
+    'href="../guides/first-useful-task/"',
     'does not show a client outcome',
     `href="${site.caseStudyProposalUrl}"`,
     `href="${site.interviewUrl}"`,
