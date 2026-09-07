@@ -2,6 +2,12 @@
 
 Each person has one JSON file at `data/people/<slug>.json`. Existing profiles remain valid when the optional `links` field is absent.
 
+## Availability
+
+Use `available` only when the person takes work. Use `peer-exchange` when the person offers peer exchange without offering work.
+
+Use `limited` for limited capacity, `unavailable` when the person does not take work, and `unknown` when the person did not state availability.
+
 ## Optional links
 
 `links` is an array of up to six public links. Each item has exactly:

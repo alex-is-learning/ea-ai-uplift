@@ -166,6 +166,7 @@ export async function checkOutput(projectRoot = root) {
   if (!individualAssessment.includes('href="org/"') || !individualAssessment.includes('Do you run an organisation?')) throw new Error('individual result is missing the organisation assessment entry link');
   for (const person of people) {
     const page = fs.readFileSync(path.join(dist, 'people', person.slug, 'index.html'), 'utf8');
+    if (person.availability === 'peer-exchange' && !page.includes('Available for peer exchange')) throw new Error(`${person.slug}: profile is missing its peer-exchange availability`);
     for (const url of [person.site, person.contact, ...(person.links || []).map((link) => link.url)].filter(Boolean)) {
       if (!page.includes(`href="${escAttr(url)}"`)) throw new Error(`${person.slug}: profile is missing its approved link ${url}`);
     }
