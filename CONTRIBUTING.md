@@ -2,9 +2,22 @@
 
 Thank you for helping keep this directory and field guide useful and accurate. This repository is a public contribution space. Do not add private notes, interview records, account data, outreach drafts, private email addresses, or information without a direct public source.
 
+## Choose a contribution route
+
+The [Contribute page](https://eaaiuplift.com/contribute/) groups the six public-content routes. No route promises a response time.
+
+| Contribution | Route | Visibility, review and reply |
+|---|---|---|
+| Your profile | [Tally form](https://tally.so/r/jaRZX4) | The response goes to the maintainer. An accepted listing becomes public after maintainer review and your final-text approval. The maintainer uses your public contact URL for questions. |
+| Your offer | [Tally form](https://tally.so/r/obPEYO) | The response goes to the maintainer. An accepted listing becomes public after review. The public offer URL is the form's follow-up route. |
+| A guide | Public pull request | The proposal, review and replies are public in the pull-request thread. Publication follows maintainer review and merge. |
+| A case study | [Public GitHub issue](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml) | The proposal and replies are public. A maintainer reviews it. Named people approve the final case before publication. |
+| A profile correction | [Public GitHub issue](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=correction.yml) | The request and replies are public. Use the private security route for sensitive information. |
+| A profile or portrait removal | [Public GitHub issue](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=removal.yml) | The request and replies are public. Use the private security route for sensitive information. |
+
 ## Add a profile
 
-The usual route is self-submission. Add only your own profile:
+The usual route is self-submission. Add only your own profile. Use the [Tally profile form](https://tally.so/r/jaRZX4), or use this pull-request route:
 
 1. Fork the repository and create a branch.
 2. Copy `data/people/_template.json` to `data/people/<slug>.json`. Use lower-case letters, numbers, and hyphens for `<slug>`.
@@ -14,17 +27,17 @@ The usual route is self-submission. Add only your own profile:
 5. Install the local check prerequisites from `README.md`. Run `node qc/verify-release0.mjs` from the repository root. It validates, builds into untracked `dist/`, and renders locally. It must not fetch contributor URLs.
 6. Open a pull request using the template and complete its checklist.
 
-If Git is not practical, submit the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml). A maintainer can prepare a pull request for your review.
+If Tally does not work for you, submit the [Add yourself issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml). The issue and replies are public. A maintainer can prepare a pull request for your review.
 
 A maintainer can publish a provisional profile from direct public sources. These profiles must use `public-sources-pending-review` and display their review status. Contributors must not add provisional profiles for other people.
 
 ## Corrections and removals
 
-Use the correction or removal issue form for public changes. Do not disclose private information there. A person can request correction or removal of their own listing at any time. If a request concerns sensitive information or an urgent safety risk, use the private route in [SECURITY.md](SECURITY.md).
+Use the correction or removal issue form for public changes. A maintainer replies in the public issue. Do not disclose private information there. A person can request correction or removal of their own listing at any time. If a request concerns sensitive information or an urgent safety risk, use the private route in [SECURITY.md](SECURITY.md).
 
 ## Content contributions
 
-Propose original guides in a pull request. For a case study, use the [public case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml) or start with an [interview with Alexander](https://calendar.app.google/r3ctgvteof8BA9hJ9). Keep the issue to the public, low-risk fields listed in [the case study template](docs/CASE-STUDY-TEMPLATE.md). Do not include private notes, internal document names, personal performance details or private contact details. The issue form is not publication approval; a maintainer handles the later review and approval process before publication. Do not present a listing as endorsement, certification, membership, employment, or an official definition.
+Propose original guides in a public pull request. A maintainer reviews and replies in that thread. For a case study, use the [public case study issue form](https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml) or start with an [interview with Alexander](https://calendar.app.google/r3ctgvteof8BA9hJ9). Keep the issue to the public, low-risk fields listed in [the case study template](docs/CASE-STUDY-TEMPLATE.md). Do not include private notes, internal document names, personal performance details or private contact details. The issue form is not publication approval. A maintainer handles the later review and approval process before publication. Do not present a listing as endorsement, certification, membership, employment, or an official definition.
 
 Original guides and case studies that we accept are licensed under CC BY 4.0 as described in [LICENSE-CONTENT](LICENSE-CONTENT). Profiles and photos remain excluded unless their contributor separately grants a licence.
 

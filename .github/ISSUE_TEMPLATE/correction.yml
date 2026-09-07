@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Do not put private contact information, private documents, or sensitive details in this public form. For sensitive concerns, use the private route in SECURITY.md.
+        This issue and its replies are public. A maintainer reviews the request and replies here. No response time is promised. Do not put private contact information, private documents, or sensitive details in this form. For sensitive concerns, use the private route in SECURITY.md.
   - type: input
     id: profile
     attributes:
