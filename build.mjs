@@ -567,7 +567,7 @@ function personPage(p) {
           <h1>${esc(p.name)}</h1>
           ${NAME_RULE}
           ${affiliationBadges(p)}
-          ${p.publicationBasis === 'public-sources-pending-review' ? '<p class="draft-note">Public-source draft · not yet reviewed by this person</p>' : ''}
+          ${p.publicationBasis === 'public-sources-pending-review' ? '<p class="draft-note">Public-source draft · profile text not yet approved by this person</p>' : ''}
           <p class="person-head">${headline}</p>
           <div class="profile-facts">
             ${p.workLocation ? `<p class="pmeta"><span class="label">Work mode</span>${esc(p.workLocation)}</p>` : ''}
