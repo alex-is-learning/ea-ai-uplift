@@ -82,6 +82,7 @@ function card(p, prefix = '') {
           <h4 class="p-name"><a href="${escAttr(href)}">${esc(p.name)}</a></h4>
           ${NAME_RULE}
           ${affiliationBadges(p)}
+          ${p.publicationBasis === 'public-sources-pending-review' ? '<p class="draft-note">Public-source draft</p>' : ''}
           <p class="p-head">${esc(p.headline)}</p>
         </li>`;
 }
@@ -554,6 +555,7 @@ function personPage(p) {
           <h1>${esc(p.name)}</h1>
           ${NAME_RULE}
           ${affiliationBadges(p)}
+          ${p.publicationBasis === 'public-sources-pending-review' ? '<p class="draft-note">Public-source draft · not yet reviewed by this person</p>' : ''}
           <p class="person-head">${headline}</p>
           <p class="pmeta"><span class="label">Availability</span>${availabilityLine(p)}</p>${
             p.bio === p.headline ? '' : `

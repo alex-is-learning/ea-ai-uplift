@@ -171,6 +171,11 @@ export async function checkOutput(projectRoot = root) {
       if (!page.includes(`href="${escAttr(url)}"`)) throw new Error(`${person.slug}: profile is missing its approved link ${url}`);
     }
     const cards = [cardFor(directory, person.slug), cardFor(individualAssessment, person.slug)];
+    if (person.publicationBasis === 'public-sources-pending-review') {
+      if (cards.some((card) => !card.includes('Public-source draft')) || !page.includes('Public-source draft · not yet reviewed by this person')) {
+        throw new Error(`${person.slug}: public-source draft status is missing from a card or profile page`);
+      }
+    }
     for (const expected of affiliationTags(person)) {
       if (cards.some((card) => !card.includes(`>${expected}<`)) || !page.includes(`>${expected}<`)) {
         throw new Error(`${person.slug}: affiliation label is missing from its generated card or profile page`);

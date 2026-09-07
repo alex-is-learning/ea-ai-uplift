@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "public-sources-pending-review",
+  "slug": "tom-mcleod",
+  "name": "Tom McLeod",
+  "headline": "AI Enablement at Good Impressions",
+  "bio": "Good Impressions lists Tom under AI Enablement and notes his earlier work at GetScale. His public Linktree describes him as Head of Operations at Good Impressions.",
+  "workMode": "in-house",
+  "organisation": "Good Impressions",
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-07",
+  "site": "https://linktr.ee/tom_mcleod",
+  "contact": "https://linktr.ee/tom_mcleod",
+  "links": [
+    {
+      "label": "Good Impressions",
+      "url": "https://www.goodimpressionsmedia.com/about"
+    }
+  ],
+  "photo": "tom-mcleod.jpg",
+  "listingConsent": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  },
+  "copyApproved": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  }
+}

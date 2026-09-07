@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "public-sources-pending-review",
+  "slug": "luca-de-leo",
+  "name": "Luca De Leo",
+  "headline": "AI safety infrastructure engineer",
+  "bio": "80,000 Hours lists Luca as a Product Engineer who builds AI products for its career services, including its AI career adviser. His personal site also lists work for Alignment Journal, ASTN and BAISH. Before 80,000 Hours, he founded BAISH and worked in operations at Nonlinear.",
+  "workMode": "in-house",
+  "organisation": "80,000 Hours",
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-07",
+  "site": "https://lvca.dev/",
+  "contact": "https://lvca.dev/",
+  "links": [
+    {
+      "label": "80,000 Hours team profile",
+      "url": "https://80000hours.org/about/meet-the-team/"
+    }
+  ],
+  "photo": "luca-de-leo.jpg",
+  "listingConsent": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  },
+  "copyApproved": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  }
+}

@@ -96,13 +96,13 @@ function validateProfileLinks(value, label, errors) {
   });
 }
 
-function validateConsent(value, field, errors, required) {
+function validateConsent(value, field, errors, required, policyVersion = 'r0-v1') {
   exactKeys(value, ['granted', 'date', 'policyVersion'], field, errors);
   if (!value || typeof value !== 'object' || Array.isArray(value)) return;
   if (value.granted !== required) fail(errors, `${field}.granted must be ${required}`);
   if (!isDate(value.date)) fail(errors, `${field}.date must be an ISO date`);
   if (isDate(value.date) && isFutureDate(value.date)) fail(errors, `${field}.date must not be in the future`);
-  if (value.policyVersion !== 'r0-v1') fail(errors, `${field}.policyVersion must be r0-v1`);
+  if (value.policyVersion !== policyVersion) fail(errors, `${field}.policyVersion must be ${policyVersion}`);
 }
 
 export function validateProfile(profile, fileName = 'profile.json') {
@@ -111,6 +111,8 @@ export function validateProfile(profile, fileName = 'profile.json') {
   if (!profile || typeof profile !== 'object' || Array.isArray(profile)) return errors;
 
   if (profile.schemaVersion !== 'r0-v1') fail(errors, `${fileName}: schemaVersion must be r0-v1`);
+  const publicationBasis = profile.publicationBasis ?? 'person-approved';
+  if (!['person-approved', 'public-sources-pending-review'].includes(publicationBasis)) fail(errors, `${fileName}: publicationBasis is invalid`);
   if (typeof profile.slug !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(profile.slug) || profile.slug.length > 64) fail(errors, `${fileName}: slug is unsafe`);
   if (path.basename(fileName, '.json') !== profile.slug) fail(errors, `${fileName}: file name must match its slug`);
   for (const field of textFields) {
@@ -133,9 +135,11 @@ export function validateProfile(profile, fileName = 'profile.json') {
   validateHttpsUrl(profile.contact, 'contact', errors);
   if ('links' in profile) validateProfileLinks(profile.links, `${fileName}: links`, errors);
   if (profile.photo !== null && (typeof profile.photo !== 'string' || !new RegExp(`^${profile.slug}\\.jpg$`, 'u').test(profile.photo))) fail(errors, `${fileName}: photo must be null or exactly <slug>.jpg`);
-  validateConsent(profile.listingConsent, 'listingConsent', errors, true);
-  validateConsent(profile.copyApproved, 'copyApproved', errors, true);
-  validateConsent(profile.photoApproved, 'photoApproved', errors, profile.photo !== null);
+  const subjectApproved = publicationBasis === 'person-approved';
+  const policyVersion = subjectApproved ? 'r0-v1' : 'r0-v2';
+  validateConsent(profile.listingConsent, 'listingConsent', errors, subjectApproved, policyVersion);
+  validateConsent(profile.copyApproved, 'copyApproved', errors, subjectApproved, policyVersion);
+  validateConsent(profile.photoApproved, 'photoApproved', errors, subjectApproved && profile.photo !== null, policyVersion);
   return errors;
 }
 

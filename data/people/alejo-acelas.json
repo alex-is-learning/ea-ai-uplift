@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "public-sources-pending-review",
+  "slug": "alejo-acelas",
+  "name": "Alejo Acelas",
+  "headline": "AI enthusiast and blog writer",
+  "bio": "Alejo writes about how effective altruism can use AI better and how new tools can help people improve the world.",
+  "workMode": "independent",
+  "organisation": null,
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-07",
+  "site": "https://alejoacelas.com/",
+  "contact": "https://forum.effectivealtruism.org/users/alejoacelas",
+  "photo": "alejo-acelas.jpg",
+  "listingConsent": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  },
+  "copyApproved": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v2"
+  }
+}
