@@ -422,22 +422,58 @@ function indexPage() {
       <div class="home-copy">
         <h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>
         <p class="lede">Find people, ask for help, assess current practice, or use the published guidance.</p>
-        <svg class="home-robot" viewBox="0 0 330 190" aria-hidden="true" focusable="false">
-          <g class="robot-line">
-            <rect class="robot-fill" x="168" y="27" width="90" height="62" rx="18"/>
-            <path d="M213 27V13M206 8h14M188 90v15M239 90v15M183 105h61l14 57H169l14-57Z"/>
-            <path d="m179 116-31 17-23-15M247 116l25 18 23-13"/>
-            <path d="M183 162l-16 20M244 162l16 20"/>
-            <path d="M94 117c-10-8-16-20-16-33 0-24 19-39 43-39s43 15 43 39c0 13-6 25-16 33-6 5-9 10-9 17h-36c0-7-3-12-9-17Z"/>
-            <path d="M104 144h34M109 154h24M114 164h14"/>
+        <svg class="home-robot" viewBox="-15 0 400 240" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="var(--tang)" stroke-width="2" stroke-linecap="round">
+            <path d="M116 18v-9M71 31l-7-7M53 72H43M161 31l7-7"/>
           </g>
-          <circle class="robot-eye-blue" cx="192" cy="57" r="7"/>
-          <circle class="robot-eye-orange" cx="234" cy="57" r="7"/>
-          <circle class="bulb-blue" cx="114" cy="85" r="16"/>
-          <circle class="bulb-orange" cx="132" cy="73" r="11"/>
-          <g class="signal-line">
-            <path d="M121 32V14M83 44 68 29M158 44l15-15"/>
+          <g fill="var(--paper)" stroke="var(--ink)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M222 175h22l-7 32h-22Z" fill="var(--paper-2)"/>
+            <path d="M260 175h22l8 32h-22Z" fill="var(--paper-2)"/>
+            <path d="M216 202h22v18l-9 6h-33v-8l19-7Z"/>
+            <path d="M269 202h22l2 10 17 6v8h-34l-7-7Z"/>
+            <path d="M196 220h32M280 220h30" fill="none" stroke-width="1.2"/>
+            <circle cx="227" cy="205" r="5" fill="var(--paper-2)"/>
+            <circle cx="279" cy="205" r="5" fill="var(--paper-2)"/>
+            <path d="m286 111 19 6 17 32-15 9-23-28Z" fill="var(--paper-2)"/>
+            <circle cx="310" cy="151" r="12"/>
+            <path d="m308 160-18 22-12-11 21-22Z"/>
+            <path d="m288 170-11-4-8 6 5 13 11 1 8-8Z" fill="var(--paper-2)"/>
+            <path d="m278 173 6 8M273 178l6 7" fill="none" stroke-width="1.2"/>
+            <path d="m206 112 17 15-30 35-16-15Z" fill="var(--paper-2)"/>
+            <circle cx="187" cy="151" r="12"/>
+            <path d="m177 143-39-7-5 15 45 12 9-5v-12Z"/>
+            <path d="m148 140-4 13M155 143l19 5" fill="none" stroke-width="1.2"/>
+            <path d="M216 107h63l13 17-7 53-15 11h-43l-16-11-8-53Z"/>
+            <path d="M219 119h60l-5 42h-49Z" fill="var(--paper-2)" stroke-width="1.4"/>
+            <path d="M226 176h45M238 182h21" fill="none" stroke-width="1.2"/>
+            <circle cx="215" cy="119" r="3" fill="var(--ink)" stroke="none"/>
+            <circle cx="283" cy="119" r="3" fill="var(--ink)" stroke="none"/>
+            <circle cx="220" cy="170" r="2" fill="var(--ink)" stroke="none"/>
+            <circle cx="279" cy="170" r="2" fill="var(--ink)" stroke="none"/>
+            <rect x="231" y="129" width="16" height="16" rx="2" fill="var(--cobalt)" stroke="none"/>
+            <path d="M254 131h15M254 138h15M254 145h11M233 153h29" fill="none" stroke-width="1.3"/>
+            <path d="M234 93h29v14h-29Z" fill="var(--paper-2)"/>
+            <path d="M239 99h19" fill="none" stroke-width="1.2"/>
+            <path d="M194 52h9v28h-9ZM292 52h9v28h-9Z" fill="var(--paper-2)"/>
+            <path d="M213 35h68l11 12v38l-11 11h-68l-11-11V47Z"/>
+            <path d="M218 46h58l5 6v26l-5 6h-58l-5-6V52Z" fill="var(--paper-2)" stroke-width="1.4"/>
+            <rect x="225" y="57" width="17" height="15" rx="3" fill="var(--ink)" stroke="none"/>
+            <rect x="253" y="57" width="17" height="15" rx="3" fill="var(--ink)" stroke="none"/>
+            <path d="M230 62h7M258 62h7" fill="none" stroke="var(--paper)" stroke-width="2"/>
+            <path d="M216 89h14M265 89h14M247 35V24h15" fill="none" stroke-width="1.3"/>
+            <circle cx="266" cy="24" r="4" fill="var(--cobalt)" stroke="none"/>
+            <circle cx="187" cy="151" r="4" fill="var(--paper-2)" stroke-width="1.3"/>
+            <circle cx="310" cy="151" r="4" fill="var(--paper-2)" stroke-width="1.3"/>
+            <path d="M102 125c0-11-7-16-16-24-10-9-16-19-16-32 0-25 20-42 46-42s46 17 46 42c0 13-6 23-16 32-9 8-16 13-16 24Z" fill="var(--paper-2)"/>
+            <path d="M80 65c1-11 7-19 16-24" fill="none" stroke-width="1.3"/>
+            <path d="M103 125h26v18l-8 6h-10l-8-6Z"/>
+            <path d="m103 130 26-4M103 137l26-4M108 144l21-4" fill="none" stroke-width="1.3"/>
+            <path d="M137 134h-10l-5 5h-17v9h28l9-6Z" fill="var(--paper)"/>
+            <path d="M108 143h17M131 137v6" fill="none" stroke-width="1.2"/>
           </g>
+          <circle class="bulb-blue" cx="109" cy="76" r="22"/>
+          <circle class="bulb-orange" cx="131" cy="59" r="14"/>
+          <path d="M43 229h284" fill="none" stroke="var(--ink)" stroke-width="1" stroke-linecap="round"/>
         </svg>
       </div>
       <nav class="route-board" aria-label="Choose where to go">
