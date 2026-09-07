@@ -96,14 +96,20 @@ async function checkBrowser() {
   return { browser, results };
 }
 
-try {
+export async function checkLearningGuides() {
   checkSource();
   build();
   checkBuiltPages();
-  const browser = await checkBrowser();
-  console.log(`check-learning-guides: source, route order, evidence labels and ${browser.results.length} Chromium renders pass`);
-  for (const result of browser.results) console.log(`${result.route} ${result.viewport}, document height ${result.scrollHeight}px, background ${result.bodyColour}`);
-} catch (error) {
-  console.error(`check-learning-guides: ${error.message}`);
-  process.exitCode = 1;
+  return checkBrowser();
+}
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  try {
+    const browser = await checkLearningGuides();
+    console.log(`check-learning-guides: source, route order, evidence labels and ${browser.results.length} Chromium renders pass`);
+    for (const result of browser.results) console.log(`${result.route} ${result.viewport}, document height ${result.scrollHeight}px, background ${result.bodyColour}`);
+  } catch (error) {
+    console.error(`check-learning-guides: ${error.message}`);
+    process.exitCode = 1;
+  }
 }
