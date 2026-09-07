@@ -116,6 +116,7 @@ export async function checkOutput(projectRoot = root) {
   if (/<nav\b/u.test(header)) throw new Error('home repeats its main navigation in the header');
   if (/field guide/iu.test(home)) throw new Error('home still claims to be a field guide');
   if (!home.includes('<h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>')) throw new Error('home heading does not match the ecosystem wording');
+  if (!home.includes('<svg class="home-robot"') || !home.includes('class="bulb-orange"')) throw new Error('home is missing the robot and lightbulb illustration');
   const guides = fs.readFileSync(path.join(dist, 'guides', 'index.html'), 'utf8');
   const skills = fs.readFileSync(path.join(dist, 'guides', 'skills-and-plugins', 'index.html'), 'utf8');
   const asks = fs.readFileSync(path.join(dist, 'asks', 'index.html'), 'utf8');
