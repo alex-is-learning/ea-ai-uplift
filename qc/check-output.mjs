@@ -95,6 +95,9 @@ export async function checkOutput(projectRoot = root) {
   for (const file of files.filter((item) => item.endsWith('.html'))) {
     const html = fs.readFileSync(file, 'utf8');
     if (/\[\s*placeholder\b/iu.test(html)) throw new Error(`${file}: generated output contains an unfinished token`);
+    if ([...html.matchAll(/<script defer src="\/_vercel\/insights\/script\.js"><\/script>/gu)].length !== 1) {
+      throw new Error(`${file}: page needs one Vercel Web Analytics script`);
+    }
     const footer = html.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/u)?.[1] || '';
     const footerText = footer.replace(/<[^>]+>/gu, ' ').replace(/\s+/gu, ' ').trim();
     if (footerText !== 'Maintained by Alexander Large · GitHub' || /<nav\b/u.test(footer)) throw new Error(`${file}: footer must contain the maintainer credit and GitHub link`);
