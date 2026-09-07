@@ -40,7 +40,7 @@ A maintainer can reject or request changes for unsupported claims, unsafe links,
 
 ## Corrections, removals, and disputes
 
-Anyone can request a correction or removal of their own listing through the public issue forms. Do not include sensitive data in a public issue. Where a request identifies disputed personal data, maintainers will remove that data from the live site while they check it.
+Anyone can request a correction or removal of their own listing through the public issue forms. The request and maintainer replies are public. No response time is promised. Do not include sensitive data in a public issue. Where a request identifies disputed personal data, maintainers will remove that data from the live site while they check it.
 
 For an urgent or sensitive concern, use the private route in [SECURITY.md](../SECURITY.md). A removal request does not grant permission to retain or republish the removed material.
 

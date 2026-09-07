@@ -2,6 +2,8 @@
 
 Each person has one JSON file at `data/people/<slug>.json`. Existing profiles remain valid when the optional `links` field is absent.
 
+Use the Tally profile form for a maintainer-assisted submission, or open a public pull request. A maintainer reviews each submission. The listed person approves the final public text before publication. Tally follow-up uses the submitted public contact URL. Pull-request replies stay in the public thread. No response time is promised.
+
 ## Availability
 
 Use `available` only when the person takes work. Use `peer-exchange` when the person offers peer exchange without offering work.

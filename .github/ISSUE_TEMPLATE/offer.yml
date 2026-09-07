@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this form to propose something that helps people or organisations in this community use AI well. It can be free or paid, but do not include prices. A listing is not an endorsement, and the maintainer decides what is listed. This issue is public: do not include private contact details. See docs/OFFERS.md for the field reference.
+        Use this form to propose something that helps people or organisations in this community use AI well. It can be free or paid, but do not include prices. A listing is not an endorsement, and the maintainer decides what is listed. This issue and its replies are public. A maintainer reviews the proposal and replies here. No response time is promised. Do not include private contact details. See docs/OFFERS.md for the field reference.
   - type: input
     id: name
     attributes:

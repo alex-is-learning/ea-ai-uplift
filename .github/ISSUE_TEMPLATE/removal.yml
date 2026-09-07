@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        This is a public issue. Do not include private or sensitive information. Maintainers will remove disputed personal data from the live site while they check the request.
+        This issue and its replies are public. A maintainer reviews the request and replies here. No response time is promised. Do not include private or sensitive information. Maintainers will remove disputed personal data from the live site while they check the request.
   - type: input
     id: profile
     attributes:

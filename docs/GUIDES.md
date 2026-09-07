@@ -70,13 +70,13 @@ Open every repository URL before submitting. State only claims that the reposito
 
 ## Propose an entry
 
-Open a pull request that adds one file to `data/guides/`. Keep to the rules above and to the site's copy rules in [CONTRIBUTING.md](../CONTRIBUTING.md): plain UK English, no prices, no hype, no private facts about anyone.
+Open a public pull request that adds one file to `data/guides/`. Keep to the rules above and to the site's copy rules in [CONTRIBUTING.md](../CONTRIBUTING.md): plain UK English, no prices, no hype, no private facts about anyone.
 
 Links must be primary sources: the tool's own documentation, the standard's own site, a regulator, or a published report. Not a blog summary of one of those. Open every link before you submit and set `checked` to that date. The maintainer opens each link again before merging and may ask for a different source.
 
 Run `node build.mjs` and `node qc/verify-release0.mjs` before you push. Both must pass.
 
-There is no issue form for guide entries. A pull request is the route.
+There is no issue form for guide entries. A pull request is the route. A maintainer reviews and replies in the public pull-request thread. No response time is promised.
 
 ## Guide pages written on this site
 

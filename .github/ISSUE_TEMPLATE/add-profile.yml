@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this form only for your own public profile. Do not include private contact details, unpublished information, or a photo unless it is already public and you have the right to share it. A maintainer will make a pull request; you must approve the final public text before it is published.
+        Use this form only for your own public profile. This issue and its replies are public. Do not include private contact details, unpublished information, or a photo unless it is already public and you have the right to share it. A maintainer reviews the issue, replies here, and makes a pull request. You must approve the final public text before publication. No response time is promised.
   - type: input
     id: slug
     attributes:
@@ -25,7 +25,7 @@ body:
     id: headline
     attributes:
       label: headline
-      description: A short, approved public description of your work.
+      description: A short, approved public description of your work, from 2 to 160 characters.
     validations:
       required: true
   - type: textarea
@@ -57,11 +57,17 @@ body:
       description: List the controlled capability values you want reviewed.
     validations:
       required: true
-  - type: input
+  - type: dropdown
     id: availability
     attributes:
       label: availability
-      description: Use a controlled availability value from the profile template.
+      description: Choose the current public availability label.
+      options:
+        - available
+        - peer-exchange
+        - limited
+        - unavailable
+        - unknown
     validations:
       required: true
   - type: input
