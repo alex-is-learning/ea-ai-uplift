@@ -188,7 +188,7 @@ export async function checkOutput(projectRoot = root) {
     }
     const cards = [cardFor(directory, person.slug), cardFor(individualAssessment, person.slug)];
     if (person.publicationBasis === 'public-sources-pending-review') {
-      if (cards.some((card) => !card.includes('Public-source draft')) || !page.includes('Public-source draft · not yet reviewed by this person')) {
+      if (cards.some((card) => !card.includes('Public-source draft')) || !page.includes('Public-source draft · profile text not yet approved by this person')) {
         throw new Error(`${person.slug}: public-source draft status is missing from a card or profile page`);
       }
     }
