@@ -1,0 +1,139 @@
+{
+  "slug": "practitioner-pathway",
+  "summary": "A five-stage practice route from a checked personal task through colleague help, reusable instructions, verification and test handover.",
+  "version": "0.1",
+  "written": "2026-09-07",
+  "blocks": [
+    {
+      "type": "aside",
+      "title": "Evidence status",
+      "text": "This proposed route reuses selected practices from an earlier unpublished learning page. It comes from one practitioner's work. Readers and organisations have not tested it. It is not a standard, endorsement or certificate."
+    },
+    {
+      "type": "p",
+      "text": "Progress means that the work survives a stronger test at each stage. Keep one small evidence record for every stage: the source, the output, the check, what failed and what changed."
+    },
+    {
+      "type": "h2",
+      "text": "Stage 1: complete and check your own task"
+    },
+    {
+      "type": "p",
+      "text": "Start with a bounded task that matters to you. Give the tool the source material, name the output format and define the check before you run it. Use public, fictional or low-risk information while you learn the method."
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Practice task: complete Your first useful task in 15 minutes, then repeat it with one task of your own.",
+        "Evidence: keep the source, first output, correction and final output together.",
+        "Pass: every important fact matches its source, and you can explain the check that found the error."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Stage 2: help one colleague"
+    },
+    {
+      "type": "p",
+      "text": "Ask a colleague for one real task that they want finished. Use their goal and source material, not a tool demonstration. Agree the output and the check before you begin. Do not put restricted information into an unapproved tool."
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Practice task: finish one draft, summary, comparison or update with the colleague present.",
+        "Evidence: record the colleague's task, the accepted output and the check that you both used.",
+        "Pass: the colleague can use the output for the stated task and can identify its source."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Stage 3: leave reusable instructions"
+    },
+    {
+      "type": "p",
+      "text": "Turn the successful task into one short instruction file. Write for the next person, not for your memory. Keep the file where that person already looks for work instructions."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Name the job and the person who uses the result.",
+        "List the source material that the task needs.",
+        "State the required output and one complete example.",
+        "List the checks for facts, numbers, links and private information.",
+        "State when the tool must stop and ask a person."
+      ]
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Evidence: one versioned instruction file and the result from its first reuse.",
+        "Pass: the file contains the input, output, checks and stop conditions without an oral explanation."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Stage 4: verify the instructions"
+    },
+    {
+      "type": "p",
+      "text": "Test the instructions before another person depends on them. A successful first run proves only that one input worked. Use three tests that make different failures visible."
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Run a normal example with an answer that you already know.",
+        "Run an example with one seeded wrong detail that the check must catch.",
+        "Run an ambiguous example that must make the tool stop and ask a question.",
+        "Record the expected result, actual result and instruction change for each test."
+      ]
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Evidence: a three-row test record and the revised instruction file.",
+        "Pass: the normal case is correct, the seeded error is caught and the ambiguous case stops."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Stage 5: run a test handover"
+    },
+    {
+      "type": "p",
+      "text": "Give the instructions and test material to another person. Stay silent while they use them. Record where the written method, not the person, fails. Correct the file and repeat the failed part with a fresh input."
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Evidence: the other person's output, completed checks and one note about each place they needed help.",
+        "Pass: the other person produces a usable result and completes the checks without live help.",
+        "Next stage: apply the same handover method to a small team workflow with a named owner and review date."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What this evidence does and does not show"
+    },
+    {
+      "type": "p",
+      "text": "A completed handover shows that one person used one written method on the tested task. It does not show general competence, client outcomes, organisational adoption or certification. Keep the limits beside the evidence."
+    },
+    {
+      "type": "related",
+      "items": [
+        {
+          "label": "Your first useful task in 15 minutes",
+          "path": "guides/first-useful-task/"
+        },
+        {
+          "label": "Verification and safety at work",
+          "path": "guides/verification-and-safety-at-work/"
+        },
+        {
+          "label": "From one advanced user to shared practice",
+          "path": "guides/one-user-to-shared-practice/"
+        }
+      ]
+    }
+  ]
+}

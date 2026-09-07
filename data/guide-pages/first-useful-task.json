@@ -1,0 +1,134 @@
+{
+  "slug": "first-useful-task",
+  "summary": "A complete 15-minute chat exercise with fictional notes, a worked output, one deliberate error and exact success criteria.",
+  "version": "0.1",
+  "written": "2026-09-07",
+  "blocks": [
+    {
+      "type": "aside",
+      "title": "Evidence status",
+      "text": "This fictional worked example demonstrates a checking method. It does not show a measured result with a person or organisation. Readers have not tested this guide yet."
+    },
+    {
+      "type": "h2",
+      "text": "What you need"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Any chat tool that you already use.",
+        "Fifteen minutes and no private information.",
+        "The fictional notes and request below."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "The fictional input"
+    },
+    {
+      "type": "p",
+      "text": "Harbourlight Food Project will welcome six new volunteers. The session is Thursday 17 September, 15:00 to 15:45, in the Cedar Room. Mina will send access notes by Tuesday 15 September. Lee will print eight checklists. Volunteers must send dietary details to Mina by Monday 14 September."
+    },
+    {
+      "type": "h2",
+      "text": "The request to paste"
+    },
+    {
+      "type": "aside",
+      "title": "Chat request",
+      "text": "Use only the fictional notes above. Write an update for six new volunteers. Use a heading and three bullet points. Include every named action, date, time and place. Keep it under 120 words. Do not add facts. End with the question: Can you confirm that you can attend?"
+    },
+    {
+      "type": "h2",
+      "text": "Use the 15 minutes"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Minutes 0 to 2: read the fictional notes and the requested format.",
+        "Minutes 2 to 5: paste both into your chat tool and keep its first answer.",
+        "Minutes 5 to 10: compare every name, date, time, place, number and action with the notes.",
+        "Minutes 10 to 13: correct any mismatch without changing a correct detail.",
+        "Minutes 13 to 15: test the corrected answer against the success criteria."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Worked output with one deliberate error"
+    },
+    {
+      "type": "p",
+      "text": "Harbourlight volunteer welcome"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Join the welcome session on Thursday 17 September, 15:00 to 15:45, in the Cedar Room.",
+        "Mina will send access notes by Tuesday 15 September.",
+        "Lee will print ten checklists. Send dietary details to Mina by Monday 14 September."
+      ]
+    },
+    {
+      "type": "p",
+      "text": "Can you confirm that you can attend?"
+    },
+    {
+      "type": "aside",
+      "title": "Stop before the answer",
+      "text": "Compare the worked output with the fictional input. Find the one changed detail before you read the next section."
+    },
+    {
+      "type": "h2",
+      "text": "The error check"
+    },
+    {
+      "type": "ol",
+      "items": [
+        "Mark each name, date, time, place, number and action in the input.",
+        "Find the matching detail in the output.",
+        "Mark a detail that changed, disappeared or appeared without a source.",
+        "Correct the output, then repeat the comparison once."
+      ]
+    },
+    {
+      "type": "aside",
+      "title": "Answer",
+      "text": "The worked output says that Lee will print ten checklists. The input says eight. Replace ten with eight."
+    },
+    {
+      "type": "h2",
+      "text": "Exact success criteria"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "The output has one heading, exactly three bullet points and the requested final question.",
+        "The output is under 120 words.",
+        "Every name, date, time, place, number and action matches the fictional input.",
+        "You identify ten checklists as wrong and correct it to eight.",
+        "The output contains no fact that the fictional input does not support."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "What to practise next"
+    },
+    {
+      "type": "p",
+      "text": "Repeat the method with a low-risk task of your own. Keep the source, first output, correction and final check as one small evidence record."
+    },
+    {
+      "type": "related",
+      "items": [
+        {
+          "label": "Follow the practitioner pathway",
+          "path": "guides/practitioner-pathway/"
+        },
+        {
+          "label": "Verification and safety at work",
+          "path": "guides/verification-and-safety-at-work/"
+        }
+      ]
+    }
+  ]
+}

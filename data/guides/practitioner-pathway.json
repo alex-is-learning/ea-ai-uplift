@@ -1,0 +1,19 @@
+{
+  "slug": "practitioner-pathway",
+  "title": "The practitioner pathway",
+  "what": "Five practice stages from a checked task of your own to a handover that another person can use without live help.",
+  "why": "Each stage creates visible evidence of work, checking and transfer. The route does not treat tool use as certification.",
+  "stage": "start",
+  "status": "local",
+  "links": [
+    {
+      "label": "How Anthropic teams use Claude Code",
+      "url": "https://claude.com/blog/how-anthropic-teams-use-claude-code"
+    },
+    {
+      "label": "Agent Skills overview, Claude docs",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview"
+    }
+  ],
+  "checked": "2026-09-05"
+}
