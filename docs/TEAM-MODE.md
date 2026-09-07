@@ -1,36 +1,43 @@
-# Team mode: an organisation's chart, by hand
+# Team-labelled results without collection
 
-An organisation's AI practice is the practice of its people, so the organisation's chart is the sum of their charts. Team mode does this without accounts or storage: each person takes the assessment with a team code in the link, sends their result through the form, and the maintainer of the team adds the results up. Five minutes per organisation.
+The assessment can create a team-labelled link without an account or server storage. The site does not collect, combine, or email results.
 
-## For the person running it
+## For the person who coordinates the assessment
 
-1. Choose a short team code: letters, digits and hyphens, up to 24 characters. Example: `orchard-2026`.
-2. Send this link to everyone: `https://eaaiuplift.com/assess/?t=orchard-2026`. Say that results are counted, not attributed, and that each person decides whether to send theirs.
-3. Each person answers ten questions and presses "Email me this result". The form receives `scores` (ten digits: seven spokes then three connective answers), `team` (the code) and `share` (their result link). The person also gets their own email.
-4. Take the organisation assessment at `https://eaaiuplift.com/assess/org/`.
-5. Build the organisation's chart from the sheet, below.
+1. Choose a short team code with letters, digits, and hyphens. The limit is 24 characters.
+2. Share `https://eaaiuplift.com/assess/?t=orchard-2026` after you replace the example code.
+3. Ask each person to save their result file or share their result link with you.
+4. State where you will keep the files, who can see them, and when you will delete them.
+5. Take the organisation assessment at `https://eaaiuplift.com/assess/org/`.
 
-## The lead's questions
+Each person controls whether they share a result. The site makes no automatic team total and attributes no response.
 
-The lead's organisation-only questions now live at `/assess/org/`.
+## What each result contains
 
-## The sheet
+The saved JSON file contains:
 
-One row per submission. Columns: `team`, `scores`, then one column per spoke. Split `scores` into its digits: positions 1–7 are chat, context, tools, delegation, automation, judgement, handover; positions 8–10 are support, blocked, shared. A `0` means "not met" and is left blank for the mean, and counted in a separate "not met" column.
+- the seven spoke scores and three connective scores;
+- each selected answer label;
+- the result date and assessment version;
+- the primary next action;
+- the team code, if the link supplied one.
 
-For each spoke, report three numbers: the mean of the non-blank answers, the spread (lowest and highest), and the count of "not met". A wide spread on one spoke means two or three heavy users and a quiet majority. That is its own finding.
+Optional notes stay in the browser tab. They enter the saved file only when the person selects that option.
+
+## A local comparison
+
+Use one row per shared result. Keep the team code, result date, version, and ten scores.
+
+Compare only results with the same assessment version and mode. Leave score `0` blank in any mean and count it as unknown.
+
+For each spoke, show the sample size, the unknown count, and the range. A wide range is variation, not proof of its cause.
 
 ## The organisation result
 
-Write it as one page, in this order.
+Put one next action first. Keep the chart and detailed condition list secondary.
 
-1. **Who answered.** "N of M people answered." Never attribute a result to a person.
-2. **The team chart.** Seven spokes, the means, drawn the same way as the individual chart. The spread on each spoke as a thin bar.
-3. **The seven organisation conditions**, with the lead's ratings from `/assess/org/`.
-4. **The three most common "not met" ways**, with the plain definition from the spoke's `unmet` text.
-5. **Where the organisation would start on the route**, using the same rule as the individual result on the team means, and stated as a guess.
-6. **One next action**: post an ask on the Help wanted board with the top pain point, or talk to one of the people listed.
+State the number of shared results and missing values. Do not attribute a score to a person.
 
-## When to automate this
+## Automation gate
 
-After five organisations have been through the by-hand version and the questions have settled. Until then the sheet is faster than software, and every change to the questions costs nothing.
+Keep comparison local until five organisations complete the manual process and the questions remain stable.
