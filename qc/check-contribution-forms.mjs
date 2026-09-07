@@ -143,7 +143,7 @@ function checkProcessForm(name, form) {
 
 function checkProfileForm(form, ids) {
   const headline = ids.get('headline');
-  if (!headline?.attributes.description.includes('160')) fail('add-profile.yml headline must match the 160-character schema limit');
+  if (!headline?.attributes.description.includes('70')) fail('add-profile.yml headline must match the 70-character Tally intake limit');
   const availability = ids.get('availability');
   const expected = ['available', 'peer-exchange', 'limited', 'unavailable', 'unknown'];
   if (availability?.type !== 'dropdown' || JSON.stringify(availability.attributes.options) !== JSON.stringify(expected)) fail('add-profile.yml availability must list all accepted values');
@@ -165,6 +165,8 @@ export function checkContributionForms(projectRoot = root) {
   const names = fs.readdirSync(formsDir).filter((name) => name.endsWith('.yml') && name !== 'config.yml').sort();
   for (const required of [...PROCESS_FORMS, 'skill-repository.yml']) if (!names.includes(required)) fail(`${required} is missing`);
   const site = JSON.parse(fs.readFileSync(path.join(projectRoot, 'data', 'site.json'), 'utf8'));
+  const contributionGuide = fs.readFileSync(path.join(projectRoot, 'CONTRIBUTING.md'), 'utf8');
+  if (!contributionGuide.includes('2 to 70 characters') || !contributionGuide.includes('160-character limit')) fail('CONTRIBUTING.md must explain the new-profile intake limit and the stored-profile limit');
   if (site.caseStudyProposalUrl !== CASE_STUDY_URL) fail(`data/site.json caseStudyProposalUrl must be ${CASE_STUDY_URL}`);
   const forms = new Map();
   for (const name of names) {

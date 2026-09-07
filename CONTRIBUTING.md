@@ -19,6 +19,8 @@ The [Contribute page](https://eaaiuplift.com/contribute/) groups the six public-
 
 The usual route is self-submission. Add only your own profile. Use the [Tally profile form](https://tally.so/r/jaRZX4), or use this pull-request route:
 
+Both new-submission routes ask for a headline from 2 to 70 characters. The data schema keeps a 160-character limit so approved existing profiles and manual migrations do not lose text.
+
 1. Fork the repository and create a branch.
 2. Copy `data/people/_template.json` to `data/people/<slug>.json`. Use lower-case letters, numbers, and hyphens for `<slug>`.
 3. Complete the required fields with public, accurate facts that you approve. All submitted URLs must use HTTPS. You may add up to six optional labelled links; each label and URL must be approved for publication. Do not infer an employer, role, availability, contact route, or capability from a Slack membership, website, or conversation. See [the profile field rules](docs/PROFILES.md).
