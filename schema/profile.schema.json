@@ -149,6 +149,7 @@
     "availability": {
       "enum": [
         "available",
+        "peer-exchange",
         "limited",
         "unavailable",
         "unknown"

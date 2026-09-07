@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "ernesto-diaz",
+  "name": "Ernesto Díaz",
+  "headline": "Business Operations Lead at Future Matters",
+  "bio": "Ernesto is Business Operations Lead at Future Matters, a research and strategy organisation working toward a safer world, with focus areas in climate protection and AI governance. His current scope covers financial systems architecture, including bookkeeping standards, cost-centre design and the automations behind the monthly close. He also leads IT and tools for the organisation, plus AI enablement: Claude rollout, staff training, connections between core tools and Claude, and governance for new AI tools, including due diligence and risk reviews. He has management experience at non-profits, especially in food systems transformation and sustainability, combining project management and operations skills with academic training in agricultural engineering and economics at the Technical University of Madrid and Humboldt University of Berlin. He began his career as an agricultural engineer in Spain and moved to Sweden in 2016, later working as a project manager for an NGO where he took on administrative and finance responsibilities before moving into his current operations role.",
+  "workMode": "in-house",
+  "organisation": "Future Matters",
+  "capabilities": ["adoption", "automation", "operations", "training"],
+  "availability": "peer-exchange",
+  "availabilityChecked": "2026-09-07",
+  "site": "https://future-matters.org/author/ernesto-diaz-salvador/",
+  "contact": "https://future-matters.org/author/ernesto-diaz-salvador/",
+  "photo": "ernesto-diaz.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  }
+}

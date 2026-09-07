@@ -485,6 +485,7 @@ function personFrame(p) {
 function availabilityLine(p) {
   const labels = {
     available: 'Available for work',
+    'peer-exchange': 'Available for peer exchange',
     limited: 'Limited availability',
     unavailable: 'Not taking work',
     unknown: 'Availability not stated',

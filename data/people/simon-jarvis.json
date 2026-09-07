@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "r0-v1",
+  "slug": "simon-jarvis",
+  "name": "Simon Jarvis",
+  "headline": "Head of Business Operations at LawAI, supporting the organisation's operational backbone with systems, tools and processes",
+  "bio": "The Institute for Law and AI team page states that Simon is Head of Business Operations at LawAI, where he uses his varied expertise to support the organisation's operational backbone, with systems, tools and processes for effective delivery. Simon and his team are also responsible for AI adoption at LawAI. The page states that prior to this he supported the operations team at Epoch AI, where he remains an advisory director, and that he was previously COO of FareShare South West, a surplus food redistribution charity in the UK. It also states he has worked in operations in robotics, and in software development and testing, and that he holds a master's in Strategy, Change and Leadership from the University of Bristol and a master's in Chemistry from the University of Southampton.",
+  "workMode": "in-house",
+  "organisation": "Institute for Law and AI (LawAI)",
+  "capabilities": ["adoption", "operations"],
+  "availability": "limited",
+  "availabilityChecked": "2026-09-07",
+  "site": "https://law-ai.org/team/simon-jarvis/",
+  "contact": "https://law-ai.org/team/simon-jarvis/",
+  "photo": "simon-jarvis.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  }
+}
