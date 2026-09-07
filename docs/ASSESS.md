@@ -2,7 +2,7 @@
 
 `/assess/` is a ten-question self-assessment. A visitor rates seven first-person statements from 1 ("Not me") to 5 ("Very much me"), or answers "I do not know what this means". Each of those seven measures one **way of working** (a spoke on the chart). Three more are **connective** questions, answered "Yes", "Not sure" or "No" (encoded 5, 3 and 1), that shape the result without moving the chart. The result puts one next action first and keeps its chart, ties, unknowns, guide routes and detailed interpretation in a secondary section.
 
-Everything runs in the browser. There is no account, server storage or analytics. Each question has an optional context field. Its text stays in the current browser tab. Notes enter the downloaded JSON file only when the visitor selects that option.
+Everything runs in the browser. There is no account or server storage for answers. Vercel Web Analytics records anonymised page views, but it does not receive answers or context-field text. Each question has an optional context field. Its text stays in the current browser tab. Notes enter the downloaded JSON file only when the visitor selects that option.
 
 The result URL keeps `?s=` with seven spoke digits and `?c=` with three connective digits. Digit `0` means unknown. A new `r` value also preserves the selected answer labels, result date, assessment version and next action. Old links without `r` remain valid. The visitor can copy the result link or download the JSON file. The site does not promise email delivery.
 
