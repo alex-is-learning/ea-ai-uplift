@@ -258,15 +258,21 @@ export async function checkRender(projectRoot = root) {
         expression: `(() => {
           const links = [...document.querySelectorAll('main nav a')];
           const rects = links.map(link => link.getBoundingClientRect());
+          const robot = document.querySelector('.home-robot').getBoundingClientRect();
+          const robotStyle = getComputedStyle(document.querySelector('.home-robot'));
+          const homeCopy = document.querySelector('.home-copy').getBoundingClientRect();
+          const footer = document.querySelector('footer').getBoundingClientRect();
           return { height: document.documentElement.scrollHeight, viewport: innerHeight, destinations: links.length,
-            footerBottom: document.querySelector('footer').getBoundingClientRect().bottom,
+            footerTop: footer.top, footerBottom: footer.bottom, robotTop: robot.top, robotBottom: robot.bottom,
             lastLinkBottom: Math.max(...rects.map(r => r.bottom)),
-            clipped: rects.some(r => r.left < 0 || r.right > innerWidth || r.height < 44) };
+            clipped: rects.some(r => r.left < 0 || r.right > innerWidth || r.height < 44),
+            robotClipped: robot.left < homeCopy.left - 1 || robot.right > homeCopy.right + 1 || robot.height < 80 || robot.bottom > footer.top || robotStyle.overflow !== 'hidden' };
         })()`,
       } : {});
       if (isHome) {
         const value = result.value;
         if (value.destinations !== 5 || value.clipped) throw new Error(`home navigation is clipped or missing a destination at ${viewport.width}px`);
+        if (value.robotClipped) throw new Error(`home robot is clipped or overlaps the footer at ${viewport.width}x${viewport.height}: ${JSON.stringify(value)}`);
         if (viewport.width >= 1024 && (value.height > viewport.height + 1 || value.footerBottom > viewport.height + 1 || value.lastLinkBottom > viewport.height)) {
           throw new Error(`home needs scrolling or clips content at ${viewport.width}x${viewport.height}: ${JSON.stringify(value)}`);
         }

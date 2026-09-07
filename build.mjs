@@ -422,6 +422,23 @@ function indexPage() {
       <div class="home-copy">
         <h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>
         <p class="lede">Find people, ask for help, assess current practice, or use the published guidance.</p>
+        <svg class="home-robot" viewBox="0 0 330 190" aria-hidden="true" focusable="false">
+          <g class="robot-line">
+            <rect class="robot-fill" x="168" y="27" width="90" height="62" rx="18"/>
+            <path d="M213 27V13M206 8h14M188 90v15M239 90v15M183 105h61l14 57H169l14-57Z"/>
+            <path d="m179 116-31 17-23-15M247 116l25 18 23-13"/>
+            <path d="M183 162l-16 20M244 162l16 20"/>
+            <path d="M94 117c-10-8-16-20-16-33 0-24 19-39 43-39s43 15 43 39c0 13-6 25-16 33-6 5-9 10-9 17h-36c0-7-3-12-9-17Z"/>
+            <path d="M104 144h34M109 154h24M114 164h14"/>
+          </g>
+          <circle class="robot-eye-blue" cx="192" cy="57" r="7"/>
+          <circle class="robot-eye-orange" cx="234" cy="57" r="7"/>
+          <circle class="bulb-blue" cx="114" cy="85" r="16"/>
+          <circle class="bulb-orange" cx="132" cy="73" r="11"/>
+          <g class="signal-line">
+            <path d="M121 32V14M83 44 68 29M158 44l15-15"/>
+          </g>
+        </svg>
       </div>
       <nav class="route-board" aria-label="Choose where to go">
         <ul class="route-list">
