@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "romy-gelber",
+  "name": "Romy Gelber",
+  "headline": "Head of Policy and Research at Animal Policy International, leading its research programme",
+  "bio": "Romy Gelber is Head of Policy and Research at Animal Policy International, where she leads the organisation's research programme and builds the evidence base for animal welfare policy reform. She has a background in policy research across mental health and asylum policy, and previously designed and led community programmes that supported asylum seekers.",
+  "workMode": "in-house",
+  "organisation": "Animal Policy International",
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-07",
+  "site": "https://www.animalpolicyinternational.org/team/romy-gelber",
+  "contact": "https://www.animalpolicyinternational.org/team/romy-gelber",
+  "photo": "romy-gelber.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-07",
+    "policyVersion": "r0-v1"
+  }
+}
