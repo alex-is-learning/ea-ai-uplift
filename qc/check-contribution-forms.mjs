@@ -6,6 +6,11 @@ import { fileURLToPath } from 'node:url';
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const CASE_STUDY_URL = 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=case-study.yml';
 const SKILL_REPOSITORY_URL = 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=skill-repository.yml';
+const PUBLIC_FORM_URLS = {
+  askFormUrl: 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=ask.yml',
+  offerFormUrl: 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=offer.yml',
+  addYourselfFormUrl: 'https://github.com/alex-is-learning/ea-ai-uplift/issues/new?template=add-profile.yml',
+};
 const FORM_TYPES = new Set(['markdown', 'input', 'textarea', 'dropdown', 'checkboxes']);
 const TOP_LEVEL_KEYS = new Set(['name', 'description', 'title', 'labels', 'assignees', 'body']);
 const BODY_KEYS = new Set(['type', 'id', 'attributes', 'validations']);
@@ -143,7 +148,7 @@ function checkProcessForm(name, form) {
 
 function checkProfileForm(form, ids) {
   const headline = ids.get('headline');
-  if (!headline?.attributes.description.includes('70')) fail('add-profile.yml headline must match the 70-character Tally intake limit');
+  if (!headline?.attributes.description.includes('70')) fail('add-profile.yml headline must use the 70-character new-profile intake limit');
   const availability = ids.get('availability');
   const expected = ['available', 'peer-exchange', 'limited', 'unavailable', 'unknown'];
   if (availability?.type !== 'dropdown' || JSON.stringify(availability.attributes.options) !== JSON.stringify(expected)) fail('add-profile.yml availability must list all accepted values');
@@ -167,6 +172,9 @@ export function checkContributionForms(projectRoot = root) {
   const site = JSON.parse(fs.readFileSync(path.join(projectRoot, 'data', 'site.json'), 'utf8'));
   const contributionGuide = fs.readFileSync(path.join(projectRoot, 'CONTRIBUTING.md'), 'utf8');
   if (!contributionGuide.includes('2 to 70 characters') || !contributionGuide.includes('160-character limit')) fail('CONTRIBUTING.md must explain the new-profile intake limit and the stored-profile limit');
+  for (const [key, expected] of Object.entries(PUBLIC_FORM_URLS)) if (site[key] !== expected) fail(`data/site.json ${key} must use its checked public issue form`);
+  const publicContracts = ['CONTRIBUTING.md', 'docs/ASKS.md', 'docs/OFFERS.md', 'docs/PROFILES.md', 'lib/contribute.mjs'].map((file) => fs.readFileSync(path.join(projectRoot, file), 'utf8')).join('\n');
+  if (/tally\.so|Tally/u.test(publicContracts)) fail('public contribution contracts must not refer to unchecked Tally forms');
   if (site.caseStudyProposalUrl !== CASE_STUDY_URL) fail(`data/site.json caseStudyProposalUrl must be ${CASE_STUDY_URL}`);
   const forms = new Map();
   for (const name of names) {

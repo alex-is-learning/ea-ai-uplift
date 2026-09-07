@@ -362,7 +362,7 @@ function startPage() {
         </div>
         <div class="listed-cta">
           <p><a class="cta" href="${escAttr(site.addYourselfFormUrl)}">Get listed &rarr;</a></p>
-          <p class="cta-host">${esc(new URL(site.addYourselfFormUrl).host)} &middot; or <a href="https://github.com/alex-is-learning/ea-ai-uplift/blob/main/CONTRIBUTING.md#add-a-profile">through GitHub</a></p>
+          <p class="cta-host">${esc(new URL(site.addYourselfFormUrl).host)} &middot; <a href="https://github.com/alex-is-learning/ea-ai-uplift/blob/main/CONTRIBUTING.md#add-a-profile">read the contribution rules</a></p>
         </div>
       </div>
     </div>

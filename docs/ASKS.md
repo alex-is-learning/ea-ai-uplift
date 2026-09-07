@@ -33,7 +33,7 @@ An ask whose `expires` date is before the build date is not rendered. The build 
 
 Two routes:
 
-1. **The Tally form.** `data/site.json` holds `askFormUrl`, which identifies the "Post an ask (Help wanted)" form. The form requires a budget label. Choose `unstated` if you do not want to state one. The response goes to the maintainer and does not create a public GitHub issue. A maintainer writes the JSON file and asks you to approve the final text before publication.
+1. **The public issue form.** `data/site.json` holds `askFormUrl`, which identifies the "Post an ask (Help wanted)" issue form. The form requires a budget label. Choose `unstated` if you do not want to state one. The issue and replies are public. A maintainer writes the JSON file and asks you to approve the final text before publication.
 2. **A pull request** that adds `data/asks/<slug>.json` with the fields above. Run `node build.mjs` before opening it.
 
 The pull request is public when it opens. A published ask is public on the site and in this repository. Do not include private contact details, colleagues' names, or anything you would not put on a public page.
