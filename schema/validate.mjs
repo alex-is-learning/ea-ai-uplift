@@ -129,6 +129,12 @@ export function validateProfile(profile, fileName = 'profile.json') {
   if (['in-house', 'both'].includes(profile.workMode) && (typeof profile.organisation !== 'string' || !profile.organisation.trim())) fail(errors, `${fileName}: organisation is required for in-house work`);
   if (!Array.isArray(profile.capabilities) || profile.capabilities.length < profileSchema.properties.capabilities.minItems || profile.capabilities.length > profileSchema.properties.capabilities.maxItems || new Set(profile.capabilities).size !== profile.capabilities.length || profile.capabilities.some((item) => !capabilityValues.has(item))) fail(errors, `${fileName}: capabilities must use the controlled list without duplicates`);
   if (!['available', 'peer-exchange', 'limited', 'unavailable', 'unknown'].includes(profile.availability)) fail(errors, `${fileName}: availability is invalid`);
+  if ('availabilityNote' in profile && profile.availabilityNote !== null) {
+    const note = profile.availabilityNote;
+    if (unsafeText(note) || !note.trim() || note.length < 2 || note.length > profileSchema.properties.availabilityNote.maxLength) {
+      fail(errors, `${fileName}: availabilityNote contains unsafe or invalid text`);
+    }
+  }
   if (!isDate(profile.availabilityChecked)) fail(errors, `${fileName}: availabilityChecked must be an ISO date`);
   if (isDate(profile.availabilityChecked) && isFutureDate(profile.availabilityChecked)) fail(errors, `${fileName}: availabilityChecked must not be in the future`);
   if (profile.site !== null) validateHttpsUrl(profile.site, 'site', errors);

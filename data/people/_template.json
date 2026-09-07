@@ -9,6 +9,7 @@
   "organisation": null,
   "capabilities": ["adoption"],
   "availability": "unknown",
+  "availabilityNote": null,
   "availabilityChecked": "2026-09-01",
   "site": null,
   "contact": "https://example.org/contact",

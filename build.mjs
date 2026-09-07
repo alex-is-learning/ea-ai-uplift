@@ -527,7 +527,7 @@ function availabilityLine(p) {
     unavailable: 'Not taking work',
     unknown: 'Availability not stated',
   };
-  const text = labels[p.availability];
+  const text = p.availabilityNote ? esc(p.availabilityNote) : labels[p.availability];
   return p.availability === 'available' ? `<span class="avail-yes">${text}</span>` : text;
 }
 
