@@ -53,6 +53,17 @@ Do not commit `dist/`. It is reproducible build output. The pull-request workflo
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) before changing source or content. The detailed moderation rules are in [docs/LISTING-POLICY.md](docs/LISTING-POLICY.md). Publication is a manual maintainer action after a reviewed pull request; continuous integration never deploys the site.
 
+## Publish production
+
+Build and publish only the generated `dist/` directory. A repository-root deployment exposes source data and omits generated profile routes.
+
+```sh
+node build.mjs
+vercel deploy dist --prod --yes --project ea-ai-uplift
+```
+
+After publication, check one profile route. Confirm that `/data/people/<slug>.json`, `/schema/profile.schema.json`, and `/CLAUDE.md` return 404.
+
 ## Licence
 
 The software is available under the [MIT License](LICENSE). Original guides and case studies that are marked as licensed are available under [CC BY 4.0](LICENSE-CONTENT). Directory profiles, biographies, names, contact details, and photographs are excluded unless their contributor separately grants a licence. See [NOTICE.md](NOTICE.md).
