@@ -1,6 +1,6 @@
 {
   "schemaVersion": "r0-v1",
-  "publicationBasis": "public-sources-pending-review",
+  "publicationBasis": "person-approved",
   "slug": "alejo-acelas",
   "name": "Alejo Acelas",
   "headline": "AI uplift practitioner and independent contractor at 80,000 Hours",
@@ -18,18 +18,18 @@
   "contact": "https://calendly.com/alejoacelas",
   "photo": "alejo-acelas.jpg",
   "listingConsent": {
-    "granted": false,
-    "date": "2026-09-07",
-    "policyVersion": "r0-v2"
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
   },
   "copyApproved": {
-    "granted": false,
-    "date": "2026-09-07",
-    "policyVersion": "r0-v2"
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
   },
   "photoApproved": {
-    "granted": false,
-    "date": "2026-09-07",
-    "policyVersion": "r0-v2"
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
   }
 }
