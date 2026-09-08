@@ -6,6 +6,8 @@
   "bio": "His public EA Forum profile states, in the first person, that he is AI Enablement Manager at Epoch AI, and that he recently moved back to his native Buenos Aires after living nomadically for many years. The profile lists his location as Buenos Aires, Argentina, and links to his personal site, whose page names him Pablo Stafforini.",
   "workMode": "in-house",
   "organisation": "Epoch AI",
+  "causeAreas": ["research-data"],
+  "directorySources": ["https://epoch.ai/about"],
   "capabilities": [],
   "availability": "unknown",
   "availabilityChecked": "2026-09-05",

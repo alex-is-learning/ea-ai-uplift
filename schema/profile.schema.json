@@ -192,6 +192,28 @@
       ],
       "maxLength": 140
     },
+    "causeAreas": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": { "enum": ["ea-community-building", "animal-welfare", "global-health-development", "ai-safety-governance", "climate", "philanthropy-grantmaking", "research-data", "cross-cause-support", "other"] }
+    },
+    "networks": {
+      "type": "array",
+      "maxItems": 1,
+      "uniqueItems": true,
+      "items": { "enum": ["aim-charity"] }
+    },
+    "organisationRelationship": { "enum": ["contractor"] },
+    "conversationContact": { "type": "boolean" },
+    "directorySources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 12, "maxLength": 2048 }
+    },
     "capabilities": {
       "type": "array",
       "minItems": 0,

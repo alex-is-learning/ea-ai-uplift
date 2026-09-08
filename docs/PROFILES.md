@@ -6,11 +6,23 @@ Use the public Add yourself issue form for a maintainer-assisted submission, or 
 
 ## Availability
 
+`conversationContact` is an optional boolean for a public route to discuss AI uplift. It does not mean spare capacity, free advice, or availability for paid work. Keep `availability` unchanged unless the person states a change. The directory highlights independent conversation contacts separately from organisation affiliations.
+
 Use `available` only when the person takes work. Use `peer-exchange` when the person offers peer exchange without offering work.
 
 Use `limited` for limited capacity, `unavailable` when the person does not take work, and `unknown` when the person did not state availability.
 
 Use the optional `availabilityNote` for person-approved wording that adds useful detail. Use `null` when the standard availability label is sufficient.
+
+## Directory grouping
+
+`causeAreas` is an optional list of one to four controlled area IDs. These are editorial navigation groups, not claims of endorsement or exclusive allegiance. Some groups describe a function, such as research or grantmaking. A person can appear in several relevant groups, while the directory counts unique people. Missing values fall into `other` so a new contribution never disappears.
+
+The controlled labels and source rationale are in [Directory groups](DIRECTORY.md). `directorySources` records one to six direct public HTTPS sources for a classification or conversation route. Builds validate these URLs without fetching them.
+
+`networks` optionally contains `aim-charity` for an organisation incubated by AIM's Charity Entrepreneurship programme. It does not mean every connection to AIM. Do not infer membership from someone knowing a founder or attending an event.
+
+For an independent practitioner who also holds a current contract, use `workMode: both`, the organisation name, and `organisationRelationship: contractor`. This displays an independent contractor label rather than an employee label. The person can appear within their organisation and within cross-cause independent practice.
 
 ## Optional links
 

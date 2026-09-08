@@ -7,6 +7,8 @@
   "bio": "JP Addison is an AI Product Engineer at 80,000 Hours. He builds product for AI uplift in careers, including the 80,000 Hours AI advisor. The advisor gives people personalised career support, helps them explore opportunities, and can help them prepare an application for human advising.",
   "workMode": "in-house",
   "organisation": "80,000 Hours",
+  "causeAreas": ["ea-community-building"],
+  "directorySources": ["https://80000hours.org/about/"],
   "capabilities": [],
   "availability": "unknown",
   "availabilityChecked": "2026-09-08",

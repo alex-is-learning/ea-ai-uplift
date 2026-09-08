@@ -55,6 +55,12 @@ function cardFor(html, slug) {
   return html.slice(start, end + 5);
 }
 
+function directoryPersonFor(html, slug) {
+  const entry = html.match(new RegExp(`<article\\b[^>]*data-person-slug="${slug}"[^>]*>[\\s\\S]*?</article>`, 'u'))?.[0];
+  if (!entry) throw new Error(`${slug}: directory is missing its person row`);
+  return entry;
+}
+
 async function expectedSectionPages(projectRoot, people) {
   const registry = await import(pathToFileURL(path.join(projectRoot, 'lib', 'sections.mjs')).href);
   const { loadSiteConfig } = await import(pathToFileURL(path.join(projectRoot, 'lib', 'data.mjs')).href);
@@ -141,7 +147,7 @@ export async function checkOutput(projectRoot = root) {
   const asks = fs.readFileSync(path.join(dist, 'asks', 'index.html'), 'utf8');
   const caseStudies = fs.readFileSync(path.join(dist, 'case-studies', 'index.html'), 'utf8');
   const directory = fs.readFileSync(path.join(dist, 'people', 'index.html'), 'utf8');
-  if (!directory.includes('href="../offers/"') || directory.indexOf('href="../offers/"') > directory.indexOf('<div class="people-groups">')) throw new Error('people no longer exposes Offers');
+  if (!directory.includes('href="../offers/"') || directory.indexOf('href="../offers/"') > directory.indexOf('id="directory-groups"')) throw new Error('people no longer exposes Offers');
   for (const route of ['start', 'learn', 'hire']) {
     if (fs.existsSync(path.join(dist, route))) throw new Error(`${route} must stay outside generated output`);
   }
@@ -190,25 +196,24 @@ export async function checkOutput(projectRoot = root) {
     for (const url of [person.site, person.contact, ...(person.links || []).map((link) => link.url)].filter(Boolean)) {
       if (!page.includes(`href="${escAttr(url)}"`)) throw new Error(`${person.slug}: profile is missing its approved link ${url}`);
     }
-    const cards = [cardFor(directory, person.slug), cardFor(individualAssessment, person.slug)];
+    const cards = [directoryPersonFor(directory, person.slug), cardFor(individualAssessment, person.slug)];
     if (person.publicationBasis === 'public-sources-pending-review') {
       if (cards.some((card) => !card.includes('Public-source draft')) || !page.includes('Public-source draft · profile text not yet approved by this person')) {
         throw new Error(`${person.slug}: public-source draft status is missing from a card or profile page`);
       }
     }
     for (const expected of affiliationTags(person)) {
-      if (cards.some((card) => !card.includes(`>${expected}<`)) || !page.includes(`>${expected}<`)) {
+      if (cards.some((card) => !card.includes(`>${escAttr(expected)}<`)) || !page.includes(`>${escAttr(expected)}<`)) {
         throw new Error(`${person.slug}: affiliation label is missing from its generated card or profile page`);
       }
     }
   }
-  const groupLabels = { 'in-house': 'In-house at organisations', both: 'In-house + independent', independent: 'Independent practitioners' };
-  for (const mode of new Set(people.map((person) => person.workMode))) {
-    if (!directory.includes(groupLabels[mode])) throw new Error(`people page does not show the ${mode} work-mode group`);
+  for (const area of new Set(people.flatMap(person => person.causeAreas ?? ['other']))) {
+    if (!directory.includes(`data-cause="${area}"`)) throw new Error(`people page does not show the ${area} area group`);
   }
   if (people.length === 1) {
     const requiredCopy = [
-      'One person doing this work.',
+      '1 person',
     ];
     for (const copy of requiredCopy) if (!directory.includes(copy)) throw new Error(`one-profile directory copy is missing: ${copy}`);
     for (const faulty of ['lists one people', 'More people should be doing this than one']) {
