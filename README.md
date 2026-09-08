@@ -22,6 +22,8 @@ Offers appears in the section-page header navigation and on the people directory
 
 Both assessments run in the browser. Their result links and downloaded JSON files preserve scores, answer labels, date, version and next action. Optional notes enter only a selected download. The site does not email, collect or combine assessment results.
 
+The People directory groups small colour portraits by area and organisation. Search, the AIM charities filter, and contact preferences run locally in the browser. Native disclosure groups also work without JavaScript. Conversation contact routes do not imply paid-work availability. See [directory classifications and sources](docs/DIRECTORY.md).
+
 `build.mjs` generates all pages. `lib/page.mjs` owns the shared navigation, page shell and styles. The output checks cover destination pages, same-site link fragments, profile affiliations and the compact home layout.
 
 ## Add a profile

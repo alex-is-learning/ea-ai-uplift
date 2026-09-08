@@ -57,6 +57,22 @@ body:
       description: List the controlled capability values you want reviewed.
     validations:
       required: true
+  - type: input
+    id: cause_areas
+    attributes:
+      label: Areas of work
+      description: Optional. Name your cause areas or support function. A maintainer will suggest directory groups for your review.
+  - type: input
+    id: network
+    attributes:
+      label: Network or programme
+      description: Optional. For an AIM charity, state the Charity Entrepreneurship incubation connection and a public source.
+  - type: checkboxes
+    id: conversation_contact
+    attributes:
+      label: Conversation contact
+      options:
+        - label: My public contact route can be listed for conversations about AI uplift, separately from paid-work availability.
   - type: dropdown
     id: availability
     attributes:

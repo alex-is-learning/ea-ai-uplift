@@ -7,6 +7,8 @@
   "bio": "Eli co-founded the AI Futures Project, where he is Research Lead. He specialises in forecasting AI capabilities and is a lead author on the AI Futures Model. He also co-founded and advises Sage, which develops the AI Village. He previously worked as a software engineer at Ought on Elicit, an AI-powered research assistant, and co-created TextAttack, a Python framework for adversarial examples in text, as well as the RAFT benchmark. He co-leads Samotsvety Forecasting and ranks second on the RAND Forecasting Initiative's all-time leaderboard. He writes that he works to improve outcomes from superhuman AGI because he thinks it is humanity's most important problem.",
   "workMode": "in-house",
   "organisation": "AI Futures Project",
+  "causeAreas": ["ai-safety-governance"],
+  "directorySources": ["https://www.aifutures.org/"],
   "capabilities": [],
   "availability": "unknown",
   "availabilityChecked": "2026-09-07",

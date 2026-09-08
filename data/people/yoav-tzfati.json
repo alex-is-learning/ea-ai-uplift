@@ -20,6 +20,8 @@
   ],
   "workMode": "independent",
   "organisation": null,
+  "causeAreas": ["ai-safety-governance"],
+  "directorySources": ["https://www.alignment-hive.com/"],
   "capabilities": [],
   "availability": "available",
   "availabilityChecked": "2026-09-07",

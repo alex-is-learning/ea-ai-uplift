@@ -2,12 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assertValidProject } from './schema/validate.mjs';
-import { affiliationTags, esc, escAttr, countWord, NAME_RULE } from './lib/shared.mjs';
+import { affiliationTags, esc, escAttr, NAME_RULE } from './lib/shared.mjs';
 import { REG_CROSS, renderPage } from './lib/page.mjs';
 import { blocksCss } from './lib/blocks.mjs';
 import { renderProfileLinks } from './lib/profile-links.mjs';
 import { loadSiteConfig } from './lib/data.mjs';
 import { sections } from './lib/sections.mjs';
+import { peopleDirectory, peopleDirectoryCss } from './lib/people-directory.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const outDir = path.join(scriptDir, 'dist');
@@ -52,86 +53,8 @@ function ctx(name, prefix = '') {
 }
 
 
-// ---------------------------------------------------------------- people grid
-function frameInner(p, prefix) {
-  if (p.photo) {
-    const retina = `${p.slug}-960.jpg`;
-    return (
-      `<img class="shot" src="${escAttr(prefix)}img/${escAttr(p.photo)}" srcset="${escAttr(prefix)}img/${escAttr(retina)} 2x" ` +
-      `alt="${escAttr(p.name)}" width="480" height="480" loading="lazy">` +
-      `<span class="wash" aria-hidden="true"></span>`
-    );
-  }
-  return (
-    `<span class="photo-pending">${REG_CROSS}` +
-    `<span class="hatch"><span>Portrait not supplied</span></span>` +
-    `</span>`
-  );
-}
-
-function card(p, prefix = '') {
-  const href = `${prefix}people/${p.slug}/`;
-  const tab =
-    p.availability === 'available'
-      ? `\n          <span class="avail-tab">Taking work now</span>`
-      : '';
-  return `        <li class="p-card">
-          <span class="p-slot">
-            <a class="portrait-frame" href="${escAttr(href)}" aria-label="${escAttr(p.name)} — profile">${frameInner(p, prefix)}</a>${tab}
-          </span>
-          <h4 class="p-name"><a href="${escAttr(href)}">${esc(p.name)}</a></h4>
-          ${NAME_RULE}
-          ${affiliationBadges(p)}
-          ${p.publicationBasis === 'public-sources-pending-review' ? '<p class="draft-note">Public-source draft</p>' : ''}
-          <p class="p-head">${esc(p.headline)}</p>
-        </li>`;
-}
-
 function affiliationBadges(p) {
   return `<p class="p-tags" aria-label="Work affiliation">${affiliationTags(p).map((tag) => `<span>${esc(tag)}</span>`).join('')}</p>`;
-}
-
-function peopleSection(prefix = '') {
-  const peopleIntro = people.length === 1
-    ? 'One person doing this work. Open the profile for their work context, availability and contact.'
-    : `${countWord(people.length, true)} people doing this work in-house, independently, or both. Open a profile for their work context, availability and contact.`;
-  const labels = {
-    'in-house': 'In-house at organisations',
-    both: 'In-house + independent',
-    independent: 'Independent practitioners',
-  };
-  const grouped = ['in-house', 'both', 'independent']
-    .map((workMode) => ({
-      workMode,
-      label: labels[workMode],
-      entries: people.filter((person) => person.workMode === workMode).sort((a, b) => {
-        const organisation = (a.organisation || '') === (b.organisation || '') ? 0 : (a.organisation || '') < (b.organisation || '') ? -1 : 1;
-        return organisation || byFirstName(a, b);
-      }),
-    }))
-    .filter((group) => group.entries.length);
-  return `  <!-- 02 people -->
-  <section class="band" id="people" aria-labelledby="people-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="legend">The people</p>
-        <h1 id="people-title">People doing this work</h1>
-        <p class="intro">${peopleIntro}</p>
-      </div>
-      <p class="soft-links">
-        <a href="${escAttr(prefix)}offers/">Offers</a>
-      </p>
-      <div class="people-groups">
-${grouped.map((group) => `        <div class="people-group" aria-labelledby="people-${group.workMode}">
-          <h3 class="people-group-title" id="people-${group.workMode}">${esc(group.label)} <span>${group.entries.length}</span></h3>
-          <ul class="people-grid">
-${group.entries.map((person) => card(person, prefix)).join('\n')}
-          </ul>
-        </div>`).join('\n')}
-      </div>
-      <p class="grid-cap"><span>Grouped by work mode. In-house entries are ordered by organisation.</span><a href="${escAttr(site.addYourselfFormUrl)}">Do this work? Get listed &rarr;</a></p>
-    </div>
-  </section>`;
 }
 
 // ---------------------------------------------------------------- index page
@@ -507,8 +430,8 @@ function peoplePage() {
     description: 'A directory of in-house and independent people who help others and organisations use AI in effective altruism.',
     canonical: 'https://eaaiuplift.com/people/',
     prefix: '../',
-    body: peopleSection('../'),
-    css: sectionCss,
+    body: `${peopleDirectory(people, site)}\n<script>${fs.readFileSync(path.join(scriptDir, 'lib', 'people-directory-client.js'), 'utf8')}</script>`,
+    css: `${sectionCss}\n${peopleDirectoryCss}`,
   });
 }
 
@@ -573,6 +496,7 @@ function personPage(p) {
           ${p.publicationBasis === 'public-sources-pending-review' ? '<p class="draft-note">Public-source draft · profile text not yet approved by this person</p>' : ''}
           <p class="person-head">${headline}</p>
           <div class="profile-facts">
+            ${p.conversationContact ? `<p class="pmeta"><span class="label">Conversation</span><a href="${escAttr(p.contact)}" rel="noopener">Arrange a conversation about AI uplift</a></p>` : ''}
             ${p.workLocation ? `<p class="pmeta"><span class="label">Work mode</span>${esc(p.workLocation)}</p>` : ''}
             <p class="pmeta"><span class="label">Availability</span>${availabilityLine(p)}${p.availabilityDetail ? `<span class="fact-detail">${esc(p.availabilityDetail)}</span>` : ''}</p>
           </div>${

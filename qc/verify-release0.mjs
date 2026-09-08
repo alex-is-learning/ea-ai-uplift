@@ -10,6 +10,7 @@ import { checkContributionForms } from './check-contribution-forms.mjs';
 import { checkHelpContribution } from './check-help-contribution.mjs';
 import { checkLearningGuides } from './check-learning-guides.mjs';
 import { checkOutput } from './check-output.mjs';
+import { checkDirectory } from './check-directory.mjs';
 import { checkPublicFiles } from './check-public-files.mjs';
 import { checkRender } from './check-render.mjs';
 import { checkSections } from './check-sections.mjs';
@@ -253,7 +254,7 @@ async function testBuildLifecycle() {
     writeJson(path.join(project, 'data', 'people', `${profile.slug}.json`), profile);
     runBuild(project);
     const pluralHome = fs.readFileSync(path.join(project, 'dist', 'people', 'index.html'), 'utf8');
-    assert(pluralHome.includes('people doing this work in-house, independently, or both.'), 'plural directory copy does not describe both work modes');
+    assert(pluralHome.includes('People doing this work') && pluralHome.includes(`data-person-slug="${profile.slug}"`), 'directory does not include the added profile');
     assert(!pluralHome.includes('One person doing this work.'), 'plural directory copy still carries the singular sentence');
     const first = outputDigest(project);
     runBuild(project);
@@ -421,6 +422,8 @@ async function main() {
   const helpContribution = checkHelpContribution(root);
   const learningGuides = await checkLearningGuides(root);
   const assessOrg = await checkAssessOrg(root);
+  const directory = await checkDirectory(root);
+  console.log(`directory: ${directory.validationCases} metadata rejection cases and ${directory.viewports} browser journeys pass`);
   const render = await checkRender(root);
   console.log(`verify-release0: ${fixtureNames.length} profile fixtures, ${sectionFixtures} section fixtures, ${contributionForms.forms} contribution forms with ${contributionFormFailures} rejection cases, ${offerCases} offer rule cases, public allow-list boundary, deterministic add/remove lifecycle, ${output.htmlFiles} generated pages, sections (asks ${counts.asks}, offers ${counts.offers}, guides ${counts.guides}), help and contribution (${helpContribution.pages} pages, ${helpContribution.contributionRoutes} routes), learning guides (${learningGuides.results.length} renders), assessments (${assessOrg.resultCases} result cases, ${assessOrg.interactionCases} interaction cases), and ${render.results.length} local Chromium renders pass`);
 }

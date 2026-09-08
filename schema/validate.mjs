@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { CAUSE_AREAS } from '../lib/directory-groups.mjs';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const profileSchema = JSON.parse(fs.readFileSync(path.join(scriptDir, 'profile.schema.json'), 'utf8'));
@@ -144,6 +145,28 @@ export function validateProfile(profile, fileName = 'profile.json') {
   if (typeof profile.bio === 'string' && profile.bio.length < 20) fail(errors, `${fileName}: bio is too short`);
   if ('bioSections' in profile) validateBioSections(profile.bioSections, `${fileName}: bioSections`, errors);
   if (!['in-house', 'independent', 'both'].includes(profile.workMode)) fail(errors, `${fileName}: workMode is invalid`);
+  for (const field of ['causeAreas', 'networks']) {
+    if (!(field in profile)) continue;
+    const rule = profileSchema.properties[field];
+    const value = profile[field];
+    if (!Array.isArray(value) || value.length < (rule.minItems ?? 0) || value.length > rule.maxItems || new Set(value).size !== value.length || value.some(item => !rule.items.enum.includes(item))) {
+      fail(errors, `${fileName}: ${field} must use the controlled list without duplicates`);
+    }
+  }
+  if (Array.isArray(profile.causeAreas) && profile.causeAreas.some(area => !CAUSE_AREAS.some(item => item.id === area))) fail(errors, `${fileName}: causeAreas has no display label`);
+  if ('organisationRelationship' in profile && (profile.organisationRelationship !== 'contractor' || profile.workMode !== 'both' || !profile.organisation)) {
+    fail(errors, `${fileName}: organisationRelationship requires contractor with both work modes and an organisation`);
+  }
+  if ('conversationContact' in profile && typeof profile.conversationContact !== 'boolean') fail(errors, `${fileName}: conversationContact must be a boolean`);
+  if (Array.isArray(profile.networks) && profile.networks.includes('aim-charity') && !profile.organisation) fail(errors, `${fileName}: aim-charity requires an organisation`);
+  if ('directorySources' in profile) {
+    const sources = profile.directorySources;
+    if (!Array.isArray(sources) || sources.length < 1 || sources.length > 6 || new Set(sources).size !== sources.length) {
+      fail(errors, `${fileName}: directorySources must contain 1 to 6 unique public links`);
+    } else {
+      for (const url of sources) validateHttpsUrl(url, `${fileName}: directorySources`, errors);
+    }
+  }
   if (profile.workMode === 'independent' && profile.organisation !== null) fail(errors, `${fileName}: organisation must be null for independent work`);
   if (['in-house', 'both'].includes(profile.workMode) && (typeof profile.organisation !== 'string' || !profile.organisation.trim())) fail(errors, `${fileName}: organisation is required for in-house work`);
   if (!Array.isArray(profile.capabilities) || profile.capabilities.length < profileSchema.properties.capabilities.minItems || profile.capabilities.length > profileSchema.properties.capabilities.maxItems || new Set(profile.capabilities).size !== profile.capabilities.length || profile.capabilities.some((item) => !capabilityValues.has(item))) fail(errors, `${fileName}: capabilities must use the controlled list without duplicates`);
