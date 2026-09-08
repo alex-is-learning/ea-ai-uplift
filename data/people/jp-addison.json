@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "jp-addison",
+  "name": "JP Addison",
+  "headline": "AI Product Engineer at 80,000 Hours, building AI uplift for careers",
+  "bio": "JP Addison is an AI Product Engineer at 80,000 Hours. He builds product for AI uplift in careers, including the 80,000 Hours AI advisor. The advisor gives people personalised career support, helps them explore opportunities, and can help them prepare an application for human advising.",
+  "workMode": "in-house",
+  "organisation": "80,000 Hours",
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-08",
+  "site": "https://jpaddison.net/",
+  "contact": "https://forum.effectivealtruism.org/users/jpaddison",
+  "links": [
+    {
+      "label": "AI uplift for careers",
+      "url": "https://forum.effectivealtruism.org/posts/n8hatzAuoicJxJP4q/ai-uplift-for-careers-free-80-000-hours-career-advising"
+    }
+  ],
+  "photo": "jp-addison.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  }
+}
