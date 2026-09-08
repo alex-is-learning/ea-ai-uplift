@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "matt-beer",
+  "name": "Matt Beer",
+  "headline": "Director of Operations at Lead Research for Action, a nonprofit focused on lead exposure research",
+  "bio": "Matt Beer is the Director of Operations at Lead Research for Action (LeRA). Matt was recruited in mid-2026 to put in place processes and structures to help LeRA to scale. His responsibilities include governance, communications, finance, HR, and technology. Matt founded Opal Health through the Charity Entrepreneurship program, was formerly a Senior Civil Servant in the UK running major multi-million-pound public service interventions, and founded an education startup that he scaled to a team of 20 reaching over 1.5 million young people. He has significant experience managing and expanding teams while delivering effective programs.",
+  "workMode": "in-house",
+  "organisation": "Lead Research for Action",
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-08",
+  "site": "https://www.leadresearch.org/team",
+  "contact": "https://www.leadresearch.org/team",
+  "photo": "matt-beer.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  }
+}
