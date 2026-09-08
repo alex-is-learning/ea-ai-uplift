@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "luke-willey",
+  "name": "Luke Willey",
+  "headline": "IT Lead at Coefficient Giving, using automation and AI to improve operations",
+  "bio": "Luke Willey is IT Lead at Coefficient Giving. He leads IT direction, vendor coordination and operational improvements, including work with Python, data, automation and AI tools. Before Coefficient Giving, he led IT and automation work at The WorkSmart Group.",
+  "workMode": "in-house",
+  "organisation": "Coefficient Giving",
+  "causeAreas": ["philanthropy-grantmaking"],
+  "directorySources": [
+    "https://www.lukewilley.com/",
+    "https://coefficientgiving.org/team/luke-willey/"
+  ],
+  "capabilities": ["automation", "operations", "workflow-design"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-08",
+  "site": "https://www.lukewilley.com/",
+  "contact": "https://www.linkedin.com/in/luke-willey",
+  "links": [
+    {
+      "label": "Coefficient Giving profile",
+      "url": "https://coefficientgiving.org/team/luke-willey/"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/hansolo580"
+    }
+  ],
+  "photo": "luke-willey.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-08",
+    "policyVersion": "r0-v1"
+  }
+}
