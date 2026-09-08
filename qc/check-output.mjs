@@ -118,11 +118,11 @@ export async function checkOutput(projectRoot = root) {
     }
     const footer = html.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/u)?.[1] || '';
     const footerText = footer.replace(/<[^>]+>/gu, ' ').replace(/\s+/gu, ' ').trim();
-    if (footerText !== 'Maintained by Alexander Large · GitHub' || /<nav\b/u.test(footer)) throw new Error(`${file}: footer must contain the maintainer credit and GitHub link`);
+    if (footerText !== 'Curated and maintained by Alexander Large · Open source on GitHub · Contributions welcome' || /<nav\b/u.test(footer)) throw new Error(`${file}: footer must contain the curator credit, repository link and contribution invitation`);
     const footerLinks = [...footer.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/gu)].map((match) => [match[1], match[2]]);
     if (JSON.stringify(footerLinks) !== JSON.stringify([
       ['https://alexanderlarge.com', 'Alexander Large'],
-      ['https://github.com/alex-is-learning/ea-ai-uplift', 'GitHub'],
+      ['https://github.com/alex-is-learning/ea-ai-uplift', 'Open source on GitHub'],
     ])) throw new Error(`${file}: footer links do not match the maintainer website and site repository`);
     if (file !== path.join(dist, 'index.html')) {
       const header = html.match(/<header\b[^>]*>([\s\S]*?)<\/header>/u)?.[1] || '';
