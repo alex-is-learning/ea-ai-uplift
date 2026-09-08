@@ -42,6 +42,8 @@ export async function checkDirectory(projectRoot = root) {
     aim: people.filter(person => person.networks?.includes('aim-charity')).map(person => person.slug).sort(),
     conversation: people.filter(person => person.conversationContact || person.availability === 'peer-exchange').map(person => person.slug).sort(),
     paid: people.filter(person => person.availability === 'available').map(person => person.slug).sort(),
+    independent: people.filter(person => person.workMode !== 'in-house').map(person => person.slug).sort(),
+    independentQuery: people.find(person => person.slug === 'yoav-tzfati')?.name ?? seed.name,
     querySlug: seed.slug,
     query: seed.name,
   };
@@ -56,6 +58,13 @@ export async function checkDirectory(projectRoot = root) {
     const contact = document.querySelector('#directory-contact');
     const change = (element, value, event = 'change') => { element.value = value; element.dispatchEvent(new Event(event, { bubbles: true })); };
     check(equal(visiblePeople(), expected.slugs), 'All profiles are accessible');
+    const independentGroup = document.querySelector('#directory-groups > [data-independent-group]');
+    const independentPeople = [...new Set([...independentGroup.querySelectorAll('[data-person-slug]')].map(row => row.dataset.personSlug))].sort();
+    check(equal(independentPeople, expected.independent), 'Parent independent section includes every independent practitioner');
+    independentGroup.open = false;
+    change(search, expected.independentQuery, 'input');
+    check(independentGroup.open, 'Search reveals the parent independent section');
+    document.querySelector('#directory-reset').click();
     check(!search.closest('[data-directory-controls]').hidden, 'Progressive controls appear');
     aim.checked = true; aim.dispatchEvent(new Event('change'));
     check(equal(visiblePeople(), expected.aim), 'AIM filter results');

@@ -1,6 +1,6 @@
 # Directory groups
 
-The People page uses the site's B1 print style: paper, cobalt rules, orange accents and small colour portraits. Area sections contain organisations and independent practitioners. Organisation sections contain profiles. Native disclosure controls work without JavaScript. Search, network and contact filters progressively enhance the complete HTML.
+The People page uses the site's B1 print style: paper, cobalt rules, orange accents and small colour portraits. Area sections contain organisations and independent practitioners. A parent-level Independent practitioners section repeats every independent profile in one place. Organisation sections contain profiles. Native disclosure controls work without JavaScript. Search, network and contact filters progressively enhance the complete HTML.
 
 These are editorial navigation groups based on public work. They are neither exhaustive nor mutually exclusive. An organisation's function and an individual's specific work can differ. The directory labels this navigation “Browse by area”. Total counts deduplicate people and organisations.
 
