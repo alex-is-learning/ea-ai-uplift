@@ -132,6 +132,10 @@ export async function checkOutput(projectRoot = root) {
   if (/field guide/iu.test(home)) throw new Error('home still claims to be a field guide');
   if (!home.includes('<h1 id="page-title">AI uplift in the effective altruist ecosystem</h1>')) throw new Error('home heading does not match the ecosystem wording');
   if (!home.includes('<svg class="home-robot"') || !home.includes('class="bulb-orange"')) throw new Error('home is missing the robot and lightbulb illustration');
+  const homeHead = home.match(/<head>([\s\S]*?)<\/head>/u)?.[1] || '';
+  const prefetchedRoutes = [...homeHead.matchAll(/<link rel="prefetch" href="([^"]+)">/gu)].map((match) => match[1]);
+  const expectedPrefetchedRoutes = ['people/', 'asks/', 'assess/', 'guides/', 'case-studies/'];
+  if (JSON.stringify(prefetchedRoutes) !== JSON.stringify(expectedPrefetchedRoutes)) throw new Error('home must prefetch each main destination once and in route order');
   const guides = fs.readFileSync(path.join(dist, 'guides', 'index.html'), 'utf8');
   const skills = fs.readFileSync(path.join(dist, 'guides', 'skills-and-plugins', 'index.html'), 'utf8');
   const asks = fs.readFileSync(path.join(dist, 'asks', 'index.html'), 'utf8');

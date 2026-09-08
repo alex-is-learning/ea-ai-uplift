@@ -402,6 +402,9 @@ function indexPage() {
     ['guides', 'guides/', 'Guides', 'Complete a 15-minute first task or follow the practitioner pathway.'],
     ['case-studies', 'case-studies/', 'Case studies', 'See the available evidence and propose a public case.'],
   ];
+  const routePrefetches = routes
+    .map(([, href]) => `<link rel="prefetch" href="${escAttr(href)}">`)
+    .join('\n');
   const items = routes.map(([id, href, title, description]) => `        <li id="${id}">
           <a class="route-link" href="${href}">
             <span><span class="route-title">${title}</span><span class="route-desc">${description}</span></span>
@@ -495,7 +498,7 @@ ${legacy}
     addEventListener('hashchange',followLegacyHash);
     followLegacyHash();
   </script>`;
-  return renderPage({ title: INDEX_TITLE, description: INDEX_DESC, canonical: 'https://eaaiuplift.com/', prefix: '', body, css: sectionCss, home: true });
+  return renderPage({ title: INDEX_TITLE, description: INDEX_DESC, canonical: 'https://eaaiuplift.com/', prefix: '', body, css: sectionCss, home: true, extraHead: routePrefetches });
 }
 
 function peoplePage() {
