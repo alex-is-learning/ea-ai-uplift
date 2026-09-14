@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "ronak-mehta",
+  "name": "Ronak Mehta",
+  "headline": "Building research automation and uplift tooling for AI safety and advocacy",
+  "bio": "Ronak is currently contracting with Forethought Research, working on uplift and automation for their research. Previously he founded Coordinal Research, automating prosaic AI safety research. That work included an agent orchestration system with hierarchical delegation and tracing, full-stack AWS deployment, and an RE-Bench evaluation pipeline. Earlier he was a research scholar at MATS, an MLE at Orca DB, and completed a Computer Sciences PhD at the University of Wisconsin-Madison on identifying feature, parameter and sample subsets in machine learning and image analysis.",
+  "workMode": "both",
+  "organisation": "Forethought Research",
+  "organisationRelationship": "contractor",
+  "causeAreas": ["ai-safety-governance", "research-data", "cross-cause-support"],
+  "directorySources": [
+    "https://ronakrm.github.io/",
+    "https://ronakrm.github.io/coordinal-postmortem/"
+  ],
+  "capabilities": ["automation", "workflow-design", "training"],
+  "availability": "peer-exchange",
+  "availabilityChecked": "2026-09-14",
+  "availabilityDetail": "Open to conversations about research automation, agent tooling, evaluations, and lessons from building and winding down a small AI safety org.",
+  "site": "https://ronakrm.github.io/",
+  "contact": "https://ronakrm.github.io/",
+  "links": [
+    {
+      "label": "Coordinal Research",
+      "url": "https://forum.effectivealtruism.org/posts/uTffD74jJrQvHJuBY/coordinal-a-postmortem"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/ronakrm"
+    },
+    {
+      "label": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=zFRqln4AAAAJ&hl=en"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ronak-mehta-64627491/"
+    },
+    {
+      "label": "CV",
+      "url": "https://ronakrm.github.io/resume/Ronak_Mehta_CV.pdf"
+    }
+  ],
+  "photo": "ronak-mehta.jpg",
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-14",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-14",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": true,
+    "date": "2026-09-14",
+    "policyVersion": "r0-v1"
+  }
+}
