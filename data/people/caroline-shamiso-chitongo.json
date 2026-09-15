@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "caroline-shamiso-chitongo",
+  "name": "Caroline Shamiso Chitongo",
+  "headline": "Independent AI safety course facilitator, mentor and applications reviewer",
+  "bio": "Caroline works as an independent contractor for BlueDot Impact, where she facilitates the Technical AI Safety and Strategy course and mentors its technical project sprint. She also reviews applications for MATS streams. Her wider work includes AI safety field-building and career advice for people who want to build career capital or move into AI safety.",
+  "workMode": "independent",
+  "organisation": null,
+  "causeAreas": ["ai-safety-governance", "ea-community-building"],
+  "directorySources": [
+    "https://forum.effectivealtruism.org/users/caroline-shamiso-chitongo"
+  ],
+  "capabilities": ["training"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-13",
+  "site": "https://forum.effectivealtruism.org/users/caroline-shamiso-chitongo",
+  "contact": "https://forum.effectivealtruism.org/users/caroline-shamiso-chitongo",
+  "photo": null,
+  "listingConsent": {
+    "granted": true,
+    "date": "2026-09-13",
+    "policyVersion": "r0-v1"
+  },
+  "copyApproved": {
+    "granted": true,
+    "date": "2026-09-13",
+    "policyVersion": "r0-v1"
+  },
+  "photoApproved": {
+    "granted": false,
+    "date": "2026-09-13",
+    "policyVersion": "r0-v1"
+  }
+}
