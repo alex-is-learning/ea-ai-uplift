@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "steven-rouk",
+  "name": "Steven Rouk",
+  "headline": "Executive Director of Connect For Animals and independent AI consultant",
+  "bio": "Steven is Executive Director of Connect For Animals, a digital platform that connects animal advocates. He also provides AI strategy, team training, custom tool development, process automation, and data services. He taught a 12-week AI training series for more than 1,000 animal advocates and built the events data system for Connect For Animals.",
+  "workMode": "both",
+  "organisation": "Connect For Animals",
+  "causeAreas": ["animal-welfare"],
+  "directorySources": ["https://stevenrouk.com/"],
+  "capabilities": ["automation", "training", "workflow-design"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-08",
+  "site": "https://stevenrouk.com/",
+  "contact": "https://stevenrouk.com/",
+  "photo": null,
+  "listingConsent": {"granted": true, "date": "2026-09-08", "policyVersion": "r0-v1"},
+  "copyApproved": {"granted": true, "date": "2026-09-08", "policyVersion": "r0-v1"},
+  "photoApproved": {"granted": false, "date": "2026-09-08", "policyVersion": "r0-v1"}
+}

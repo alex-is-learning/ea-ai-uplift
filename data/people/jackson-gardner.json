@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "jackson-gardner",
+  "name": "Jackson Gardner",
+  "headline": "United States Senior Operations Manager at the Institute for Law and AI",
+  "bio": "Jackson is the United States Senior Operations Manager at the Institute for Law and AI. He leads IT and systems administration and supports the organisation's AI adoption work. Before LawAI, he advised AI safety organisations at cFactual and worked at Bain and Company. He holds a PhD in Biomedical Sciences from the University of California, San Francisco.",
+  "workMode": "in-house",
+  "organisation": "Institute for Law and AI",
+  "causeAreas": ["ai-safety-governance"],
+  "directorySources": ["https://law-ai.org/team/jackson-gardner/"],
+  "capabilities": ["adoption", "operations"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-08",
+  "site": "https://law-ai.org/team/jackson-gardner/",
+  "contact": "https://law-ai.org/team/jackson-gardner/",
+  "photo": null,
+  "listingConsent": {"granted": true, "date": "2026-09-08", "policyVersion": "r0-v1"},
+  "copyApproved": {"granted": true, "date": "2026-09-08", "policyVersion": "r0-v1"},
+  "photoApproved": {"granted": false, "date": "2026-09-08", "policyVersion": "r0-v1"}
+}

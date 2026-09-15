@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "amrit-sidhu-brar",
+  "name": "Amrit Sidhu-Brar",
+  "headline": "Director of Operations at Forethought and operations consultant to EA organisations",
+  "bio": "Amrit is Director of Operations at Forethought. He also provides operations consulting to EA organisations and supports work across HR, finance and compliance. He previously served as Director of Operations at the Center on Long-term Risk. He is also a trustee of EA UK and co-runs the EA Operations Slack workspace.",
+  "workMode": "both",
+  "organisation": "Forethought",
+  "causeAreas": ["ai-safety-governance", "cross-cause-support"],
+  "directorySources": [
+    "https://www.forethought.org/people/amrit-sidhu-brar",
+    "https://forum.effectivealtruism.org/users/amritsidhu-brar"
+  ],
+  "capabilities": ["operations"],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-07",
+  "site": "https://amritsidhubrar.me.uk/",
+  "contact": "https://amritsidhubrar.me.uk/",
+  "photo": null,
+  "listingConsent": {"granted": true, "date": "2026-09-07", "policyVersion": "r0-v1"},
+  "copyApproved": {"granted": true, "date": "2026-09-07", "policyVersion": "r0-v1"},
+  "photoApproved": {"granted": false, "date": "2026-09-07", "policyVersion": "r0-v1"}
+}

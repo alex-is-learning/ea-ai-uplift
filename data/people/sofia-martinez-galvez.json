@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "r0-v1",
+  "publicationBasis": "person-approved",
+  "slug": "sofia-martinez-galvez",
+  "name": "Sofia Martinez Galvez",
+  "headline": "AI uplift practitioner with a background in global development and quantum cryptography",
+  "bio": "Sofia works on AI uplift and previously co-founded Learning Alliance, which brought evidence-based teaching practices to educators in sub-Saharan Africa. She left quantum cryptography work in Spain in 2021 and later completed a master's degree in Data, Economics and Design of Policy at MIT. She transitioned out of Learning Alliance in 2025.",
+  "workMode": "independent",
+  "organisation": null,
+  "causeAreas": ["cross-cause-support"],
+  "directorySources": [
+    "https://news.mit.edu/2024/how-quantum-scientist-nurse-economist-joining-fight-against-global-poverty-0610"
+  ],
+  "capabilities": [],
+  "availability": "unknown",
+  "availabilityChecked": "2026-09-09",
+  "site": null,
+  "contact": "https://news.mit.edu/2024/how-quantum-scientist-nurse-economist-joining-fight-against-global-poverty-0610",
+  "photo": null,
+  "listingConsent": {"granted": true, "date": "2026-09-09", "policyVersion": "r0-v1"},
+  "copyApproved": {"granted": true, "date": "2026-09-09", "policyVersion": "r0-v1"},
+  "photoApproved": {"granted": false, "date": "2026-09-09", "policyVersion": "r0-v1"}
+}
