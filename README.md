@@ -20,7 +20,7 @@ The home page is a short navigation menu. Keep full content on its destination p
 
 Offers appears in the section-page header navigation and on the people directory. Contribute is a separate header action. The stored Start, Learn and Hire material is excluded from generated output. The footer links the maintainer credit to Alexander’s website and links to this GitHub repository. The home has one main menu; section pages also have header navigation. Case studies remain an honest empty state until public material exists; the page links to a low-risk proposal form and to Alexander for an interview.
 
-Both assessments run in the browser. Their result links and downloaded JSON files preserve scores, answer labels, date, version and next action. Optional notes enter only a selected download. The site does not email, collect or combine assessment results.
+Both assessments run in the browser. Their result links and downloaded JSON files preserve scores, answer labels, date, version and next action. Optional notes enter only a selected download or a selected send. A visitor can choose to send a result to Alexander through a Tally form (`https://tally.so/r/7RAKV6`). Nothing is sent otherwise. The site does not collect or combine assessment results by itself.
 
 The People directory groups small colour portraits by area and organisation. Search, the AIM charities filter, and contact preferences run locally in the browser. Native disclosure groups also work without JavaScript. Conversation contact routes do not imply paid-work availability. See [directory classifications and sources](docs/DIRECTORY.md).
 

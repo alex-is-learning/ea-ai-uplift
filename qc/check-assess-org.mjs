@@ -59,7 +59,8 @@ async function checkResults(browser, projectRoot) {
           action:(result&&result.querySelector('#primary-action')||{}).getAttribute&&result.querySelector('#primary-action').getAttribute('href'),
           primaryCount:result&&result.querySelectorAll('.result-primary').length,
           analysisOpen:result&&result.querySelector('.result-analysis').open,
-          emailLinks:result&&result.querySelectorAll('a[href*="tally"],a[href^="mailto:"]').length,
+          emailLinks:result&&result.querySelectorAll('a[href^="mailto:"]').length,
+          sendLinks:[...(result?result.querySelectorAll('a[href*="tally"]'):[])].map(link=>link.getAttribute('href')),
           hollowDots:document.querySelectorAll('#chart .hollow-dot').length,
           hollowAxes:document.querySelectorAll('#chart .axis.hollow').length,
           chartKey:(document.getElementById('chart-key')||{}).textContent||'',
@@ -74,6 +75,7 @@ async function checkResults(browser, projectRoot) {
     assert(value.action === test.action, `${test.mode} ${test.query}: expected primary route ${test.action}, got ${value.action || 'missing'}`);
     assert(value.primaryCount === 1 && value.analysisOpen === false, `${test.mode} ${test.query}: primary action or secondary analysis hierarchy is wrong`);
     assert(value.emailLinks === 0 && !/email me|results are counted/iu.test(value.text || ''), `${test.mode} ${test.query}: an email or automatic collection promise remains`);
+    assert(value.sendLinks?.length === 1 && value.sendLinks[0].startsWith('https://tally.so/r/7RAKV6?scores=') && value.sendLinks[0].includes(`&kind=${test.mode === 'org' ? 'org' : 'individual'}`) && !value.sendLinks[0].includes('&notes='), `${test.mode} ${test.query}: opt-in send link is missing or wrong: ${value.sendLinks}`);
     assert((value.share || '').includes(`${test.query}&r=`), `${test.mode} ${test.query}: share URL did not preserve the old scores before the snapshot`);
     assert((value.version || '').includes('assessment version 0.2'), `${test.mode} ${test.query}: result version is missing`);
     if (test.contains) assert((value.text || '').includes(test.contains), `${test.mode} ${test.query}: result is missing "${test.contains}"`);
@@ -153,6 +155,9 @@ async function checkInteraction(browser, page) {
       document.getElementById('save-result').click();
       await waitFor(()=>window.__savedBlobs.length===2);
       const withNotes=await window.__savedBlobs[1].text();
+      const sendWithout=document.getElementById('send-result').getAttribute('href');
+      document.getElementById('send-notes').click();
+      const sendWith=document.getElementById('send-result').getAttribute('href');
       const teamInput=document.getElementById('team-code');
       if(teamInput){
         teamInput.value='orchard_2026!!abcdefghijklmnopqrstuvwxyz';
@@ -168,6 +173,9 @@ async function checkInteraction(browser, page) {
         notesText:initialNotesText,
         withoutNotes,
         withNotes,
+        sendWithout,
+        sendWith,
+        sendAfterTeam:(document.getElementById('send-result')||{}).getAttribute&&document.getElementById('send-result').getAttribute('href'),
         downloadName:window.__downloadName,
         primary:(document.getElementById('primary-action')||{}).getAttribute&&document.getElementById('primary-action').getAttribute('href'),
         teamLink:(document.getElementById('team-link')||{}).value||(document.getElementById('team-link')||{}).textContent||'',
@@ -194,7 +202,10 @@ async function checkInteraction(browser, page) {
   assert(value.copied === value.share, 'Copy link did not copy the share URL');
   assert((value.notesText || '').includes('Observed in staff survey'), 'Q4 context is missing from the local result');
   assert((value.notesText || '').includes('grant reporting'), 'Q9 context is missing from the local result');
-  for (const field of [value.href, value.share]) {
+  assert((value.sendWithout || '').startsWith('https://tally.so/r/7RAKV6?scores=5354323352&team=orchard-2026&share=') && value.sendWithout.includes('&kind=org'), `send link has the wrong fields: ${value.sendWithout || 'missing'}`);
+  assert(decodeURIComponent(value.sendWith || '').includes('Q4: Observed in staff survey') && decodeURIComponent(value.sendWith || '').includes('Q9: grant reporting'), 'selected notes are missing from the send link');
+  assert((value.sendAfterTeam || '').includes(`&team=${value.teamCode}&`), 'send link did not follow the team code');
+  for (const field of [value.href, value.share, value.sendWithout]) {
     assert(!decodeURIComponent(field || '').includes('grant reporting'), 'optional context escaped into a URL or email link');
     assert(!decodeURIComponent(field || '').includes('Observed in staff survey'), 'optional context escaped into a URL or email link');
   }
