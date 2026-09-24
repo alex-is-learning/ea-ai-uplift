@@ -4,7 +4,7 @@
 
 Everything runs in the browser. There is no account or server storage for answers. Vercel Web Analytics records anonymised page views, but it does not receive answers or context-field text. Each question has an optional context field. Its text stays in the current browser tab. Notes enter the downloaded JSON file only when the visitor selects that option.
 
-The result URL keeps `?s=` with seven spoke digits and `?c=` with three connective digits. Digit `0` means unknown. A new `r` value also preserves the selected answer labels, result date, assessment version and next action. Old links without `r` remain valid. The visitor can copy the result link or download the JSON file. The site does not promise email delivery.
+The result URL keeps `?s=` with seven spoke digits and `?c=` with three connective digits. Digit `0` means unknown. A new `r` value also preserves the selected answer labels, result date, assessment version and next action. Old links without `r` remain valid. The visitor can copy the result link or download the JSON file. The visitor can also press "Send to Alexander". This opens the Tally form `https://tally.so/r/7RAKV6` with hidden fields `scores`, `team`, `share`, `kind` and, only if the visitor selects that option, `notes`. Nothing is sent unless the visitor submits that form. The site does not promise email delivery back to the visitor.
 
 ## Data
 

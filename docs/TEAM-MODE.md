@@ -1,6 +1,6 @@
 # Team-labelled results without collection
 
-The assessment can create a team-labelled link without an account or server storage. The site does not collect, combine, or email results.
+The assessment can create a team-labelled link without an account or server storage. The site does not collect or combine results. Each person can choose to send their own result to Alexander.
 
 ## For the person who coordinates the assessment
 
